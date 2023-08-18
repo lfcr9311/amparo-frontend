@@ -23,7 +23,7 @@ git clone https://tools.ages.pucrs.br/amparo/amparo-frontend
 Navegue para a pasta do projeto clonado usando o terminal:
 
 ```
-cd amparo-app
+cd amparo
 ```
 Agora, instale as dependências do projeto utilizando o Node Package Manager (npm):
 
@@ -36,5 +36,5 @@ npm install
 Após a instalação das dependências, você pode iniciar o servidor de desenvolvimento para rodar o projeto React. Utilize o seguinte comando, na pasta my-app:
 
 ```
-npm start
+npm run dev
 ```
