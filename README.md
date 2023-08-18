@@ -1,7 +1,5 @@
 # Amparo-frontend
 
-
-
 ## Guia de Instalação e Execução do Projeto React
 
 Este é um guia passo a passo para ajudar você a instalar e executar um projeto React em seu ambiente de desenvolvimento. Certifique-se de seguir estas instruções cuidadosamente para garantir uma configuração adequada.
