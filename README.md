@@ -18,20 +18,12 @@ Abra o terminal e navegue até a pasta em que deseja clonar o repositório do pr
 ```
 git clone https://tools.ages.pucrs.br/amparo/amparo-frontend
 ```
-
-```
-cd existing_repo
-git remote add origin https://tools.ages.pucrs.br/amparo/amparo-frontend.git
-git branch -M main
-git push -uf origin main
-```
-
 ## Passo 2: Instalar as dependências
 
 Navegue para a pasta do projeto clonado usando o terminal:
 
 ```
-cd my-app
+cd amparo-app
 ```
 Agora, instale as dependências do projeto utilizando o Node Package Manager (npm):
 
