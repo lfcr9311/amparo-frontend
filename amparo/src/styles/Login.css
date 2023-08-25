@@ -1,12 +1,11 @@
 .login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height:50vh;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 20px;
+  width: 300px;
   }
   
   .login-box {
-    border: 1px solid #d41f1f;
     padding: 20px;
     width: 400px;
     text-align: center;
@@ -38,4 +37,10 @@
     border-radius: 4px;
     cursor: pointer;
   }
-  
+
+  .centered-container {
+    display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  }
