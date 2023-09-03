@@ -12,7 +12,7 @@ const FormularioLogin = () => {
   const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
 
   // Função para lidar com o envio do formulário
-  const enviarFormulario = (e) => {
+  const enviarFormulario = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // Verifica se o e-mail é válido usando a expressão regular

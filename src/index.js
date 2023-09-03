@@ -1,8 +1,8 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import Logo from './components/Logo';
-import FormularioLogin from './components/FormularioLogin';
-import LinksAuxiliares from './components/LinksAuxiliares';
+import Logo from '/components/Header/Logo';
+import FormularioLogin from './components/Header/FormularioLogin';
+import LinksAuxiliares from '/components/Header/LinksAuxiliares';
 import './styles.css';
 
 // Componente principal da Tela de Login
