@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Componente que representa os links auxiliares abaixo do formulário
-const LinksAuxiliares = () => (
+const LinksAuxiliares: React.FC = () => (
   <div>
     {/* Link para recuperação de senha */}
     <a href="/esqueceu-senha" className="link-recuperar-senha">
