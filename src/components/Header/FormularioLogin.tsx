@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import BotaoEntrar from './BotaoEntrar';
 
 // Componente que representa o formulário de login
-const FormularioLogin = () => {
+const FormularioLogin: React.FC = () => {
   // Estados para armazenar os valores dos campos de e-mail e senha
-  const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
-  const [erro, setErro] = useState("");
+  const [email, setEmail] = useState<string>("");
+  const [senha, setSenha] = useState<string>("");
+  const [erro, setErro] = useState<string>("");
 
   // Expressão regular para validar e-mails
   const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;

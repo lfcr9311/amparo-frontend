@@ -1,15 +1,12 @@
 import React from 'react';
-import { Root, createRoot } from 'react-dom/client';
+import { createRoot } from 'react-dom';
 import Logo from './components/Header/Logo';
 import FormularioLogin from './components/Header/FormularioLogin';
 import LinksAuxiliares from './components/Header/LinksAuxiliares';
 import './styles.css';
 
-
-const Logo = require("./components/Header/Logo")
-
 // Componente principal da Tela de Login
-const TelaLogin = () => (
+const TelaLogin: React.FC = () => (
   <div className="container">
     <Logo />
     <h1>Amparo</h1>
@@ -18,8 +15,20 @@ const TelaLogin = () => (
   </div>
 );
 
-// Utilizando a nova API createRoot do React 18
 const root = document.getElementById('root');
-const appRoot = createRoot(root as Element);
+const appRoot = createRoot(root);
 
 appRoot.render(<TelaLogin />);
+
+export default TelaLogin;
+
+
+
+// Utilizando a nova API createRoot do React 18
+// const root = document.getElementById('root');
+// if (root) {
+//   const appRoot = createRoot(root);
+//   appRoot.render(<TelaLogin />);
+// } else {
+//   console.error("Element with id 'root' not found");
+// }
