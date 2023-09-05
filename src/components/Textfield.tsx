@@ -21,7 +21,7 @@ const Textfield: React.FC<TextfieldProps> = ({ label, value, onChange, type }) =
       label={label}
       value={internalValue}
       type={type}
-      focused
+      InputLabelProps={type === "date" ? { shrink: true } : {} }
       onChange={(event) => handleValue(event.target.value)}
       sx={{
         "& .MuiInputBase-input": {
