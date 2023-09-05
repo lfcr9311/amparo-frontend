@@ -1,10 +1,11 @@
 import React from 'react';
-import Login from './pages/Login';
+import Login from './pages/Cadastro';
+import Cadastro from './pages/Cadastro';
 
 function App() {
   return (
     <div className="App">
-      <Login />
+      <Cadastro />
     </div>
   );
 }

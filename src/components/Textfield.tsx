@@ -9,11 +9,11 @@ interface TextfieldProps {
 }
 
 const Textfield: React.FC<TextfieldProps> = ({ label, value, onChange, type }) => {
-  const [internalValue, setinternalValue] = useState(value);
+  const [internalValue, setInternalValue] = useState(value);
 
   const handleValue = (value: string) => {
     onChange(value);
-    setinternalValue((value));
+    setInternalValue(value);
   }
   
   return (
@@ -29,7 +29,7 @@ const Textfield: React.FC<TextfieldProps> = ({ label, value, onChange, type }) =
           fontFamily: 'Poppins, sans-serif',
         },
         "& .MuiFormLabel-root": {
-          color: "#191919",
+          color: "red", // Troque para a cor desejada para a label
           fontFamily: 'Poppins, sans-serif',
         },
         "& .MuiInputBase-root": {
@@ -49,7 +49,7 @@ const Textfield: React.FC<TextfieldProps> = ({ label, value, onChange, type }) =
             borderColor: "#E76553",
           },
           "&:hover fieldset": {
-            borderColor: "##E76553",
+            borderColor: "#E76553",
           },
           "&.Mui-focused fieldset": {
             borderColor: "#E76553",
