@@ -18,7 +18,7 @@ export const Cadastro = () => {
   return (
     <div className="cadastro-container">
       <img src={Logo}/>
-      <p className="frase">Boas-Vindas!</p>
+      <br></br><a className="frase">Boas-Vindas!</a>
       <form>
         <div className="components-container">
           <Textfield
@@ -77,10 +77,11 @@ export const Cadastro = () => {
               console.log("Cadastrado");
             }}
           />
-        </div>
-        <p>
+          <span className="footer">
         Já possui conta? <a href="src/pages/Login.tsx"> Fazer Login</a>
-        </p>
+        </span>
+        </div>
+        
       </form> 
     </div>
   );

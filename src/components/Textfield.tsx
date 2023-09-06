@@ -25,8 +25,7 @@ const Textfield: React.FC<TextfieldProps> = ({ label, value, onChange, type }) =
       onChange={(event) => handleValue(event.target.value)}
       sx={{
         width: "100%",
-        height: "40px",
-        marginBottom: "12px",
+        margin: "12px 0px",
         "& .MuiInputBase-input": {
           color: "#191919",
           fontFamily: 'Poppins, sans-serif',

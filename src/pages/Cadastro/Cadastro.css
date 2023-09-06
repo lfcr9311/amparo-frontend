@@ -1,14 +1,12 @@
-.body{
-    text-align: center;
-    align-items: center;
-    justify-content: center
+body{
+    background-color: #F2F8F8;
 }
 
 img {
     flex-shrink: 0;
     width: 62.611px;
     height: 81.431px;
-    margin-top: 25px;
+    margin-top: 70px;
 }
 
 .cadastro-container {
@@ -20,37 +18,31 @@ img {
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding: 150px;
-    margin-left: auto;
-    margin-right: auto;
+    padding: 20px;
 }
 
 .frase {
-    color: #4D4C4C;
+    color:#4D4C4C;
     text-align: center;
     font-family: Poppins;
     font-size: 30px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
+    flex-direction: column;
 }
 
-p {
-    color: #191919;
-    text-align: center;
+.footer {
     font-family: Poppins;
     font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 37.333px;
-    letter-spacing: 0.2px;
-}
-
-a {
+    font-style: bold;
+    font-weight: 600;
+    line-height: normal;
     text-decoration: none;
+    margin-top: 24px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
     .components-container {
         display: flex;
         text-align: center;
@@ -58,3 +50,4 @@ a {
         align-items: center;
     }
 }
+
