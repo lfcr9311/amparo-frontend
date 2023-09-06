@@ -24,7 +24,8 @@ const Textfield: React.FC<TextfieldProps> = ({ label, value, onChange, type }) =
       InputLabelProps={type === "date" ? { shrink: true } : {} }
       onChange={(event) => handleValue(event.target.value)}
       sx={{
-        width: "100%",     
+        width: "100%",
+        height: "40px",
         marginBottom: "12px",
         "& .MuiInputBase-input": {
           color: "#191919",

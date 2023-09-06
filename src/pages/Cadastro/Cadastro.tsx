@@ -17,7 +17,7 @@ export const Cadastro = () => {
 
   return (
     <div className="cadastro-container">
-      <img src={Logo} />
+      <img src={Logo}/>
       <p className="frase">Boas-Vindas!</p>
       <form>
         <div className="components-container">
@@ -70,6 +70,7 @@ export const Cadastro = () => {
             value={confirmPassoword}
           />
           <Button
+            margin-botton ="20px"
             variant="contained"
             label="Cadastrar"
             onClick={() => {
@@ -78,12 +79,9 @@ export const Cadastro = () => {
           />
         </div>
         <p>
-            Já possui conta? 
-          <a href="src/pages/Login.tsx">
-            Fazer Login
-          </a>
+        Já possui conta? <a href="src/pages/Login.tsx"> Fazer Login</a>
         </p>
-      </form>
+      </form> 
     </div>
   );
 };
