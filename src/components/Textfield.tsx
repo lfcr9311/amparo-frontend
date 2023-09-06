@@ -21,15 +21,17 @@ const Textfield: React.FC<TextfieldProps> = ({ label, value, onChange, type }) =
       label={label}
       value={internalValue}
       type={type}
-      focused
+      InputLabelProps={type === "date" ? { shrink: true } : {} }
       onChange={(event) => handleValue(event.target.value)}
       sx={{
+        width: "80%",
+        height: "15%",
         "& .MuiInputBase-input": {
           color: "#191919",
           fontFamily: 'Poppins, sans-serif',
         },
         "& .MuiFormLabel-root": {
-          color: "red", // Troque para a cor desejada para a label
+          color: "#191919", 
           fontFamily: 'Poppins, sans-serif',
         },
         "& .MuiInputBase-root": {

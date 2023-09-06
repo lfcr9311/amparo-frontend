@@ -1,7 +1,4 @@
-import React from 'react';
-import Login from './pages/Cadastro';
-import Cadastro from './pages/Cadastro';
-
+import { Cadastro } from './pages/Cadastro/Cadastro';
 function App() {
   return (
     <div className="App">
