@@ -4,19 +4,6 @@ import Button from "../../components/Button";
 import Logo from "../../assets/amparo.svg";
 import "./Cadastro.css";
 
-/*const mask = (i : HTMLInputElement) => {
-  const v: string = i.value;
-
-  if (isNaN(Number(v[v.length - 1]))) {
-    i.value = v.substring(0, v.length - 1);
-    return;
-  }
-
-  i.setAttribute("maxlength", "14");
-  if (v.length === 3 || v.length === 7) i.value += ".";
-  if (v.length === 11) i.value += "-";
-}*/
-
 export const Cadastro = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -57,7 +44,6 @@ export const Cadastro = () => {
               setCpf(newCpf);
             }}
             value={cpf}
-            //input oninput="mask(this)"
           />
           <Textfield
             label="Data de Nascimento"

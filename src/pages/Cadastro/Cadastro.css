@@ -1,11 +1,15 @@
+.body{
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
 .cadastro-container {
     text-align: center;
     align-items: center;
 }
 
 .components-container {
-    height: 330px;
-    width: 80%;
     display: flex;  
     align-items: center;
     flex-direction: column;
