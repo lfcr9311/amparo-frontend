@@ -5,10 +5,12 @@ interface TextfieldProps {
   label: string;
   value: string;
   type: string;
-  onChange: (value: string) => void;
+  onChange: (value: any) => void;
+  error?: boolean; 
+  helperText?: boolean;
 }
 
-const Textfield: React.FC<TextfieldProps> = ({ label, value, onChange, type }) => {
+const Textfield: React.FC<TextfieldProps> = ({ label, value, onChange, type, error, helperText }) => {
   const [internalValue, setinternalValue] = useState(value);
 
   const handleValue = (value: string) => {
@@ -21,9 +23,13 @@ const Textfield: React.FC<TextfieldProps> = ({ label, value, onChange, type }) =
       label={label}
       value={internalValue}
       type={type}
+      error={error}
+      helperText={helperText}
       InputLabelProps={type === "date" ? { shrink: true } : {} }
       onChange={(event) => handleValue(event.target.value)}
       sx={{
+        width: "100%",
+        margin: "12px, 0px",
         "& .MuiInputBase-input": {
           color: "#191919",
           fontFamily: 'Poppins, sans-serif',
