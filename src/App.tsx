@@ -1,4 +1,4 @@
-import { Cadastro } from './pages/Cadastro/Cadastro';
+import { Cadastro } from './pages/CadastroPaciente/CadastroPaciente';
 function App() {
   return (
     <div className="App">

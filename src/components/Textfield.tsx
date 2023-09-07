@@ -5,22 +5,26 @@ interface TextfieldProps {
   label: string;
   value: string;
   type: string;
-  onChange: (value: string) => void;
+  onChange: (value: any) => void;
+  error?: boolean;
+  helperText?: string;
 }
 
-const Textfield: React.FC<TextfieldProps> = ({ label, value, onChange, type }) => {
+const Textfield: React.FC<TextfieldProps> = ({ label, value, onChange, type, error, helperText }) => {
   const [internalValue, setInternalValue] = useState(value);
 
   const handleValue = (value: string) => {
     onChange(value);
     setInternalValue(value);
   }
-  
+
   return (
     <TextField
       label={label}
       value={internalValue}
       type={type}
+      error={error}
+      helperText={helperText}
       InputLabelProps={type === "date" ? { shrink: true } : {} }
       onChange={(event) => handleValue(event.target.value)}
       sx={{
