@@ -1,14 +1,11 @@
-import React from "react";
-import { Cadastro } from "./pages/CadastroMedico/CadastroMedico"; // Certifique-se de importar o componente Cadastro corretamente
+import { CadastroMedico } from "./pages/CadastroMedico/CadastroMedico";
 
-class App extends React.Component {
-  render() {
+function App() {
     return (
       <div className="App">
-        <Cadastro />
+        <CadastroMedico />
       </div>
     );
-  }
 }
 
 export default App;

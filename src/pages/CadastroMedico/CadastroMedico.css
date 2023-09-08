@@ -2,20 +2,15 @@ body{
     background-color: #F2F8F8;
 }
 
+.alo {
+    width: 100%;
+}
+
 img {
     flex-shrink: 0;
     width: 62.611px;
     height: 81.431px;
     margin-top: 70px;
-}
-
-.crmMedico{
-    display: flex;
-    width: 233px;
-    height: 37px;
-    justify-content: center;
-    align-items: center;
-    margin-left: 0%;
 }
 
 .cadastro-container {
@@ -27,7 +22,9 @@ img {
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin: 3% 3% 0 3%
+    margin-top: 25px;
+    gap: 15px;
+
 }
 
 .frase {
@@ -41,14 +38,13 @@ img {
     flex-direction: column;
 }
 
-.footer {
+span {
     font-family: Poppins;
     font-size: 12px;
     font-style: bold;
     font-weight: 400;
     line-height: normal;
     text-decoration: none;
-    margin-top: 5px;
 }
 
 @media (min-width: 700px) {
@@ -68,3 +64,9 @@ img {
     }
 }
 
+.crm-state-container {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+}

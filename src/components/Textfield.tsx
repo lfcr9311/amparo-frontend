@@ -7,11 +7,12 @@ interface TextfieldProps {
   type: string;
   onChange: (value: any) => void;
   error?: boolean;
+  width?: string;
   helperText?: string;
   classname?: string;
 }
 
-const Textfield: React.FC<TextfieldProps> = ({ label, value, onChange, type, error, helperText, classname }) => {
+const Textfield: React.FC<TextfieldProps> = ({ label, value, onChange, type, error, helperText, classname, width = 330 }) => {
   const [internalValue, setInternalValue] = useState(value);
 
   const handleValue = (value: string) => {
@@ -29,9 +30,9 @@ const Textfield: React.FC<TextfieldProps> = ({ label, value, onChange, type, err
       helperText={helperText}
       InputLabelProps={type === "date" ? { shrink: true } : {} }
       onChange={(event) => handleValue(event.target.value)}
+      size="small"
       sx={{
-        width: "100%",
-        margin: "12px 0px",
+        width: {width},
         "& .MuiInputBase-input": {
           color: "#191919",
           fontFamily: 'Poppins, sans-serif',

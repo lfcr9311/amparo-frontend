@@ -1,14 +1,13 @@
-import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Select from "@mui/material/Select";
 
 interface SelectProps {
   label: string;
   value: string;
-  onChange: (event: SelectChangeEvent) => void;
+  onChange: (value: any) => void;
 }
 
 export default function SelectComponent({ label, value, onChange }: SelectProps) {
@@ -45,8 +44,6 @@ export default function SelectComponent({ label, value, onChange }: SelectProps)
   return (
     <Box
       sx={{
-        width: "88px",
-        height: "37px",
         fontFamily: 'Poppins, sans-serif',
         fontSize: '14px',
         color: "#191919",
@@ -84,9 +81,8 @@ export default function SelectComponent({ label, value, onChange }: SelectProps)
           borderColor: "#E76553",
         }
       }}>
-      <FormControl fullWidth>
+      <FormControl size="small" sx={{width: "90px"}}>
         <InputLabel id="select-label"
-        
         sx={{
           color: "#191919",
           fontFamily: 'Poppins, sans-serif',

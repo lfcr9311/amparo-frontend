@@ -5,7 +5,7 @@ import Logo from "../../assets/amparo.svg";
 import cpf from 'cpf';
 import "./CadastroPaciente.css";
 
-export const Cadastro = () => {
+export const CadastroPaciente = () => {
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [date, setDate] = useState<string>("");
@@ -105,10 +105,10 @@ export const Cadastro = () => {
             label="Cadastrar"
             onClick={() => setClicked(!clicked)}
           />
-          <span className="footer">
+        </div>
+        <span>
             Já possui conta? <a href="src/pages/Login.tsx"> Fazer Login</a>
           </span>
-        </div>
       </form>
     </div>
   );
