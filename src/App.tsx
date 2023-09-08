@@ -1,24 +1,14 @@
-import React, { useState } from "react";
-import SelectComponent from "./components/Select";
-import { SelectChangeEvent } from "@mui/material";
+import React from "react";
+import { Cadastro } from "./pages/CadastroMedico/CadastroMedico"; // Certifique-se de importar o componente Cadastro corretamente
 
-function App() {
-  const [selectedState, setSelectedState] = useState(""); 
-
-  const handleStateChange = (event: SelectChangeEvent) => {
-    setSelectedState(event.target.value as string); 
-    console.log(event.target.value);
-  };
-
-  return (
-    <div className="App">
-      <SelectComponent 
-        label="Estado"
-        value={selectedState}
-        onChange={handleStateChange}
-      />
-    </div>
-  );
+class App extends React.Component {
+  render() {
+    return (
+      <div className="App">
+        <Cadastro />
+      </div>
+    );
+  }
 }
 
 export default App;

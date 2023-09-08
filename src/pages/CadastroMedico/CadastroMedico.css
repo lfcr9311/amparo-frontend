@@ -10,9 +10,12 @@ img {
 }
 
 .crmMedico{
+    display: flex;
     width: 233px;
     height: 37px;
-    justify-content: left
+    justify-content: center;
+    align-items: center;
+    margin-left: 0%;
 }
 
 .cadastro-container {
@@ -24,6 +27,7 @@ img {
     display: flex;
     align-items: center;
     flex-direction: column;
+    margin: 3% 3% 0 3%
 }
 
 .frase {
