@@ -42,12 +42,20 @@ img {
     margin-top: 5px;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 700px) {
     .components-container {
         display: flex;
         text-align: center;
         justify-content: center;
         align-items: center;
+        flex-direction: column;
+
+        margin-left: 25%;
+        margin-right: 25%;
+    }
+    img {
+        width: 62.611px;
+        height: 81.431px;
     }
 }
 

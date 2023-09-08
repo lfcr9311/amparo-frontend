@@ -1,8 +1,13 @@
-import { Cadastro } from './pages/CadastroPaciente/CadastroPaciente';
+import SelectComponent from "./components/Select";
+
 function App() {
   return (
     <div className="App">
-      <Cadastro />
+      <SelectComponent 
+        label="UF"
+        value=""
+        onChange={() => console.log("Ola")}
+      />
     </div>
   );
 }

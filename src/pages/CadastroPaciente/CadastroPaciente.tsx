@@ -10,7 +10,7 @@ export const Cadastro = () => {
   const [email, setEmail] = useState<string>("");
   const [date, setDate] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [confirmPassoword, setConfirmPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [validPassword, setValidPassaword] = useState<boolean>(true);
   const [cpfValue, setCpfValue] = useState<string>("");
   const [isValidCpf, setIsValidCpf] = useState<boolean>(true);
@@ -97,7 +97,7 @@ export const Cadastro = () => {
             onChange={handleConfirmPassword}
             error={!validPassword}
             helperText={!validPassword && clicked ? 'Senha não correspondentes' : ''}
-            value={confirmPassoword}
+            value={confirmPassword}
           />
           <Button
             margin-botton="20px"
