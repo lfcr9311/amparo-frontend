@@ -8,9 +8,10 @@ interface TextfieldProps {
   onChange: (value: any) => void;
   error?: boolean;
   helperText?: string;
+  classname?: string;
 }
 
-const Textfield: React.FC<TextfieldProps> = ({ label, value, onChange, type, error, helperText }) => {
+const Textfield: React.FC<TextfieldProps> = ({ label, value, onChange, type, error, helperText, classname }) => {
   const [internalValue, setInternalValue] = useState(value);
 
   const handleValue = (value: string) => {
@@ -20,6 +21,7 @@ const Textfield: React.FC<TextfieldProps> = ({ label, value, onChange, type, err
 
   return (
     <TextField
+      className={classname}
       label={label}
       value={internalValue}
       type={type}
