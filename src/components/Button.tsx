@@ -13,10 +13,9 @@ const CustomButton: React.FC<CustomButtonProps> = ( props ) => {
     margin: '8px',
     color: 'white',
     fontFamily: 'Poppins, sans-serif',
-    borderRadius: '16px',
-    height: '39px',
-    width: '152px'
-
+    borderRadius: "16px",
+    height: "39px",
+    width: "152px",
   };
 
   return (
