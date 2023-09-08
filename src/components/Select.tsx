@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -8,11 +8,10 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 interface SelectProps {
   label: string;
   value: string;
-  onChange: () => any;
+  onChange: (event: SelectChangeEvent) => void;
 }
 
-const SelectComponent: React.FC<SelectProps> = ({ label, value, onChange }) => {
-
+export default function SelectComponent({ label, value, onChange }: SelectProps) {
   const estados = [
     "AC",
     "AL",
@@ -45,30 +44,66 @@ const SelectComponent: React.FC<SelectProps> = ({ label, value, onChange }) => {
 
   return (
     <Box
-      sx={{"& .MuiInputBase-root": {
-        borderRadius: "8px",
-        borderColor: "#E76553"
-      }
-      }}>
-      <FormControl
       sx={{
-        height: "37px",
         width: "88px",
+        height: "37px",
+        fontFamily: 'Poppins, sans-serif',
+        fontSize: '14px',
+        color: "#191919",
+        "& .MuiInputBase-input": {
+          color: "#191919",
+          fontFamily: 'Poppins, sans-serif',
+        },
+        "& .MuiFormLabel-root": {
+          color: "#191919",
+          fontFamily: 'Poppins, sans-serif',
+        },
         "& .MuiInputBase-root": {
           borderRadius: "8px",
-          borderColor: "#E76553"
+          color: "#191919",
+          fontFamily: 'Poppins, sans-serif',
+        },
+        "& label.Mui-focused": {
+          color: "#191919",
+          fontFamily: 'Poppins, sans-serif',
+        },
+        "& .MuiInput-underline:after": {
+          borderBottomColor: "#E76553",
+        },
+        "& .MuiOutlinedInput-root": {
+          "& fieldset": {
+            borderColor: "#E76553",
+          },
+          "&:hover fieldset": {
+            borderColor: "#E76553",
+          },
+          "&.Mui-focused fieldset": {
+            borderColor: "#E76553",
+          },
+          borderRadius: "8px",
+          borderColor: "#E76553",
         }
-
       }}>
-        <InputLabel id="select-label">UF</InputLabel>
+      <FormControl fullWidth>
+        <InputLabel id="select-label"
+        
+        sx={{
+          color: "#191919",
+          fontFamily: 'Poppins, sans-serif',
+        }}>UF</InputLabel>
         <Select
           labelId="select-label"
-          value={value}
+          id="select"
           label={label}
+          value={value}
           onChange={onChange}
         >
           {estados.map((estado) => (
-            <MenuItem key={estado} value={estado}>
+            <MenuItem sx={{
+              fontFamily: 'Poppins, sans-serif',
+              fontSize: '14px',
+            }}
+            key={estado} value={estado}>
               {estado}
             </MenuItem>
           ))}
@@ -77,5 +112,3 @@ const SelectComponent: React.FC<SelectProps> = ({ label, value, onChange }) => {
     </Box>
   );
 }
-
-export default SelectComponent;
