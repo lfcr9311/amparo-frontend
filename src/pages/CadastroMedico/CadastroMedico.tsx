@@ -14,7 +14,6 @@ export const CadastroMedico = () => {
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [validPassword, setValidPassaword] = useState<boolean>(true);
-  const [clicked, setClicked] = useState<boolean>(false);
 
   const buttonCLick = () => {
     if (password === confirmPassword){
@@ -46,12 +45,10 @@ export const CadastroMedico = () => {
 
   const handlePassword = (newPassoword: string) => {
     setPassword(newPassoword);
-    setClicked(false)
   }
 
   const handleConfirmPassword = (newConfirmPassword: string) => {
     setConfirmPassword(newConfirmPassword);
-    setClicked(false)
   }
 
   return (

@@ -16,6 +16,20 @@ export const CadastroPaciente = () => {
   const [isValidCpf, setIsValidCpf] = useState<boolean>(true);
   const [clicked, setClicked] = useState<boolean>(false);
 
+  const buttonCLick = () => {
+    if (password === confirmPassword){
+      setValidPassaword(true)
+    }else{
+      setValidPassaword(false)
+    }
+    
+    if (cpf.isValid(cpfValue)) {
+      setIsValidCpf(true);
+    } else {
+      setIsValidCpf(false);
+    }
+  }
+
   const handleName = (newName: string) => {
     setName(newName)
   }
@@ -30,27 +44,14 @@ export const CadastroPaciente = () => {
 
   const handleCpf = (newCpf: string) => {
     setCpfValue(newCpf);
-    setClicked(false)
-    if (cpf.isValid(newCpf)) {
-      setIsValidCpf(true);
-    } else {
-      setIsValidCpf(false);
-    }
   };
 
   const handlePassword = (newPassoword: string) => {
     setPassword(newPassoword);
-    setClicked(false)
   }
 
   const handleConfirmPassword = (newConfirmPassword: string) => {
     setConfirmPassword(newConfirmPassword);
-    setClicked(false)
-    if (newConfirmPassword === password) {
-      setValidPassaword(true);
-    } else {
-      setValidPassaword(false);
-    }
   }
 
   return (
@@ -77,7 +78,7 @@ export const CadastroPaciente = () => {
             onChange={handleCpf}
             value={cpfValue}
             error={!isValidCpf}
-            helperText={!isValidCpf && clicked ? 'CPF inválido' : ''}
+            helperText={!isValidCpf ? 'CPF inválido' : ''}
           />
           <Textfield
             label="Data de Nascimento"
@@ -96,14 +97,14 @@ export const CadastroPaciente = () => {
             type="password"
             onChange={handleConfirmPassword}
             error={!validPassword}
-            helperText={!validPassword && clicked ? 'Senha não correspondentes' : ''}
+            helperText={!validPassword ? 'Senha não correspondentes' : ''}
             value={confirmPassword}
           />
           <Button
             margin-botton="20px"
             variant="contained"
             label="Cadastrar"
-            onClick={() => setClicked(!clicked)}
+            onClick={() => buttonCLick()}
           />
         </div>
         <span>
