@@ -6,6 +6,7 @@ interface CustomButtonProps {
   label: string;
   onClick: () => void;
   style?: React.CSSProperties;
+  type?: "button" | "submit" | "reset";
 }
 
 const CustomButton: React.FC<CustomButtonProps> = ( props ) => {
@@ -27,6 +28,7 @@ const CustomButton: React.FC<CustomButtonProps> = ( props ) => {
       color='primary'
       style={buttonStyle}
       onClick={props.onClick}
+      type={props.type || "button"}
     >
       {props.label}
     </Button>

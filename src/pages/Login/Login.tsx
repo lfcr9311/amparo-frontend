@@ -21,7 +21,10 @@ export const Login: React.FC = () => {
     setClicked(false);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    
+    e.preventDefault();
+
     if (!emailRegex.test(email)) {
       setErro("Por favor, insira um e-mail válido.");
       return;
@@ -55,18 +58,19 @@ export const Login: React.FC = () => {
             variant="contained"
             label="Entrar"
             onClick={() => setClicked(!clicked)}
+            type="submit"
             style={{ marginTop: '35px' }}
           />
         </div>
         <br />
-    <div className="links-container">
-        <a href="/esqueceu-senha" className="link-recuperar-senha">
-        Esqueceu sua senha?
-        </a>
-        <p className="texto-cadastro">
-        Ainda não tem conta? <a href="/cadastro">Cadastre-se!</a>
-         </p>
-    </div>
+        <div className="links-container">
+          <a href="/esqueceu-senha" className="link-recuperar-senha">
+            Esqueceu sua senha?
+          </a>
+          <p className="texto-cadastro">
+            Ainda não tem conta? <a href="/cadastro">Cadastre-se!</a>
+          </p>
+        </div>
       </form>
     </div>
   );
