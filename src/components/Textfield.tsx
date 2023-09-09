@@ -5,31 +5,40 @@ interface TextfieldProps {
   label: string;
   value: string;
   type: string;
-  onChange: (value: string) => void;
+  onChange: (value: any) => void;
+  error?: boolean;
+  width?: string;
+  helperText?: string;
+  classname?: string;
 }
 
-const Textfield: React.FC<TextfieldProps> = ({ label, value, onChange, type }) => {
-  const [internalValue, setinternalValue] = useState(value);
+const Textfield: React.FC<TextfieldProps> = ({ label, value, onChange, type, error, helperText, classname, width = 330 }) => {
+  const [internalValue, setInternalValue] = useState(value);
 
   const handleValue = (value: string) => {
     onChange(value);
-    setinternalValue((value));
+    setInternalValue(value);
   }
-  
+
   return (
     <TextField
+      className={classname}
       label={label}
       value={internalValue}
       type={type}
-      focused
+      error={error}
+      helperText={helperText}
+      InputLabelProps={type === "date" ? { shrink: true } : {} }
       onChange={(event) => handleValue(event.target.value)}
+      size="small"
       sx={{
+        width: {width},
         "& .MuiInputBase-input": {
           color: "#191919",
           fontFamily: 'Poppins, sans-serif',
         },
         "& .MuiFormLabel-root": {
-          color: "#191919",
+          color: "#191919", 
           fontFamily: 'Poppins, sans-serif',
         },
         "& .MuiInputBase-root": {
@@ -49,7 +58,7 @@ const Textfield: React.FC<TextfieldProps> = ({ label, value, onChange, type }) =
             borderColor: "#E76553",
           },
           "&:hover fieldset": {
-            borderColor: "##E76553",
+            borderColor: "#E76553",
           },
           "&.Mui-focused fieldset": {
             borderColor: "#E76553",
