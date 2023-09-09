@@ -4,7 +4,7 @@ import Button from '../../components/Header/Button';
 import Logo from '../../assets/amparo.svg'; 
 import './Login.css';
 
-export const TelaLogin: React.FC = () => {
+export const Login: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [erro, setErro] = useState<string>("");
@@ -40,7 +40,7 @@ export const TelaLogin: React.FC = () => {
             type="email"
             onChange={handleEmail}
             value={email}
-          />
+          />    
           <Textfield
             label="Senha"
             type="password"
@@ -48,13 +48,19 @@ export const TelaLogin: React.FC = () => {
             value={password}
           />
           {erro && <p style={{ color: 'red' }}>{erro}</p>}
-          <Button
+          <Button 
             margin-bottom="20px"
             variant="contained"
             label="Entrar"
             onClick={() => setClicked(!clicked)}
           />
         </div>
+        <a href="/esqueceu-senha" className="link-recuperar-senha">
+      Esqueceu sua senha?
+     </a>
+     <p className="texto-cadastro">
+      Ainda não tem conta? <a href="/cadastro">Cadastre-se!</a>
+     </p>
       </form>
     </div>
   );

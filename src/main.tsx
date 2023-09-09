@@ -1,10 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import TelaLogin from './pages/Login'
+import {Login} from './pages/Login/Login'
 
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <TelaLogin />
+    <Login />
   </React.StrictMode>,
 )
