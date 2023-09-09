@@ -5,19 +5,19 @@ import ChatIcon from '@mui/icons-material/Chat';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 
 const containerStyle: React.CSSProperties = {
-  backgroundColor: '',
   width: "auto",
   height: "109px",
   gap: "75px",
   display: "flex",
   justifyContent: "center",
+  alignItems: "center",
 };
 
 const iconStyle: React.CSSProperties = {
   alignItems: "center",
   justifyContent: "center",
   display: "flex",
-  width: "27px",  
+  width: "27px",
   height: "27px",
 };
 
@@ -27,6 +27,7 @@ const textStyle: React.CSSProperties = {
   fontFamily: "Poppins, sans-serif",
   fontSize: "12px",
   justifyContent: "center",
+  alignItems: "center",
 };
 
 interface FooterProps {
@@ -35,24 +36,28 @@ interface FooterProps {
   onClickPerfil: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onClickHome, onClickChat, onClickPerfil }) => { 
+export const Footer: React.FC<FooterProps> = ({ onClickHome, onClickChat, onClickPerfil }) => {
   return (
-    <footer style={containerStyle}> 
-      <IconButton onClick={onClickHome}>
+    <footer style={containerStyle}>
+      <IconButton onClick={onClickHome}
+        sx={{ color: "#000000" }}>
         <div>
-          <HomeIcon style={iconStyle}/>
+          <HomeIcon style={iconStyle} />
           <div style={textStyle}>Home</div>
         </div>
       </IconButton>
-      <IconButton onClick={onClickChat}>
+      <IconButton onClick={onClickChat}
+        sx={{ color: "#000000" }}>
         <div>
-          <ChatIcon style={iconStyle}/>
-          <div style={textStyle}>Chat</div>
+          <ChatIcon style={iconStyle} />
+          <div style={textStyle}>Chat
+          </div>
         </div>
       </IconButton>
-      <IconButton onClick={onClickPerfil}>        
+      <IconButton onClick={onClickPerfil}
+        sx={{ color: "#000000" }}>
         <div>
-          <AccountBoxIcon style={iconStyle}/>
+          <AccountBoxIcon style={iconStyle} />
           <div style={textStyle}>Perfil</div>
         </div>
       </IconButton>
