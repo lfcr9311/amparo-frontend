@@ -34,21 +34,25 @@ const Textfield: React.FC<TextfieldProps> = ({ label, value, onChange, type, err
       sx={{
         width: {width},
         "& .MuiInputBase-input": {
-          color: "#191919",
+          color: "#341331",
           fontFamily: 'Poppins, sans-serif',
+          fontWeight: 'light',
         },
         "& .MuiFormLabel-root": {
           color: "#191919", 
           fontFamily: 'Poppins, sans-serif',
+          fontWeight: 'light',
         },
         "& .MuiInputBase-root": {
           borderRadius: "8px",
           color: "#191919",
           fontFamily: 'Poppins, sans-serif',
+          fontWeight: 'light',
         },
         "& label.Mui-focused": {
           color: "#191919",
           fontFamily: 'Poppins, sans-serif',
+          fontWeight: 'light',
         },
         "& .MuiInput-underline:after": {
           borderBottomColor: "#E76553",

@@ -16,6 +16,7 @@ img {
 .cadastro-container {
     text-align: center;
     align-items: center;
+    margin-right: 5%;
 }
 
 .components-container {
@@ -23,7 +24,7 @@ img {
     align-items: center;
     flex-direction: column;
     margin-top: 25px;
-    gap: 15px;
+    gap: 25px;
     
 }
 
