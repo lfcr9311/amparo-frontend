@@ -5,6 +5,7 @@ interface CustomButtonProps {
   variant: 'outlined' | 'contained';
   label: string;
   onClick: () => void;
+  style?: React.CSSProperties;
 }
 
 const CustomButton: React.FC<CustomButtonProps> = ( props ) => {
@@ -15,8 +16,10 @@ const CustomButton: React.FC<CustomButtonProps> = ( props ) => {
     fontFamily: 'Poppins, sans-serif',
     borderRadius: "16px",
     height: "39px",
-    width: "152px",
+    width: "149px",
+    ...props.style
   };
+  
 
   return (
     <Button

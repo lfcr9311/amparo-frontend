@@ -33,6 +33,8 @@ export const Login: React.FC = () => {
   return (
     <div className="login-container">
       <img src={Logo} alt="Logo Amparo" />
+      <br />
+      <a className="frase">Amparo</a>
       <form onSubmit={handleSubmit}>
         <div className="components-container">
           <Textfield
@@ -53,14 +55,18 @@ export const Login: React.FC = () => {
             variant="contained"
             label="Entrar"
             onClick={() => setClicked(!clicked)}
+            style={{ marginTop: '35px' }}
           />
         </div>
+        <br />
+    <div className="links-container">
         <a href="/esqueceu-senha" className="link-recuperar-senha">
-      Esqueceu sua senha?
-     </a>
-     <p className="texto-cadastro">
-      Ainda não tem conta? <a href="/cadastro">Cadastre-se!</a>
-     </p>
+        Esqueceu sua senha?
+        </a>
+        <p className="texto-cadastro">
+        Ainda não tem conta? <a href="/cadastro">Cadastre-se!</a>
+         </p>
+    </div>
       </form>
     </div>
   );
