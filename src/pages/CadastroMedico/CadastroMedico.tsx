@@ -16,6 +16,14 @@ export const CadastroMedico = () => {
   const [validPassword, setValidPassaword] = useState<boolean>(true);
   const [clicked, setClicked] = useState<boolean>(false);
 
+  const buttonCLick = () => {
+    if (password === confirmPassword){
+      setValidPassaword(true)
+    }else{
+      setValidPassaword(false)
+    }
+  }
+
   const handleName = (newName: string) => {
     setName(newName)
   }
@@ -44,11 +52,6 @@ export const CadastroMedico = () => {
   const handleConfirmPassword = (newConfirmPassword: string) => {
     setConfirmPassword(newConfirmPassword);
     setClicked(false)
-    if (newConfirmPassword === password) {
-      setValidPassaword(true);
-    } else {
-      setValidPassaword(false);
-    }
   }
 
   return (
@@ -129,15 +132,14 @@ export const CadastroMedico = () => {
             type="password"
             onChange={handleConfirmPassword}
             error={!validPassword}
-            helperText={!validPassword && clicked ? 'Senha não correspondentes' : ''}
+            helperText={!validPassword ? 'Senha não correspondentes' : ''}
             value={confirmPassword}
           />
           <Button
             margin-botton="20px"
             variant="contained"
             label="Cadastrar"
-            onClick={() => console.log(state)
-            }
+            onClick={() => buttonCLick()}
           />
         </div>
         <span>
