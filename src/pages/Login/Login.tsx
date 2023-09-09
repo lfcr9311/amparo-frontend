@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Textfield from '../../components/Header/Textfield';
 import Button from '../../components/Header/Button';
-import Logo from '../../assets/amparo.svg'; // Ajuste o caminho conforme necessário
+import Logo from '../../assets/amparo.svg'; 
 import './Login.css';
 
 export const TelaLogin: React.FC = () => {

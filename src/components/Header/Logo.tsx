@@ -1,5 +1,5 @@
 import React from 'react';
-import logoLogin from "../../assets/logoLogin.png"
+import logoLogin from "../../assets/amparo.svg"
 // Componente que representa a logo da aplicação
 const Logo: React.FC = () => (
   <div className="logo">
