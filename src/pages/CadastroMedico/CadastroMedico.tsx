@@ -67,7 +67,7 @@ export const CadastroMedico = () => {
           <SelectComponent 
             label="UF"
             value={state}
-            onChange={() => {}}
+            onChange={handleState}
             items={[
               { label: 'AC', value: 'AC' },
               { label: 'AL', value: 'AL' },
