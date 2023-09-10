@@ -65,9 +65,9 @@ export const Login: React.FC = () => {
         </div>
         <br />
         <div className="links-container">
-          <a href="/esqueceu-senha" className="link-recuperar-senha">
-            Esqueceu sua senha?
-          </a>
+        <Link to="/esqueceu-senha" className="link-recuperar-senha">
+        Esqueceu sua senha?
+         </Link>
           <p className="texto-cadastro">
         Ainda não tem conta? <Link to="/cadastro-paciente">Cadastre-se!</Link>
         </p>
