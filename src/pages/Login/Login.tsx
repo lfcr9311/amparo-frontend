@@ -3,6 +3,7 @@ import Textfield from '../../components/Header/Textfield';
 import Button from '../../components/Header/Button';
 import Logo from '../../assets/amparo.svg'; 
 import './Login.css';
+import { Link } from 'react-router-dom';
 
 export const Login: React.FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -68,8 +69,8 @@ export const Login: React.FC = () => {
             Esqueceu sua senha?
           </a>
           <p className="texto-cadastro">
-            Ainda não tem conta? <a href="/cadastro">Cadastre-se!</a>
-          </p>
+        Ainda não tem conta? <Link to="/cadastro-paciente">Cadastre-se!</Link>
+        </p>
         </div>
       </form>
     </div>
