@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import EditIcon from "@mui/icons-material/Edit";
-import { Switch } from "@mui/material";
+import { Switch, backdropClasses } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 interface CardProps {
@@ -17,7 +17,7 @@ interface CardProps {
   profilePicture?: string;
 }
 
-class CardBase extends React.Component<
+class PatientProfileCard extends React.Component<
   CardProps,
   { isNotificationsTrue: boolean }
 > {
@@ -39,11 +39,11 @@ class CardBase extends React.Component<
       display: "flex",
       width: "339px",
       height: "509px",
-      padding: "25px 0px 5px 0px",
+      //padding: "25px 0px 5px 0px",
       flexDirection: "column",
       justifyContent: "center",
       alignItems: "center",
-      gap: "-25px",
+      gap: "5px",
       flexShrink: 0,
       position: "relative",
       boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
@@ -58,6 +58,7 @@ class CardBase extends React.Component<
       justifyContent: "center",
       alignItems: "center",
       gap: "10px",
+      
     };
 
     const editButtonStyles: React.CSSProperties = {
@@ -71,7 +72,7 @@ class CardBase extends React.Component<
     const switchContainerStyles: React.CSSProperties = {
       display: "flex",
       alignItems: "center",
-      flexDirection: "row", // Alinhar os elementos verticalmente
+      flexDirection: "row",
     };
 
     const boxStyles: React.CSSProperties = {
@@ -96,7 +97,7 @@ class CardBase extends React.Component<
 
 
     const nameTypographyStyles: React.CSSProperties = {
-      color: "var(--Cor-de-Tipografia-4, #343131)",
+      color: "#343131",
       textAlign: "center",
       fontFamily: "Poppins",
       fontSize: "25px",
@@ -106,7 +107,7 @@ class CardBase extends React.Component<
     };
 
     const notificationTypographyStyles: React.CSSProperties = {
-      color: "var(--Cor-de-Tipografia-4, #343131)",
+      color: "#343131)",
       fontFamily: "Poppins",
       fontSize: "13px",
       fontStyle: "normal",
@@ -126,7 +127,7 @@ class CardBase extends React.Component<
     };
 
     const cardContentTextStyles: React.CSSProperties = {
-      color: 'var(--Cor-de-Tipografia-4, #343131)',
+      color: '#343131',
       fontFamily: 'Poppins',
       fontSize: '15px',
       fontStyle: 'normal',
@@ -155,16 +156,20 @@ class CardBase extends React.Component<
     return (
       <div>
         <Card style={cardStyles}>
-        <div style={contentStyles}>
+          <div style={contentStyles}>
             <Avatar
               alt="Avatar"
               src="url-da-sua-imagem"
-              sx={{ width: 95, height: 95 }}
+              sx={{ width: 95, 
+                height: 95,
+                backgroundColor: "#FFFFFF" }
+            }
             >
               <IconButton>
                 <AccountCircleIcon
-                  color="error"
-                  sx={{ width: 120, height: 120 }}
+                  
+                  sx={{ width: 120, height: 120,
+                  color: "#E76553" }}
                 />
               </IconButton>
             </Avatar>
@@ -175,19 +180,30 @@ class CardBase extends React.Component<
           <div style={infoBoxStyles}>
             <div style={infoContainerStyles}>
               <Typography sx={cardContentTextStyles}>CPF:&nbsp;</Typography>
-              <Typography sx={cardContentTextStyles}>{this.props.cpf}</Typography>
+              <Typography sx={{cardContentTextStyles,
+              fontFamily: "Poppins",
+              fontSize: "15px",
+              fontStyle: "normal",
+              fontWeight: "400",
+              lineHeight: "normal"}}>{this.props.cpf}</Typography>
             </div>
             <div style={infoContainerStyles}>
               <Typography sx={cardContentTextStyles}>E-mail:&nbsp;</Typography>
-              <Typography sx={cardContentTextStyles}>{this.props.email}</Typography>
+              <Typography sx={{cardContentTextStyles,
+              fontFamily: "Poppins",
+              fontSize: "15px"}}>{this.props.email}</Typography>
             </div>
             <div style={infoContainerStyles}>
               <Typography sx={cardContentTextStyles}>Data de Nascimento:&nbsp; </Typography>
-              <Typography sx={cardContentTextStyles}> {this.props.dataNascimento}</Typography>
+              <Typography sx={{cardContentTextStyles,
+              fontFamily: "Poppins",
+              fontSize: "15px"}}> {this.props.dataNascimento}</Typography>
             </div>
             <div style={switchContainerStyles}>
               <Typography sx={cardContentTextStyles}>Nº SUS:&nbsp;</Typography>
-              <Typography sx={cardContentTextStyles}>{this.props.numSus}</Typography>
+              <Typography sx={{cardContentTextStyles,
+              fontFamily: "Poppins",
+              fontSize: "15px"}}>{this.props.numSus}</Typography>
             </div>
           </div>
           <div style={switchContainerStyles}>
@@ -205,14 +221,14 @@ class CardBase extends React.Component<
           <IconButton style={editButtonStyles} color="error" aria-label="Editar">
             <EditIcon sx={{ width: 32, height: 32 }} />
           </IconButton>
+
           
-          //Todo: Alterar para componente
-          <button style={myDoctorButtonStyles}>Seu Texto do Botão</button>
-          <button style={buttonStyles}>Alterar Senha</button>
+          <button style={myDoctorButtonStyles} >Meus Médicos</button>
+          <button style={buttonStyles} >Alterar Senha</button>
         </Card>
-      </div> 
+      </div>
     );
   }
 }
 
-export default CardBase;
+export default PatientProfileCard;

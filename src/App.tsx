@@ -1,10 +1,10 @@
 import React from 'react';
-import Login from './pages/Login';
+import PatientProfileCard from './components/ProfileCard';
 
 function App() {
   return (
     <div className="App">
-      <Login />
+      <PatientProfileCard name="Xanflis" cpf='12345678900' dataNascimento='23/11/1993' email='evq@qdv.com'/>
     </div>
   );
 }
