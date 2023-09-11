@@ -6,7 +6,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useState } from "react";
 import { Box, Button, Switch } from "@mui/material";
-import { ProfileCardStyles } from "./ProfileCardStyles"
+import { ProfileCardStyles } from "./ProfilePatientCardStyles"
 
 interface CardProps {
   name: string;
@@ -15,29 +15,31 @@ interface CardProps {
   dataNascimento: string;
   numSus?: string;
   profilePicture?: string;
-  onClick?: () => void;
+  onClickDoctors?: () => void;
+  onClickChangePassword?: () => void;
+  onClickEditProfile?: () => void;
 }
 
-export function PatientProfileCard({ name, cpf, email, dataNascimento, numSus, profilePicture }: CardProps) {
+export function PatientProfileCard({ name, cpf, email, dataNascimento, numSus, profilePicture, onClickChangePassword, onClickDoctors, onClickEditProfile }: CardProps) {
   const [notifications, setNotifications] = useState(false);
+
+  const changeNotifications = (notifications : boolean) => {
+    if (notifications)
+      console.log("Notificações desabilitadas")
+    else
+      console.log("Notificações habilitadas")
+  }
+
   return (
     <Box>
       <Card sx={ProfileCardStyles.cardStyle}>
         <Box sx={ProfileCardStyles.contentStyle}>
-          <Avatar
-            alt="Avatar"
-            src="url-da-sua-imagem"
-            sx={ProfileCardStyles.avatarStyle}
-          >
+          <Avatar alt="Avatar" src="url-da-sua-imagem" sx={ProfileCardStyles.avatarStyle}>
             <IconButton>
-              <AccountCircleIcon
-                sx={ProfileCardStyles.avatarIconStyle}
-              />
+              <AccountCircleIcon sx={ProfileCardStyles.avatarIconStyle} />
             </IconButton>
           </Avatar>
-          <Typography component="div" sx={ProfileCardStyles.nameTypographyStyle}>
-            {name}
-          </Typography>
+          <Typography component="div" sx={ProfileCardStyles.nameTypographyStyle}>{name}</Typography>
         </Box>
         <Box sx={ProfileCardStyles.infoBoxStyle}>
           <Box sx={ProfileCardStyles.infoContainerStyle}>
@@ -59,21 +61,15 @@ export function PatientProfileCard({ name, cpf, email, dataNascimento, numSus, p
         </Box>
         <Box sx={ProfileCardStyles.switchContainerStyle}>
           <Box sx={ProfileCardStyles.boxStyle}>
-            <Typography variant="body1" sx={ProfileCardStyles.notificationTypographyStyle}>
-              Habilitar Notificações:
-            </Typography>
+            <Typography variant="body1" sx={ProfileCardStyles.notificationTypographyStyle}>Habilitar Notificações:</Typography>
           </Box>
-          <Switch
-            checked={notifications}
-            onChange={() => { setNotifications(!notifications) }}
-            color="default"
-          />
+          <Switch checked={notifications} onChange={() => { setNotifications(!notifications); changeNotifications(notifications) }} color="default" />
         </Box>
-        <IconButton sx={ProfileCardStyles.editButtonStyle} color="error" aria-label="Editar">
-          <EditIcon sx={ProfileCardStyles.editIconStyle} />
+        <IconButton sx={ProfileCardStyles.editButtonStyle} color="error" aria-label="Editar" onClick={onClickEditProfile}>
+          <EditIcon sx={ProfileCardStyles.editIconStyle}/>
         </IconButton>
-        <Button sx={ProfileCardStyles.myDoctorButtonStyle} >Meus Médicos</Button>
-        <Button sx={ProfileCardStyles.buttonStyle}>Alterar Senha</Button>
+        <Button sx={ProfileCardStyles.myDoctorButtonStyle} onClick={onClickDoctors}>Meus Médicos</Button>
+        <Button sx={ProfileCardStyles.buttonStyle} onClick={onClickChangePassword}>Alterar Senha</Button>
       </Card>
     </Box>
   );
