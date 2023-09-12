@@ -2,23 +2,44 @@ import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Select from "@mui/material/Select";
 
-interface Item {
-  label: string;
-  value: string | number;
-}
 interface SelectProps {
   label: string;
   value: string;
-  onChange: (value: string) => void;
-  items: Item[]
+  onChange: (value: any) => void;
 }
 
-export const SelectComponent:React.FC<SelectProps> = ({value, onChange, items, label}) => {  
-  const handleValue = (event: SelectChangeEvent) => {
-    onChange(event.target.value)
-  }
+export default function SelectComponent({ label, value, onChange }: SelectProps) {
+  const estados = [
+    "AC",
+    "AL",
+    "AP",
+    "AM",
+    "BA",
+    "CE",
+    "DF",
+    "ES",
+    "GO",
+    "MA",
+    "MT",
+    "MS",
+    "MG",
+    "PA",
+    "PB",
+    "PR",
+    "PE",
+    "PI",
+    "RJ",
+    "RN",
+    "RS",
+    "RO",
+    "RR",
+    "SC",
+    "SP",
+    "SE",
+    "TO",
+  ];
 
   return (
     <Box
@@ -71,15 +92,15 @@ export const SelectComponent:React.FC<SelectProps> = ({value, onChange, items, l
           id="select"
           label={label}
           value={value}
-          onChange={handleValue}
+          onChange={onChange}
         >
-          {items.map((label, value) => (
+          {estados.map((estado) => (
             <MenuItem sx={{
               fontFamily: 'Poppins, sans-serif',
               fontSize: '14px',
             }}
-            key={value} value={label.value}>
-              {label.label}
+            key={estado} value={estado}>
+              {estado}
             </MenuItem>
           ))}
         </Select>
@@ -87,5 +108,3 @@ export const SelectComponent:React.FC<SelectProps> = ({value, onChange, items, l
     </Box>
   );
 }
-
-export default SelectComponent;
