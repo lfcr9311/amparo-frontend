@@ -12,8 +12,8 @@ const HeaderHome: React.FC<HeaderProps> = ({ title }) => {
     <div className="header">
       <div className="header-content">
           <ArrowCircleLeftOutlinedIcon  style= {{fontSize:'20px'}}className='back-button'/>
-          <p className='leave'>Sair</p>
-        <p className='title'>{title}</p>
+          <a className='leave'>Sair</a>
+        <a className='title'>{title}</a>
         <NotificationsNoneIcon style= {{fontSize:'27px'}} className='question-mark-icon'/>
       </div>
     </div>

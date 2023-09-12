@@ -9,7 +9,7 @@ const handleClick = () => {
 const Home = () => {
   return (
     <div className="container">
-      <HeaderHome title='Olá Fulano!!'/>
+      <HeaderHome title='Olá, Fulano!'/>
     </div>
   );
 };

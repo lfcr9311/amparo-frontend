@@ -1,8 +1,10 @@
 #root {
   display: flex;
+  flex: 1;
   flex-direction: column;
-  height: 100vh; /* Set the height to 100% of the viewport height */
+  height: 100%; 
   width: 100%;
+
 }
 /* index.css */
 /* Apply a basic CSS reset */
