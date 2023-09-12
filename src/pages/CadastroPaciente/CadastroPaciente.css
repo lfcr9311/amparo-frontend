@@ -1,0 +1,66 @@
+body{
+    background-color: #F2F8F8;
+}
+
+.alo {
+    width: 100%;
+}
+
+img {
+    flex-shrink: 0;
+    width: 62.611px;
+    height: 81.431px;
+    margin-top: 70px;
+}
+
+.cadastro-container {
+    text-align: center;
+    align-items: center;
+}
+
+.components-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 25px;
+    gap: 15px;
+    
+}
+
+.frase {
+    color:#4D4C4C;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    flex-direction: column;
+}
+
+span {
+    font-family: Poppins;
+    font-size: 12px;
+    font-style: bold;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration: none;
+}
+
+@media (min-width: 700px) {
+    .components-container {
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        margin-left: 25%;
+        margin-right: 25%;
+    }
+    img {
+        width: 62.611px;
+        height: 81.431px;
+    }
+}
+
