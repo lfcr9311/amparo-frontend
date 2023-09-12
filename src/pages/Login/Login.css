@@ -1,0 +1,115 @@
+ @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+ :root {
+
+    /* Cores */
+    --cor-de-tipografia-2: #696969;
+    --cor-primaria: #E10E17;
+    --cor-secundaria: #C00D16;
+    --cor-de-fundo: #FBF8F8;
+    --white: #FFFFFF;
+    --cor-de-tipografia-1: #4D4C4C;
+    --cor-tipografia-geral: #191919; 
+
+     /* Fontes */
+     --fonte-primaria: 'Poppins', sans-serif;
+     --fonte-peso-normal: 400;
+     --fonte-peso-medio: 500;
+     --fonte-peso-negrito: 600;
+
+}
+
+
+body {
+    background-color: var(--cor-de-fundo);
+    font-family: var(--fonte-primaria);
+    font-weight: var(--fonte-peso-normal);
+}
+
+.alo {
+    width: 100%;
+}
+
+img {
+    flex-shrink: 0;
+    width: 62.611px;
+    height: 81.431px;
+}
+
+.login-container {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.components-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 25px;
+    gap: 15px;
+}
+
+.frase {
+    color: var(--cor-de-tipografia-1);
+    text-align: center;
+    font-family: var(--fonte-primaria);
+    font-size: 30px;
+    font-style: normal;
+    font-weight: var(--fonte-peso-negrito);
+    line-height: normal;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+.link-recuperar-senha, .texto-cadastro {
+    font-family: var(--fonte-primaria);
+    font-weight: var(--fonte-peso-normal);
+    font-size: 14px;
+    color: var(--cor-tipografia-geral);
+    margin-bottom: 8px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.links-container {
+    margin-top: 17px;
+}
+
+.link-recuperar-senha {
+    border-bottom: 1px solid var(--cor-primaria);
+    padding-bottom: 2px;
+    margin-top: 30px;
+}
+
+.texto-cadastro {
+    margin-top: 30px;
+}
+
+.texto-cadastro a {
+    color: var(--cor-primaria);
+    text-decoration: underline;
+}
+
+.texto-cadastro a:hover {
+    color: var(--cor-secundaria);
+}
+
+@media (min-width: 700px) {
+    .components-container {
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-left: 25%;
+        margin-right: 25%;
+    }
+    img {
+        width: 62.611px;
+        height: 81.431px;
+    }
+}
