@@ -13,9 +13,10 @@ interface SelectProps {
   value: string;
   onChange: (value: string) => void;
   items: Item[]
+  isRequired?: boolean;
 }
 
-export const SelectComponent:React.FC<SelectProps> = ({value, onChange, items, label}) => {  
+export const SelectComponent:React.FC<SelectProps> = ({value, onChange, items, label, isRequired}) => {  
   const handleValue = (event: SelectChangeEvent) => {
     onChange(event.target.value)
   }
@@ -71,6 +72,7 @@ export const SelectComponent:React.FC<SelectProps> = ({value, onChange, items, l
           id="select"
           label={label}
           value={value}
+          required={isRequired}
           onChange={handleValue}
         >
           {items.map((label, value) => (

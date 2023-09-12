@@ -9,10 +9,11 @@ interface TextfieldProps {
   error?: boolean;
   width?: string;
   helperText?: string;
+  isRequired?: boolean;
   classname?: string;
 }
 
-const Textfield: React.FC<TextfieldProps> = ({ label, value, onChange, type, error, helperText, classname, width = 330 }) => {
+const Textfield: React.FC<TextfieldProps> = ({ label, value, onChange, type, error, helperText, classname, width = 330, isRequired }) => {
   const [internalValue, setInternalValue] = useState(value);
 
   const handleValue = (value: string) => {
@@ -28,6 +29,7 @@ const Textfield: React.FC<TextfieldProps> = ({ label, value, onChange, type, err
       type={type}
       error={error}
       helperText={helperText}
+      required={isRequired ? true : false}
       InputLabelProps={type === "date" ? { shrink: true } : {} }
       onChange={(event) => handleValue(event.target.value)}
       size="small"

@@ -6,6 +6,12 @@ body{
     width: 100%;
 }
 
+.errorMessage{
+    font-family: 'Poppins';
+    font-size: small;
+    color: red;
+}
+
 img {
     flex-shrink: 0;
     width: 62.611px;
