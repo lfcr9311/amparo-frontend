@@ -12,7 +12,6 @@ const Home = () => {
   const navigate = useNavigate();
 
   const handleClickExames = () => {
-    console.log("Cheguei aqui!!!");
     navigate('/login');
   }
   
