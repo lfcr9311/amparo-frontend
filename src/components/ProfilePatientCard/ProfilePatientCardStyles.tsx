@@ -2,7 +2,7 @@
 export const ProfileCardStyles = {
   cardStyle: {
     display: "flex",
-    width: "339px",
+    width: "360px",
     height: "509px",
     flexDirection: "column",
     justifyContent: "center",
@@ -10,7 +10,8 @@ export const ProfileCardStyles = {
     gap: "5px",
     flexShrink: 0,
     position: "relative",
-    boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+    boxShadow: "5px 5px 8px 0px rgba(0, 0, 0, 0.25)",
+    borderRadius: "12px",
   },
 
   avatarStyle: {
@@ -53,8 +54,8 @@ export const ProfileCardStyles = {
   },
 
   editIconStyle: {
-    width: "32px",
-    height: "32px",
+    width: "45px",
+    height: "45px",
   },
 
   switchContainerStyle: {
@@ -76,6 +77,7 @@ export const ProfileCardStyles = {
     display: "flex",
     alignItems: "start",
     flexDirection: "column",
+    gap: "10px"
   },
 
   infoContainerStyle: {
@@ -95,7 +97,7 @@ export const ProfileCardStyles = {
   },
 
   notificationTypographyStyle: {
-    color: "#343131)",
+    color: "#343131",
     fontFamily: "Poppins",
     fontSize: "13px",
     fontStyle: "normal",
