@@ -7,19 +7,19 @@ const VisualizacaoPerfilPaciente = () => {
   return (
     <>
       <div className="header-container">
-        <HeaderHome title="Ola Fulano" />
+        <HeaderHome title="Perfil" />
       </div>
       <div className="container">
         <div className="profile-card-container">
           <PatientProfileCard
-            name="João"
-            email="jpsouzadasilva@gmail.com"
-            cpf="123.456.789-10"
-            dataNascimento="01/01/2000"
+            name="Fulano da Silva"
+            email="fulanodasilva1@hotmail.com"
+            cpf="123.456.789-00"
+            dataNascimento="23/02/1980"
             onClickChangePassword={() => console.log("Change Password")}
             onClickDoctors={() => console.log("Click Doctors")}
             onClickEditProfile={() => console.log("Edit Profile")}
-            numSus="123456789"
+            numSus="012345678901235"
           />
         </div>
         <span>
