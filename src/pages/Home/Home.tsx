@@ -1,37 +1,43 @@
 import React from 'react';
 import './Home.css';
+
 import HeaderHome from '../../components/HeaderHome/HeaderHome';
 import MenuButton from '../../components/MenuButton';
 import Footer from '../../components/Footer';
-import { Route } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
 import ExamesImage from '../../assets/ExamesIcon.png'
-import Logo from '../../assets/amparo.svg'
+import logoLogin from "../../assets/amparo.svg"
 
-const handleClickExames = () => {
-  console.log("Cheguei aqui!!!");
-}
-
-const handleClickMedicamentos = () => {
-  console.log("Cheguei aqui!!!");
-}
-
-const handleClickInfo = () => {
-  console.log("Cheguei aqui!!!");
-}
-
-const handleClickConsutas = () => {
-  console.log("Cheguei aqui!!!");
-}
-const handleCLick = () => {
-  console.log("Test");
-}
 const Home = () => {
+  const navigate = useNavigate();
+
+  const handleClickExames = () => {
+    navigate('/login');
+  }
+  
+  const handleClickMedicamentos = () => {
+    console.log("Cheguei aqui!!!");
+  }
+  
+  const handleClickInfo = () => {
+    console.log("Cheguei aqui!!!");
+  }
+  
+  const handleClickConsutas = () => {
+    console.log("Cheguei aqui!!!");
+  }
+  const handleCLick = () => {
+    console.log("Test");
+  }
   return (
     <div className="container">
       <HeaderHome title='Olá Fulano'></HeaderHome>
       <div className='body'>
+      <div className='sub-header'>
 
-      <a className='logoTitle'>Amparo</a>
+      <img style={{width: "25px", height:"32px" }} src={logoLogin} alt= 'Logo Amparo'></img>
+      <a className='logo-title'>Amparo</a>
+      </div>
       <div className='button-container'>
       <div className='menu-button'>
 
