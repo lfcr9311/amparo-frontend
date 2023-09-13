@@ -11,8 +11,8 @@ const containerStyle: React.CSSProperties = {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  marginTop: '50px',
-  position: 'absolute',
+  // marginTop: 'auto',
+  position: 'fixed',
   bottom: 0, // Position at the bottom of the nearest positioned ancestor
   left: 0,   // Position at the left edge of the nearest positioned ancestor
   right: 0,  // Positi
