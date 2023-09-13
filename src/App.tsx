@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Login } from './pages/Login/Login';
 import Home from './pages/Home/Home';
 import './App.css'
+import { PatientProfileCard } from './components/ProfilePatientCard/ProfilePatientCard';
+import MenuButton from './components/MenuButton';
 // Quando os componentes CadastroPaciente e EsqueceuSenha estiverem disponíveis, descomentar os imports abaixo.
 // import CadastroPaciente from './pages/CadastroPaciente/CadastroPaciente';
 // import EsqueceuSenha from './pages/EsqueceuSenha/EsqueceuSenha';

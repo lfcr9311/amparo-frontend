@@ -2,4 +2,26 @@
     height: 100%;
     width: 100%;
 }
-
+.body{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+}
+.logoTitle {
+    display: flex;
+    font-size: 25px;
+    font-family: Poppins;
+    color: #4D4C4C;
+}
+.button-container {
+    display: flex;
+    flex-direction: row; /* Display buttons horizontally */
+    justify-content: center; /* Center buttons horizontally */
+    align-items: center; /* Center buttons vertically */
+    margin-top: 20px; /* Add some spacing between the top and bottom button containers */
+  }
+.menu-button {
+    margin-right: 26px;
+}
