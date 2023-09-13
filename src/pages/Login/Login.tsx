@@ -59,7 +59,7 @@ export const Login: React.FC = () => {
             variant="contained"
             label="Entrar"
             onClick={() => setClicked(!clicked)}
-            type="submit"
+            type="button"
             style={{ marginTop: '35px' }}
           />
         </div>
