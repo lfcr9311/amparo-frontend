@@ -1,0 +1,54 @@
+.background-container {
+    background-color: #000;
+    width: 100%;
+    height: 100%;
+    opacity: 0.7;
+}
+
+.modal-container {
+    background-color: #FBF8F8;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 12px;
+    height: 60%;
+    width: 90%;
+}
+
+.form-container {
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.cellphone-container {
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+}
+
+.header-container {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 56%
+}
+
+.title-container {
+    color: #4D4C4C;
+    font-family: Poppins;
+    font-size: 18px;    
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-top: 10%;
+    margin-left: 13%;
+}
+
+.close-container {
+    border: none;
+    background-color: #FBF8F8;
+    display: flex;
+}

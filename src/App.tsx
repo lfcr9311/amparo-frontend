@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Login } from './pages/Login/Login';
+import Modal from './components/Modal/Modal';
 import Home from './pages/Home/Home';
 import './App.css'
 // Quando os componentes CadastroPaciente e EsqueceuSenha estiverem disponíveis, descomentar os imports abaixo.
@@ -16,6 +17,7 @@ function App() {
                   {/* <Route path="/cadastro-paciente" element={<CadastroPaciente />} /> */}
                   {/* <Route path="/esqueceu-senha" element={<EsqueceuSenha />} /> */}
                   {/*<Route path="*" element={<Login />} />*/}
+                  <Route path="/visualizar-perfil" element={<Modal isOpen={true} title="Perfil"/>} />
                   <Route path="*" element={<Home/>} />
               </Routes>
           </div>
