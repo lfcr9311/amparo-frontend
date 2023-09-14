@@ -17,7 +17,6 @@ function App() {
                   {/* <Route path="/cadastro-paciente" element={<CadastroPaciente />} /> */}
                   {/* <Route path="/esqueceu-senha" element={<EsqueceuSenha />} /> */}
                   {/*<Route path="*" element={<Login />} />*/}
-                  <Route path="/visualizar-perfil" element={<Modal isOpen={true} title="Perfil"/>} />
                   <Route path="*" element={<Home/>} />
               </Routes>
           </div>

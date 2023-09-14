@@ -20,7 +20,7 @@ const TextfieldModal: React.FC<TextfieldModalProps> = ({
   error,
   helperText,
   classname,
-  width = 245,
+  width = 270,
 }) => {
   const [internalValue, setInternalValue] = useState(value);
 
