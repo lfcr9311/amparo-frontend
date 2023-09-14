@@ -6,7 +6,7 @@ body{
     width: 100%;
 }
 
-img {
+.img-logo {
     flex-shrink: 0;
     width: 62.611px;
     height: 81.431px;

@@ -56,7 +56,7 @@ export const CadastroPaciente = () => {
 
   return (
     <div className="cadastro-container">
-      <img src={Logo} /> <br />
+      <img className= 'img-logo' src={Logo} /> <br />
       <a className="frase">Boas-Vindas!</a>
       <form>
         <div className="components-container">

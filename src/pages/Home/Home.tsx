@@ -30,7 +30,7 @@ const Home = () => {
     console.log("Test");
   }
   return (
-    <div className="container">
+    <div className="container-home">
       <HeaderHome title='Olá Fulano'></HeaderHome>
       <div className='body'>
       <div className='sub-header'>
