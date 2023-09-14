@@ -1,8 +1,10 @@
 import React from "react";
 import IconButton from "@mui/material/IconButton";
-import HomeIcon from '@mui/icons-material/Home';
-import ChatIcon from '@mui/icons-material/Chat';
-import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import HomeIcon from '../assets/Home.svg';
+import ChatIcon from '../assets/Chat.svg';
+import ProfileIcon from '../assets/Profile.svg';
+import  Icon  from "@mui/material/Icon";
+
 
 const containerStyle: React.CSSProperties = {
   width: "auto",
@@ -47,14 +49,18 @@ export const Footer: React.FC<FooterProps> = ({ onClickHome, onClickChat, onClic
       <IconButton onClick={onClickHome}
         sx={{ color: "#000000" }}>
         <div>
-          <HomeIcon style={iconStyle} />
+        <Icon style={iconStyle}>
+            <img src = {HomeIcon}/>  
+          </Icon>
           <div style={textStyle}>Home</div>
         </div>
       </IconButton>
       <IconButton onClick={onClickChat}
         sx={{ color: "#000000" }}>
         <div>
-          <ChatIcon style={iconStyle} />
+          <Icon style={iconStyle}>
+            <img src = {ChatIcon}/>  
+          </Icon>  
           <div style={textStyle}>Chat
           </div>
         </div>
@@ -62,7 +68,9 @@ export const Footer: React.FC<FooterProps> = ({ onClickHome, onClickChat, onClic
       <IconButton onClick={onClickPerfil}
         sx={{ color: "#000000" }}>
         <div>
-          <AccountBoxIcon style={iconStyle} />
+        <Icon style={iconStyle}>
+            <img src = {ProfileIcon}/>  
+          </Icon>
           <div style={textStyle}>Perfil</div>
         </div>
       </IconButton>
