@@ -1,88 +1,29 @@
-
-.alo {
-    width: 100%;
-}
-
-img {
-    flex-shrink: 0;
-    width: 62.611px;
-    height: 81.431px;
-}
-
-.login-container {
+.identificacao-container {
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
     flex-direction: column;
+    width: 100vh;
+    overflow: hidden;
 }
-
-.components-container {
+.buttons-group{
     display: flex;
-    align-items: center;
-    flex-direction: column;
-    margin-top: 25px;
-    gap: 15px;
+    flex-direction: row;
+    gap:24px;
+    margin-bottom: 10vh;
+    overflow: hidden;
 }
-
-.frase {
-    color: var(--cor-de-tipografia-1);
-    text-align: center;
-    font-family: var(--fonte-primaria);
-    font-size: 30px;
-    font-style: normal;
-    font-weight: var(--fonte-peso-negrito);
-    line-height: normal;
-    flex-direction: column;
-    margin-bottom: 30px;
-}
-
-.link-recuperar-senha, .texto-cadastro {
-    font-family: var(--fonte-primaria);
-    font-weight: var(--fonte-peso-normal);
-    font-size: 14px;
-    color: var(--cor-tipografia-geral);
-    margin-bottom: 8px;
-    text-align: center;
-    text-decoration: none;
-}
-
-.links-container {
-    margin-top: 17px;
-}
-
-.link-recuperar-senha {
-    border-bottom: 1px solid var(--cor-primaria);
-    padding-bottom: 2px;
-    margin-top: 30px;
-}
-
-.texto-cadastro {
-    margin-top: 30px;
-}
-
-.texto-cadastro a {
-    color: var(--cor-primaria);
-    text-decoration: underline;
-}
-
-.texto-cadastro a:hover {
-    color: var(--cor-secundaria);
-}
-
-@media (min-width: 700px) {
-    .components-container {
-        display: flex;
+.go-back{
+    display: flex;
+        color:  #696969;
         text-align: center;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        margin-left: 25%;
-        margin-right: 25%;
+        font-family: Poppins;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        letter-spacing: 0.2px;
+        
     }
-    img {
-        width: 62.611px;
-        height: 81.431px;
-    }
-}
+

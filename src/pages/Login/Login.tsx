@@ -4,12 +4,15 @@ import Button from '../../components/Header/Button';
 import Logo from '../../assets/amparo.svg'; 
 import './Login.css';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 
 export const Login: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [erro, setErro] = useState<string>("");
   const [clicked, setClicked] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
 
@@ -31,6 +34,7 @@ export const Login: React.FC = () => {
       return;
     }
     setErro("");
+    navigate('/home/paciente')
     console.log("Email:", email, "Senha:", password);
   };
 
@@ -69,7 +73,7 @@ export const Login: React.FC = () => {
         Esqueceu sua senha?
          </Link>
           <p className="texto-cadastro">
-        Ainda não tem conta? <Link to="/cadastro-paciente">Cadastre-se!</Link>
+        Ainda não tem conta? <Link to="/identificacao">Cadastre-se!</Link>
         </p>
         </div>
       </form>

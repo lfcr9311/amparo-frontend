@@ -38,7 +38,7 @@ body{
     flex-direction: column;
 }
 
-span {
+.classe-frase-abaixo-cadastrar {
     font-family: Poppins;
     font-size: 12px;
     font-style: bold;
