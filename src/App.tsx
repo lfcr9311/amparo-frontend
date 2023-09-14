@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Login } from './pages/Login/Login';
+import Modal from './components/Modal/Modal';
 import Home from './pages/Home/Home';
 import './App.css'
 import VisualizacaoPerfilPaciente from './pages/VisualizarPerfil/VisualizarPerfil';
