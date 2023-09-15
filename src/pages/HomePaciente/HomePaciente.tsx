@@ -16,9 +16,9 @@ const HomePaciente = () => {
   const navigate = useNavigate();
   const userIsPatient = true;
   const handleClickExames = () => {
-    console.log("Clickei nos exames");
+    navigate('/perfil/exames-pendentes-vazio');
   }
-  
+
   const handleClickMedicamentos = () => {
     console.log("Cheguei aqui!!!");
   }
@@ -30,9 +30,7 @@ const HomePaciente = () => {
   const handleClickConsutas = () => {
     console.log("Cheguei aqui!!!");
   }
-  const handleCLick = () => {
-    navigate('/perfil/paciente')
-  }
+  
   return (
     <div className="container-home">
       <HeaderHome title='Olá, Fulano!'></HeaderHome>
@@ -56,7 +54,7 @@ const HomePaciente = () => {
       <MenuButton title= 'Consultas' image={consultasIcon} onClick={handleClickConsutas} />
       </div>
       </div>
-    <Footer onClickChat={handleCLick} onClickHome={handleCLick} onClickPerfil={handleCLick} ></Footer>
+    <Footer/>
     </div>
   );
 };
