@@ -9,6 +9,8 @@
     margin-top: 100px;
 }
 .sub-header{
+    margin-top:85px;
+    margin-bottom: 65px;
     display: flex;
     align-items: center;
     justify-content: center;
