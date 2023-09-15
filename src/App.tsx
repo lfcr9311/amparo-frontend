@@ -3,6 +3,8 @@ import { Login } from './pages/Login/Login';
 import HomePaciente from './pages/HomePaciente/HomePaciente';
 import './App.css'
 import VisualizacaoPerfilPaciente from './pages/VisualizarPerfil/VisualizarPerfil';
+import ExamesPacienteVazio from './pages/ExamesPacienteVazio/ExamesPacienteVazio';
+import ExamesPendentesVazio from './pages/ExamesPendentes/ExamesPendentesVazio';
 import { CadastroPaciente } from './pages/CadastroPaciente/CadastroPaciente';
 import { CadastroMedico } from './pages/CadastroMedico/CadastroMedico';
 import { Identificacao } from './pages/Identifficacao/Indentificacao';
@@ -20,6 +22,8 @@ function App() {
                     <Route path="/cadastro/paciente" element={<CadastroPaciente />} />
                     <Route path="/cadastro/medico" element={<CadastroMedico />} />
                     <Route path='/identificacao' element={<Identificacao/>}/>
+                    <Route path='/perfil/exames-pendentes-vazio' element={<ExamesPendentesVazio/>}/>
+                    <Route path='/perfil/exames-realizados-vazio' element={<ExamesPacienteVazio/>}/>
                     {/* <Route path="/esqueceu-senha" element={<EsqueceuSenha />} /> */}
                     <Route path="*" element={<Login />} />
                     <Route path="/perfil/paciente" element={<VisualizacaoPerfilPaciente />}/>
