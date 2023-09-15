@@ -39,7 +39,7 @@ export const CadastroPaciente = () => {
     console.log("cpf correct"+isValidCpf);
     console.log("psw correct"+validPassword);
     
-    if(validPassword && isValidCpf && pswTouched && pswTouched){
+    if(validPassword && isValidCpf && pswTouched && cpfTouched){
       navigate('/home/paciente')
       return;
     }

@@ -23,7 +23,7 @@ const MenuButton: React.FC<MenuButtonProps> = ({ onClick, title, image }) => {
   };
 
   const buttonImage: React.CSSProperties = {
-    maxHeight: '50%',
+    maxHeight: '45%',
     maxWidth: '50%'
   };
  const buttonText: React.CSSProperties ={

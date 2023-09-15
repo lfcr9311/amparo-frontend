@@ -4,6 +4,8 @@ import Button from "../../components/Button";
 import Logo from "../../assets/amparo.svg";
 import "./CadastroMedico.css";
 import SelectComponent from "../../components/Select";
+import { useNavigate } from 'react-router-dom';
+
 
 export const CadastroMedico = () => {
   const [name, setName] = useState<string>("");
@@ -14,6 +16,9 @@ export const CadastroMedico = () => {
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [validPassword, setValidPassaword] = useState<boolean>(true);
+  const [pswTouched, setpswTouched] = useState<boolean>(false);
+    const navigate = useNavigate();
+
 
   const buttonCLick = () => {
     if (password === confirmPassword){
@@ -21,14 +26,27 @@ export const CadastroMedico = () => {
     }else{
       setValidPassaword(false)
     }
+    if(pswTouched && pswTouched){
+      navigate('/home/paciente');
+      return;
+    }
   }
 
   const handleName = (newName: string) => {
     setName(newName)
   }
 
-  const handleState = (newState: string) => {
-    setState(newState)
+  // const handleState = (newState: string) => {
+  //   console.log(newState);
+  //   setState("RS")
+  // }
+  const handleState = (newState: PointerEvent) => {
+    const targetElement = newState.target as HTMLInputElement;
+
+    // Access the value of the target element
+    const targetValue = targetElement.value;
+    console.log(targetValue);
+    setState(targetValue)
   }
 
   const handleCrm = (newCrm: string) => {
@@ -48,7 +66,11 @@ export const CadastroMedico = () => {
   }
 
   const handleConfirmPassword = (newConfirmPassword: string) => {
+    setpswTouched(true)
     setConfirmPassword(newConfirmPassword);
+  }
+  const handleClickFazerLogin = () =>{
+    navigate('/login')
   }
 
   return (
@@ -68,6 +90,7 @@ export const CadastroMedico = () => {
             label="UF"
             value={state}
             onChange={handleState}
+
           />
           <Textfield 
             label="CRM"
@@ -110,8 +133,8 @@ export const CadastroMedico = () => {
             onClick={() => buttonCLick()}
           />
         </div>
-        <span>
-            Já possui conta? <a href="src/pages/Login.tsx"> Fazer Login</a>
+        <span className="classe-frase-abaixo-cadastrar">
+            Já possui conta? <a style={{textDecoration:'underline'}} onClick={handleClickFazerLogin}> Fazer Login</a>
           </span>
       </form>
     </div>

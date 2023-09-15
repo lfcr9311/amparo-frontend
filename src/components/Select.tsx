@@ -11,6 +11,7 @@ interface SelectProps {
 }
 
 export default function SelectComponent({ label, value, onChange }: SelectProps) {
+  
   const estados = [
     "AC",
     "AL",

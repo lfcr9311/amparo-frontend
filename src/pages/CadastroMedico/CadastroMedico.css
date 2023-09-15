@@ -38,7 +38,15 @@ body{
     flex-direction: column;
 }
 
-span {
+/* span {
+    font-family: Poppins;
+    font-size: 12px;
+    font-style: bold;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration: none;
+} */
+.classe-frase-abaixo-cadastrar {
     font-family: Poppins;
     font-size: 12px;
     font-style: bold;
