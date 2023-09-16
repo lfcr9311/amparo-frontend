@@ -1,78 +1,31 @@
-import "./Modal.css";
-import Close from "../../assets/Close.svg";
-import Button from "../Button/Button";
-import TextfieldModal from "./Components/TextfieldModal";
+import "./Modal.css"
+import Close from "../../assets/Close.svg"
+import React from "react";
 
 interface ModalProps {
   isOpen: boolean;
-  title: string;
+  title?: string;
+  isClose: any;
+  children?: React.ReactNode;
 }
 
-const Modal: React.FC<ModalProps> = ({ isOpen, title }) => {
+export default function Modal({ isOpen, title, isClose, children }: ModalProps) {
+  
   if (isOpen) {
-    return (
-      <div className="background-container">
-        <div className="modal-container">
-          <div className="header-container">
-            <p className="title-container">{title}</p>
-            <button className="close-container">
-              <img src={Close} />
-            </button>
-          </div>
-          <form>
-            <div className="form-container">
-              <TextfieldModal
-                label="Seu nome"
-                value=""
-                type="text"
-                onChange={() => console.log("")}
-              />
-              <TextfieldModal
-                label="CPF"
-                value=""
-                type="text"
-                onChange={() => console.log("")}
-              />
-              <TextfieldModal
-                label="Data de Nascimento"
-                value=""
-                type="text"
-                onChange={() => console.log("")}
-              />
-              <TextfieldModal
-                label="Nº do SUS"
-                value=""
-                type="text"
-                onChange={() => console.log("")}
-              />
-              <div className="cellphone-container">
-                <TextfieldModal
-                  label="DDD"
-                  value=""
-                  type="text"
-                  width="60px"
-                  onChange={() => console.log("")}
-                />
-                <TextfieldModal
-                  label="Telefone"
-                  value=""
-                  type="text"
-                  width="200px"
-                  onChange={() => console.log("")}
-                />
-              </div>
-              <Button
-                margin-top="20px"
-                variant="contained"
-                label="salvar"
-                onClick={() => console.log("")}
-              />
+      return (
+        <div className="background-container">
+            <div className="modal-container">
+                <div className="header-modal-container">
+                  <p className="title-modal">{title}</p>
+                  <button className="button-close" onClick={isClose}>
+                    <img src={Close} />
+                  </button>
+                </div>
+                <div className="body-modal-container">
+                  {children}
+                </div>
             </div>
-          </form>
         </div>
-      </div>
-    );
-  }
-};
-
-export default Modal;
+      )
+    }
+} 
