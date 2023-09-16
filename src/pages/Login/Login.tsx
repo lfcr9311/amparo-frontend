@@ -48,12 +48,14 @@ export const Login: React.FC = () => {
               type="email"
               onChange={handleEmail}
               value={email}
+              width="70vw"
             />
             <Textfield
               label="Senha"
               type="password"
               onChange={handlePassword}
               value={password}
+              width="70vw"
             />
           {erro && <p style={{ color: "red" }}>{erro}</p>}
           <CustomButton

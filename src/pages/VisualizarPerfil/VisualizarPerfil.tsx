@@ -16,8 +16,6 @@ const VisualizacaoPerfilPaciente = () => {
   const [ddd, setDdd] = useState("");
   const [cellphone, setCellphone] = useState("");
 
-  console.log(name);
-
   return (
     <>
       <div className="header-container">
