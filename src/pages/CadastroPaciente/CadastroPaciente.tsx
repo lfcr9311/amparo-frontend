@@ -1,9 +1,11 @@
 import { useState } from "react";
-import Textfield from "../../components/Textfield";
-import Button from "../../components/Button";
+import Textfield from "../../components/Textfield/Textfield";
+import Button from "../../components/Button/Button";
 import Logo from "../../assets/amparo.svg";
 import cpf from 'cpf';
 import "./CadastroPaciente.css";
+import { useNavigate } from 'react-router-dom';
+
 
 export const CadastroPaciente = () => {
   const [name, setName] = useState<string>("");
@@ -14,7 +16,10 @@ export const CadastroPaciente = () => {
   const [validPassword, setValidPassaword] = useState<boolean>(true);
   const [cpfValue, setCpfValue] = useState<string>("");
   const [isValidCpf, setIsValidCpf] = useState<boolean>(true);
-  const [clicked, setClicked] = useState<boolean>(false);
+  const [cpfTouched, setCpfTouched] = useState<boolean>(false);
+  const [pswTouched, setPswTouched] = useState<boolean>(false);
+  const navigate = useNavigate();
+
 
   const buttonCLick = () => {
     if (password === confirmPassword){
@@ -27,6 +32,15 @@ export const CadastroPaciente = () => {
       setIsValidCpf(true);
     } else {
       setIsValidCpf(false);
+    }
+    console.log("psw touched"+pswTouched);
+    console.log("cpf touched"+cpfTouched);
+    console.log("cpf correct"+isValidCpf);
+    console.log("psw correct"+validPassword);
+    
+    if(validPassword && isValidCpf && pswTouched && cpfTouched){
+      navigate('/home/paciente')
+      return;
     }
   }
 
@@ -43,20 +57,25 @@ export const CadastroPaciente = () => {
   }
 
   const handleCpf = (newCpf: string) => {
+    setCpfTouched(true)
     setCpfValue(newCpf);
   };
 
   const handlePassword = (newPassoword: string) => {
+    setPswTouched(true)
     setPassword(newPassoword);
   }
 
   const handleConfirmPassword = (newConfirmPassword: string) => {
     setConfirmPassword(newConfirmPassword);
   }
+  const handleClickFazerLogin = () =>{
+    navigate('/login')
+  }
 
   return (
     <div className="cadastro-container">
-      <img src={Logo} /> <br />
+      <img className= 'img-logo' src={Logo} /> <br />
       <a className="frase">Boas-Vindas!</a>
       <form>
         <div className="components-container">
@@ -107,8 +126,8 @@ export const CadastroPaciente = () => {
             onClick={() => buttonCLick()}
           />
         </div>
-        <span>
-            Já possui conta? <a href="src/pages/Login.tsx"> Fazer Login</a>
+        <span className="classe-frase-abaixo-cadastrar">
+            Já possui conta? <a style={{textDecoration:'underline'}} onClick={handleClickFazerLogin}> Fazer Login</a>
           </span>
       </form>
     </div>

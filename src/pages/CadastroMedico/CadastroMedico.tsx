@@ -1,9 +1,11 @@
 import { useState } from "react";
-import Textfield from "../../components/Textfield";
-import Button from "../../components/Button";
+import Textfield from "../../components/Textfield/Textfield";
+import Button from "../../components/Button/Button";
 import Logo from "../../assets/amparo.svg";
 import "./CadastroMedico.css";
-import SelectComponent from "../../components/Select";
+import SelectComponent from "../../components/Select/Select";
+import { useNavigate } from 'react-router-dom';
+
 
 export const CadastroMedico = () => {
   const [name, setName] = useState<string>("");
@@ -14,6 +16,9 @@ export const CadastroMedico = () => {
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [validPassword, setValidPassaword] = useState<boolean>(true);
+  const [pswTouched, setpswTouched] = useState<boolean>(false);
+    const navigate = useNavigate();
+
 
   const buttonCLick = () => {
     if (password === confirmPassword){
@@ -21,14 +26,22 @@ export const CadastroMedico = () => {
     }else{
       setValidPassaword(false)
     }
+    if(pswTouched && pswTouched){
+      navigate('/home/paciente');
+      return;
+    }
   }
 
   const handleName = (newName: string) => {
     setName(newName)
   }
 
-  const handleState = (newState: string) => {
-    setState(newState)
+  const handleState = (newState: PointerEvent) => {
+    const targetElement = newState.target as HTMLInputElement;
+
+    const targetValue = targetElement.value;
+    console.log(targetValue);
+    setState(targetValue)
   }
 
   const handleCrm = (newCrm: string) => {
@@ -48,12 +61,16 @@ export const CadastroMedico = () => {
   }
 
   const handleConfirmPassword = (newConfirmPassword: string) => {
+    setpswTouched(true)
     setConfirmPassword(newConfirmPassword);
+  }
+  const handleClickFazerLogin = () =>{
+    navigate('/login')
   }
 
   return (
     <div className="cadastro-container">
-      <img src={Logo} /> <br />
+      <img className="image-logo" src={Logo} /> <br />
       <a className="frase">Boas-Vindas!</a>
       <form>
         <div className="components-container">
@@ -68,35 +85,7 @@ export const CadastroMedico = () => {
             label="UF"
             value={state}
             onChange={handleState}
-            items={[
-              { label: 'AC', value: 'AC' },
-              { label: 'AL', value: 'AL' },
-              { label: 'AP', value: 'AP' },
-              { label: 'AM', value: 'AM' },
-              { label: 'BA', value: 'BA' },
-              { label: 'CE', value: 'CE' },
-              { label: 'DF', value: 'DF' },
-              { label: 'ES', value: 'ES' },
-              { label: 'GO', value: 'GO' },
-              { label: 'MA', value: 'MA' },
-              { label: 'MT', value: 'MT' },
-              { label: 'MS', value: 'MS' },
-              { label: 'MG', value: 'MG' },
-              { label: 'PA', value: 'PA' },
-              { label: 'PB', value: 'PB' },
-              { label: 'PR', value: 'PR' },
-              { label: 'PE', value: 'PE' },
-              { label: 'PI', value: 'PI' },
-              { label: 'RJ', value: 'RJ' },
-              { label: 'RN', value: 'RN' },
-              { label: 'RS', value: 'RS' },
-              { label: 'RO', value: 'RO' },
-              { label: 'RR', value: 'RR' },
-              { label: 'SC', value: 'SC' },
-              { label: 'SP', value: 'SP' },
-              { label: 'SE', value: 'SE' },
-              { label: 'TO', value: 'TO' }
-            ]}
+
           />
           <Textfield 
             label="CRM"
@@ -139,8 +128,8 @@ export const CadastroMedico = () => {
             onClick={() => buttonCLick()}
           />
         </div>
-        <span>
-            Já possui conta? <a href="src/pages/Login.tsx"> Fazer Login</a>
+        <span className="classe-frase-abaixo-cadastrar">
+            Já possui conta? <a style={{textDecoration:'underline'}} onClick={handleClickFazerLogin}> Fazer Login</a>
           </span>
       </form>
     </div>

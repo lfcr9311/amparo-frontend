@@ -1,6 +1,6 @@
 import "./VisualizarPerfil.css";
 import HeaderHome from "../../components/HeaderHome/HeaderHome";
-import Footer from "../../components/Footer";
+import Footer from "../../components/Footer/Footer";
 import { PatientProfileCard } from "../../components/ProfilePatientCard/ProfilePatientCard";
 
 const VisualizacaoPerfilPaciente = () => {
@@ -29,11 +29,7 @@ const VisualizacaoPerfilPaciente = () => {
         </span>
       </div>
       <div className="footer-container">
-        <Footer
-          onClickChat={() => console.log("Chat")}
-          onClickHome={() => console.log("Home")}
-          onClickPerfil={() => console.log("Perfil")}
-        />
+        <Footer/>
       </div>
     </>
   );

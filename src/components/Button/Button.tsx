@@ -6,7 +6,7 @@ interface CustomButtonProps {
   label: string;
   onClick: () => void;
   style?: React.CSSProperties;
-  type?: "button" | "submit" | "reset";
+  type?: "button" | "submit" | "reset"; 
 }
 
 const CustomButton: React.FC<CustomButtonProps> = ( props ) => {
@@ -17,10 +17,8 @@ const CustomButton: React.FC<CustomButtonProps> = ( props ) => {
     fontFamily: 'Poppins, sans-serif',
     borderRadius: "16px",
     height: "39px",
-    width: "149px",
-    ...props.style
+    width: "152px",
   };
-  
 
   return (
     <Button

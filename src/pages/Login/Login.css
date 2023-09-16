@@ -1,6 +1,4 @@
- @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
-
- :root {
+:root {
 
     /* Cores */
     --cor-de-tipografia-2: #696969;
@@ -16,21 +14,15 @@
      --fonte-peso-normal: 400;
      --fonte-peso-medio: 500;
      --fonte-peso-negrito: 600;
-
 }
 
-
-body {
+.body {
     background-color: var(--cor-de-fundo);
     font-family: var(--fonte-primaria);
     font-weight: var(--fonte-peso-normal);
 }
 
-.alo {
-    width: 100%;
-}
-
-img {
+.img {
     flex-shrink: 0;
     width: 62.611px;
     height: 81.431px;
@@ -49,7 +41,6 @@ img {
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-top: 25px;
     gap: 15px;
 }
 

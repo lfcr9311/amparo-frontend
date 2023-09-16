@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
-import Textfield from '../../components/Header/Textfield';
-import Button from '../../components/Header/Button';
-import Logo from '../../assets/amparo.svg'; 
-import './Login.css';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import Logo from "../../assets/amparo.svg";
+import "./Login.css";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Textfield from "../../components/Textfield/Textfield";
+import CustomButton from "../../components/Button/Button";
 
 export const Login: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [erro, setErro] = useState<string>("");
   const [clicked, setClicked] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
 
@@ -23,7 +25,6 @@ export const Login: React.FC = () => {
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    
     e.preventDefault();
 
     if (!emailRegex.test(email)) {
@@ -31,6 +32,7 @@ export const Login: React.FC = () => {
       return;
     }
     setErro("");
+    navigate("/home/paciente");
     console.log("Email:", email, "Senha:", password);
   };
 
@@ -41,38 +43,37 @@ export const Login: React.FC = () => {
       <a className="frase">Amparo</a>
       <form onSubmit={handleSubmit}>
         <div className="components-container">
-          <Textfield
-            label="Email"
-            type="email"
-            onChange={handleEmail}
-            value={email}
-          />    
-          <Textfield
-            label="Senha"
-            type="password"
-            onChange={handlePassword}
-            value={password}
-          />
-          {erro && <p style={{ color: 'red' }}>{erro}</p>}
-          <Button 
+            <Textfield
+              label="Email"
+              type="email"
+              onChange={handleEmail}
+              value={email}
+            />
+            <Textfield
+              label="Senha"
+              type="password"
+              onChange={handlePassword}
+              value={password}
+            />
+          {erro && <p style={{ color: "red" }}>{erro}</p>}
+          <CustomButton
             margin-bottom="20px"
             variant="contained"
             label="Entrar"
             onClick={() => setClicked(!clicked)}
             type="submit"
-            style={{ marginTop: '35px' }}
           />
         </div>
         <br />
         <div className="links-container">
-        <Link to="/esqueceu-senha" className="link-recuperar-senha">
-        Esqueceu sua senha?
-         </Link>
+          <Link to="/esqueceu-senha" className="link-recuperar-senha">
+            Esqueceu sua senha?
+          </Link>
           <p className="texto-cadastro">
-        Ainda não tem conta? <Link to="/cadastro-paciente">Cadastre-se!</Link>
-        </p>
+            Ainda não tem conta? <Link to="/identificacao">Cadastre-se!</Link>
+          </p>
         </div>
       </form>
     </div>
   );
-}
+};

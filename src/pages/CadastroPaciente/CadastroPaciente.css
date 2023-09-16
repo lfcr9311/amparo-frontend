@@ -2,11 +2,7 @@ body{
     background-color: #F2F8F8;
 }
 
-.alo {
-    width: 100%;
-}
-
-img {
+.img-logo {
     flex-shrink: 0;
     width: 62.611px;
     height: 81.431px;
@@ -38,7 +34,7 @@ img {
     flex-direction: column;
 }
 
-span {
+.classe-frase-abaixo-cadastrar {
     font-family: Poppins;
     font-size: 12px;
     font-style: bold;
@@ -58,7 +54,7 @@ span {
         margin-left: 25%;
         margin-right: 25%;
     }
-    img {
+    .img-logo {
         width: 62.611px;
         height: 81.431px;
     }

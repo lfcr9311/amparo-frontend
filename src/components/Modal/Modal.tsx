@@ -1,6 +1,6 @@
 import "./Modal.css";
 import Close from "../../assets/Close.svg";
-import Button from "../../components/Button";
+import Button from "../Button/Button";
 import TextfieldModal from "./Components/TextfieldModal";
 
 interface ModalProps {
