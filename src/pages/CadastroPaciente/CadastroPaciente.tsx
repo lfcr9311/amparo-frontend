@@ -1,82 +1,79 @@
-import { useState } from "react";
-import Textfield from "../../components/Textfield";
-import Button from "../../components/Button";
-import Logo from "../../assets/amparo.svg";
+import { useState } from 'react';
+import Textfield from '../../components/Textfield/Textfield';
+import Button from '../../components/Button/Button';
+import Logo from '../../assets/amparo.svg';
 import cpf from 'cpf';
-import "./CadastroPaciente.css";
+import './CadastroPaciente.css';
 import { useNavigate } from 'react-router-dom';
 
-
 export const CadastroPaciente = () => {
-  const [name, setName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [date, setDate] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [confirmPassword, setConfirmPassword] = useState<string>("");
+  const [name, setName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [date, setDate] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [validPassword, setValidPassaword] = useState<boolean>(true);
-  const [cpfValue, setCpfValue] = useState<string>("");
+  const [cpfValue, setCpfValue] = useState<string>('');
   const [isValidCpf, setIsValidCpf] = useState<boolean>(true);
   const [cpfTouched, setCpfTouched] = useState<boolean>(false);
   const [pswTouched, setPswTouched] = useState<boolean>(false);
-  const [clicked, setClicked] = useState<boolean>(false);
   const navigate = useNavigate();
 
-
   const buttonCLick = () => {
-    if (password === confirmPassword){
-      setValidPassaword(true)
-    }else{
-      setValidPassaword(false)
+    if (password === confirmPassword) {
+      setValidPassaword(true);
+    } else {
+      setValidPassaword(false);
     }
-    
+
     if (cpf.isValid(cpfValue)) {
       setIsValidCpf(true);
     } else {
       setIsValidCpf(false);
     }
-    console.log("psw touched"+pswTouched);
-    console.log("cpf touched"+cpfTouched);
-    console.log("cpf correct"+isValidCpf);
-    console.log("psw correct"+validPassword);
-    
-    if(validPassword && isValidCpf && pswTouched && cpfTouched){
-      navigate('/home/paciente')
+    console.log('psw touched' + pswTouched);
+    console.log('cpf touched' + cpfTouched);
+    console.log('cpf correct' + isValidCpf);
+    console.log('psw correct' + validPassword);
+
+    if (validPassword && isValidCpf && pswTouched && cpfTouched) {
+      navigate('/home/paciente');
       return;
     }
-  }
+  };
 
   const handleName = (newName: string) => {
-    setName(newName)
-  }
-  
+    setName(newName);
+  };
+
   const handleEmail = (newEmail: string) => {
-    setEmail(newEmail)
+    setEmail(newEmail);
   };
 
   const handleDate = (newDate: string) => {
-    setDate(newDate)
-  }
+    setDate(newDate);
+  };
 
   const handleCpf = (newCpf: string) => {
-    setCpfTouched(true)
+    setCpfTouched(true);
     setCpfValue(newCpf);
   };
 
   const handlePassword = (newPassoword: string) => {
-    setPswTouched(true)
+    setPswTouched(true);
     setPassword(newPassoword);
-  }
+  };
 
   const handleConfirmPassword = (newConfirmPassword: string) => {
     setConfirmPassword(newConfirmPassword);
-  }
-  const handleClickFazerLogin = () =>{
-    navigate('/login')
-  }
+  };
+  const handleClickFazerLogin = () => {
+    navigate('/login');
+  };
 
   return (
     <div className="cadastro-container">
-      <img className= 'img-logo' src={Logo} /> <br />
+      <img className="img-logo" src={Logo} /> <br />
       <a className="frase">Boas-Vindas!</a>
       <form>
         <div className="components-container">
@@ -128,8 +125,15 @@ export const CadastroPaciente = () => {
           />
         </div>
         <span className="classe-frase-abaixo-cadastrar">
-            Já possui conta? <a style={{textDecoration:'underline'}} onClick={handleClickFazerLogin}> Fazer Login</a>
-          </span>
+          Já possui conta?{' '}
+          <a
+            style={{ textDecoration: 'underline' }}
+            onClick={handleClickFazerLogin}
+          >
+            {' '}
+            Fazer Login
+          </a>
+        </span>
       </form>
     </div>
   );

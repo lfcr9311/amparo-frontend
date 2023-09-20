@@ -1,9 +1,8 @@
-import React from "react";
 import { useNavigate } from 'react-router-dom';
 import IconButton from "@mui/material/IconButton";
-import HomeIcon from '../assets/Home.svg';
-import ChatIcon from '../assets/Chat.svg';
-import ProfileIcon from '../assets/Profile.svg';
+import HomeIcon from '../../assets/Home.svg';
+import ChatIcon from '../../assets/Chat.svg';
+import ProfileIcon from '../../assets/Profile.svg';
 import Icon from "@mui/material/Icon";
 
 
@@ -14,11 +13,10 @@ const containerStyle: React.CSSProperties = {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  //marginTop: "50px",
   position: 'absolute',
-  bottom: 0, // Position at the bottom of the nearest positioned ancestor
-  left: 0,   // Position at the left edge of the nearest positioned ancestor
-  right: 0,  // Positi
+  bottom: 0, 
+  left: 0,   
+  right: 0, 
 };
 
 const iconStyle: React.CSSProperties = {
@@ -38,12 +36,6 @@ const textStyle: React.CSSProperties = {
   alignItems: "center",
 };
 
-// interface FooterProps {
-//   onClickHome: () => void;
-//   onClickChat: () => void;
-//   onClickPerfil: () => void;
-// }
-
 export const Footer: React.FC = ({}) => {
   const navigate = useNavigate();
 
@@ -56,7 +48,7 @@ export const Footer: React.FC = ({}) => {
   }
   return (
     <footer style={containerStyle}>
-      <IconButton onClick={handleClickHome} //onClickHome
+      <IconButton onClick={handleClickHome}
         sx={{ color: "#000000" }}>
         <div>
           <Icon style={iconStyle}>
@@ -65,7 +57,7 @@ export const Footer: React.FC = ({}) => {
           <div style={textStyle}>Home</div>
         </div>
       </IconButton>
-      <IconButton onClick={handleClickHome} //onClickChat
+      <IconButton onClick={handleClickHome}
         sx={{ color: "#000000" }}>
         <div>
           <Icon style={iconStyle}>
@@ -75,7 +67,7 @@ export const Footer: React.FC = ({}) => {
           </div>
         </div>
       </IconButton>
-      <IconButton onClick={handleCLickPerfil} //onClickPerfil
+      <IconButton onClick={handleCLickPerfil}
         sx={{ color: "#000000" }}>
         <div>
           <Icon style={iconStyle}>

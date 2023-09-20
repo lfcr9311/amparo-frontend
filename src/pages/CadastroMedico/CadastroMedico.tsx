@@ -1,77 +1,70 @@
-import { useState } from "react";
-import Textfield from "../../components/Textfield";
-import Button from "../../components/Button";
-import Logo from "../../assets/amparo.svg";
-import "./CadastroMedico.css";
-import SelectComponent from "../../components/Select";
+import { useState } from 'react';
+import Textfield from '../../components/Textfield/Textfield';
+import Button from '../../components/Button/Button';
+import Logo from '../../assets/amparo.svg';
+import './CadastroMedico.css';
+import SelectComponent from '../../components/Select/Select';
 import { useNavigate } from 'react-router-dom';
 
-
 export const CadastroMedico = () => {
-  const [name, setName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [state, setState] = useState<string>("")
-  const [crm, setCrm] = useState<string>("")
-  const [telefone, setTelefone] = useState<string>("")
-  const [password, setPassword] = useState<string>("");
-  const [confirmPassword, setConfirmPassword] = useState<string>("");
+  const [name, setName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [state, setState] = useState<string>('');
+  const [crm, setCrm] = useState<string>('');
+  const [telefone, setTelefone] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [validPassword, setValidPassaword] = useState<boolean>(true);
   const [pswTouched, setpswTouched] = useState<boolean>(false);
-    const navigate = useNavigate();
-
+  const navigate = useNavigate();
 
   const buttonCLick = () => {
-    if (password === confirmPassword){
-      setValidPassaword(true)
-    }else{
-      setValidPassaword(false)
+    if (password === confirmPassword) {
+      setValidPassaword(true);
+    } else {
+      setValidPassaword(false);
     }
-    if(pswTouched && pswTouched){
+    if (pswTouched && pswTouched) {
       navigate('/home/paciente');
       return;
     }
-  }
+  };
 
   const handleName = (newName: string) => {
-    setName(newName)
-  }
+    setName(newName);
+  };
 
-  // const handleState = (newState: string) => {
-  //   console.log(newState);
-  //   setState("RS")
-  // }
   const handleState = (newState: PointerEvent) => {
     const targetElement = newState.target as HTMLInputElement;
 
-    // Access the value of the target element
     const targetValue = targetElement.value;
     console.log(targetValue);
-    setState(targetValue)
-  }
+    setState(targetValue);
+  };
 
   const handleCrm = (newCrm: string) => {
-    setCrm(newCrm)
-  }
-  
+    setCrm(newCrm);
+  };
+
   const handleEmail = (newEmail: string) => {
-    setEmail(newEmail)
+    setEmail(newEmail);
   };
 
   const handleTelefone = (newTelefone: string) => {
-    setTelefone(newTelefone)
-  }
+    setTelefone(newTelefone);
+  };
 
   const handlePassword = (newPassoword: string) => {
     setPassword(newPassoword);
-  }
+  };
 
   const handleConfirmPassword = (newConfirmPassword: string) => {
-    setpswTouched(true)
+    setpswTouched(true);
     setConfirmPassword(newConfirmPassword);
-  }
-  const handleClickFazerLogin = () =>{
-    navigate('/login')
-  }
+  };
+  const handleClickFazerLogin = () => {
+    navigate('/login');
+  };
 
   return (
     <div className="cadastro-container">
@@ -86,19 +79,14 @@ export const CadastroMedico = () => {
             onChange={handleName}
           />
           <div className="crm-state-container">
-          <SelectComponent 
-            label="UF"
-            value={state}
-            onChange={handleState}
-
-          />
-          <Textfield 
-            label="CRM"
-            type="text"
-            value={crm}
-            onChange={handleCrm}
-            width="233px"
-          />
+            <SelectComponent label="UF" value={state} onChange={handleState} />
+            <Textfield
+              label="CRM"
+              type="text"
+              value={crm}
+              onChange={handleCrm}
+              width="233px"
+            />
           </div>
           <Textfield
             label="Email"
@@ -106,7 +94,7 @@ export const CadastroMedico = () => {
             onChange={handleEmail}
             value={email}
           />
-          <Textfield 
+          <Textfield
             label="Telefone"
             type="text"
             onChange={handleTelefone}
@@ -134,8 +122,15 @@ export const CadastroMedico = () => {
           />
         </div>
         <span className="classe-frase-abaixo-cadastrar">
-            Já possui conta? <a style={{textDecoration:'underline'}} onClick={handleClickFazerLogin}> Fazer Login</a>
-          </span>
+          Já possui conta?{' '}
+          <a
+            style={{ textDecoration: 'underline' }}
+            onClick={handleClickFazerLogin}
+          >
+            {' '}
+            Fazer Login
+          </a>
+        </span>
       </form>
     </div>
   );

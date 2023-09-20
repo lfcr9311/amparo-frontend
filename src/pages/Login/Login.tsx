@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
-import Textfield from '../../components/Header/Textfield';
-import Button from '../../components/Header/Button';
-import Logo from '../../assets/amparo.svg'; 
+import Logo from '../../assets/amparo.svg';
 import './Login.css';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-
+import Textfield from '../../components/Textfield/Textfield';
+import CustomButton from '../../components/Button/Button';
 
 export const Login: React.FC = () => {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [erro, setErro] = useState<string>("");
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [erro, setErro] = useState<string>('');
   const [clicked, setClicked] = useState<boolean>(false);
   const navigate = useNavigate();
 
@@ -26,16 +25,15 @@ export const Login: React.FC = () => {
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    
     e.preventDefault();
 
     if (!emailRegex.test(email)) {
-      setErro("Por favor, insira um e-mail válido.");
+      setErro('Por favor, insira um e-mail válido.');
       return;
     }
-    setErro("");
-    navigate('/home/paciente')
-    console.log("Email:", email, "Senha:", password);
+    setErro('');
+    navigate('/home/paciente');
+    console.log('Email:', email, 'Senha:', password);
   };
 
   return (
@@ -50,33 +48,34 @@ export const Login: React.FC = () => {
             type="email"
             onChange={handleEmail}
             value={email}
-          />    
+            width="70vw"
+          />
           <Textfield
             label="Senha"
             type="password"
             onChange={handlePassword}
             value={password}
+            width="70vw"
           />
           {erro && <p style={{ color: 'red' }}>{erro}</p>}
-          <Button 
+          <CustomButton
             margin-bottom="20px"
             variant="contained"
             label="Entrar"
             onClick={() => setClicked(!clicked)}
             type="submit"
-            style={{ marginTop: '35px' }}
           />
         </div>
         <br />
         <div className="links-container">
-        <Link to="/esqueceu-senha" className="link-recuperar-senha">
-        Esqueceu sua senha?
-         </Link>
+          <Link to="/esqueceu-senha" className="link-recuperar-senha">
+            Esqueceu sua senha?
+          </Link>
           <p className="texto-cadastro">
-        Ainda não tem conta? <Link to="/identificacao">Cadastre-se!</Link>
-        </p>
+            Ainda não tem conta? <Link to="/identificacao">Cadastre-se!</Link>
+          </p>
         </div>
       </form>
     </div>
   );
-}
+};

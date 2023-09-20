@@ -31,3 +31,17 @@
     align-items: center;
     gap: 50px;
 }
+
+.content-modal {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.cellphone-container {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 9px;
+}

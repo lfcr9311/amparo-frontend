@@ -1,15 +1,13 @@
-import React from "react";
 import HeaderHome from "../../components/HeaderHome/HeaderHome";
-import Footer from "../../components/Footer";
+import Footer from "../../components/Footer/Footer";
 import "./ExamesPacientevazio.css";
-import Triste from "../../assets/triste.svg";
-import AddCircle from "../../assets/addCircle.svg";
+import SadIcon from "../../assets/SadIcon.svg";
+import AddIcon from "../../assets/AddIcon.svg"
 import { useNavigate } from "react-router";
 
 const ExamesPacienteVazio: React.FC = () => {
   const navigate = useNavigate();
 
-  //placeholder do botão add para trocarmos entre as tabs de exames durante a apresentação
   const handleClickAddButton = () => {
     navigate('/perfil/exames-pendentes-vazio')
   }
@@ -21,11 +19,11 @@ const ExamesPacienteVazio: React.FC = () => {
       <div className="exames-paciente-vazio">
         <div className="texto">Nenhum exame realizado</div>
         <div className="icon1">
-          <img src={Triste} /> <br />
+          <img src={SadIcon} /> <br />
         </div>
         <div className="add-button">
           <button onClick={handleClickAddButton} className="botao">
-            <img src={AddCircle} />
+            <img src={AddIcon} />
           </button>
         </div>
         <div className="texto2">Adicionar</div>

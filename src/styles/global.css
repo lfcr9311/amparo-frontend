@@ -1,0 +1,16 @@
+:root {
+    /* Cores */
+    --cor-de-tipografia-2: #696969;
+    --cor-primaria: #E10E17;
+    --cor-secundaria: #C00D16;
+    --cor-de-fundo: #FBF8F8;
+    --white: #FFFFFF;
+    --cor-de-tipografia-1: #4D4C4C;
+    --cor-tipografia-geral: #191919; 
+
+     /* Fontes */
+     --fonte-primaria: 'Poppins', sans-serif;
+     --fonte-peso-normal: 400;
+     --fonte-peso-medio: 500;
+     --fonte-peso-negrito: 600;
+}
