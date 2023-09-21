@@ -8,6 +8,7 @@ import ExamesPendentesVazio from './pages/ExamesPendentes/ExamesPendentesVazio';
 import { CadastroPaciente } from './pages/CadastroPaciente/CadastroPaciente';
 import { CadastroMedico } from './pages/CadastroMedico/CadastroMedico';
 import { Identificacao } from './pages/Identificacao/Identificacao';
+import Test from './pages/teste';
 // Quando os componentes CadastroPaciente e EsqueceuSenha estiverem disponíveis, descomentar os imports abaixo.
 // import EsqueceuSenha from './pages/EsqueceuSenha/EsqueceuSenha';
 
@@ -18,6 +19,7 @@ function App() {
         <Routes>
           {/*<Route path="/" element={<Login />} />*/}
           {/* Descomente as linhas abaixo quando os componentes estiverem disponíveis */}
+          <Route path="/teste" element={<Test />} />
           <Route path="/home/paciente" element={<HomePaciente />} />
           <Route path="/cadastro/paciente" element={<CadastroPaciente />} />
           <Route path="/cadastro/medico" element={<CadastroMedico />} />
