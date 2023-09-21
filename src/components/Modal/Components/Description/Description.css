@@ -1,0 +1,27 @@
+.description-container {
+  border: none;
+  background-color: #eaeaea;
+  color: #696969;
+  font-family: Poppins;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  height: 92px;
+  width: 238px;
+  outline: 0;
+}
+
+.description-container::placeholder {
+  color: #696969;
+  font-family: Poppins;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-align: left;
+  position: absolute;
+  outline: none;
+  top: 10px;
+  left: 10px;
+}
