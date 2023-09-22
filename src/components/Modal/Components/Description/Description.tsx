@@ -5,14 +5,13 @@ export default function Description() {
   const [description, setDescription] = useState('');
 
   const handleDescriptionChange = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
     setDescription(event.target.value);
   };
 
   return (
-    <input
-      type="text"
+    <textarea
       value={description}
       onChange={handleDescriptionChange}
       placeholder="Descrição..."
