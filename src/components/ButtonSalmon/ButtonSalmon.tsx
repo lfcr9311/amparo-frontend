@@ -1,39 +1,14 @@
 import React from 'react';
 import Button from '@mui/material/Button';
-
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
 interface CustomButtonSalmonProps {
     label: string;
-
-    icon?: React.ReactElement;  //Testar
-
+    icon?:boolean;  //Testar
     onClick: () => void;
-
-
-
-
 }
-interface IconButtonProps {
-    icon: React.ReactElement;
-    style?: React.CSSProperties;
-}
-
-const IconButton: React.FC<IconButtonProps> = ({ icon, style }) => {
-    const iconStyle: React.CSSProperties = {
-
-        maxWidth: '26px',
-        maxHeight: '26px',
-        margin: '0 8px 0 0',
-        ...style,
-    };
-    return <span style={iconStyle}>{icon}</span>;
-};
-
-
-
 
 export const ButtonSalmon: React.FC<CustomButtonSalmonProps> = ({ label, icon, onClick, }) => {
-
 
     const buttonStyle: React.CSSProperties = {
         backgroundColor: "#E76553",
@@ -45,23 +20,32 @@ export const ButtonSalmon: React.FC<CustomButtonSalmonProps> = ({ label, icon, o
         fontWeight: '500',
         borderRadius: "10px",
         height: "53px",
-           width: "164px",
-
-
+        width: "164px",
     };
-
-
-
-
-    return (
-        <div className="ButtonSalmon">
-            <Button variant="contained"
+    if (!icon){
+        return (
+            <Button
+                style={buttonStyle}            
                 onClick={onClick}
-                style={buttonStyle}>
-                {icon && <IconButton icon={icon} />} {/* Usando o IconButton */}
-                <span>{label}</span>
-
+                variant='contained'
+            >
+                {label}
             </Button>
-        </div>
-    );
+        );
+    }
+    else{
+        return(
+            <Button
+            style={buttonStyle}            
+            onClick={onClick}
+            variant='contained'
+            startIcon = {<CheckCircleOutlineIcon fontSize='large'/> }
+            
+                  
+            >
+                {label}
+            </Button>
+        );
+    }
+
 } 
