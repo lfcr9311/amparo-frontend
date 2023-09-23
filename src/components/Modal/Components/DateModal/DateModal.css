@@ -9,4 +9,7 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  outline: none;
+  border-radius: 3px;
+  width: 120px;
 }

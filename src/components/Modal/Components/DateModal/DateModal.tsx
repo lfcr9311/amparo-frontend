@@ -12,8 +12,8 @@ export default function DateModal() {
     <input
       type="date"
       className="date-picker"
+      value={date}
       onChange={(event) => handleValue(event.target.value)}
-      placeholder="Data Exame"
     />
   );
 }
