@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Logo from '../../assets/amparo.svg';
 import './Login.css';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import Textfield from '../../components/Textfield/Textfield';
 import CustomButton from '../../components/Button/Button';
+import { getSomeData } from '../../utils/apiService';
 
 export const Login: React.FC = () => {
   const [email, setEmail] = useState<string>('');
@@ -12,9 +13,23 @@ export const Login: React.FC = () => {
   const [erro, setErro] = useState<string>('');
   const [clicked, setClicked] = useState<boolean>(false);
   const navigate = useNavigate();
+  const [data, setData] = useState<String>();
 
   const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+  useEffect(() => {
+    async function fetchData() {
+      try{
+        
+        const result = await getSomeData();
+        console.log(result);
+        setData(result);
+      } catch (error){
+        console.error('Erro ao fazer login', error);
+      }
+    }
 
+    fetchData();
+  }, []);
   const handleEmail = (newEmail: string) => {
     setEmail(newEmail);
   };

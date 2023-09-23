@@ -63,7 +63,7 @@ export function PatientProfileCard({ name, cpf, email, dataNascimento, numSus, p
           <Box sx={ProfileCardStyles.boxStyle}>
             <Typography variant="body1" sx={ProfileCardStyles.notificationTypographyStyle}>Habilitar Notificações:</Typography>
           </Box>
-          <Switch checked={notifications} onChange={() => { setNotifications(!notifications); changeNotifications(notifications) }} color="default" />
+          <Switch checked={notifications} onChange={() => { setNotifications(!notifications); changeNotifications(notifications) }} color={notifications ? "primary" : "default"} />
         </Box>
         <IconButton sx={ProfileCardStyles.editButtonStyle} color="error" aria-label="Editar" onClick={onClickEditProfile}>
           <EditIcon sx={ProfileCardStyles.editIconStyle}/>
