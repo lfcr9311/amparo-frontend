@@ -45,7 +45,7 @@ export const ButtonSalmon: React.FC<CustomButtonSalmonProps> = ({ label, icon, o
         fontWeight: '500',
         borderRadius: "10px",
         height: "53px",
-        //        width: "152px",
+           width: "164px",
 
 
     };

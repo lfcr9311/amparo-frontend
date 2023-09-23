@@ -3,7 +3,6 @@ import { Login } from './pages/Login/Login';
 import HomePaciente from './pages/HomePaciente/HomePaciente';
 import './App.css';
 import VisualizacaoPerfilPaciente from './pages/VisualizarPerfil/VisualizarPerfil';
-import ExamesPacienteVazio from './pages/ExamesPacienteVazio/ExamesPacienteVazio';
 import ExamesPendentesVazio from './pages/ExamesPendentes/ExamesPendentesVazio';
 import { CadastroPaciente } from './pages/CadastroPaciente/CadastroPaciente';
 import { CadastroMedico } from './pages/CadastroMedico/CadastroMedico';
@@ -23,6 +22,7 @@ function App() {
           {/*<Route path="/" element={<Login />} />*/}
           {/* Descomente as linhas abaixo quando os componentes estiverem disponíveis */}
           <Route path="/button-salmon" element={<ButtonSalmon label='Realizado' onClick={() => console.log('buttonSalmonClicado')} icon={<img src={setaConfirmaIcon} />} />} />
+          <Route path="/button-salmon2" element={<ButtonSalmon label='imagens' onClick={() => console.log('buttonSalmonClicado')} />} />
           <Route path="/home/paciente" element={<HomePaciente />} />
           <Route path="/cadastro/paciente" element={<CadastroPaciente />} />
           <Route path="/cadastro/medico" element={<CadastroMedico />} />
@@ -31,10 +31,7 @@ function App() {
             path="/perfil/exames-pendentes-vazio"
             element={<ExamesPendentesVazio />}
           />
-          <Route
-            path="/perfil/exames-realizados-vazio"
-            element={<ExamesPacienteVazio />}
-          />
+        
           {/* <Route path="/esqueceu-senha" element={<EsqueceuSenha />} /> */}
           <Route path="*" element={<Login />} />
           <Route
