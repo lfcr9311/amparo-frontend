@@ -51,7 +51,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-top: 30px;
+  margin-top: 25px;
 }
 
 .text-box > div {
@@ -66,6 +66,7 @@
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  margin-right: 5px;
 }
 
 .agreements {
@@ -84,10 +85,49 @@
 }
 
 .notifications {
-  color: var(--Cor-de-Tipografia-4, #343131);
+  color: #343131;
   font-family: Poppins;
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+}
+
+.aux-box {
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  border-radius: 3px;
+  background: #dcdcdc;
+  margin-top: 30px;
+}
+
+.itens {
+  color: #343131;
+  font-family: Poppins;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.email-icon,
+.phone-icon {
+  vertical-align: middle; /* Alinha verticalmente no centro */
+  margin-right: 12px; /* Adiciona margem direita para separar o ícone do texto */
+}
+
+.alterar-senha-button {
+  border: none;
+  background-color: #fbf8f8;
+  color: #656363;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-top: 15px;
 }
