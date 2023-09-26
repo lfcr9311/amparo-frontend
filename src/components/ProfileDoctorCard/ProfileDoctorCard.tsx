@@ -27,7 +27,7 @@ export default function ProfileDoctorCard({
   phone,
   edit,
   alterarSenha,
-  profilePicture,
+  profilePicture = '',
 }: ProfileDoctorCardProps) {
   const [notifications, setNotifications] = useState(false);
 
@@ -39,9 +39,12 @@ export default function ProfileDoctorCard({
   return (
     <div className="card-container">
       <button onClick={edit} className="edit-button">
-        <img src={EditIcon} alt="Edit Icon" />
+        <img src={EditIcon} className="profile-icon" />
       </button>
-      <img src={IconProfile} className="profile-icon" alt="Profile Icon" />
+      <img
+        src={profilePicture === '' ? IconProfile : profilePicture}
+        className="profile-icon"
+      />
       <p className="name">{name}</p>
       <p className="specialty">{specialty}</p>
       <div className="text-box">

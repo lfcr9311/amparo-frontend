@@ -115,8 +115,8 @@
 
 .email-icon,
 .phone-icon {
-  vertical-align: middle; /* Alinha verticalmente no centro */
-  margin-right: 12px; /* Adiciona margem direita para separar o ícone do texto */
+  vertical-align: middle;
+  margin-right: 12px;
 }
 
 .alterar-senha-button {
