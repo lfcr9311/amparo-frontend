@@ -39,7 +39,7 @@ export default function ProfileDoctorCard({
   return (
     <div className="card-container">
       <button onClick={edit} className="edit-button">
-        <img src={EditIcon} className="profile-icon" />
+        <img src={EditIcon} />
       </button>
       <img
         src={profilePicture === '' ? IconProfile : profilePicture}
