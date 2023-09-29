@@ -7,7 +7,6 @@ import ExamesPendentesVazio from './pages/ExamesPendentes/ExamesPendentesVazio';
 import { CadastroPaciente } from './pages/CadastroPaciente/CadastroPaciente';
 import { CadastroMedico } from './pages/CadastroMedico/CadastroMedico';
 import { Identificacao } from './pages/Identificacao/Identificacao';
-import { ButtonSalmon } from './components/ButtonSalmon/ButtonSalmon';
 
 
 // Quando os componentes CadastroPaciente e EsqueceuSenha estiverem disponíveis, descomentar os imports abaixo.
@@ -20,8 +19,6 @@ function App() {
         <Routes>
           {/*<Route path="/" element={<Login />} />*/}
           {/* Descomente as linhas abaixo quando os componentes estiverem disponíveis */}
-          <Route path="/button-salmon" element={<ButtonSalmon label='Realizado' onClick={() => console.log('buttonSalmonClicado')} icon={true}/>} />
-          <Route path="/button-salmon2" element={<ButtonSalmon label='imagens' onClick={() => console.log('buttonSalmonClicado')} />} />
           <Route path="/home/paciente" element={<HomePaciente />} />
           <Route path="/cadastro/paciente" element={<CadastroPaciente />} />
           <Route path="/cadastro/medico" element={<CadastroMedico />} />
@@ -30,8 +27,7 @@ function App() {
             path="/perfil/exames-pendentes-vazio"
             element={<ExamesPendentesVazio />}
           />
-        
-          {/* <Route path="/esqueceu-senha" element={<EsqueceuSenha />} /> */}
+        {/* <Route path="/esqueceu-senha" element={<EsqueceuSenha />} /> */}
           <Route path="*" element={<Login />} />
           <Route
             path="/perfil/paciente"
