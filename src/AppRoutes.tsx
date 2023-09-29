@@ -9,12 +9,15 @@ import ExamesPendentesVazio from './pages/ExamesPendentes/ExamesPendentesVazio';
 import { CadastroPaciente } from './pages/CadastroPaciente/CadastroPaciente';
 import { CadastroMedico } from './pages/CadastroMedico/CadastroMedico';
 import { Identificacao } from './pages/Identificacao/Identificacao';
+import { CardMedicamentos } from './components/CardMedicamentos/cardMedicamentos';
 
 export default function AppRoutes() {
   return (
     <Router>
       <div className="App">
         <Routes>
+        <Route path={ROUTES.CARD_MEDICAMENTOS()} element={<CardMedicamentos label={'TEXTO'} onClick= />} />
+
           <Route path={ROUTES.HOME_PACIENTE()} element={<HomePaciente />} />
           <Route
             path={ROUTES.CADASTRO_PACIENTE()}
