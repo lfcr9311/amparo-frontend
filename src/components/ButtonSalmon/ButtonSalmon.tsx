@@ -1,6 +1,8 @@
 import React from 'react';
 import Button from '@mui/material/Button';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
+import Box from '@mui/material/Box';
 
 interface CustomButtonSalmonProps {
     label: string;
@@ -8,7 +10,7 @@ interface CustomButtonSalmonProps {
     onClick: () => void;
 }
 
-export const ButtonSalmon: React.FC<CustomButtonSalmonProps> = ({ label, icon, onClick, }) => {
+export const ButtonSalmon: React.FC<CustomButtonSalmonProps> = ({ label, icon, onClick, },props: SvgIconProps) => {
 
     const buttonStyle: React.CSSProperties = {
         backgroundColor: "#E76553",
@@ -36,15 +38,27 @@ export const ButtonSalmon: React.FC<CustomButtonSalmonProps> = ({ label, icon, o
     else{
         return(
             <Button
+
+            
+            sx={{
+                '& > :not(style)': {
+                  m: 1,
+                  marginTop:2.5,
+                },
+              }}
+
+
             style={buttonStyle}            
             onClick={onClick}
             variant='contained'
-            startIcon = {<CheckCircleOutlineIcon fontSize='large'/> }
+            
+            startIcon = {<Box><CheckCircleOutlineIcon sx={{fontSize: 30}}/> </Box>}
             
                   
             >
                 {label}
             </Button>
+            
         );
     }
 
