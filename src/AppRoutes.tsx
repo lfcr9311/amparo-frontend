@@ -16,7 +16,7 @@ export default function AppRoutes() {
     <Router>
       <div className="App">
         <Routes>
-        <Route path={ROUTES.CARD_MEDICAMENTOS()} element={<CardMedicamentos label={'TEXTO'} onClick= />} />
+        <Route path={ROUTES.CARD_MEDICAMENTOS()} element={<CardMedicamentos label='Realizado' onClick={() => console.log('buttonSalmonClicado')} icon={true}/>} />
 
           <Route path={ROUTES.HOME_PACIENTE()} element={<HomePaciente />} />
           <Route
