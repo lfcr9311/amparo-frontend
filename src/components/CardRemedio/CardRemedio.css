@@ -1,0 +1,29 @@
+.card-remedio {
+  display: flex;
+  width: 295px;
+  height: 87px;
+  padding: 8px 19px;
+  border: none;
+  outline: none;
+  background-color: #ffebeb;
+  border-radius: 10px;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.label-card {
+  color: #000;
+  font-family: Poppins;
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.card-remedio-icon {
+  max-width: 12px;
+  max-height: 20px;
+  position: relative;
+  top: 25px;
+  left: 140px;
+}
