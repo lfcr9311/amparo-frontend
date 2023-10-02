@@ -15,7 +15,7 @@ const ExamesPendentesVazio: React.FC = () => {
   return (
     <>
       <div className="header">
-        <HeaderHome title="Pendentes" />
+        <HeaderHome type="headerPage" title="Pendentes" />
       </div>
       <div className="exames-pendentes-vazio">
         <div className="texto">Nenhum exame pendente</div>

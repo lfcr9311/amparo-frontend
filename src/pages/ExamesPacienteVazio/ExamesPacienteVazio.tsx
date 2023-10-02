@@ -14,7 +14,7 @@ const ExamesPacienteVazio: React.FC = () => {
   return (
     <>
       <div className="header">
-        <HeaderHome title="Realizados" />
+        <HeaderHome type="headerPage" title="Realizados" />
       </div>
       <div className="exames-paciente-vazio">
         <div className="texto">Nenhum exame realizado</div>
