@@ -7,5 +7,4 @@ export const ROUTES = {
   EXAMES_REALIZADOS_VAZIO: () => '/pefil/exames-realizados-vazio',
   LOGIN: () => '*',
   PERFIL_PACIENTE: () => '/perfil/paciente',
-  CARD_MEDICAMENTOS: () => '/card-Medicamentos',
 };
