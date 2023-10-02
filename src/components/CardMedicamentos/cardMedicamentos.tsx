@@ -1,17 +1,16 @@
 import React from 'react';
 import Button from '@mui/material/Button';
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import BookOutlinedIcon from '@mui/icons-material/BookOutlined';
+import DateRangeRoundedIcon from '@mui/icons-material/DateRangeRounded';
 import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
 import Box from '@mui/material/Box';
 
 interface CustomCardMedicamentos{
-    label: string;
-    icon?:boolean;  
-    onClick: () => void;
+    iconType?: 'icon1' | 'icon2'; 
+     onClick: () => void;
 }
 
-export const CardMedicamentos: React.FC<CustomCardMedicamentos> = ({ label, icon, onClick, },props: SvgIconProps) => {
+export const CardMedicamentos: React.FC<CustomCardMedicamentos> = ({  iconType, onClick, },props: SvgIconProps) => {
 
     const buttonStyle: React.CSSProperties = {
         backgroundColor: "#E76553",
@@ -26,23 +25,36 @@ export const CardMedicamentos: React.FC<CustomCardMedicamentos> = ({ label, icon
         width: "316px",
         textTransform: 'none',
     };
-    if (!icon){
-        return (
-            <Button
-                style={buttonStyle}            
-                onClick={onClick}
-                variant='contained'
-                
-            >
-                {label}
-            </Button>
-        );
+    if (!iconType || iconType === 'icon1'){
+      const rotatedIconStyle: React.CSSProperties = {
+        transform: 'rotate(13deg) scaleY(1.1)', 
+        fontSize: 150,
+        marginRight: '-30px',
+        marginTop: '10px',
+      };
+  
+      return (
+        <Button
+          style={buttonStyle}
+          onClick={onClick}
+          variant="contained"
+          endIcon={
+            <Box>
+              <BookOutlinedIcon sx={rotatedIconStyle} />
+            </Box>
+          }
+        >
+          {'Minha Lista'}
+        </Button>
+        
+    );
     }
-    else{
+    else if (iconType === 'icon2'){
         const rotatedIconStyle: React.CSSProperties = {
             transform: 'rotate(13deg) scaleY(1.1)', 
             fontSize: 150,
-            marginRight: '-50px',
+            marginRight: '-10px',
+            marginTop: '10px',
           };
       
           return (
@@ -52,11 +64,11 @@ export const CardMedicamentos: React.FC<CustomCardMedicamentos> = ({ label, icon
               variant="contained"
               endIcon={
                 <Box>
-                  <BookOutlinedIcon sx={rotatedIconStyle} />
+                  <DateRangeRoundedIcon sx={rotatedIconStyle} />
                 </Box>
               }
             >
-              {label}
+              {'Agenda de Remédios'}
             </Button>
             
         );
