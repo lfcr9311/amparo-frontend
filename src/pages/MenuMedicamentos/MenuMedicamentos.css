@@ -1,0 +1,20 @@
+.title-page {
+  color: #4d4c4c;
+  font-family: Poppins;
+  font-size: 23px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-align: flex-start;
+  margin-left: -100px;
+}
+
+.meus-remedios-container {
+  max-height: 388px;
+  overflow-y: auto;
+  gap: 10px;
+  flex-direction: column;
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 45px;
+}
