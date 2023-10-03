@@ -1,10 +1,10 @@
 import Footer from '../../components/Footer/Footer';
 import HeaderHome from '../../components/HeaderHome/HeaderHome';
-import './MenuMedicamentos.css';
+import './ListaMedicamentos.css';
 import CardRemedio from '../../components/CardRemedio/CardRemedio';
 import CustomButton from '../../components/Button/Button';
 
-export default function MenuMedicamentos() {
+export default function ListaMedicamentos() {
   return (
     <>
       <HeaderHome title="Medicamentos" type="headerPage" />
