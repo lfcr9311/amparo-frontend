@@ -6,7 +6,6 @@ interface ModalProps {
   isOpen: boolean;
   title?: string;
   isClose: any;
-  reducted?: boolean;
   children?: React.ReactNode;
 }
 
@@ -15,14 +14,11 @@ export default function Modal({
   title,
   isClose,
   children,
-  reducted,
 }: ModalProps) {
   if (isOpen) {
     return (
       <div className="background-container">
-        <div
-          className={reducted ? 'modal-container-reducted' : 'modal-container'}
-        >
+        <div className="modal-container">
           <div className="header-modal-container">
             <p className="title-modal">{title}</p>
             <button className="button-close" onClick={isClose}>
