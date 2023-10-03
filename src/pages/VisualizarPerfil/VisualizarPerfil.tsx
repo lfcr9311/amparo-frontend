@@ -19,7 +19,7 @@ const VisualizacaoPerfilPaciente = () => {
   return (
     <>
       <div className="header-container">
-        <HeaderHome title="Perfil" />
+        <HeaderHome type="headerPage" title="Perfil" />
       </div>
       <div className="container">
         <div className="profile-card-container">

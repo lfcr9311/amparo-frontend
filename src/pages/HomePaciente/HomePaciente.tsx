@@ -32,7 +32,7 @@ const HomePaciente = () => {
 
   return (
     <div className="container-home">
-      <HeaderHome title="Olá, Fulano!"></HeaderHome>
+      <HeaderHome type="headerHome" title="Olá, Fulano!"></HeaderHome>
       <div className="body">
         <div className="sub-header">
           <img
