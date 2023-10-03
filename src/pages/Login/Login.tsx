@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import Textfield from '../../components/Textfield/Textfield';
 import CustomButton from '../../components/Button/Button';
-import { getSomeData } from '../../utils/apiService';
+import { getSomeData, getUser } from '../../utils/apiService';
 
 export const Login: React.FC = () => {
   const [email, setEmail] = useState<string>('');
@@ -19,8 +19,7 @@ export const Login: React.FC = () => {
   useEffect(() => {
     async function fetchData() {
       try{
-        
-        const result = await getSomeData();
+        const result = await getUser();
         console.log(result);
         setData(result);
       } catch (error){
