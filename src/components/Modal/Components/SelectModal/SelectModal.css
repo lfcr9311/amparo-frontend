@@ -1,0 +1,41 @@
+.box-container {
+  display: flex;
+  align-items: center;
+  border-radius: 3px;
+  background: #eaeaea;
+  width: 61px;
+}
+
+.select-component {
+  color: #696969;
+  font-family: Poppins;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  border: none;
+  outline: none;
+  background-color: #eaeaea;
+  margin: 10px;
+  width: 61px;
+}
+
+.select-component .option {
+  color: #696969;
+  font-family: Poppins;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin: 10px;
+}
+
+.select-component .option:checked {
+  color: #696969;
+  font-family: Poppins;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin: 10px;
+}
