@@ -21,7 +21,7 @@ export default function MenuMedicamentos() {
           }}
         />
       </div>
-      <Footer />
+      <Footer user="patient" />
     </>
   );
 }

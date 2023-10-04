@@ -28,7 +28,7 @@ const ExamesPacienteVazio: React.FC = () => {
         </div>
         <div className="texto2">Adicionar</div>
       </div>
-      <Footer />
+      <Footer user="patient" />
     </>
   );
 };

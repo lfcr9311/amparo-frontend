@@ -40,7 +40,7 @@ export default function ListaMedicamentos() {
         variant="contained"
         onClick={() => console.log('clicou')}
       />
-      <Footer />
+      <Footer user="patient" />
     </>
   );
 }
