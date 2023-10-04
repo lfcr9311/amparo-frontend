@@ -96,7 +96,7 @@ const VisualizacaoPerfilPaciente = () => {
         </span>
       </div>
       <div className="footer-container">
-        <Footer />
+        <Footer user="patient" />
       </div>
     </>
   );

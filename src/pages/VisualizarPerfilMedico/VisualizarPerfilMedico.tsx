@@ -21,7 +21,7 @@ const VisualizacaoPerfilMedico = () => {
   return (
     <>
       <div className="header-container">
-        <HeaderHome title="Perfil" />
+        <HeaderHome title="Perfil" type="headerPage" />
       </div>
       <div className="container">
         <div className="profile-card-container">
@@ -96,7 +96,7 @@ const VisualizacaoPerfilMedico = () => {
         </span>
       </div>
       <div className="footer-container">
-        <Footer />
+        <Footer user="doctor" />
       </div>
     </>
   );

@@ -49,7 +49,7 @@ export default function ExamesPendentes() {
           />
         </div>
       </Modal>
-      <Footer />
+      <Footer user="patient" />
     </>
   );
 }

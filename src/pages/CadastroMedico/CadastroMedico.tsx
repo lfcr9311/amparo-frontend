@@ -26,7 +26,7 @@ export const CadastroMedico = () => {
       setValidPassaword(false);
     }
     if (pswTouched && pswTouched) {
-      navigate(ROUTES.HOME_PACIENTE());
+      navigate(ROUTES.HOME_MEDICO());
       return;
     }
   };
@@ -64,7 +64,7 @@ export const CadastroMedico = () => {
     setConfirmPassword(newConfirmPassword);
   };
   const handleClickFazerLogin = () => {
-    navigate('/login');
+    navigate(ROUTES.LOGIN());
   };
 
   return (
