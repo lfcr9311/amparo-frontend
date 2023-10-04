@@ -4,8 +4,8 @@ import { ROUTES } from './routes/constans';
 import { Login } from './pages/Login/Login';
 import HomePaciente from './pages/HomePaciente/HomePaciente';
 import VisualizacaoPerfilPaciente from './pages/VisualizarPerfil/VisualizarPerfil';
-import ExamesPacienteVazio from './pages/ExamesPacienteVazio/ExamesPacienteVazio';
-import ExamesPendentesVazio from './pages/ExamesPendentes/ExamesPendentesVazio';
+import ExamesRealizadosVazio from './pages/ExamesRealizadosVazio/ExamesRealizadosVazio';
+import ExamesPendentesVazio from './pages/ExamesPendentesVazio/ExamesPendentesVazio';
 import { CadastroPaciente } from './pages/CadastroPaciente/CadastroPaciente';
 import { CadastroMedico } from './pages/CadastroMedico/CadastroMedico';
 import { Identificacao } from './pages/Identificacao/Identificacao';
@@ -28,7 +28,7 @@ export default function AppRoutes() {
           />
           <Route
             path={ROUTES.EXAMES_REALIZADOS_VAZIO()}
-            element={<ExamesPacienteVazio />}
+            element={<ExamesRealizadosVazio />}
           />
           <Route path={ROUTES.LOGIN()} element={<Login />} />
           <Route
