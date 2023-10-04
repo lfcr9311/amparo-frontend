@@ -82,7 +82,9 @@ const VisualizacaoPerfilMedico = () => {
               <CustomButton
                 variant="contained"
                 label="Salvar"
-                onClick={() => console.log('Salvar')}
+                onClick={() =>
+                  console.log(name, uf, crm, ddd, phone, convenios)
+                }
               />
             </div>
           </form>
