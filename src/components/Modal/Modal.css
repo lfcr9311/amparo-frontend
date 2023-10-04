@@ -16,7 +16,7 @@
   width: 339px;
   height: auto;
   border-radius: 12px;
-  background-color: #ffffff;
+  background-color: #fbf8f8;
 }
 
 .header-modal-container {
@@ -37,7 +37,7 @@
 
 .button-close {
   border: none;
-  background-color: #ffffff;
+  background-color: #fbf8f8;
 }
 
 .title-modal {
