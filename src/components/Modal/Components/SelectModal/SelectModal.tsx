@@ -2,9 +2,10 @@ import './SelectModal.css';
 
 interface StateSelectProps {
   onChange: (selectedState: string) => void;
+  value: string;
 }
 
-const SelectModal: React.FC<StateSelectProps> = ({ onChange }) => {
+const SelectModal: React.FC<StateSelectProps> = ({ onChange, value }) => {
   const states = [
     'AC',
     'AL',
@@ -42,7 +43,11 @@ const SelectModal: React.FC<StateSelectProps> = ({ onChange }) => {
 
   return (
     <div className="box-container">
-      <select className="select-component" onChange={handleChange}>
+      <select
+        className="select-component"
+        onChange={handleChange}
+        value={value}
+      >
         <option className="option" value="" disabled selected>
           UF
         </option>

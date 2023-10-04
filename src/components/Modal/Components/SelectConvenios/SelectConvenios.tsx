@@ -2,9 +2,10 @@ import './SelectConvenios.css';
 
 interface StateSelectProps {
   onChange: (selectedState: string) => void;
+  value: string;
 }
 
-const SelectConvenios: React.FC<StateSelectProps> = ({ onChange }) => {
+const SelectConvenios: React.FC<StateSelectProps> = ({ onChange, value }) => {
   const convenios = [
     'Unimed',
     'Amil',
@@ -35,7 +36,11 @@ const SelectConvenios: React.FC<StateSelectProps> = ({ onChange }) => {
 
   return (
     <div className="box-container-convenios">
-      <select className="select-component-convenios" onChange={handleChange}>
+      <select
+        className="select-component-convenios"
+        onChange={handleChange}
+        value={value}
+      >
         <option className="option" value="" disabled selected>
           Convênios
         </option>

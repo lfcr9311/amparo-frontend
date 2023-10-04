@@ -40,7 +40,6 @@ const VisualizacaoPerfilMedico = () => {
           isOpen={isModalOpen}
           title="Pefil"
           isClose={() => setIsModalOpen(!isModalOpen)}
-          reducted={true}
         >
           <form>
             <div className="content-modal">
@@ -51,7 +50,7 @@ const VisualizacaoPerfilMedico = () => {
                 onChange={(value) => setName(value)}
               />
               <div className="container-aux">
-                <SelectModal onChange={(value) => setUf(value)} />
+                <SelectModal onChange={(value) => setUf(value)} value={uf} />
                 <TextfieldModal
                   label="CRM"
                   value={crm}
@@ -76,7 +75,10 @@ const VisualizacaoPerfilMedico = () => {
                   width="195.5px"
                 />
               </div>
-              <SelectConvenios onChange={(value) => setConvenios(value)} />
+              <SelectConvenios
+                onChange={(value) => setConvenios(value)}
+                value={convenios}
+              />
               <CustomButton
                 variant="contained"
                 label="Salvar"
