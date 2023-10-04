@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Logo from '../../assets/amparo.svg';
 import './Login.css';
 import { Link } from 'react-router-dom';
+import { ROUTES } from '../../routes/constans';
 import { useNavigate } from 'react-router-dom';
 import Textfield from '../../components/Textfield/Textfield';
 import CustomButton from '../../components/Button/Button';
@@ -32,7 +33,7 @@ export const Login: React.FC = () => {
       return;
     }
     setErro('');
-    navigate('/home/paciente');
+    navigate(ROUTES.HOME_PACIENTE());
     console.log('Email:', email, 'Senha:', password);
   };
 

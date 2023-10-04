@@ -5,6 +5,7 @@ import Logo from '../../assets/amparo.svg';
 import './CadastroMedico.css';
 import SelectComponent from '../../components/Select/Select';
 import { useNavigate } from 'react-router-dom';
+import { ROUTES } from '../../routes/constans';
 
 export const CadastroMedico = () => {
   const [name, setName] = useState<string>('');
@@ -25,7 +26,7 @@ export const CadastroMedico = () => {
       setValidPassaword(false);
     }
     if (pswTouched && pswTouched) {
-      navigate('/home/paciente');
+      navigate(ROUTES.HOME_PACIENTE());
       return;
     }
   };

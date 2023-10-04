@@ -1,16 +1,16 @@
-import HeaderHome from "../../components/HeaderHome/HeaderHome";
-import Footer from "../../components/Footer/Footer";
-import "./ExamesPacientevazio.css";
-import SadIcon from "../../assets/SadIcon.svg";
-import AddIcon from "../../assets/AddIcon.svg"
-import { useNavigate } from "react-router";
+import HeaderHome from '../../components/HeaderHome/HeaderHome';
+import Footer from '../../components/Footer/Footer';
+import './ExamesRealizadosVazio.css';
+import SadIcon from '../../assets/SadIcon.svg';
+import AddIcon from '../../assets/AddIcon.svg';
+import { useNavigate } from 'react-router';
 
 const ExamesPacienteVazio: React.FC = () => {
   const navigate = useNavigate();
 
   const handleClickAddButton = () => {
-    navigate('/perfil/exames-pendentes-vazio')
-  }
+    navigate('/perfil/exames-pendentes-vazio');
+  };
   return (
     <>
       <div className="header">
@@ -28,7 +28,7 @@ const ExamesPacienteVazio: React.FC = () => {
         </div>
         <div className="texto2">Adicionar</div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 };

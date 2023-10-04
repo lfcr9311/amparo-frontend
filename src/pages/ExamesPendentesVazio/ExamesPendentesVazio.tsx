@@ -1,16 +1,17 @@
-import HeaderHome from "../../components/HeaderHome/HeaderHome";
-import Footer from "../../components/Footer/Footer";
-import "./ExamesPendentesVazio.css";
-import HappyIcon from "../../assets/HappyIcon.svg";
-import AddIcon from "../../assets/AddIcon.svg";
-import { useNavigate } from "react-router";
+import HeaderHome from '../../components/HeaderHome/HeaderHome';
+import Footer from '../../components/Footer/Footer';
+import { ROUTES } from '../../routes/constans';
+import './ExamesPendentesVazio.css';
+import HappyIcon from '../../assets/HappyIcon.svg';
+import AddIcon from '../../assets/AddIcon.svg';
+import { useNavigate } from 'react-router';
 
 const ExamesPendentesVazio: React.FC = () => {
   const navigate = useNavigate();
 
-  const handleClickAddButton = () =>{
-    navigate('/perfil/exames-realizados-vazio')
-  }
+  const handleClickAddButton = () => {
+    navigate(ROUTES.EXAMES_REALIZADOS_VAZIO());
+  };
 
   return (
     <>
@@ -29,7 +30,7 @@ const ExamesPendentesVazio: React.FC = () => {
         </div>
         <div className="texto2">Adicionar</div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 };

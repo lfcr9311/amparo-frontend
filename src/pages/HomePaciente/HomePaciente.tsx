@@ -1,33 +1,33 @@
-import "./HomePaciente.css";
-import HeaderHome from "../../components/HeaderHome/HeaderHome";
-import MenuButton from "../../components/MenuButton/MenuButton";
-import ExameIcon from "../../assets/ExameIcon.svg";
-import MedicamentosIcon from "../../assets/MedicationIcon.svg";
-import InfoIcon from "../../assets/InfoIcon.svg";
-import PacientIcon from "../../assets/PacientIcon.svg";
-import ConsultIcon from "../../assets/ConsultIcon.svg"
-
-import Footer from "../../components/Footer/Footer";
-import { useNavigate } from "react-router-dom";
-import logoLogin from "../../assets/amparo.svg";
+import './HomePaciente.css';
+import HeaderHome from '../../components/HeaderHome/HeaderHome';
+import MenuButton from '../../components/MenuButton/MenuButton';
+import ExameIcon from '../../assets/ExameIcon.svg';
+import MedicamentosIcon from '../../assets/MedicationIcon.svg';
+import InfoIcon from '../../assets/InfoIcon.svg';
+import PacientIcon from '../../assets/PacientIcon.svg';
+import ConsultIcon from '../../assets/ConsultIcon.svg';
+import { ROUTES } from '../../routes/constans';
+import Footer from '../../components/Footer/Footer';
+import { useNavigate } from 'react-router-dom';
+import logoLogin from '../../assets/amparo.svg';
 
 const HomePaciente = () => {
   const navigate = useNavigate();
   const userIsPatient = true;
   const handleClickExames = () => {
-    navigate("/perfil/exames-pendentes-vazio");
+    navigate(ROUTES.EXAMES_PENDENTES_VAZIO());
   };
 
   const handleClickMedicamentos = () => {
-    console.log("Cheguei aqui!!!");
+    console.log('Cheguei aqui!!!');
   };
 
   const handleClickInfo = () => {
-    console.log("Cheguei aqui!!!");
+    console.log('Cheguei aqui!!!');
   };
 
   const handleClickConsutas = () => {
-    console.log("Cheguei aqui!!!");
+    console.log('Cheguei aqui!!!');
   };
 
   return (
@@ -36,7 +36,7 @@ const HomePaciente = () => {
       <div className="body">
         <div className="sub-header">
           <img
-            style={{ width: "25px", height: "32px" }}
+            style={{ width: '25px', height: '32px' }}
             src={logoLogin}
             alt="Logo Amparo"
           ></img>
@@ -45,7 +45,7 @@ const HomePaciente = () => {
         <div className="button-container">
           <div className="menu-button">
             <MenuButton
-              title={userIsPatient ? "Exames" : "Pacientes"}
+              title={userIsPatient ? 'Exames' : 'Pacientes'}
               image={userIsPatient ? ExameIcon : PacientIcon}
               onClick={handleClickExames}
             />
