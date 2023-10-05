@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 interface CustomButtonProps {
   variant: 'outlined' | 'contained';
   label: string;
-  onClick: () => void;
+  onClick?: () => void;
   style?: React.CSSProperties;
   type?: "button" | "submit" | "reset"; 
 }
