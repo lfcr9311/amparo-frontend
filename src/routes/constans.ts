@@ -9,4 +9,6 @@ export const ROUTES = {
   LOGIN: () => '*',
   PERFIL_PACIENTE: () => '/perfil/paciente',
   PERFIL_MEDICO: () => '/perfil/medico',
+  MENU_MEDICAMENTOS: () => '/menu/medicamentos',
+  LISTA_MEDICAMENTOS: () => '/lista/medicamentos',
 };

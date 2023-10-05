@@ -18,23 +18,22 @@ export const Login: React.FC = () => {
   const [dataStatus, setDataStatus] = useState<Number>();
 
   const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-    async function fetchData(email: String, psw:String) {
-      try{
-        const result = await login_post(email, psw);
-        // console.log(result.data);
-        setData(result.data);
-        setDataStatus(result.status)
-        // console.log("Status " +result.status);
-        if(result.status== 201 ||result.status== 200)
-        {
-        console.log("login realizado com sucesso");
-        navigate('/home/paciente');
-        }      
-      } catch (error){
-        console.error('Erro ao fazer login', error);
-        setErro("Email ou senha inválidos.")
+  async function fetchData(email: String, psw: String) {
+    try {
+      const result = await login_post(email, psw);
+      // console.log(result.data);
+      setData(result.data);
+      setDataStatus(result.status);
+      // console.log("Status " +result.status);
+      if (result.status == 201 || result.status == 200) {
+        console.log('login realizado com sucesso');
+        navigate(ROUTES.HOME_PACIENTE());
       }
+    } catch (error) {
+      console.error('Erro ao fazer login', error);
+      setErro('Email ou senha inválidos.');
     }
+  }
   const handleEmail = (newEmail: string) => {
     setEmail(newEmail);
   };
@@ -52,7 +51,7 @@ export const Login: React.FC = () => {
       return;
     }
     setErro('');
-    fetchData(email, password)
+    fetchData(email, password);
   };
 
   return (
