@@ -1,25 +1,25 @@
-import "./VisualizarPerfil.css";
-import HeaderHome from "../../components/HeaderHome/HeaderHome";
-import Footer from "../../components/Footer/Footer";
-import { PatientProfileCard } from "../../components/ProfilePatientCard/ProfilePatientCard";
-import Modal from "../../components/Modal/Modal";
-import { useState } from "react";
-import TextfieldModal from "../../components/Modal/Components/TextfieldModal";
-import CustomButton from "../../components/Button/Button";
+import './VisualizarPerfil.css';
+import HeaderHome from '../../components/HeaderHome/HeaderHome';
+import Footer from '../../components/Footer/Footer';
+import { PatientProfileCard } from '../../components/ProfilePatientCard/ProfilePatientCard';
+import Modal from '../../components/Modal/Modal';
+import { useState } from 'react';
+import TextfieldModal from '../../components/Modal/Components/TextfieldModal';
+import CustomButton from '../../components/Button/Button';
 
 const VisualizacaoPerfilPaciente = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [name, setName] = useState("");
-  const [cpf, setCpf] = useState("");
-  const [dataNascimento, setDataNascimento] = useState("");
-  const [nSus, setNSus] = useState("");
-  const [ddd, setDdd] = useState("");
-  const [cellphone, setCellphone] = useState("");
+  const [name, setName] = useState('');
+  const [cpf, setCpf] = useState('');
+  const [dataNascimento, setDataNascimento] = useState('');
+  const [nSus, setNSus] = useState('');
+  const [ddd, setDdd] = useState('');
+  const [cellphone, setCellphone] = useState('');
 
   return (
     <>
       <div className="header-container">
-        <HeaderHome title="Perfil" />
+        <HeaderHome type="headerPage" title="Perfil" />
       </div>
       <div className="container">
         <div className="profile-card-container">
@@ -28,8 +28,8 @@ const VisualizacaoPerfilPaciente = () => {
             email="fulanodasilva1@hotmail.com"
             cpf="123.456.789-00"
             dataNascimento="23/02/1980"
-            onClickChangePassword={() => console.log("Change Password")}
-            onClickDoctors={() => console.log("Click Doctors")}
+            onClickChangePassword={() => console.log('Change Password')}
+            onClickDoctors={() => console.log('Click Doctors')}
             onClickEditProfile={() => setIsModalOpen(!isModalOpen)}
             numSus="012345678901235"
           />
@@ -81,10 +81,10 @@ const VisualizacaoPerfilPaciente = () => {
                   onChange={(value) => setCellphone(value)}
                 />
               </div>
-              <CustomButton 
+              <CustomButton
                 variant="contained"
                 label="Salvar"
-                onClick={() => console.log("Salvar")}
+                onClick={() => console.log('Salvar')}
               />
             </div>
           </form>
@@ -96,7 +96,7 @@ const VisualizacaoPerfilPaciente = () => {
         </span>
       </div>
       <div className="footer-container">
-        <Footer />
+        <Footer user="patient" />
       </div>
     </>
   );

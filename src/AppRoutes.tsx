@@ -4,17 +4,20 @@ import { ROUTES } from './routes/constans';
 import { Login } from './pages/Login/Login';
 import HomePaciente from './pages/HomePaciente/HomePaciente';
 import VisualizacaoPerfilPaciente from './pages/VisualizarPerfil/VisualizarPerfil';
-import ExamesPacienteVazio from './pages/ExamesPacienteVazio/ExamesPacienteVazio';
-import ExamesPendentesVazio from './pages/ExamesPendentes/ExamesPendentesVazio';
+import ExamesRealizadosVazio from './pages/ExamesRealizadosVazio/ExamesRealizadosVazio';
+import ExamesPendentesVazio from './pages/ExamesPendentesVazio/ExamesPendentesVazio';
 import { CadastroPaciente } from './pages/CadastroPaciente/CadastroPaciente';
 import { CadastroMedico } from './pages/CadastroMedico/CadastroMedico';
 import { Identificacao } from './pages/Identificacao/Identificacao';
+import HomeMedico from './pages/HomeMedico/HomeMedico';
+import VisualizacaoPerfilMedico from './pages/VisualizarPerfilMedico/VisualizarPerfilMedico';
 
 export default function AppRoutes() {
   return (
     <Router>
       <div className="App">
         <Routes>
+          <Route path={ROUTES.HOME_MEDICO()} element={<HomeMedico />} />
           <Route path={ROUTES.HOME_PACIENTE()} element={<HomePaciente />} />
           <Route
             path={ROUTES.CADASTRO_PACIENTE()}
@@ -28,12 +31,16 @@ export default function AppRoutes() {
           />
           <Route
             path={ROUTES.EXAMES_REALIZADOS_VAZIO()}
-            element={<ExamesPacienteVazio />}
+            element={<ExamesRealizadosVazio />}
           />
           <Route path={ROUTES.LOGIN()} element={<Login />} />
           <Route
             path={ROUTES.PERFIL_PACIENTE()}
             element={<VisualizacaoPerfilPaciente />}
+          />
+          <Route
+            path={ROUTES.PERFIL_MEDICO()}
+            element={<VisualizacaoPerfilMedico />}
           />
         </Routes>
       </div>

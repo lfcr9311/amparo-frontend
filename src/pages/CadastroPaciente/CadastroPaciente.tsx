@@ -4,6 +4,7 @@ import Button from '../../components/Button/Button';
 import Logo from '../../assets/amparo.svg';
 import cpf from 'cpf';
 import './CadastroPaciente.css';
+import { ROUTES } from '../../routes/constans';
 import { useNavigate } from 'react-router-dom';
 
 export const CadastroPaciente = () => {
@@ -37,7 +38,7 @@ export const CadastroPaciente = () => {
     console.log('psw correct' + validPassword);
 
     if (validPassword && isValidCpf && pswTouched && cpfTouched) {
-      navigate('/home/paciente');
+      navigate(ROUTES.HOME_PACIENTE());
       return;
     }
   };
@@ -68,7 +69,7 @@ export const CadastroPaciente = () => {
     setConfirmPassword(newConfirmPassword);
   };
   const handleClickFazerLogin = () => {
-    navigate('/login');
+    navigate(ROUTES.LOGIN());
   };
 
   return (

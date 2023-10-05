@@ -1,4 +1,4 @@
-import './HomePaciente.css';
+import './HomeMedico.css';
 import HeaderHome from '../../components/HeaderHome/HeaderHome';
 import MenuButton from '../../components/MenuButton/MenuButton';
 import ExameIcon from '../../assets/ExameIcon.svg';
@@ -8,16 +8,17 @@ import PacientIcon from '../../assets/PacientIcon.svg';
 import ConsultIcon from '../../assets/ConsultIcon.svg';
 import { ROUTES } from '../../routes/constans';
 import Footer from '../../components/Footer/Footer';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import logoLogin from '../../assets/amparo.svg';
 
-const HomePaciente = () => {
-  const navigate = useNavigate();
-  const userIsPatient = true;
-  const handleClickExames = () => {
-    navigate(ROUTES.EXAMES_PENDENTES_VAZIO());
-  };
+const HomeMedico = () => {
+  // AINDA N TEM TELA
+  // const navigate = useNavigate();
+  // const handleClickExames = () => {
+  //   navigate();
+  // };
 
+  const userIsPatient = false;
   const handleClickMedicamentos = () => {
     console.log('Cheguei aqui!!!');
   };
@@ -32,7 +33,7 @@ const HomePaciente = () => {
 
   return (
     <div className="container-home">
-      <HeaderHome type="headerHome" title="Olá, Fulano!"></HeaderHome>
+      <HeaderHome type="headerHome" title="Olá, Dr. Fulano!"></HeaderHome>
       <div className="body">
         <div className="sub-header">
           <img
@@ -47,7 +48,7 @@ const HomePaciente = () => {
             <MenuButton
               title={userIsPatient ? 'Exames' : 'Pacientes'}
               image={userIsPatient ? ExameIcon : PacientIcon}
-              onClick={handleClickExames}
+              onClick={() => {}}
             />
           </div>
           <MenuButton
@@ -71,9 +72,9 @@ const HomePaciente = () => {
           />
         </div>
       </div>
-      <Footer user="patient" />
+      <Footer user="doctor" />
     </div>
   );
 };
 
-export default HomePaciente;
+export default HomeMedico;
