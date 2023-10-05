@@ -19,7 +19,7 @@ const HomePaciente = () => {
   };
 
   const handleClickMedicamentos = () => {
-    console.log('Cheguei aqui!!!');
+    navigate(ROUTES.MENU_MEDICAMENTOS());
   };
 
   const handleClickInfo = () => {
