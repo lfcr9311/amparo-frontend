@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Logo from '../../assets/amparo.svg';
 import './Login.css';
 import { Link } from 'react-router-dom';
@@ -6,6 +6,7 @@ import { ROUTES } from '../../routes/constans';
 import { useNavigate } from 'react-router-dom';
 import Textfield from '../../components/Textfield/Textfield';
 import CustomButton from '../../components/Button/Button';
+import { getUser, login_post } from '../../utils/apiService';
 
 export const Login: React.FC = () => {
   const [email, setEmail] = useState<string>('');
@@ -13,16 +14,34 @@ export const Login: React.FC = () => {
   const [erro, setErro] = useState<string>('');
   const [clicked, setClicked] = useState<boolean>(false);
   const navigate = useNavigate();
+  const [data, setData] = useState<String>();
+  const [dataStatus, setDataStatus] = useState<Number>();
 
   const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-
+    async function fetchData(email: String, psw:String) {
+      try{
+        const result = await login_post(email, psw);
+        // console.log(result.data);
+        setData(result.data);
+        setDataStatus(result.status)
+        // console.log("Status " +result.status);
+        if(result.status== 201 ||result.status== 200)
+        {
+        console.log("login realizado com sucesso");
+        navigate('/home/paciente');
+        }      
+      } catch (error){
+        console.error('Erro ao fazer login', error);
+        setErro("Email ou senha inválidos.")
+      }
+    }
   const handleEmail = (newEmail: string) => {
     setEmail(newEmail);
   };
 
   const handlePassword = (newPassword: string) => {
     setPassword(newPassword);
-    setClicked(false);
+    // setClicked(false);
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -33,8 +52,7 @@ export const Login: React.FC = () => {
       return;
     }
     setErro('');
-    navigate(ROUTES.HOME_PACIENTE());
-    console.log('Email:', email, 'Senha:', password);
+    fetchData(email, password)
   };
 
   return (
@@ -63,7 +81,7 @@ export const Login: React.FC = () => {
             margin-bottom="20px"
             variant="contained"
             label="Entrar"
-            onClick={() => setClicked(!clicked)}
+            // onClick={() => (setClicked(!clicked))}
             type="submit"
           />
         </div>
