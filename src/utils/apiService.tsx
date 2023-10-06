@@ -26,3 +26,40 @@ export const getUser = async () => {
     throw error;
   }
 };
+
+export const registerDoctor = async (email: String, name: String, password: String, cellphone: String, userType: String, profilePicture: String, crm: String, uf: String,) => {
+  const registerBody = {
+    email: email,
+    name: name,
+    password: password,
+    cellphone: cellphone,
+    userType: userType,
+    profilePicture: profilePicture,
+    crm: crm,
+    uf: uf
+  }
+try {
+  const response = await axios.post('/auth/register', JSON.stringify(registerBody));
+  return response;
+} catch (error) {
+  throw error;
+}
+}
+
+export const registerUser = async (email: String, name: String, password: String, cellphone: String, userType: String, profilePicture: String, uf: String,) => {
+  const registerBody = {
+    email: email,
+    name: name,
+    password: password,
+    cellphone: cellphone,
+    userType: userType,
+    profilePicture: profilePicture,
+    uf: uf
+  }
+try {
+  const response = await axios.post('/auth/register', JSON.stringify(registerBody));
+  return response;
+} catch (error) {
+  throw error;
+}
+}
