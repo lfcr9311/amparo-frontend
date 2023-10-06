@@ -11,8 +11,11 @@ import { CadastroMedico } from './pages/CadastroMedico/CadastroMedico';
 import { Identificacao } from './pages/Identificacao/Identificacao';
 import HomeMedico from './pages/HomeMedico/HomeMedico';
 import VisualizacaoPerfilMedico from './pages/VisualizarPerfilMedico/VisualizarPerfilMedico';
-
+import {isLoggedIn} from './utils/authService'
 export default function AppRoutes() {
+  const isAuthenticated = isLoggedIn();
+  console.log(isAuthenticated);
+  
   return (
     <Router>
       <div className="App">
@@ -35,9 +38,9 @@ export default function AppRoutes() {
           />
           <Route path={ROUTES.LOGIN()} element={<Login />} />
           <Route
-            path={ROUTES.PERFIL_PACIENTE()}
+            path={ ROUTES.PERFIL_PACIENTE() }
             element={<VisualizacaoPerfilPaciente />}
-          />
+          />       
           <Route
             path={ROUTES.PERFIL_MEDICO()}
             element={<VisualizacaoPerfilMedico />}

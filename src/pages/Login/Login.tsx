@@ -6,7 +6,7 @@ import { ROUTES } from '../../routes/constans';
 import { useNavigate } from 'react-router-dom';
 import Textfield from '../../components/Textfield/Textfield';
 import CustomButton from '../../components/Button/Button';
-import { getUser, login_post } from '../../utils/apiService';
+import { login_post } from '../../utils/apiService';
 
 export const Login: React.FC = () => {
   const [email, setEmail] = useState<string>('');
@@ -27,8 +27,12 @@ export const Login: React.FC = () => {
         // console.log("Status " +result.status);
         if(result.status== 201 ||result.status== 200)
         {
-        console.log("login realizado com sucesso");
-        navigate('/home/paciente');
+            console.log("login realizado com sucesso");
+            // After a successful login response
+              const token = result.data.token;
+              localStorage.setItem('token', token);
+
+            navigate('/home/paciente');
         }      
       } catch (error){
         console.error('Erro ao fazer login', error);
