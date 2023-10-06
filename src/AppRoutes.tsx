@@ -32,11 +32,8 @@ export default function AppRoutes() {
             path={ROUTES.EXAMES_PENDENTES_VAZIO()}
             element={<ExamesPendentesVazio />}
           />
-          <Route
-            path={ROUTES.EXAMES_REALIZADOS_VAZIO()}
-            element={<ExamesRealizadosVazio />}
+          <Route path={ROUTES.LOGIN()} element={<Login />} 
           />
-          <Route path={ROUTES.LOGIN()} element={<Login />} />
           <Route
             path={ ROUTES.PERFIL_PACIENTE() }
             element={<VisualizacaoPerfilPaciente />}
@@ -44,7 +41,7 @@ export default function AppRoutes() {
           <Route
             path={ROUTES.PERFIL_MEDICO()}
             element={<VisualizacaoPerfilMedico />}
-          />
+          /> 
         </Routes>
       </div>
     </Router>
