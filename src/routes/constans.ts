@@ -11,4 +11,5 @@ export const ROUTES = {
   PERFIL_MEDICO: () => '/perfil/medico',
   MENU_MEDICAMENTOS: () => '/menu/medicamentos',
   LISTA_MEDICAMENTOS: () => '/lista/medicamentos',
+  LISTA_EXAMES: () => '/lista/exames',
 };
