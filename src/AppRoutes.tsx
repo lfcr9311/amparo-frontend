@@ -18,7 +18,7 @@ export default function AppRoutes() {
     <Router>
       <div className="App">
         <Routes>
-          {/* <Route path={ROUTES.HOME_MEDICO()} element={<HomeMedico />} />
+          <Route path={ROUTES.HOME_MEDICO()} element={<HomeMedico />} />
           <Route path={ROUTES.HOME_PACIENTE()} element={<HomePaciente />} />
           <Route
             path={ROUTES.CADASTRO_PACIENTE()}
@@ -29,9 +29,9 @@ export default function AppRoutes() {
           <Route
             path={ROUTES.EXAMES_PENDENTES_VAZIO()}
             element={<ExamesPendentesVazio />}
-          /> */}
-          <Route path="/" element={<Temporaria />} />
-          {/* <Route path={ROUTES.LOGIN()} element={<Login />} />
+          />
+          <Route path={ROUTES.LOGIN()} element={<Login />} 
+          />
           <Route
             path={ROUTES.PERFIL_PACIENTE()}
             element={<VisualizacaoPerfilPaciente />}
@@ -39,7 +39,7 @@ export default function AppRoutes() {
           <Route
             path={ROUTES.PERFIL_MEDICO()}
             element={<VisualizacaoPerfilMedico />}
-          /> */}
+          /> 
         </Routes>
       </div>
     </Router>
