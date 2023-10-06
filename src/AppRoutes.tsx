@@ -13,6 +13,7 @@ import HomeMedico from './pages/HomeMedico/HomeMedico';
 import VisualizacaoPerfilMedico from './pages/VisualizarPerfilMedico/VisualizarPerfilMedico';
 import MenuMedicamentos from './pages/MenuMedicamentos/MenuMedicamentos';
 import ListaMedicamentos from './pages/ListaMedicamentos/ListaMedicamentos';
+import ExamesPendentes from './pages/ExamesPendentes/ExamesPendentes';
 
 export default function AppRoutes() {
   return (
@@ -52,6 +53,8 @@ export default function AppRoutes() {
             path={ROUTES.LISTA_MEDICAMENTOS()}
             element={<ListaMedicamentos />}
           />
+
+          <Route path={ROUTES.LISTA_EXAMES()} element={<ExamesPendentes />} />
         </Routes>
       </div>
     </Router>
