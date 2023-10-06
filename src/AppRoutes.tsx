@@ -11,16 +11,14 @@ import { CadastroMedico } from './pages/CadastroMedico/CadastroMedico';
 import { Identificacao } from './pages/Identificacao/Identificacao';
 import HomeMedico from './pages/HomeMedico/HomeMedico';
 import VisualizacaoPerfilMedico from './pages/VisualizarPerfilMedico/VisualizarPerfilMedico';
-import MenuMedicamentos from './pages/MenuMedicamentos/MenuMedicamentos';
-import ListaMedicamentos from './pages/ListaMedicamentos/ListaMedicamentos';
-import ExamesPendentes from './pages/ExamesPendentes/ExamesPendentes';
+import Temporaria from './pages/temporaria';
 
 export default function AppRoutes() {
   return (
     <Router>
       <div className="App">
         <Routes>
-          <Route path={ROUTES.HOME_MEDICO()} element={<HomeMedico />} />
+          {/* <Route path={ROUTES.HOME_MEDICO()} element={<HomeMedico />} />
           <Route path={ROUTES.HOME_PACIENTE()} element={<HomePaciente />} />
           <Route
             path={ROUTES.CADASTRO_PACIENTE()}
@@ -31,12 +29,9 @@ export default function AppRoutes() {
           <Route
             path={ROUTES.EXAMES_PENDENTES_VAZIO()}
             element={<ExamesPendentesVazio />}
-          />
-          <Route
-            path={ROUTES.EXAMES_REALIZADOS_VAZIO()}
-            element={<ExamesRealizadosVazio />}
-          />
-          <Route path={ROUTES.LOGIN()} element={<Login />} />
+          /> */}
+          <Route path="/" element={<Temporaria />} />
+          {/* <Route path={ROUTES.LOGIN()} element={<Login />} />
           <Route
             path={ROUTES.PERFIL_PACIENTE()}
             element={<VisualizacaoPerfilPaciente />}
@@ -44,17 +39,7 @@ export default function AppRoutes() {
           <Route
             path={ROUTES.PERFIL_MEDICO()}
             element={<VisualizacaoPerfilMedico />}
-          />
-          <Route
-            path={ROUTES.MENU_MEDICAMENTOS()}
-            element={<MenuMedicamentos />}
-          />
-          <Route
-            path={ROUTES.LISTA_MEDICAMENTOS()}
-            element={<ListaMedicamentos />}
-          />
-
-          <Route path={ROUTES.LISTA_EXAMES()} element={<ExamesPendentes />} />
+          /> */}
         </Routes>
       </div>
     </Router>
