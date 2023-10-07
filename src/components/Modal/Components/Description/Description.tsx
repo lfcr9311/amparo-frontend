@@ -1,7 +1,15 @@
 import React, { useState } from 'react';
 import './Description.css';
 
-export default function Description() {
+interface DescriptionProps {
+  descriptValue?: string;
+  descriptExist?: boolean;
+}
+
+export default function Description({
+  descriptValue,
+  descriptExist,
+}: DescriptionProps) {
   const [description, setDescription] = useState('');
 
   const handleDescriptionChange = (
@@ -12,7 +20,7 @@ export default function Description() {
 
   return (
     <textarea
-      value={description}
+      value={descriptExist ? descriptValue : description}
       onChange={handleDescriptionChange}
       placeholder="Descrição..."
       className="description-container"
