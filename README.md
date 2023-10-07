@@ -18,6 +18,7 @@ Abra o terminal e navegue até a pasta em que deseja clonar o repositório do pr
 ```
 git clone https://tools.ages.pucrs.br/amparo/amparo-frontend
 ```
+
 ## Passo 2: Instalar as dependências
 
 Navegue para a pasta do projeto clonado usando o terminal:
@@ -25,6 +26,7 @@ Navegue para a pasta do projeto clonado usando o terminal:
 ```
 cd amparo
 ```
+
 Agora, instale as dependências do projeto utilizando o Node Package Manager (npm):
 
 ```
@@ -39,29 +41,45 @@ Após a instalação das dependências, você pode iniciar o servidor de desenvo
 npm run dev
 ```
 
-
 ### Explicação sobre as pastas
 
 ## Common
+
 Aqui estão todos os asstes do projeto que serão usados ​​pelo aplicativo, como estilos globais, imagens, fontes, mocks, stories, funções reutilizáveis como máscaras, entre outros.
 
 ## Components
+
 Aqui vai ficar todos os componentes que são utilizados de uma forma global pela aplicação, componentes utilizados somente por uma página em específica vai ficar em outro lugar.
 
 ## Configs
+
 Aqui vai ficar todos os arquivos de configuração, que são utilizados de uma forma global pela aplicação.
 
 ## Containers
+
 Aqui vai ficar todos os nossos containers responsáveis por desacoplar a nossa aplicação de alguma biblioteca, possibilitando alterar as libs sem precisar mexer em varios lugares do código.
 
 ## Hooks
+
 Todos os hooks customizáveis da aplicação, por exemplo, um hook que cuida da sessão do usuário.
 
 ## Pages
+
 Como o próprio nome já diz, aqui vai ficar todas as páginas da nossa aplicação, ah e lembra que falei que os componentes utilizados somente por uma página ficariam em outro lugar?! Então, aqui é o lugar também, dentro de cada pasta de página vamos ter uma pasta components que contém todos os componentes exclusivos da página.
 
 ## Routes
+
 Aqui vai ficar todos os nosso arquivos que gerenciam as rotas da nossa aplicação.
 
 ## Services
+
 Nessa pasta fica todos os arquivos responsáveis por consumir serviços externos, como por exemplo o arquivo de configuração do axios para consumir APIs RestFul.
+
+## Docker
+
+Ajuste os valores de .env.production e então execute os comandos de build e run:
+
+```
+docker build -t amparo-frontend .
+docker run -it --rm -p 3000:3000 amparo-frontend
+```
