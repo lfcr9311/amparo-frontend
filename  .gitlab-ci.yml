@@ -1,0 +1,34 @@
+stages:
+  - test
+  - deploy
+
+npm-test:
+  image: node:18-alpine
+  stage: test
+  tags:
+    - test
+  script:
+    - npm ci
+    - npm test
+  only:
+    - main
+    - dev
+
+Docker Run:
+  image: docker:stable
+  stage: deploy
+  tags:
+    - deploy
+  services:
+    - docker:dind
+  before_script:
+    - docker network create --driver bridge museu || true
+  script:
+    - docker build --build-arg VITE_API_URL=$API_URL -t amparo-frontend:latest .
+    - docker stop amparo-frontend|| true
+    - docker rm -f amparo-frontend|| true
+    - "docker run -d -p 4200:80 \
+      --name 'amparo-frontend' \
+      amparo-frontend"
+  only:
+    - main
