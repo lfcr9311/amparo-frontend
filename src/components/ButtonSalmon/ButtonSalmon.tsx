@@ -1,7 +1,6 @@
 import React from 'react';
 import Button from '@mui/material/Button';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
 import Box from '@mui/material/Box';
 
 interface CustomButtonSalmonProps {
@@ -10,7 +9,7 @@ interface CustomButtonSalmonProps {
     onClick: () => void;
 }
 
-export const ButtonSalmon: React.FC<CustomButtonSalmonProps> = ({ label, icon, onClick, },props: SvgIconProps) => {
+export const ButtonSalmon: React.FC<CustomButtonSalmonProps> = ({ label, icon, onClick, }) => {
 
     const buttonStyle: React.CSSProperties = {
         backgroundColor: "#E76553",

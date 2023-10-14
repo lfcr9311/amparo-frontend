@@ -18,7 +18,7 @@ interface HeaderProps {
 const HeaderHome: React.FC<HeaderProps> = ({ title, type }) => {
   const navigate = useNavigate();
   const handleBack = () => {
-    navigate('/login');
+    navigate(-1);
   };
   return (
     <div className="header">
