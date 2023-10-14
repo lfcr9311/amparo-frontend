@@ -2,7 +2,6 @@ import React from 'react';
 import Button from '@mui/material/Button';
 import BookOutlinedIcon from '@mui/icons-material/BookOutlined';
 import DateRangeRoundedIcon from '@mui/icons-material/DateRangeRounded';
-import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
 import Box from '@mui/material/Box';
 
 interface CustomCardMedicamentos{
@@ -10,7 +9,7 @@ interface CustomCardMedicamentos{
      onClick: () => void;
 }
 
-export const CardMedicamentos: React.FC<CustomCardMedicamentos> = ({  iconType, onClick, },props: SvgIconProps) => {
+export const CardMedicamentos: React.FC<CustomCardMedicamentos> = ({  iconType, onClick, }) => {
 
     const buttonStyle: React.CSSProperties = {
         backgroundColor: "#E76553",
