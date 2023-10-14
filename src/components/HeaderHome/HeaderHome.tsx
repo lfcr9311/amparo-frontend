@@ -9,24 +9,30 @@ import CustomTabs from '../CustomTabs/CustomTabs';
 interface HeaderProps {
   title?: string;
   type: 'headerHome' | 'headerChat' | 'headerPage' | 'headerTab';
-  setActiveTab?: (tab:string) => void;
-  activeTab?: string;
+  setActiveTab: (tab: string) => void;
+  activeTab: string;
 }
 
-const HeaderHome: React.FC<HeaderProps> = ({ title, type, setActiveTab, activeTab }) => {
+const HeaderHome: React.FC<HeaderProps> = ({
+  title,
+  type,
+  setActiveTab,
+  activeTab,
+}) => {
   const navigate = useNavigate();
   const handleBack = () => {
     navigate(-1);
   };
-  
 
   return (
-    <div className="header"></div>
+    <div className="header">
       <div className="header-content">
         <ArrowCircleLeftOutlinedIcon
           onClick={handleBack}
           style={
-            type == 'headerHome' ? { fontSize: '20px' } : { fontSize: '40px', marginRight: '10px' }
+            type == 'headerHome'
+              ? { fontSize: '20px' }
+              : { fontSize: '40px', marginRight: '10px' }
           }
           className="back-button"
         />

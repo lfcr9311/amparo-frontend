@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import { Tabs, Tab, AppBar, Box } from '@mui/material';
 import { styled } from '@mui/system';
 
@@ -10,7 +11,8 @@ interface TabItem {
 interface CustomTabsProps {
   tabs: TabItem[];
   initialTab?: number;
-  render: (value: string) => React.ReactNode;
+  activeTab?: string;
+  setActiveTab?: (tab: string) => void;
 }
 
 const CustomTab = styled(Tab)(({ theme }) => ({
@@ -31,11 +33,17 @@ const CustomTab = styled(Tab)(({ theme }) => ({
   },
 }));
 
-const CustomTabs: React.FC<CustomTabsProps> = ({ tabs, initialTab = 0}) => {
-  const [value, setValue] = React.useState(initialTab);
+const CustomTabs: React.FC<CustomTabsProps> = ({
+  tabs,
+  initialTab = 0,
+  activeTab,
+  setActiveTab,
+}) => {
+  const [value, setValue] = useState(initialTab);
 
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
+  const handleChange = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setValue(event.currentTarget);
+    setActiveTab('realizados');
   };
 
   return (
