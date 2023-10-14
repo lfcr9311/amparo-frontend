@@ -11,13 +11,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@date-io/date-fns": "^2.17.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.7",
-    "@mui/material": "^5.14.7",
+    "@mui/lab": "^5.0.0-alpha.148",
+    "@mui/material": "^5.14.13",
     "@mui/system": "^5.14.12",
     "axios": "^1.5.1",
     "cpf": "^2.0.1",
+    "date-fns": "^2.30.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.15.0"

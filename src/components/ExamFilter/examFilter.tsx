@@ -12,7 +12,7 @@ interface ExamFilterProps {
   initialTab?: number;
 }
 
-const ExamFilterTab = styled(Tab)(({ theme }) => ({
+const ExamFilterTab = styled(Tab)(() => ({
   minWidth: '101px',
   height: '23px',
   zIndex: 3,

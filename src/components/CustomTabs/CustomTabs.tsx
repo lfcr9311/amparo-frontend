@@ -10,6 +10,7 @@ interface TabItem {
 interface CustomTabsProps {
   tabs: TabItem[];
   initialTab?: number;
+  render: (value: string) => React.ReactNode;
 }
 
 const CustomTab = styled(Tab)(({ theme }) => ({
@@ -30,7 +31,7 @@ const CustomTab = styled(Tab)(({ theme }) => ({
   },
 }));
 
-const CustomTabs: React.FC<CustomTabsProps> = ({ tabs, initialTab = 0 }) => {
+const CustomTabs: React.FC<CustomTabsProps> = ({ tabs, initialTab = 0}) => {
   const [value, setValue] = React.useState(initialTab);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -75,6 +76,7 @@ const CustomTabs: React.FC<CustomTabsProps> = ({ tabs, initialTab = 0 }) => {
           {tab.content}
         </Box>
       ))}
+      {value}
     </Box>
   );
 };

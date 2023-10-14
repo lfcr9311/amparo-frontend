@@ -12,10 +12,11 @@ import InputFile from '../../components/InputFile/InputFile';
 
 export default function ExamesPendentes() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState<string>("pendentes")
 
   return (
     <>
-      <HeaderHome type="headerTab" title="" />
+      <HeaderHome type="headerTab" setActiveTab={setActiveTab} activeTab={activeTab}/>
       <div className="content-header">
         <p className="title-exames-page-title">Exames</p>
         <button

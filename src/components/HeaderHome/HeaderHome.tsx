@@ -7,21 +7,21 @@ import { useNavigate } from 'react-router-dom';
 import CustomTabs from '../CustomTabs/CustomTabs';
 
 interface HeaderProps {
-  title: string;
+  title?: string;
   type: 'headerHome' | 'headerChat' | 'headerPage' | 'headerTab';
-  // headerHome?: boolean;
-  // headerChat?: boolean;
-  // headerPage?: boolean;
-  // headerTab?: boolean;
+  setActiveTab?: (tab:string) => void;
+  activeTab?: string;
 }
 
-const HeaderHome: React.FC<HeaderProps> = ({ title, type }) => {
+const HeaderHome: React.FC<HeaderProps> = ({ title, type, setActiveTab, activeTab }) => {
   const navigate = useNavigate();
   const handleBack = () => {
-    navigate('/login');
+    navigate(-1);
   };
+  
+
   return (
-    <div className="header">
+    <div className="header"></div>
       <div className="header-content">
         <ArrowCircleLeftOutlinedIcon
           onClick={handleBack}
@@ -44,6 +44,8 @@ const HeaderHome: React.FC<HeaderProps> = ({ title, type }) => {
               { content: '', label: 'Pendentes' },
               { content: '', label: 'Realizados' },
             ]}
+            setActiveTab={setActiveTab}
+            activeTab={activeTab}
           />
         ) : (
           <a className="title">{title}</a>
