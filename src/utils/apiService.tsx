@@ -18,7 +18,7 @@ export const isLogged = async (token:String) => {
   try {
     const response = await axios.get('/patient', {
       headers:{
-        'Authorization': 'Bearer'+token
+        'Authorization': 'Bearer '+token
       }
     }); // Replace with your endpoint
     return response;
