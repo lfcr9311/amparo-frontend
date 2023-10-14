@@ -62,3 +62,16 @@
   justify-content: center;
   gap: 15px;
 }
+
+.file-selected {
+  color: #4d4c4c;
+  margin-bottom: auto;
+  margin-top: auto;
+  text-align: justify;
+  font-family: Poppins;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  max-width: 260px;
+}

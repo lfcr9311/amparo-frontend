@@ -8,7 +8,6 @@ import Modal from '../../components/Modal/Modal';
 import DateModal from '../../components/Modal/Components/DateModal/DateModal';
 import Description from '../../components/Modal/Components/Description/Description';
 import CustomButton from '../../components/Button/Button';
-import InputFile from '../../components/InputFile/InputFile';
 
 export default function ExamesPendentes() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -43,8 +42,6 @@ export default function ExamesPendentes() {
         </div>
         <div className="description-button-modal">
           <Description />
-          <InputFile type="image" onChange={() => {}} />
-          <InputFile type="pdf" onChange={() => {}} />
           <CustomButton
             variant="contained"
             label="Salvar"

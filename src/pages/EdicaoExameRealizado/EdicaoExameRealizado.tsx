@@ -17,16 +17,20 @@ interface EdicaoExameRealizadoProps {
   dateValue: string;
 }
 
-/* 
-  TODO: Conseguir alterar os valores da modal no componente.
-*/
-
 export default function EdicaoExameRealizado({
   title,
   descriptionValue,
   dateValue,
 }: EdicaoExameRealizadoProps) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [filePdf, setFilePdf] = useState<File | null>(null);
+  const [fileImage, setFileImage] = useState<File | null>(null);
+  const handleFilePdf = (file: File | null) => {
+    setFilePdf(file);
+  }
+  const handleFileImage = (file: File | null) => {
+    setFileImage(file);
+  }
 
   return (
     <>
@@ -62,8 +66,11 @@ export default function EdicaoExameRealizado({
         </div>
         <div className="button-description-modal">
           <Description descriptExist={true} descriptValue={descriptionValue} />
-          <InputFile type="image" onChange={() => {}} />
-          <InputFile type="pdf" onChange={() => {}} />
+          <InputFile type="image" onChange={handleFileImage} />
+          {fileImage && <p className='file-selected'>Arquivo selecionado: {fileImage.name}</p>}
+          <InputFile type="pdf" onChange={handleFilePdf} /> 
+          { filePdf && 
+              <p className='file-selected'>Arquivo selecionado: {filePdf.name}</p> }
           <CustomButton
             variant="contained"
             label="Salvar"

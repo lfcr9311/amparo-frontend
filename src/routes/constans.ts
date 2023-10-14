@@ -12,4 +12,6 @@ export const ROUTES = {
   MENU_MEDICAMENTOS: () => '/menu/medicamentos',
   LISTA_MEDICAMENTOS: () => '/lista/medicamentos',
   LISTA_EXAMES: () => '/lista/exames',
+  EXAMES_PENDENTES: () => '/exames/pendentes',
+  EXAMES_REALIZADOS: () => '/exames/realizados'
 };
