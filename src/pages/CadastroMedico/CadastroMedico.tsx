@@ -13,9 +13,8 @@ export const CadastroMedico = () => {
   const [email, setEmail] = useState<string>('');
   const [state, setState] = useState<string>('');
   const [crm, setCrm] = useState<string>('');
-  const [userType, setUserType] = useState<string>('');
-  const [profilePicture, setProfilePicture] = useState<string>('');
-  const [uf, setUf] = useState<string>('');
+  const [profilePicture] = useState<string>('');
+  const [uf] = useState<string>('');
   const [telefone, setTelefone] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
@@ -27,27 +26,27 @@ export const CadastroMedico = () => {
   const navigate = useNavigate();
 
   const buttonCLick = () => {
+    fetchData(email, name, password, telefone, "DOCTOR", crm, state);
     if (password === confirmPassword) {
       setValidPassaword(true);
     } else {
       setValidPassaword(false);
     }
-    if (pswTouched && pswTouched) {
+    if (pswTouched) {
       navigate(ROUTES.HOME_MEDICO());
       return;
     }
   };
 
-  async function fetchData(email: String, name: String, psw: String, cell: String, userType: String, profilePicture: String, crm: String, uf: String) {
+  async function fetchData(email: String, name: String, password: String, cellPhone: String, userType: String, crm: String, uf: String) {
     try {
-      const result = await registerDoctor(email, name, psw, cell, userType, profilePicture, crm, uf);
-      // console.log(result.data);
+      const result = await registerDoctor(email, name, password, cellPhone, "DOCTOR", crm, uf);
       setData(result.data);
       setDataStatus(result.status);
-      // console.log("Status " +result.status);
+      console.log("Status " +result.status);
       if (result.status == 201 || result.status == 200) {
         console.log('cadastro realizado com sucesso');
-        navigate(ROUTES.CADASTRO_MEDICO()); 
+        navigate(ROUTES.CADASTRO_MEDICO());
       }
     } catch (error) {
       console.error('Erro ao fazer cadastro', error);
@@ -88,7 +87,6 @@ export const CadastroMedico = () => {
     setConfirmPassword(newConfirmPassword);
   };
   const handleClickFazerLogin = () => {
-    fetchData(email, name, password, telefone, userType, profilePicture, crm, uf);
     navigate(ROUTES.LOGIN());
   };
 

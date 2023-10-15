@@ -7,7 +7,7 @@ export const login_post = async (email: String, psw:String) => {
     password: psw
   }; 
   try {
-    const response = await axios.post('/auth/login', JSON.stringify(loginBody)); // Replace with your endpoint
+    const response = await axios.post('/auth/login', JSON.stringify(loginBody)); 
     return response;
   } catch (error) {
     throw error;
@@ -27,14 +27,13 @@ export const getUser = async () => {
   }
 };
 
-export const registerDoctor = async (email: String, name: String, password: String, cellphone: String, userType: String, profilePicture: String, crm: String, uf: String,) => {
+export const registerDoctor = async (email: String, name: String, password: String, cellphone: String, userType: String, crm: String, uf: String) => {
   const registerBody = {
     email: email,
     name: name,
     password: password,
     cellphone: cellphone,
     userType: userType,
-    profilePicture: profilePicture,
     crm: crm,
     uf: uf
   }
