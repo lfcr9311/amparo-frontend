@@ -1,0 +1,35 @@
+.box-container-frequencia {
+  display: flex;
+  align-items: center;
+  border-radius: 3px;
+  background: #eaeaea;
+  width: 127px;
+  padding: 11px 10px 9px 10px;
+  gap: 19px;
+}
+
+.select-component-frequencia {
+  color: #696969;
+  font-family: Poppins;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  border: none;
+  outline: none;
+  background-color: #eaeaea;
+  margin: 10px;
+  width: 127px;
+  height: 18px;
+}
+
+.select-component-frequencia .option {
+  color: #696969;
+  font-family: Poppins;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  width: 270px;
+  line-height: normal;
+  margin: 10px;
+}
