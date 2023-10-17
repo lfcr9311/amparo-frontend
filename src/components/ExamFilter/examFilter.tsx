@@ -11,7 +11,7 @@ interface ExamFilterProps {
   tabs: TabItem[];
   initialTab?: number;
 }
-// @ts-ignore
+
 const ExamFilterTab = styled(Tab)(({ theme }) => ({
   minWidth: '101px',
   height: '23px',
@@ -36,7 +36,6 @@ const ExamFilterTab = styled(Tab)(({ theme }) => ({
 const ExamFilter: React.FC<ExamFilterProps> = ({ tabs, initialTab = 0 }) => {
   const [value, setValue] = React.useState(initialTab);
 
-  // @ts-ignore
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
