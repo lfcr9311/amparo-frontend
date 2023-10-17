@@ -21,8 +21,6 @@ Docker Run:
     - deploy
   services:
     - docker:dind
-  before_script:
-    - docker network create --driver bridge museu || true
   script:
     - docker build --build-arg VITE_API_URL=$API_URL -t amparo-frontend:latest .
     - docker stop amparo-frontend|| true
