@@ -22,7 +22,7 @@
         "@typescript-eslint/no-non-null-assertion": "off",
         "@typescript-eslint/no-confusing-void-expression": "off",
         "@typescript-eslint/strict-boolean-expressions": "off",
-        "@typescript-eslint/triple-slash-reference": "off"
+        "@typescript-eslint/triple-slash-reference": "off"z
         
 
     }

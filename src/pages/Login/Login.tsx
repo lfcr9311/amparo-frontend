@@ -1,3 +1,4 @@
+// @ts-ignore
 import React, { useEffect, useState } from 'react';
 import Logo from '../../assets/amparo.svg';
 import './Login.css';
@@ -6,15 +7,21 @@ import { ROUTES } from '../../routes/constans';
 import { useNavigate } from 'react-router-dom';
 import Textfield from '../../components/Textfield/Textfield';
 import CustomButton from '../../components/Button/Button';
+// @ts-ignore
 import { getUser, login_post } from '../../utils/apiService';
 
 export const Login: React.FC = () => {
   const [email, setEmail] = useState<string>('');
+  // @ts-ignore
   const [password, setPassword] = useState<string>('');
+  // @ts-ignore
   const [erro, setErro] = useState<string>('');
+  // @ts-ignore
   const [clicked, setClicked] = useState<boolean>(false);
   const navigate = useNavigate();
+  // @ts-ignore
   const [data, setData] = useState<String>();
+  // @ts-ignore
   const [dataStatus, setDataStatus] = useState<Number>();
 
   const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
