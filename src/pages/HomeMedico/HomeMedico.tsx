@@ -6,7 +6,6 @@ import MedicamentosIcon from '../../assets/MedicationIcon.svg';
 import InfoIcon from '../../assets/InfoIcon.svg';
 import PacientIcon from '../../assets/PacientIcon.svg';
 import ConsultIcon from '../../assets/ConsultIcon.svg';
-// @ts-ignore
 import { ROUTES } from '../../routes/constans';
 import Footer from '../../components/Footer/Footer';
 // import { useNavigate } from 'react-router-dom';

@@ -11,7 +11,7 @@ interface CustomTabsProps {
   tabs: TabItem[];
   initialTab?: number;
 }
-// @ts-ignore
+
 const CustomTab = styled(Tab)(({ theme }) => ({
   minWidth: '100px',
   height: '30px', // Ajuste na altura para corresponder ao design do Figma
@@ -33,7 +33,6 @@ const CustomTab = styled(Tab)(({ theme }) => ({
 const CustomTabs: React.FC<CustomTabsProps> = ({ tabs, initialTab = 0 }) => {
   const [value, setValue] = React.useState(initialTab);
 
-  // @ts-ignore
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
