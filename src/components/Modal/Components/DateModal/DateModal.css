@@ -1,4 +1,4 @@
-.date-picker {
+ .date-picker {
   background-color: #eaeaea;
   border: none;
   padding: 10px;
@@ -12,4 +12,5 @@
   outline: none;
   border-radius: 3px;
   width: 120px;
+  max-width: 145px;
 }
