@@ -18,3 +18,90 @@
   margin-top: 10px;
   margin-bottom: 45px;
 }
+
+.content-texto-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+  max-width: 300px;
+  margin-left: 20px;
+}
+
+.frequencia-data {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  /* Reduza o gap para diminuir o espaço entre os componentes */
+  padding: 0 10px;
+  /* Adicione padding para impedir que os elementos toquem nas bordas */
+}
+
+
+.title-page {
+  color: #4d4c4c;
+  font-family: Poppins;
+  font-size: 23px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-align: flex-start;
+  margin-left: -100px;
+}
+
+.meus-remedios-container {
+  max-height: 388px;
+  overflow-y: auto;
+  gap: 10px;
+  flex-direction: column;
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 45px;
+}
+
+.content-texto-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.frequencia-data {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: space-between;
+  /* Espaça os componentes igualmente */
+}
+
+
+/* este seletor garante que o componente SelectFrequencia cresça enquanto o DateModal não */
+.frequencia-data>.box-container-frequencia {
+  flex-grow: 1;
+}
+
+.button-center {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  /* Se necessário, para dar um espaço */
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px;
+  color: #696969;
+  font-family: Poppins;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-bottom: -20px;
+}
