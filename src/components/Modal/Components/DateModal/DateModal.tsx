@@ -1,11 +1,19 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import './DateModal.css';
 
-export default function DateModal() {
-  const [date, setDate] = useState('');
+type DateModalProps = {
+  value?: string;
+  onChange?: (selectedDate: string) => void;
+}
 
-  const handleValue = (value: string) => {
-    setDate(value);
+const DateModal: React.FC<DateModalProps> = ({ value = '', onChange }) => {
+  const [date, setDate] = useState(value);
+
+  const handleValueChange = (newDate: string) => {
+    setDate(newDate);
+    if (onChange) {
+      onChange(newDate);
+    }
   };
 
   return (
@@ -13,7 +21,9 @@ export default function DateModal() {
       type="date"
       className="date-picker"
       value={date}
-      onChange={(event) => handleValue(event.target.value)}
+      onChange={(event) => handleValueChange(event.target.value)}
     />
   );
 }
+
+export default DateModal;
