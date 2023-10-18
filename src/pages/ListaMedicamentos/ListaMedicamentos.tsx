@@ -17,34 +17,44 @@ export default function ListaMedicamentos() {
   const [frequencia, setFrequencia] = useState('');
   const [dataFinal, setDataFinal] = useState('');
 
+  const [medicamentos, setMedicamentos] = useState([
+    { label: "Remedio 1" },
+    { label: "Remedio 2" },
+    { label: "Remedio 3" }
+  ]);
+
+  const handleAddMedicamento = () => {
+    setMedicamentos([...medicamentos, { label: medicamentoNome }]);
+    setIsModalOpen(false);
+    setMedicamentoNome('');
+    setDosagem('');
+    setFrequencia('');
+    setDataFinal('');
+    setUsoContinuo(false);
+  };
+
   return (
     <>
       <HeaderHome title="Medicamentos" type="headerPage" />
       <p className="title-page">Meus Remedios</p>
       <div className="meus-remedios-container">
-        <CardRemedio
-          label="Remedio 1"
-          onClick={() => console.log('Remedio 1')}
-        />
-        <CardRemedio
-          label="Remedio 2"
-          onClick={() => console.log('Remedio 2')}
-        />
-        <CardRemedio
-          label="Remedio 3"
-          onClick={() => console.log('Remedio 3')}
-        />
-        {/* ... e outros cards de remédios se necessário */}
+        {medicamentos.map((medicamento, index) => (
+          <CardRemedio
+            key={index}
+            label={medicamento.label}
+            onClick={() => console.log(medicamento.label)}
+          />
+        ))}
       </div>
       <CustomButton
         label="Adicionar"
         variant="contained"
-        onClick={() => setIsModalOpen(true)}  // Abre o modal
+        onClick={() => setIsModalOpen(true)}
       />
       <Modal
         isOpen={isModalOpen}
         title=" Medicamento"
-        isClose={() => setIsModalOpen(false)}  // Fecha o modal
+        isClose={() => setIsModalOpen(false)}
       >
         <form>
           <div className='content-texto-modal'>
@@ -84,10 +94,7 @@ export default function ListaMedicamentos() {
             <CustomButton
               label="Salvar"
               variant="contained"
-              onClick={() => {
-                console.log('Medicamento adicionado');
-                setIsModalOpen(false);
-              }}
+              onClick={handleAddMedicamento}
             />
           </div>
         </form>
