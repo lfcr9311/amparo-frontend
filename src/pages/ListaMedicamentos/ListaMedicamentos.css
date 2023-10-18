@@ -36,9 +36,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  /* Reduza o gap para diminuir o espaço entre os componentes */
   padding: 0 10px;
-  /* Adicione padding para impedir que os elementos toquem nas bordas */
 }
 
 
@@ -76,20 +74,16 @@
   align-items: center;
   gap: 20px;
   justify-content: space-between;
-  /* Espaça os componentes igualmente */
 }
 
-
-/* este seletor garante que o componente SelectFrequencia cresça enquanto o DateModal não */
 .frequencia-data>.box-container-frequencia {
   flex-grow: 1;
 }
 
-.button-center {
+.button-save {
   display: flex;
   justify-content: center;
   margin-top: 20px;
-  /* Se necessário, para dar um espaço */
 }
 
 .checkbox-container {

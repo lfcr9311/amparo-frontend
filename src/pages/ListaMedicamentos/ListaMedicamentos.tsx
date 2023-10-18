@@ -4,10 +4,11 @@ import './ListaMedicamentos.css';
 import CardRemedio from '../../components/CardRemedio/CardRemedio';
 import CustomButton from '../../components/Button/Button';
 import Modal from '../../components/Modal/Modal';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import TextfieldModal from '../../components/Modal/Components/TextfieldModal';
 import SelectFrequencia from '../../components/Modal/Components/SelectFrequencia/SelectFrequencia';
 import DateModal from '../../components/Modal/Components/DateModal/DateModal';
+
 
 interface Medicamento {
   label: string;
@@ -24,6 +25,8 @@ export default function ListaMedicamentos() {
   const [dosagem, setDosagem] = useState('');
   const [frequencia, setFrequencia] = useState('');
   const [dataFinal, setDataFinal] = useState('');
+  const [erroMedicamentoNome, setErroMedicamentoNome] = useState(false);
+  const [mensagemErroMedicamentoNome, setMensagemErroMedicamentoNome] = useState('');
 
   const [medicamentos, setMedicamentos] = useState<Medicamento[]>([
     { label: "Remedio 1" },
@@ -31,11 +34,32 @@ export default function ListaMedicamentos() {
     { label: "Remedio 3" }
   ]);
 
+  const resetModal = () => {
+    setMedicamentoNome('');
+    setDosagem('');
+    setFrequencia('');
+    setDataFinal('');
+    setUsoContinuo(false);
+    setErroMedicamentoNome(false);
+    setMensagemErroMedicamentoNome('');
+  };
+
+  useEffect(() => {
+    if (medicamentoNome.trim()) {
+      setErroMedicamentoNome(false);
+      setMensagemErroMedicamentoNome("");
+    }
+  }, [medicamentoNome]);
+
   const handleAddMedicamento = () => {
 
     if (!medicamentoNome.trim()) {
-      alert("O nome do medicamento não pode estar vazio.");
+      setErroMedicamentoNome(true);
+      setMensagemErroMedicamentoNome("Campo obrigatório");
       return;
+    } else {
+      setErroMedicamentoNome(false);
+      setMensagemErroMedicamentoNome("");
     }
 
     const novoMedicamento = {
@@ -48,6 +72,7 @@ export default function ListaMedicamentos() {
     setMedicamentos(prevMedicamentos => [...prevMedicamentos, novoMedicamento]);
 
     setIsModalOpen(false);
+    resetModal();
     setMedicamentoNome('');
     setDosagem('');
     setFrequencia('');
@@ -66,8 +91,6 @@ export default function ListaMedicamentos() {
       });
     }, 0);
   };
-
-
 
   return (
     <>
@@ -90,7 +113,7 @@ export default function ListaMedicamentos() {
       <Modal
         isOpen={isModalOpen}
         title=" Medicamento"
-        isClose={() => setIsModalOpen(false)}
+        isClose={() => { setIsModalOpen(false); resetModal(); }}
       >
         <form>
           <div className='content-texto-modal'>
@@ -99,6 +122,8 @@ export default function ListaMedicamentos() {
               value={medicamentoNome}
               type="text"
               onChange={(value) => setMedicamentoNome(value)}
+              error={erroMedicamentoNome}
+              helperText={mensagemErroMedicamentoNome}
             />
             <TextfieldModal
               label="Dosagem"
@@ -127,7 +152,7 @@ export default function ListaMedicamentos() {
             />
             <label htmlFor="uso-continuo">Uso contínuo</label>
           </div>
-          <div className="button-center">
+          <div className="button-save">
             <CustomButton
               label="Salvar"
               variant="contained"
