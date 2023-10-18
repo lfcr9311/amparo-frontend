@@ -9,6 +9,14 @@ import TextfieldModal from '../../components/Modal/Components/TextfieldModal';
 import SelectFrequencia from '../../components/Modal/Components/SelectFrequencia/SelectFrequencia';
 import DateModal from '../../components/Modal/Components/DateModal/DateModal';
 
+interface Medicamento {
+  label: string;
+  dosagem?: string;
+  frequencia?: string;
+  dataFinal?: string | "Uso contínuo";
+}
+
+
 export default function ListaMedicamentos() {
   const [usoContinuo, setUsoContinuo] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -17,21 +25,49 @@ export default function ListaMedicamentos() {
   const [frequencia, setFrequencia] = useState('');
   const [dataFinal, setDataFinal] = useState('');
 
-  const [medicamentos, setMedicamentos] = useState([
+  const [medicamentos, setMedicamentos] = useState<Medicamento[]>([
     { label: "Remedio 1" },
     { label: "Remedio 2" },
     { label: "Remedio 3" }
   ]);
 
   const handleAddMedicamento = () => {
-    setMedicamentos([...medicamentos, { label: medicamentoNome }]);
+
+    if (!medicamentoNome.trim()) {
+      alert("O nome do medicamento não pode estar vazio.");
+      return;
+    }
+
+    const novoMedicamento = {
+      label: medicamentoNome,
+      dosagem: dosagem,
+      frequencia: frequencia,
+      dataFinal: usoContinuo ? "Uso contínuo" : dataFinal
+    };
+
+    setMedicamentos(prevMedicamentos => [...prevMedicamentos, novoMedicamento]);
+
     setIsModalOpen(false);
     setMedicamentoNome('');
     setDosagem('');
     setFrequencia('');
     setDataFinal('');
     setUsoContinuo(false);
+
+    setTimeout(() => {
+      console.log("Lista de Medicamentos:");
+      [...medicamentos, novoMedicamento].forEach(medicamento => {
+        console.log(`
+                Nome do medicamento: ${medicamento.label}
+                Dosagem: ${medicamento.dosagem}
+                Frequência: ${medicamento.frequencia}
+                Data Final: ${medicamento.dataFinal}
+            `);
+      });
+    }, 0);
   };
+
+
 
   return (
     <>
@@ -79,6 +115,7 @@ export default function ListaMedicamentos() {
             <DateModal
               value={dataFinal}
               onChange={(selectedDate) => setDataFinal(selectedDate)}
+              disabled={usoContinuo}
             />
           </div>
           <div className="checkbox-container">
