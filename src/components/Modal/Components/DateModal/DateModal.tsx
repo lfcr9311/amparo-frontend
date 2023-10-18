@@ -4,9 +4,10 @@ import './DateModal.css';
 type DateModalProps = {
   value?: string;
   onChange?: (selectedDate: string) => void;
+  disabled?: boolean;
 }
 
-const DateModal: React.FC<DateModalProps> = ({ value = '', onChange }) => {
+const DateModal: React.FC<DateModalProps> = ({ value = '', onChange, disabled }) => {
   const [date, setDate] = useState(value);
 
   const handleValueChange = (newDate: string) => {
@@ -22,6 +23,7 @@ const DateModal: React.FC<DateModalProps> = ({ value = '', onChange }) => {
       className="date-picker"
       value={date}
       onChange={(event) => handleValueChange(event.target.value)}
+      disabled={disabled}
     />
   );
 }
