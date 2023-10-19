@@ -8,7 +8,7 @@ import { useState, useEffect } from 'react';
 import TextfieldModal from '../../components/Modal/Components/TextfieldModal';
 import SelectFrequencia from '../../components/Modal/Components/SelectFrequencia/SelectFrequencia';
 import DateModal from '../../components/Modal/Components/DateModal/DateModal';
-
+import { motion } from "framer-motion";
 
 interface Medicamento {
   label: string;
@@ -17,6 +17,10 @@ interface Medicamento {
   dataFinal?: string | "Uso contínuo";
 }
 
+const fadeInOut = {
+  hidden: { opacity: 0, y: -10 },
+  visible: { opacity: 1, y: 0 },
+};
 
 export default function ListaMedicamentos() {
   const [usoContinuo, setUsoContinuo] = useState(false);
@@ -27,6 +31,8 @@ export default function ListaMedicamentos() {
   const [dataFinal, setDataFinal] = useState('');
   const [erroMedicamentoNome, setErroMedicamentoNome] = useState(false);
   const [mensagemErroMedicamentoNome, setMensagemErroMedicamentoNome] = useState('');
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+
 
   const [medicamentos, setMedicamentos] = useState<Medicamento[]>([
     { label: "Remedio 1" },
@@ -72,12 +78,6 @@ export default function ListaMedicamentos() {
     setMedicamentos(prevMedicamentos => [...prevMedicamentos, novoMedicamento]);
 
     setIsModalOpen(false);
-    resetModal();
-    setMedicamentoNome('');
-    setDosagem('');
-    setFrequencia('');
-    setDataFinal('');
-    setUsoContinuo(false);
 
     setTimeout(() => {
       console.log("Lista de Medicamentos:");
@@ -90,12 +90,28 @@ export default function ListaMedicamentos() {
             `);
       });
     }, 0);
+
+    setShowSuccessMessage(true);
+    setTimeout(() => setShowSuccessMessage(false), 3000);
   };
 
   return (
     <>
       <HeaderHome title="Medicamentos" type="headerPage" />
       <p className="title-page">Meus Remedios</p>
+
+      {showSuccessMessage && (
+        <motion.div
+          className="success-message"
+          initial="hidden"
+          animate="visible"
+          exit="hidden"
+          variants={fadeInOut}
+        >
+          Medicamento adicionado com sucesso!
+        </motion.div>
+      )}
+
       <div className="meus-remedios-container">
         {medicamentos.map((medicamento, index) => (
           <CardRemedio

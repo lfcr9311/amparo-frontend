@@ -22,51 +22,11 @@
 .content-texto-modal {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
   align-items: center;
   margin-bottom: 10px;
   max-width: 300px;
   margin-left: 20px;
-}
-
-.frequencia-data {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 0 10px;
-}
-
-
-.title-page {
-  color: #4d4c4c;
-  font-family: Poppins;
-  font-size: 23px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  text-align: flex-start;
-  margin-left: -100px;
-}
-
-.meus-remedios-container {
-  max-height: 388px;
-  overflow-y: auto;
-  gap: 10px;
-  flex-direction: column;
-  display: flex;
-  margin-top: 10px;
-  margin-bottom: 45px;
-}
-
-.content-texto-modal {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  align-items: center;
-  margin-bottom: 10px;
 }
 
 .frequencia-data {
@@ -98,4 +58,22 @@
   font-weight: 500;
   line-height: normal;
   margin-bottom: -20px;
+}
+
+.success-message {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  position: fixed;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  border-radius: 5px;
+}
+
+.title-with-message {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
