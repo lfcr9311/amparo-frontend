@@ -41,7 +41,7 @@ export const CadastroPaciente = () => {
     console.log('cpf correct' + isValidCpf);
     console.log('psw correct' + validPassword);
 
-    fetchData(email, name, password, "123", "PATIENT", "04504355043");
+    fetchData(email, name, password, "", "PATIENT", cpfValue);
 
     if (validPassword && isValidCpf && pswTouched && cpfTouched) {
       // navigate(ROUTES.HOME_PACIENTE());
