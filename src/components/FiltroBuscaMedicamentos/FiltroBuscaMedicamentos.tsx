@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
 import FormControl from '@mui/material/FormControl';
@@ -8,76 +8,79 @@ import IconeMedicamentoBom from '../../assets/IconeMedicamentoBom.svg';
 import IconeMedicamentoMedio from '../../assets/IconeMedicamentoMedio.svg';
 import IconeMedicamentoRuim from '../../assets/IconeMedicamentoRuim.svg';
 
-interface CustomFiltroBuscaMedicamentosProps { }
+interface CustomFiltroBuscaMedicamentosProps {
+  onStatusChange: (status: string) => void;
+}
 
-export const FiltroBuscaMedicamentos: React.FC<CustomFiltroBuscaMedicamentosProps> = () => {
-    const [searchText, setSearchText] = React.useState('');
-    const [status, setStatus] = React.useState('');
+const FiltroBuscaMedicamentos: React.FC<CustomFiltroBuscaMedicamentosProps> = ({ onStatusChange }) => {
+  const [searchText, setSearchText] = React.useState('');
+  const [status, setStatus] = React.useState('');
 
-    const handleSearchTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const text = event.target.value;
-        setSearchText(text);
-    };
+  const handleSearchTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const text = event.target.value;
+    setSearchText(text);
+    // Aqui você pode adicionar lógica para filtrar por texto, se necessário.
+  };
 
-    const handleStatusChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-        const selectedStatus = event.target.value as string;
-        setStatus(selectedStatus);
-    };
+  const handleStatusChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    const selectedStatus = event.target.value as string;
+    setStatus(selectedStatus);
+    onStatusChange(selectedStatus); // Chama a função de callback no componente pai.
+  };
 
-    return (
-        <Paper
-            component="form"
-            sx={{
-                p: '2px 4px',
-                display: 'flex',
-                alignItems: 'center',
-                width: 293,
-                height: 48,
-                borderRadius: 80,
-                backgroundColor: '#DCDCDC',
-            }}
+  return (
+    <Paper
+      component="form"
+      sx={{
+        p: '2px 4px',
+        display: 'flex',
+        alignItems: 'center',
+        width: 293,
+        height: 48,
+        borderRadius: 80,
+        backgroundColor: '#DCDCDC',
+      }}
+    >
+      <InputBase
+        sx={{ ml: 1, flex: 1 }}
+        placeholder="   Buscar..."
+        value={searchText}
+        onChange={handleSearchTextChange}
+        inputProps={{ 'aria-label': 'buscar...' }}
+      />
+
+      <FormControl sx={{ width: 'auto', height: '100%' }}>
+        <Select
+          value={status}
+          onChange={(event) => handleStatusChange(event as React.ChangeEvent<{ value: unknown }>)}
+          displayEmpty
+          sx={{
+            minWidth: '70px',
+            height: '100%',
+            backgroundColor: 'white',
+            borderRadius: '80px',
+            marginRight: '3px',
+            '& .MuiSelect-icon': {
+              right: 'auto',
+              left: '3px',
+              fontSize: '30px',
+            },
+          }}
         >
-            <InputBase
-                sx={{ ml: 1, flex: 1 }}
-                placeholder="   Buscar..."
-                value={searchText}
-                onChange={handleSearchTextChange}
-                inputProps={{ 'aria-label': 'buscar...' }}
-            />
-
-            <FormControl sx={{ width: 'auto', height: '100%' }}>
-                <Select
-                    value={status}
-                    onChange={(event) => handleStatusChange(event as React.ChangeEvent<{ value: unknown }>)}
-                    displayEmpty
-                    sx={{
-                        minWidth: 'auto',
-                        height: '100%',
-                        backgroundColor: 'white',
-                        borderRadius: '80px',
-                        marginRight: '3px',
-                        '& .MuiSelect-icon': {
-                            right: 'auto',
-                            left: '3px',
-                            fontSize: '30px',
-                        },
-                    }}
-                >
-                    <MenuItem value="" >Status</MenuItem>
-                    <MenuItem value="bom">
-                        <img src={IconeMedicamentoBom} alt="Bom" style={{ marginRight: '-20px', marginLeft: '20px' }} />
-
-                    </MenuItem>
-                    <MenuItem value="medio">
-                        <img src={IconeMedicamentoMedio} alt="Médio" style={{ marginRight: '-20px', marginLeft: '20px' }} />
-                        
-                    </MenuItem>
-                    <MenuItem value="ruim" >
-                        <img src={IconeMedicamentoRuim} alt="Ruim" style={{ marginRight: '-20px', marginLeft: '11px' }} />
-                        
-                    </MenuItem>
-                </Select>
-            </FormControl>
-        </Paper>
-    );
+          <MenuItem value=""> &nbsp; </MenuItem>
+          <MenuItem value="bom">
+            <img src={IconeMedicamentoBom} alt="Bom" style={{ marginRight: '-20px', marginLeft: '20px' }} />
+          </MenuItem>
+          <MenuItem value="medio">
+            <img src={IconeMedicamentoMedio} alt="Médio" style={{ marginRight: '-20px', marginLeft: '20px' }} />
+          </MenuItem>
+          <MenuItem value="ruim" >
+            <img src={IconeMedicamentoRuim} alt="Ruim" style={{ marginRight: '-20px', marginLeft: '11px' }} />
+          </MenuItem>
+        </Select>
+      </FormControl>
+    </Paper>
+  );
 };
+
+export default FiltroBuscaMedicamentos;
