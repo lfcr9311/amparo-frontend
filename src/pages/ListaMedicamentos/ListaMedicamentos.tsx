@@ -79,6 +79,12 @@ export default function ListaMedicamentos() {
 
     setIsModalOpen(false);
 
+    setMedicamentoNome('');
+    setDosagem('');
+    setFrequencia('');
+    setDataFinal('');
+    setUsoContinuo(false);
+
     setTimeout(() => {
       console.log("Lista de Medicamentos:");
       [...medicamentos, novoMedicamento].forEach(medicamento => {
