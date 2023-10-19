@@ -14,7 +14,6 @@ import VisualizacaoPerfilMedico from './pages/VisualizarPerfilMedico/VisualizarP
 import MenuMedicamentos from './pages/MenuMedicamentos/MenuMedicamentos';
 import ListaMedicamentos from './pages/ListaMedicamentos/ListaMedicamentos';
 import ExamesPendentes from './pages/ExamesPendentes/ExamesPendentes';
-import Temporaria from './pages/temporaria';
 import EdicaoExamePendente from './pages/EdicaoExamePendente/EdicaoExamePendente';
 import EdicaoExameRealizado from './pages/EdicaoExameRealizado/EdicaoExameRealizado';
 
@@ -58,11 +57,23 @@ export default function AppRoutes() {
           />
           <Route
             path={ROUTES.EXAMES_PENDENTES()}
-            element={<EdicaoExamePendente />}
+            element={
+              <EdicaoExamePendente
+                dateTitle="15/12/2023"
+                descriptionValue="Exames laboratoriais de rotina: hemograma, exame de urina, TGO, TGP, creatinina, bilirrubina, sorologias para Hepatite."
+                dateValue="2023-10-19"
+              />
+            }
           />
           <Route
             path={ROUTES.EXAMES_REALIZADOS()}
-            element={<EdicaoExameRealizado />}
+            element={
+              <EdicaoExameRealizado
+                title="20/02/2004"
+                dateValue="2023-10-19"
+                descriptionValue="Hemograma com plaquetas. O considerado normal é, os valores que ocorrem em 95% da população sadia. 5% das pessoas sem problemas médicos podem ter valores do hemograma fora da faixa de referência (2,5% um pouco abaixo e outros 2,5% um pouco acima). Portanto, pequenas variações para mais ou para menos não necessariamente indicam alguma doença."
+              />
+            }
           />
 
           <Route path={ROUTES.LISTA_EXAMES()} element={<ExamesPendentes />} />

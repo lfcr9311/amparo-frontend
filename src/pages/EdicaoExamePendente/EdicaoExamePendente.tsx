@@ -11,7 +11,7 @@ import Description from '../../components/Modal/Components/Description/Descripti
 import CustomButton from '../../components/Button/Button';
 
 interface EdicaoExamePendenteProps {
-  title: string;
+  dateTitle: string;
   descriptionValue: string;
   dateValue: string;
 }
@@ -21,7 +21,7 @@ interface EdicaoExamePendenteProps {
 */
 
 export default function EdicaoExamePendente({
-  title,
+  dateTitle,
   descriptionValue,
   dateValue,
 }: EdicaoExamePendenteProps) {
@@ -31,7 +31,7 @@ export default function EdicaoExamePendente({
     <>
       <HeaderHome title="Pendente" type="headerPage" />
       <div className="top-container">
-        <p className="top-title">{title}</p>
+        <p className="top-title">{dateTitle}</p>
         <button
           onClick={() => setModalIsOpen(!modalIsOpen)}
           className="pencil-icon"
@@ -55,11 +55,14 @@ export default function EdicaoExamePendente({
           <DateModal dateExist={true} dateValue={dateValue} />
         </div>
         <div className="button">
-          <Description descriptExist={true} descriptValue={descriptionValue} />
+          <Description
+            descriptionExist={true}
+            descriptionValue={descriptionValue}
+          />
           <CustomButton
             variant="contained"
             label="Salvar"
-            onClick={() => console.log('')}
+            onClick={() => console.log(dateValue, descriptionValue)}
           />
         </div>
       </Modal>

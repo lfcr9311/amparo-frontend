@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 import './Description.css';
 
 interface DescriptionProps {
-  descriptValue?: string;
-  descriptExist?: boolean;
+  descriptionValue?: string;
+  descriptionExist?: boolean;
 }
 
 export default function Description({
-  descriptValue,
-  descriptExist,
+  descriptionValue,
+  descriptionExist,
 }: DescriptionProps) {
   const [description, setDescription] = useState('');
+  const [descriptionValueChange, setDescriptionValueChange] =
+    useState(descriptionValue);
 
   const handleDescriptionChange = (
     event: React.ChangeEvent<HTMLTextAreaElement>
@@ -18,10 +20,20 @@ export default function Description({
     setDescription(event.target.value);
   };
 
+  const handleDescriptionValueChange = (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    setDescriptionValueChange(event.target.value);
+  };
+
   return (
     <textarea
-      value={descriptExist ? descriptValue : description}
-      onChange={handleDescriptionChange}
+      value={descriptionExist ? descriptionValueChange : description}
+      onChange={
+        descriptionExist
+          ? handleDescriptionValueChange
+          : handleDescriptionChange
+      }
       placeholder="Descrição..."
       className="description-container"
     />
