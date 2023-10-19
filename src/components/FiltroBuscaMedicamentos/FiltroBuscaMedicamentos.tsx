@@ -1,19 +1,27 @@
 import * as React from 'react';
 import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
-import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import IconeMedicamentoBom from '../../assets/IconeMedicamentoBom.svg';
+import IconeMedicamentoMedio from '../../assets/IconeMedicamentoMedio.svg';
+import IconeMedicamentoRuim from '../../assets/IconeMedicamentoRuim.svg';
 
-interface CustomFiltroBuscaMedicamentos { }
+interface CustomFiltroBuscaMedicamentosProps { }
 
-export const FiltroBuscaMedicamentos: React.FC<CustomFiltroBuscaMedicamentos> = ({ }) => {
-    const [age, setAge] = React.useState('');
+export const FiltroBuscaMedicamentos: React.FC<CustomFiltroBuscaMedicamentosProps> = () => {
+    const [searchText, setSearchText] = React.useState('');
+    const [status, setStatus] = React.useState('');
 
-    const handleChange = (event: SelectChangeEvent) => {
-        setAge(event.target.value as string);
+    const handleSearchTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const text = event.target.value;
+        setSearchText(text);
+    };
+
+    const handleStatusChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+        const selectedStatus = event.target.value as string;
+        setStatus(selectedStatus);
     };
 
     return (
@@ -25,34 +33,51 @@ export const FiltroBuscaMedicamentos: React.FC<CustomFiltroBuscaMedicamentos> = 
                 alignItems: 'center',
                 width: 293,
                 height: 48,
-                radius: 80,
-                backgroundColor:'#DCDCDC',
+                borderRadius: 80,
+                backgroundColor: '#DCDCDC',
             }}
         >
             <InputBase
                 sx={{ ml: 1, flex: 1 }}
-                placeholder="Buscar..."
+                placeholder="   Buscar..."
+                value={searchText}
+                onChange={handleSearchTextChange}
                 inputProps={{ 'aria-label': 'buscar...' }}
             />
 
+            <FormControl sx={{ width: 'auto', height: '100%' }}>
+                <Select
+                    value={status}
+                    onChange={(event) => handleStatusChange(event as React.ChangeEvent<{ value: unknown }>)}
+                    displayEmpty
+                    sx={{
+                        minWidth: 'auto',
+                        height: '100%',
+                        backgroundColor: 'white',
+                        borderRadius: '80px',
+                        marginRight: '3px',
+                        '& .MuiSelect-icon': {
+                            right: 'auto',
+                            left: '3px',
+                            fontSize: '30px',
+                        },
+                    }}
+                >
+                    <MenuItem value="" >Status</MenuItem>
+                    <MenuItem value="bom">
+                        <img src={IconeMedicamentoBom} alt="Bom" style={{ marginRight: '-20px', marginLeft: '20px' }} />
 
-
-            <Box sx={{ minWidth: 12 }}>
-                <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Age</InputLabel>
-                    <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={age}
-                        label="Age"
-                        onChange={handleChange}
-                    >
-                        <MenuItem value={10}>Ten</MenuItem>
-                        <MenuItem value={20}>Twenty</MenuItem>
-                        <MenuItem value={30}>Thirty</MenuItem>
-                    </Select>
-                </FormControl>
-            </Box>
+                    </MenuItem>
+                    <MenuItem value="medio">
+                        <img src={IconeMedicamentoMedio} alt="Médio" style={{ marginRight: '-20px', marginLeft: '20px' }} />
+                        
+                    </MenuItem>
+                    <MenuItem value="ruim" >
+                        <img src={IconeMedicamentoRuim} alt="Ruim" style={{ marginRight: '-20px', marginLeft: '11px' }} />
+                        
+                    </MenuItem>
+                </Select>
+            </FormControl>
         </Paper>
     );
 };
