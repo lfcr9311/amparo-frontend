@@ -10,17 +10,14 @@ npm-test:
   script:
     - npm ci
     - npm test
-  only:
-    - main
-    - dev
 
 Docker Run:
   image: node:18-alpine
   stage: deploy
   tags:
     - deploy
-
   script:
     - npm run prod
   only:
     - main
+    - dev
