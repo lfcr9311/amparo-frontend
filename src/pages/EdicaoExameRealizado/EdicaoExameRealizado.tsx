@@ -23,6 +23,8 @@ export default function EdicaoExameRealizado({
   dateValue,
 }: EdicaoExameRealizadoProps) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [date, setDate] = useState(dateValue);
+  const [description, setDescription] = useState(descriptionValue);
   const [filePdf, setFilePdf] = useState<File | null>(null);
   const [fileImage, setFileImage] = useState<File | null>(null);
   const handleFilePdf = (file: File | null) => {
@@ -62,12 +64,12 @@ export default function EdicaoExameRealizado({
       </div>
       <Modal isOpen={modalIsOpen} isClose={() => setModalIsOpen(!modalIsOpen)}>
         <div className="date-div-modal">
-          <DateModal dateExist={true} dateValue={dateValue} />
+          <DateModal value={date} onChange={(value) => setDate(value)} />
         </div>
         <div className="button-description-modal">
           <Description
-            descriptionExist={true}
-            descriptionValue={descriptionValue}
+            value={description}
+            onChange={(value) => setDescription(value)}
           />
           <InputFile type="image" onChange={handleFileImage} />
           {fileImage && (
@@ -82,7 +84,7 @@ export default function EdicaoExameRealizado({
           <CustomButton
             variant="contained"
             label="Salvar"
-            onClick={() => console.log('')}
+            onClick={() => console.log(date, description)}
           />
         </div>
       </Modal>

@@ -16,16 +16,14 @@ interface EdicaoExamePendenteProps {
   dateValue: string;
 }
 
-/* 
-  TODO: Conseguir alterar os valores da modal no componente.
-*/
-
 export default function EdicaoExamePendente({
   dateTitle,
   descriptionValue,
   dateValue,
 }: EdicaoExamePendenteProps) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [date, setDate] = useState(dateValue);
+  const [description, setDescription] = useState(descriptionValue);
 
   return (
     <>
@@ -52,17 +50,17 @@ export default function EdicaoExamePendente({
       </div>
       <Modal isOpen={modalIsOpen} isClose={() => setModalIsOpen(!modalIsOpen)}>
         <div className="date">
-          <DateModal dateExist={true} dateValue={dateValue} />
+          <DateModal value={date} onChange={(value) => setDate(value)} />
         </div>
         <div className="button">
           <Description
-            descriptionExist={true}
-            descriptionValue={descriptionValue}
+            value={description}
+            onChange={(value) => setDescription(value)}
           />
           <CustomButton
             variant="contained"
             label="Salvar"
-            onClick={() => console.log(dateValue, descriptionValue)}
+            onClick={() => console.log(date, description)}
           />
         </div>
       </Modal>

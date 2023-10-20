@@ -1,33 +1,21 @@
-import { useState } from 'react';
 import './DateModal.css';
 
 interface DateModalProps {
-  dateValue?: string;
-  dateExist?: boolean;
+  value?: string;
+  onChange: (value: string) => void;
 }
 
-export default function DateModal({ dateValue, dateExist }: DateModalProps) {
-  const [date, setDate] = useState('');
-  const [dateValueChange, setDateValueChange] = useState(dateValue);
-
-  const handleValue = (value: string) => {
-    setDate(value);
-  };
-
-  const handleDateValue = (value: string) => {
-    setDateValueChange(value);
+export default function DateModal({ value, onChange }: DateModalProps) {
+  const handleValue = (event: React.ChangeEvent<HTMLInputElement>) => {
+    onChange(event.target.value);
   };
 
   return (
     <input
       type="date"
       className="date-picker"
-      value={dateExist ? dateValueChange : date}
-      onChange={
-        dateExist
-          ? (e) => handleDateValue(e.target.value)
-          : (e) => handleValue(e.target.value)
-      }
+      value={value || ''}
+      onChange={handleValue}
     />
   );
 }

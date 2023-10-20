@@ -59,7 +59,7 @@ export default function AppRoutes() {
             path={ROUTES.EXAMES_PENDENTES()}
             element={
               <EdicaoExamePendente
-                dateTitle="15/12/2023"
+                dateTitle="19/10/2023"
                 descriptionValue="Exames laboratoriais de rotina: hemograma, exame de urina, TGO, TGP, creatinina, bilirrubina, sorologias para Hepatite."
                 dateValue="2023-10-19"
               />
@@ -69,7 +69,7 @@ export default function AppRoutes() {
             path={ROUTES.EXAMES_REALIZADOS()}
             element={
               <EdicaoExameRealizado
-                title="20/02/2004"
+                title="19/10/2023"
                 dateValue="2023-10-19"
                 descriptionValue="Hemograma com plaquetas. O considerado normal é, os valores que ocorrem em 95% da população sadia. 5% das pessoas sem problemas médicos podem ter valores do hemograma fora da faixa de referência (2,5% um pouco abaixo e outros 2,5% um pouco acima). Portanto, pequenas variações para mais ou para menos não necessariamente indicam alguma doença."
               />
