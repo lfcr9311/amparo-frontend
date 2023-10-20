@@ -15,18 +15,12 @@ npm-test:
     - dev
 
 Docker Run:
-  image: docker:stable
+  image: node:18-alpine
   stage: deploy
   tags:
     - deploy
-  services:
-    - docker:dind
+
   script:
-    - docker build --build-arg VITE_API_URL=$API_URL -t amparo-frontend:latest .
-    - docker stop amparo-frontend|| true
-    - docker rm -f amparo-frontend|| true
-    - "docker run -d -p 4200:80 \
-      --name 'amparo-frontend' \
-      amparo-frontend"
+    - npm run prod
   only:
     - main
