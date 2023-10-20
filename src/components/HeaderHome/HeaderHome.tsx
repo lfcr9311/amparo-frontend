@@ -1,5 +1,5 @@
 // Header.tsx
-import React from 'react';
+import React, { useEffect } from 'react';
 import './HeaderHome.css';
 import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutlined';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
@@ -7,26 +7,36 @@ import { useNavigate } from 'react-router-dom';
 import CustomTabs from '../CustomTabs/CustomTabs';
 
 interface HeaderProps {
-  title: string;
+  title?: string;
   type: 'headerHome' | 'headerChat' | 'headerPage' | 'headerTab';
   // headerHome?: boolean;
   // headerChat?: boolean;
   // headerPage?: boolean;
   // headerTab?: boolean;
+  setValue?: (value: number) => void;
+  value?: number;
 }
 
-const HeaderHome: React.FC<HeaderProps> = ({ title, type }) => {
+const HeaderHome: React.FC<HeaderProps> = ({
+  title,
+  type,
+  setValue,
+  value,
+}) => {
   const navigate = useNavigate();
   const handleBack = () => {
     navigate('/login');
   };
+
   return (
     <div className="header">
       <div className="header-content">
         <ArrowCircleLeftOutlinedIcon
           onClick={handleBack}
           style={
-            type == 'headerHome' ? { fontSize: '20px' } : { fontSize: '40px', marginRight: '10px' }
+            type == 'headerHome'
+              ? { fontSize: '20px' }
+              : { fontSize: '40px', marginRight: '10px' }
           }
           className="back-button"
         />
@@ -44,6 +54,8 @@ const HeaderHome: React.FC<HeaderProps> = ({ title, type }) => {
               { content: '', label: 'Pendentes' },
               { content: '', label: 'Realizados' },
             ]}
+            setValue={setValue}
+            value={value}
           />
         ) : (
           <a className="title">{title}</a>
