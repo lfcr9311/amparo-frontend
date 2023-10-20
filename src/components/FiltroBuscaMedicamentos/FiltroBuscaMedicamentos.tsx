@@ -10,22 +10,25 @@ import IconeMedicamentoRuim from '../../assets/IconeMedicamentoRuim.svg';
 
 interface CustomFiltroBuscaMedicamentosProps {
   onStatusChange: (status: string) => void;
+  onNameChange: (name: string) => void; 
 }
 
-const FiltroBuscaMedicamentos: React.FC<CustomFiltroBuscaMedicamentosProps> = ({ onStatusChange }) => {
+const FiltroBuscaMedicamentos: React.FC<CustomFiltroBuscaMedicamentosProps> = ({ onStatusChange,onNameChange }) => {
   const [searchText, setSearchText] = React.useState('');
   const [status, setStatus] = React.useState('');
 
   const handleSearchTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const text = event.target.value;
-    setSearchText(text);
-    // Aqui você pode adicionar lógica para filtrar por texto, se necessário.
+    const name = event.target.value ;
+    setSearchText(name);
+    onNameChange(name);
+
   };
 
   const handleStatusChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     const selectedStatus = event.target.value as string;
     setStatus(selectedStatus);
-    onStatusChange(selectedStatus); // Chama a função de callback no componente pai.
+    console.log(selectedStatus);
+    onStatusChange(selectedStatus);
   };
 
   return (
@@ -46,7 +49,7 @@ const FiltroBuscaMedicamentos: React.FC<CustomFiltroBuscaMedicamentosProps> = ({
         placeholder="   Buscar..."
         value={searchText}
         onChange={handleSearchTextChange}
-        inputProps={{ 'aria-label': 'buscar...' }}
+        inputProps={{ 'aria-label': 'Buscar...' }}
       />
 
       <FormControl sx={{ width: 'auto', height: '100%' }}>
@@ -67,7 +70,7 @@ const FiltroBuscaMedicamentos: React.FC<CustomFiltroBuscaMedicamentosProps> = ({
             },
           }}
         >
-          <MenuItem value=""> &nbsp; </MenuItem>
+          <MenuItem value="">  </MenuItem>
           <MenuItem value="bom">
             <img src={IconeMedicamentoBom} alt="Bom" style={{ marginRight: '-20px', marginLeft: '20px' }} />
           </MenuItem>
