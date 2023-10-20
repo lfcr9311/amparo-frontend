@@ -85,6 +85,7 @@ export default function ListaMedicamentos() {
     setDataFinal('');
     setUsoContinuo(false);
 
+    //imprime a lista de medicamentos e suas informaçoes
     setTimeout(() => {
       console.log("Lista de Medicamentos:");
       [...medicamentos, novoMedicamento].forEach(medicamento => {
