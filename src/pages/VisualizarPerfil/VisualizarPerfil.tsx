@@ -3,19 +3,57 @@ import HeaderHome from '../../components/HeaderHome/HeaderHome';
 import Footer from '../../components/Footer/Footer';
 import { PatientProfileCard } from '../../components/ProfilePatientCard/ProfilePatientCard';
 import Modal from '../../components/Modal/Modal';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import TextfieldModal from '../../components/Modal/Components/TextfieldModal';
 import CustomButton from '../../components/Button/Button';
+import { editUser, getUser } from '../../utils/apiService';
+
+interface patientApiInfo {
+  cellphone: string,
+  cpf: string,
+  email: string,
+  id: string,
+  isAnonymous: boolean,
+  name: string,
+  profilePicture: null
+}
 
 const VisualizacaoPerfilPaciente = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [apiInfo, setApiInfo] = useState({
+    cellphone: '92108392832',
+    cpf: '398239823',
+    email: 'a@email.com',
+    id: '',
+    isAnonymous: false,
+    name: '',
+    profilePicture: null
+  } as patientApiInfo);
+  const getInfo = async () => {
+    try {
+      const response = await getUser();
+      console.log(response);
+    }
+    catch(e) {
+      console.log(e)
+    }
+    
+    // setApiInfo(response);
+}
   const [name, setName] = useState('');
   const [cpf, setCpf] = useState('');
   const [dataNascimento, setDataNascimento] = useState('');
   const [nSus, setNSus] = useState('');
   const [ddd, setDdd] = useState('');
   const [cellphone, setCellphone] = useState('');
+  useEffect(() => {
+    const getUsers = async () => {
+      await getInfo();
+    }
+    getUsers();
+  }, [])
 
+  
   return (
     <>
       <div className="header-container">
@@ -24,7 +62,7 @@ const VisualizacaoPerfilPaciente = () => {
       <div className="container">
         <div className="profile-card-container">
           <PatientProfileCard
-            name="Fulano da Silva"
+            name="Fulana"
             email="fulanodasilva1@hotmail.com"
             cpf="123.456.789-00"
             dataNascimento="23/02/1980"
@@ -43,18 +81,24 @@ const VisualizacaoPerfilPaciente = () => {
             <div className="content-modal">
               <TextfieldModal
                 label="Seu nome"
-                value={name}
+                value={apiInfo.name}
                 type="text"
                 onChange={(value) => setName(value)}
               />
               <TextfieldModal
                 label="CPF"
-                value={cpf}
+                value={apiInfo.cpf}
                 type="text"
                 onChange={(value) => setCpf(value)}
               />
               <TextfieldModal
                 label="Data de Nascimento"
+                value={dataNascimento}
+                type="text"
+                onChange={(value) => setDataNascimento(value)}
+              />
+              <TextfieldModal
+                label="E-mail"
                 value={dataNascimento}
                 type="text"
                 onChange={(value) => setDataNascimento(value)}
@@ -75,7 +119,7 @@ const VisualizacaoPerfilPaciente = () => {
                 />
                 <TextfieldModal
                   label="Telefone"
-                  value={cellphone}
+                  value={apiInfo.cellphone}
                   type="text"
                   width="195.5px"
                   onChange={(value) => setCellphone(value)}
@@ -84,7 +128,9 @@ const VisualizacaoPerfilPaciente = () => {
               <CustomButton
                 variant="contained"
                 label="Salvar"
-                onClick={() => console.log('Salvar')}
+                onClick={async () => {
+                  await editUser(name, cellphone, cpf, null, email )
+                }}
               />
             </div>
           </form>

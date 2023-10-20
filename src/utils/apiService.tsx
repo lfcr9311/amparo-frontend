@@ -18,7 +18,7 @@ export const getUser = async () => {
   try {
     const response = await axios.get('/patient', {
       headers:{
-        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhbXBhcm8tYXBpIiwic3ViIjoiZDAzYTMwY2UtMjBmZC00ZDM2LWIwNTEtMjMwYzU1ZmNkZmU1Iiwicm9sZXMiOlsiUk9MRV9QQVRJRU5UIl0sImVtYWlsIjoibGVvQGVtYWlsLmNvbSIsIm5hbWUiOiJMZW8gdGlrdG9rZXIiLCJleHAiOjE2OTY0ODIzNjh9.4yuePJomwVVIoLTEsMh5qRUbydQxRDNe6OEI6yKyMLc'
+        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhbXBhcm8tYXBpIiwic3ViIjoiNDNiM2Y0NzQtZGJlMy00NzI4LWIzNWYtZTU5NDcxMTRmYzgxIiwicm9sZXMiOlsiUk9MRV9QQVRJRU5UIl0sImVtYWlsIjoidGVzdEBlbWFpbC5jb20iLCJuYW1lIjoidGVzdCIsImV4cCI6MTY5Nzg2MDYyMX0.8NK2ZLwoMjMadI4GLxjmQD2RZEfjI2_WxugUqs4Ya14'
       }
     }); // Replace with your endpoint
     return response.data;
@@ -26,3 +26,17 @@ export const getUser = async () => {
     throw error;
   }
 };
+
+export const editUser = async (name: String, cellphone: String, cpf: String, profilePicture: String, email: String, ) => {
+  try {
+    const response = await axios.put('/patient', { name, cellphone, cpf, profilePicture, email} , {
+      headers: {
+        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhbXBhcm8tYXBpIiwic3ViIjoiNDNiM2Y0NzQtZGJlMy00NzI4LWIzNWYtZTU5NDcxMTRmYzgxIiwicm9sZXMiOlsiUk9MRV9QQVRJRU5UIl0sImVtYWlsIjoidGVzdEBlbWFpbC5jb20iLCJuYW1lIjoidGVzdCIsImV4cCI6MTY5Nzg2MDYyMX0.8NK2ZLwoMjMadI4GLxjmQD2RZEfjI2_WxugUqs4Ya14'
+      }
+    });
+    return response.data
+  }
+  catch (error) {
+    console.log(error)
+  }
+}
