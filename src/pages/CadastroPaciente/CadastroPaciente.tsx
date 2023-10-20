@@ -36,24 +36,26 @@ export const CadastroPaciente = () => {
     } else {
       setIsValidCpf(false);
     }
-    console.log('psw touched' + pswTouched);
-    console.log('cpf touched' + cpfTouched);
-    console.log('cpf correct' + isValidCpf);
-    console.log('psw correct' + validPassword);
+    console.log('psw touched ' + pswTouched);
+    console.log('cpf touched ' + cpfTouched);
+    console.log('cpf correct ' + isValidCpf);
+    console.log('psw correct ' + validPassword);
 
-    fetchData(email, name, password, "", "PATIENT", cpfValue);
-
-    if (validPassword && isValidCpf && pswTouched && cpfTouched) {
-      // navigate(ROUTES.HOME_PACIENTE());
+    fetchData(email, name, password, "111111111", cpfValue);
+    console.log(dataStatus);
+    if (validPassword && pswTouched && cpfTouched && (dataStatus == 201 || dataStatus == 200)) {
+      console.log('aaa');
+      navigate(ROUTES.HOME_PACIENTE());
       return;
     }
   };
 
-  async function fetchData(email: String, name: String, password: String, cellPhone: String, userType: String, cpf: String) {
+  async function fetchData(email: String, name: String, password: String, cellPhone: String, cpf: String) {
     try {
       const result = await registerUser(email, name, password, cellPhone, "PATIENT", cpf);
       setData(result.data);
       setDataStatus(result.status);
+      console.log(result.data);
       console.log("Status " +result.status);
       if (result.status == 201 || result.status == 200) {
         console.log('cadastro realizado com sucesso');

@@ -6,15 +6,13 @@ import './CadastroMedico.css';
 import SelectComponent from '../../components/Select/Select';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../routes/constans';
-import  {registerDoctor, registerUser } from '../../utils/apiService';
+import  {registerDoctor } from '../../utils/apiService';
 
 export const CadastroMedico = () => {
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [state, setState] = useState<string>('');
   const [crm, setCrm] = useState<string>('');
-  const [profilePicture] = useState<string>('');
-  const [uf] = useState<string>('');
   const [telefone, setTelefone] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
@@ -32,7 +30,7 @@ export const CadastroMedico = () => {
     } else {
       setValidPassaword(false);
     }
-    if (pswTouched) {
+    if (pswTouched && (dataStatus == 201 || dataStatus == 200)) {
       navigate(ROUTES.HOME_MEDICO());
       return;
     }
@@ -40,7 +38,7 @@ export const CadastroMedico = () => {
 
   async function fetchData(email: String, name: String, password: String, cellPhone: String, userType: String, crm: String, uf: String) {
     try {
-      const result = await registerDoctor(email, name, password, cellPhone, "DOCTOR", crm, uf);
+      const result = await registerDoctor(email, name, password, cellPhone, userType, crm, uf);
       setData(result.data);
       setDataStatus(result.status);
       console.log("Status " +result.status);
@@ -51,6 +49,7 @@ export const CadastroMedico = () => {
     } catch (error) {
       console.error('Erro ao fazer cadastro', error);
       setErro('Cadastro inválido.');
+      console.log(erro);
     }
   }
 
