@@ -16,6 +16,7 @@ export const Identificacao: React.FC = () => {
   };
   const HandleClickMedico = () => {
     console.log('Medico');
+
     navigate(ROUTES.CADASTRO_MEDICO());
   };
   const handleGoBack = () => {

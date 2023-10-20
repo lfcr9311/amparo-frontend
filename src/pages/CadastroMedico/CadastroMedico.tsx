@@ -6,30 +6,53 @@ import './CadastroMedico.css';
 import SelectComponent from '../../components/Select/Select';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../routes/constans';
+import  {registerDoctor, registerUser } from '../../utils/apiService';
 
 export const CadastroMedico = () => {
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [state, setState] = useState<string>('');
   const [crm, setCrm] = useState<string>('');
+  const [profilePicture] = useState<string>('');
+  const [uf] = useState<string>('');
   const [telefone, setTelefone] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [validPassword, setValidPassaword] = useState<boolean>(true);
   const [pswTouched, setpswTouched] = useState<boolean>(false);
+  const [data, setData] = useState<String>();
+  const [dataStatus, setDataStatus] = useState<Number>();
+  const [erro, setErro] = useState<string>('');
   const navigate = useNavigate();
 
   const buttonCLick = () => {
+    fetchData(email, name, password, telefone, "DOCTOR", crm, state);
     if (password === confirmPassword) {
       setValidPassaword(true);
     } else {
       setValidPassaword(false);
     }
-    if (pswTouched && pswTouched) {
+    if (pswTouched) {
       navigate(ROUTES.HOME_MEDICO());
       return;
     }
   };
+
+  async function fetchData(email: String, name: String, password: String, cellPhone: String, userType: String, crm: String, uf: String) {
+    try {
+      const result = await registerDoctor(email, name, password, cellPhone, "DOCTOR", crm, uf);
+      setData(result.data);
+      setDataStatus(result.status);
+      console.log("Status " +result.status);
+      if (result.status == 201 || result.status == 200) {
+        console.log('cadastro realizado com sucesso');
+        navigate(ROUTES.CADASTRO_MEDICO());
+      }
+    } catch (error) {
+      console.error('Erro ao fazer cadastro', error);
+      setErro('Cadastro inválido.');
+    }
+  }
 
   const handleName = (newName: string) => {
     setName(newName);

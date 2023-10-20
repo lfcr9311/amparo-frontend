@@ -6,6 +6,7 @@ import cpf from 'cpf';
 import './CadastroPaciente.css';
 import { ROUTES } from '../../routes/constans';
 import { useNavigate } from 'react-router-dom';
+import  {registerUser } from '../../utils/apiService';
 
 export const CadastroPaciente = () => {
   const [name, setName] = useState<string>('');
@@ -18,6 +19,9 @@ export const CadastroPaciente = () => {
   const [isValidCpf, setIsValidCpf] = useState<boolean>(true);
   const [cpfTouched, setCpfTouched] = useState<boolean>(false);
   const [pswTouched, setPswTouched] = useState<boolean>(false);
+  const [data, setData] = useState<String>();
+  const [dataStatus, setDataStatus] = useState<Number>();
+  const [erro, setErro] = useState<string>('');
   const navigate = useNavigate();
 
   const buttonCLick = () => {
@@ -37,11 +41,29 @@ export const CadastroPaciente = () => {
     console.log('cpf correct' + isValidCpf);
     console.log('psw correct' + validPassword);
 
+    fetchData(email, name, password, "", "PATIENT", cpfValue);
+
     if (validPassword && isValidCpf && pswTouched && cpfTouched) {
-      navigate(ROUTES.HOME_PACIENTE());
+      // navigate(ROUTES.HOME_PACIENTE());
       return;
     }
   };
+
+  async function fetchData(email: String, name: String, password: String, cellPhone: String, userType: String, cpf: String) {
+    try {
+      const result = await registerUser(email, name, password, cellPhone, "PATIENT", cpf);
+      setData(result.data);
+      setDataStatus(result.status);
+      console.log("Status " +result.status);
+      if (result.status == 201 || result.status == 200) {
+        console.log('cadastro realizado com sucesso');
+        navigate(ROUTES.CADASTRO_PACIENTE());
+      }
+    } catch (error) {
+      console.error('Erro ao fazer cadastro', error);
+      setErro('Cadastro inválido.');
+    }
+  }
 
   const handleName = (newName: string) => {
     setName(newName);
