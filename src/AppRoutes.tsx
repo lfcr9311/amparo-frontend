@@ -14,6 +14,8 @@ import VisualizacaoPerfilMedico from './pages/VisualizarPerfilMedico/VisualizarP
 import MenuMedicamentos from './pages/MenuMedicamentos/MenuMedicamentos';
 import ListaMedicamentos from './pages/ListaMedicamentos/ListaMedicamentos';
 import ExamesPendentes from './pages/ExamesPendentes/ExamesPendentes';
+import Solicitacao from './components/Modal/Components/Solicitacao/SolicitacaoModal';
+import SolicitacaoEnviada from './components/Modal/Components/Solicitacao/SolicitacaoEnviada';
 
 export default function AppRoutes() {
   return (
@@ -21,7 +23,7 @@ export default function AppRoutes() {
       <div className="App">
         <Routes>
           <Route path={ROUTES.HOME_MEDICO()} element={<HomeMedico />} />
-          <Route path={ROUTES.HOME_PACIENTE()} element={<HomePaciente />} />
+          <Route path={ROUTES.HOME_PACIENTE()} element={<SolicitacaoEnviada />} />
           <Route
             path={ROUTES.CADASTRO_PACIENTE()}
             element={<CadastroPaciente />}
