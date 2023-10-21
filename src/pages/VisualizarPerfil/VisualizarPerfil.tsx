@@ -17,6 +17,9 @@ const VisualizacaoPerfilPaciente = () => {
   const [nSus, setNSus] = useState('');
   const [ddd, setDdd] = useState('');
   const [cellphone, setCellphone] = useState('');
+  const firstAndLastName = name.split(' ');
+  const firstName = firstAndLastName[0];
+  const lastName = firstAndLastName[firstAndLastName.length - 1];
 
   async function fetchData() {
     try {
@@ -39,12 +42,14 @@ const VisualizacaoPerfilPaciente = () => {
   return (
     <>
       <div className="header-container">
-        <HeaderHome type="headerPage" title="Perfil" />
+        <HeaderHome type="headerPage" title="Perfil" setActiveTab={function (): void {
+          throw new Error('Function not implemented.');
+        } } activeTab={''} />
       </div>
       <div className="container">
         <div className="profile-card-container">
           <PatientProfileCard
-            name={ name }
+            name={`${firstName}  ${lastName}`}
             cpf={ cpf }
             email={ email }
             dataNascimento={ dataNascimento }

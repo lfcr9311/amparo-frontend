@@ -10,8 +10,11 @@ import { ROUTES } from '../../routes/constans';
 import Footer from '../../components/Footer/Footer';
 import { useNavigate } from 'react-router-dom';
 import logoLogin from '../../assets/amparo.svg';
+import { useEffect, useState } from 'react';
+import { getUser } from '../../utils/apiService';
 
 const HomePaciente = () => {
+  const [name, setName] = useState('');
   const navigate = useNavigate();
   const userIsPatient = true;
   const handleClickExames = () => {
@@ -30,9 +33,25 @@ const HomePaciente = () => {
     console.log('Cheguei aqui!!!');
   };
 
+  async function fetchData() {
+    try {
+      const result = await getUser();
+      setName(result.data.name);
+    } catch (error) {
+      console.error('Erro pós login', error);
+    }
+  }
+
+  useEffect(() => {
+    fetchData();
+    console.log();
+  }, []);
+
   return (
     <div className="container-home">
-      <HeaderHome type="headerHome" title="Olá, Fulano!"></HeaderHome>
+      <HeaderHome type="headerHome" title={`Olá, ${name.split(' ')[0]}!`} setActiveTab={function (): void {
+        throw new Error('Function not implemented.');
+      } } activeTab={''}></HeaderHome>
       <div className="body">
         <div className="sub-header">
           <img
