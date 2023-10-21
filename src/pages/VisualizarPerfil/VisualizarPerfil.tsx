@@ -33,6 +33,7 @@ const VisualizacaoPerfilPaciente = () => {
     try {
       const response = await getUser();
       console.log(response);
+      setApiInfo(response);
     }
     catch(e) {
       console.log(e)
@@ -62,9 +63,9 @@ const VisualizacaoPerfilPaciente = () => {
       <div className="container">
         <div className="profile-card-container">
           <PatientProfileCard
-            name="Fulana"
-            email="fulanodasilva1@hotmail.com"
-            cpf="123.456.789-00"
+            name={apiInfo.name}
+            email={apiInfo.email}
+            cpf={apiInfo.cpf}
             dataNascimento="23/02/1980"
             onClickChangePassword={() => console.log('Change Password')}
             onClickDoctors={() => console.log('Click Doctors')}
@@ -99,7 +100,7 @@ const VisualizacaoPerfilPaciente = () => {
               />
               <TextfieldModal
                 label="E-mail"
-                value={dataNascimento}
+                value={apiInfo.email}
                 type="text"
                 onChange={(value) => setDataNascimento(value)}
               />
@@ -112,7 +113,7 @@ const VisualizacaoPerfilPaciente = () => {
               <div className="cellphone-container">
                 <TextfieldModal
                   label="DDD"
-                  value={ddd}
+                  value={"51"}
                   type="text"
                   width="65.5px"
                   onChange={(value) => setDdd(value)}
