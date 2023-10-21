@@ -106,6 +106,7 @@ const MeusMedicos: React.FC = () => {
   const [medico, setMedico] = useState<Medico>();
 
   useEffect(() => {
+    // TODO: Buscar médicos do usuário logado
     setMedicos(medicosMock);
   }, []);
 
@@ -117,10 +118,27 @@ const MeusMedicos: React.FC = () => {
   return (
     <>
       <HeaderHome title="Meus Médicos" type="headerPage" />
+      <div className="search-container">
+        {/* TODO: temporário, componente de busca está em desenvolvimento */}
+        <input type="text" placeholder="Buscar..." />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="36"
+          height="36"
+          viewBox="0 0 36 36"
+          fill="none"
+        >
+          <path
+            d="M18 0C8.064 0 0 8.064 0 18C0 27.936 8.064 36 18 36C27.936 36 36 27.936 36 18C36 8.064 27.936 0 18 0ZM27 19.8H19.8V27H16.2V19.8H9V16.2H16.2V9H19.8V16.2H27V19.8Z"
+            fill="#E10E17"
+          />
+        </svg>
+      </div>
       <div className="body-container">
         {medicos.map((medico) => (
           <>
             <CardMedico
+              key={medico.id}
               name={medico.name}
               profilePicture={medico.profilePicture}
               onClick={() => handleCardClick(medico)}
