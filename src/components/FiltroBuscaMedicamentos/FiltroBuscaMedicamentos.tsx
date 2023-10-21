@@ -20,10 +20,11 @@ const FiltroBuscaMedicamentos: React.FC<CustomFiltroBuscaMedicamentosProps> = ({
   const handleSearchTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const name = event.target.value ;
     setSearchText(name);
+    console.log(name);
     onNameChange(name);
 
   };
-
+ 
   const handleStatusChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     const selectedStatus = event.target.value as string;
     setStatus(selectedStatus);
@@ -70,15 +71,15 @@ const FiltroBuscaMedicamentos: React.FC<CustomFiltroBuscaMedicamentosProps> = ({
             },
           }}
         >
-          <MenuItem value="">  </MenuItem>
+          <MenuItem value="semFiltroDeStatus">  </MenuItem>
           <MenuItem value="bom">
-            <img src={IconeMedicamentoBom} alt="Bom" style={{ marginRight: '-20px', marginLeft: '20px' }} />
+            <img src={IconeMedicamentoBom} alt="bom" style={{ marginRight: '-20px', marginLeft: '20px' }} />
           </MenuItem>
           <MenuItem value="medio">
-            <img src={IconeMedicamentoMedio} alt="Médio" style={{ marginRight: '-20px', marginLeft: '20px' }} />
+            <img src={IconeMedicamentoMedio} alt="medio" style={{ marginRight: '-20px', marginLeft: '20px' }} />
           </MenuItem>
           <MenuItem value="ruim" >
-            <img src={IconeMedicamentoRuim} alt="Ruim" style={{ marginRight: '-20px', marginLeft: '11px' }} />
+            <img src={IconeMedicamentoRuim} alt="ruim" style={{ marginRight: '-20px', marginLeft: '11px' }} />
           </MenuItem>
         </Select>
       </FormControl>
