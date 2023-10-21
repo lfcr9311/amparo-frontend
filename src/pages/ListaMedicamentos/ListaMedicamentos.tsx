@@ -63,6 +63,21 @@ export default function ListaMedicamentos() {
     }
   }, [medicamentoNome]);
 
+  useEffect(() => {
+    if (usoContinuo) {
+      setErroData(false);
+      setMensagemErroData('');
+    }
+  }, [usoContinuo]);
+
+  useEffect(() => {
+    if (dataFinal) {
+      setErroData(false);
+      setMensagemErroData('');
+    }
+  }, [dataFinal]);
+
+
   const handleAddMedicamento = () => {
 
     if (!medicamentoNome.trim()) {
@@ -76,7 +91,7 @@ export default function ListaMedicamentos() {
 
     if (!dataFinal && !usoContinuo) {
       setErroData(true);
-      setMensagemErroData("Por favor, selecione uma data ou marque 'Uso contínuo'");
+      setMensagemErroData("Por favor, selecione um dos campos em vermelho");
       return;
     } else {
       setErroData(false);

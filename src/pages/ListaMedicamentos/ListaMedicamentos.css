@@ -84,3 +84,22 @@
   color: red;
   font-weight: bold;
 }
+
+.date-modal-container {
+  position: relative;
+  width: 120px;
+  max-width: 145px;
+}
+
+.error-text {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  color: red;
+  margin-top: 5px;
+  font-size: 12px;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
