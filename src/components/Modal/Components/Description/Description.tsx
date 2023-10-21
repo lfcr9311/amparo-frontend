@@ -12,7 +12,7 @@ export default function Description({ value, onChange }: DescriptionProps) {
 
   return (
     <textarea
-      value={value || ' '}
+      value={value || ''}
       onChange={handleValue}
       placeholder="Descrição..."
       className="description-container"

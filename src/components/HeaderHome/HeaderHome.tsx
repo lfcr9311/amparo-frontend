@@ -1,5 +1,4 @@
 // Header.tsx
-import React, { useEffect } from 'react';
 import './HeaderHome.css';
 import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutlined';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
@@ -9,10 +8,6 @@ import CustomTabs from '../CustomTabs/CustomTabs';
 interface HeaderProps {
   title?: string;
   type: 'headerHome' | 'headerChat' | 'headerPage' | 'headerTab';
-  // headerHome?: boolean;
-  // headerChat?: boolean;
-  // headerPage?: boolean;
-  // headerTab?: boolean;
   setValue?: (value: number) => void;
   value?: number;
 }
@@ -25,7 +20,7 @@ const HeaderHome: React.FC<HeaderProps> = ({
 }) => {
   const navigate = useNavigate();
   const handleBack = () => {
-    navigate('/login');
+    navigate(-1);
   };
 
   return (
