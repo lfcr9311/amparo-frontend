@@ -14,6 +14,7 @@ import VisualizacaoPerfilMedico from './pages/VisualizarPerfilMedico/VisualizarP
 import MenuMedicamentos from './pages/MenuMedicamentos/MenuMedicamentos';
 import ListaMedicamentos from './pages/ListaMedicamentos/ListaMedicamentos';
 import ExamesPendentes from './pages/ExamesPendentes/ExamesPendentes';
+import MeusMedicos from './pages/MeusMedicos/MeusMedicos';
 
 export default function AppRoutes() {
   return (
@@ -40,6 +41,10 @@ export default function AppRoutes() {
           <Route
             path={ROUTES.PERFIL_PACIENTE()}
             element={<VisualizacaoPerfilPaciente />}
+          />
+          <Route
+            path={ROUTES.PERFIL_PACIENTE_MEUS_MEDICOS()}
+            element={<MeusMedicos />}
           />
           <Route
             path={ROUTES.PERFIL_MEDICO()}

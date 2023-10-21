@@ -8,6 +8,7 @@ export const ROUTES = {
   EXAMES_REALIZADOS_VAZIO: () => '/perfil/exames-realizados-vazio',
   LOGIN: () => '*',
   PERFIL_PACIENTE: () => '/perfil/paciente',
+  PERFIL_PACIENTE_MEUS_MEDICOS: () => '/perfil/paciente/meus-medicos',
   PERFIL_MEDICO: () => '/perfil/medico',
   MENU_MEDICAMENTOS: () => '/menu/medicamentos',
   LISTA_MEDICAMENTOS: () => '/lista/medicamentos',
