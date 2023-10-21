@@ -32,6 +32,10 @@ export default function ListaMedicamentos() {
   const [erroMedicamentoNome, setErroMedicamentoNome] = useState(false);
   const [mensagemErroMedicamentoNome, setMensagemErroMedicamentoNome] = useState('');
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [erroData, setErroData] = useState(false);
+  const [mensagemErroData, setMensagemErroData] = useState('');
+
+
 
 
   const [medicamentos, setMedicamentos] = useState<Medicamento[]>([
@@ -48,6 +52,8 @@ export default function ListaMedicamentos() {
     setUsoContinuo(false);
     setErroMedicamentoNome(false);
     setMensagemErroMedicamentoNome('');
+    setErroData(false);
+    setMensagemErroData('');
   };
 
   useEffect(() => {
@@ -66,6 +72,15 @@ export default function ListaMedicamentos() {
     } else {
       setErroMedicamentoNome(false);
       setMensagemErroMedicamentoNome("");
+    }
+
+    if (!dataFinal && !usoContinuo) {
+      setErroData(true);
+      setMensagemErroData("Por favor, selecione uma data ou marque 'Uso contínuo'");
+      return;
+    } else {
+      setErroData(false);
+      setMensagemErroData("");
     }
 
     const novoMedicamento = {
@@ -164,12 +179,15 @@ export default function ListaMedicamentos() {
               value={dataFinal}
               onChange={(selectedDate) => setDataFinal(selectedDate)}
               disabled={usoContinuo}
+              error={erroData}
+              helperText={mensagemErroData}
             />
           </div>
           <div className="checkbox-container">
             <input
               type="checkbox"
               id="uso-continuo"
+              className={erroData ? 'checkbox-error' : ''}
               checked={usoContinuo}
               onChange={() => setUsoContinuo(!usoContinuo)}
             />

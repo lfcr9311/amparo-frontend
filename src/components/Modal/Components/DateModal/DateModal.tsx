@@ -5,9 +5,11 @@ type DateModalProps = {
   value?: string;
   onChange?: (selectedDate: string) => void;
   disabled?: boolean;
+  error?: boolean;
+  helperText?: string;
 }
 
-const DateModal: React.FC<DateModalProps> = ({ value = '', onChange, disabled }) => {
+const DateModal: React.FC<DateModalProps> = ({ value = '', onChange, disabled, error, helperText }) => {
   const [date, setDate] = useState(value);
 
   const handleValueChange = (newDate: string) => {
@@ -18,13 +20,16 @@ const DateModal: React.FC<DateModalProps> = ({ value = '', onChange, disabled })
   };
 
   return (
-    <input
-      type="date"
-      className="date-picker"
-      value={date}
-      onChange={(event) => handleValueChange(event.target.value)}
-      disabled={disabled}
-    />
+    <div>
+      <input
+        type="date"
+        className={`date-picker ${error ? 'date-error' : ''}`}
+        value={date}
+        onChange={(event) => handleValueChange(event.target.value)}
+        disabled={disabled}
+      />
+      {error && <p className="error-text">{helperText}</p>}
+    </div>
   );
 }
 
