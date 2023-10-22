@@ -38,10 +38,14 @@ export default function ExamesPendentes() {
       </div>
       <Modal isOpen={isModalOpen} isClose={() => setIsModalOpen(!isModalOpen)}>
         <div className="div-date-modal">
-          <DateModal />
+          <DateModal onChange={function (value: string): void {
+            throw new Error('Function not implemented.');
+          } } />
         </div>
         <div className="description-button-modal">
-          <Description />
+          <Description onChange={function (value: string): void {
+            throw new Error('Function not implemented.');
+          } } />
           <CustomButton
             variant="contained"
             label="Salvar"

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Descricao from '../../components/Descricao/Descricao';
 import HeaderHome from '../../components/HeaderHome/HeaderHome';
 import EditIcon from '../../assets/EditIcon.svg';
@@ -22,8 +22,19 @@ export default function EdicaoExamePendente({
   dateValue,
 }: EdicaoExamePendenteProps) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [tempDate, setTempDate] = useState(dateValue);
   const [date, setDate] = useState(dateValue);
+  const [tempDescription, setTempDescription] = useState(descriptionValue);
   const [description, setDescription] = useState(descriptionValue);
+
+  useEffect(() => {
+    setDate(tempDate);
+  }, [tempDate]);
+
+  const handleDescription = () => {
+    setDescription(tempDescription);
+    setModalIsOpen(false);
+  };
 
   return (
     <>
@@ -34,12 +45,12 @@ export default function EdicaoExamePendente({
           onClick={() => setModalIsOpen(!modalIsOpen)}
           className="pencil-icon"
         >
-          <img src={EditIcon} />
+          <img src={EditIcon} alt="Edit Icon" />
         </button>
       </div>
       <div className="desc-container">
         <p className="descricao-title">Descrição</p>
-        <Descricao value={descriptionValue} />
+        <Descricao value={description} />
       </div>
       <div className="button-salmon-page-container">
         <ButtonSalmon
@@ -50,17 +61,17 @@ export default function EdicaoExamePendente({
       </div>
       <Modal isOpen={modalIsOpen} isClose={() => setModalIsOpen(!modalIsOpen)}>
         <div className="date">
-          <DateModal value={date} onChange={(value) => setDate(value)} />
+          <DateModal value={tempDate} onChange={(value) => setTempDate(value)} />
         </div>
         <div className="button">
           <Description
-            value={description}
-            onChange={(value) => setDescription(value)}
+            value={tempDescription}
+            onChange={(value) => setTempDescription(value)}
           />
           <CustomButton
             variant="contained"
             label="Salvar"
-            onClick={() => console.log(date, description)}
+            onClick={handleDescription}
           />
         </div>
       </Modal>
