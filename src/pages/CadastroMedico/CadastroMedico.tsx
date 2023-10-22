@@ -25,11 +25,13 @@ export const CadastroMedico = () => {
 
   const buttonCLick = () => {
     fetchData(email, name, password, telefone, "DOCTOR", crm, state);
+    
     if (password === confirmPassword) {
       setValidPassaword(true);
     } else {
       setValidPassaword(false);
     }
+    console.log(dataStatus);
     if (pswTouched && (dataStatus == 201 || dataStatus == 200)) {
       navigate(ROUTES.HOME_MEDICO());
       return;
@@ -37,6 +39,13 @@ export const CadastroMedico = () => {
   };
 
   async function fetchData(email: String, name: String, password: String, cellPhone: String, userType: String, crm: String, uf: String) {
+    // console.log(email);
+    // console.log(name);
+    // console.log(password);
+    // console.log(cellPhone);
+    // console.log(userType);
+    // console.log(crm);
+    // console.log(uf);
     try {
       const result = await registerDoctor(email, name, password, cellPhone, userType, crm, uf);
       setData(result.data);
