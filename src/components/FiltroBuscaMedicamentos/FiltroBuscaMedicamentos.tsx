@@ -11,15 +11,13 @@ import IconeMedicamentoRuim from '../../assets/IconeMedicamentoRuim.svg';
 interface CustomFiltroBuscaMedicamentosProps {
   onStatusChange: (status: string) => void;
   onNameChange: (name: string) => void; 
+  status : string;
 }
 
-const FiltroBuscaMedicamentos: React.FC<CustomFiltroBuscaMedicamentosProps> = ({ onStatusChange,onNameChange }) => {
-  const [searchText, setSearchText] = React.useState('');
-  const [status, setStatus] = React.useState('');
+const FiltroBuscaMedicamentos: React.FC<CustomFiltroBuscaMedicamentosProps> = ({ onStatusChange,onNameChange ,status}) => {
 
   const handleSearchTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const name = event.target.value ;
-    setSearchText(name);
     console.log(name);
     onNameChange(name);
 
@@ -27,7 +25,6 @@ const FiltroBuscaMedicamentos: React.FC<CustomFiltroBuscaMedicamentosProps> = ({
  
   const handleStatusChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     const selectedStatus = event.target.value as string;
-    setStatus(selectedStatus);
     console.log(selectedStatus);
     onStatusChange(selectedStatus);
   };
@@ -48,7 +45,6 @@ const FiltroBuscaMedicamentos: React.FC<CustomFiltroBuscaMedicamentosProps> = ({
       <InputBase
         sx={{ ml: 1, flex: 1 }}
         placeholder="   Buscar..."
-        value={searchText}
         onChange={handleSearchTextChange}
         inputProps={{ 'aria-label': 'Buscar...' }}
       />
