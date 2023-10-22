@@ -4,14 +4,12 @@ export const ROUTES = {
   CADASTRO_PACIENTE: () => '/cadastro/paciente',
   CADASTRO_MEDICO: () => '/cadastro/medico',
   IDENTIFICACAO: () => '/identificacao',
-  EXAMES_PENDENTES_VAZIO: () => '/perfil/exames-pendentes-vazio',
-  EXAMES_REALIZADOS_VAZIO: () => '/perfil/exames-realizados-vazio',
+  EXAMES_VAZIO: () => '/exames/vazio',
   LOGIN: () => '*',
   PERFIL_PACIENTE: () => '/perfil/paciente',
   PERFIL_MEDICO: () => '/perfil/medico',
   MENU_MEDICAMENTOS: () => '/menu/medicamentos',
   LISTA_MEDICAMENTOS: () => '/lista/medicamentos',
   LISTA_EXAMES: () => '/lista/exames',
-  EXAMES_PENDENTES: () => '/exames/pendentes',
-  EXAMES_REALIZADOS: () => '/exames/realizados'
+  EXAMES: () => '/exames',
 };

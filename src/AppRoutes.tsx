@@ -4,8 +4,6 @@ import { ROUTES } from './routes/constans';
 import { Login } from './pages/Login/Login';
 import HomePaciente from './pages/HomePaciente/HomePaciente';
 import VisualizacaoPerfilPaciente from './pages/VisualizarPerfil/VisualizarPerfil';
-import ExamesRealizadosVazio from './pages/ExamesRealizadosVazio/ExamesRealizadosVazio';
-import ExamesPendentesVazio from './pages/ExamesPendentesVazio/ExamesPendentesVazio';
 import { CadastroPaciente } from './pages/CadastroPaciente/CadastroPaciente';
 import { CadastroMedico } from './pages/CadastroMedico/CadastroMedico';
 import { Identificacao } from './pages/Identificacao/Identificacao';
@@ -13,9 +11,8 @@ import HomeMedico from './pages/HomeMedico/HomeMedico';
 import VisualizacaoPerfilMedico from './pages/VisualizarPerfilMedico/VisualizarPerfilMedico';
 import MenuMedicamentos from './pages/MenuMedicamentos/MenuMedicamentos';
 import ListaMedicamentos from './pages/ListaMedicamentos/ListaMedicamentos';
-import ExamesPendentes from './pages/ExamesPendentes/ExamesPendentes';
-import EdicaoExamePendente from './pages/EdicaoExamePendente/EdicaoExamePendente';
-import EdicaoExameRealizado from './pages/EdicaoExameRealizado/EdicaoExameRealizado';
+import ExamesVazio from './pages/ExamesVazio/ExamesVazio';
+import Exames from './pages/Exames/Exames';
 
 export default function AppRoutes() {
   return (
@@ -30,14 +27,7 @@ export default function AppRoutes() {
           />
           <Route path={ROUTES.CADASTRO_MEDICO()} element={<CadastroMedico />} />
           <Route path={ROUTES.IDENTIFICACAO()} element={<Identificacao />} />
-          <Route
-            path={ROUTES.EXAMES_PENDENTES_VAZIO()}
-            element={<ExamesPendentesVazio />}
-          />
-          <Route
-            path={ROUTES.EXAMES_REALIZADOS_VAZIO()}
-            element={<ExamesRealizadosVazio />}
-          />
+          <Route path={ROUTES.EXAMES_VAZIO()} element={<ExamesVazio />} />
           <Route path={ROUTES.LOGIN()} element={<Login />} />
           <Route
             path={ROUTES.PERFIL_PACIENTE()}
@@ -55,28 +45,7 @@ export default function AppRoutes() {
             path={ROUTES.LISTA_MEDICAMENTOS()}
             element={<ListaMedicamentos />}
           />
-          <Route
-            path={ROUTES.EXAMES_PENDENTES()}
-            element={
-              <EdicaoExamePendente
-                dateTitle="20/10/2023"
-                descriptionValue="Exames laboratoriais de rotina: hemograma, exame de urina, TGO, TGP, creatinina, bilirrubina, sorologias para Hepatite."
-                dateValue="2023-10-20"
-              />
-            }
-          />
-          <Route
-            path={ROUTES.EXAMES_REALIZADOS()}
-            element={
-              <EdicaoExameRealizado
-                title="10/10/2023"
-                dateValue="2023-10-19"
-                descriptionValue="Hemograma com plaquetas. O considerado normal é, os valores que ocorrem em 95% da população sadia. 5% das pessoas sem problemas médicos podem ter valores do hemograma fora da faixa de referência (2,5% um pouco abaixo e outros 2,5% um pouco acima). Portanto, pequenas variações para mais ou para menos não necessariamente indicam alguma doença."
-              />
-            }
-          />
-
-          <Route path={ROUTES.LISTA_EXAMES()} element={<ExamesPendentes />} />
+          <Route path={ROUTES.EXAMES()} element={<Exames />} />
         </Routes>
       </div>
     </Router>
