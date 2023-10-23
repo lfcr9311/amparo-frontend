@@ -31,7 +31,6 @@ export const CadastroMedico = () => {
     } else {
       setValidPassaword(false);
     }
-    console.log(dataStatus);
     if (pswTouched && (dataStatus == 201 || dataStatus == 200)) {
       navigate(ROUTES.HOME_MEDICO());
       return;
@@ -39,27 +38,27 @@ export const CadastroMedico = () => {
   };
 
   async function fetchData(email: String, name: String, password: String, cellPhone: String, userType: String, crm: String, uf: String) {
-    // console.log(email);
-    // console.log(name);
-    // console.log(password);
-    // console.log(cellPhone);
-    // console.log(userType);
-    // console.log(crm);
-    // console.log(uf);
-    try {
-      const result = await registerDoctor(email, name, password, cellPhone, userType, crm, uf);
+
+    await registerDoctor(email, name, password, cellPhone, userType, crm, uf).then( (result) => {
       setData(result.data);
       setDataStatus(result.status);
-      console.log("Status " +result.status);
+      console.log("Status " + result.status);
       if (result.status == 201 || result.status == 200) {
         console.log('cadastro realizado com sucesso');
-        navigate(ROUTES.CADASTRO_MEDICO());
+        // navigate(ROUTES.CADASTRO_MEDICO());
       }
-    } catch (error) {
-      console.error('Erro ao fazer cadastro', error);
-      setErro('Cadastro inválido.');
-      console.log(erro);
-    }
+    })
+    .catch((erro) => {
+      if (erro.response && erro.response.status === 500) {
+        setErro(erro);
+        //componente de erro abaixo:
+        console.error('Erro 500: O servidor encontrou um erro interno.');
+      }
+       else {
+        console.error('Erro inesperado:', erro);
+      }
+    })
+
   }
 
   const handleName = (newName: string) => {

@@ -41,30 +41,40 @@ export const CadastroPaciente = () => {
     console.log('cpf correct ' + isValidCpf);
     console.log('psw correct ' + validPassword);
 
-    fetchData(email, name, password, "111111111", cpfValue);
-    console.log(dataStatus);
-    if (validPassword && pswTouched && cpfTouched && (dataStatus == 201 || dataStatus == 200)) {
-      console.log('aaa');
-      navigate(ROUTES.HOME_PACIENTE());
+    if (validPassword && pswTouched && cpf.isValid(cpfValue) && (dataStatus == 201 || dataStatus == 200)) {
+      fetchData(email, name, password, "111111111", cpfValue, "123456789123456", "23/10/2000");
       return;
     }
   };
 
-  async function fetchData(email: String, name: String, password: String, cellPhone: String, cpf: String) {
-    try {
-      const result = await registerUser(email, name, password, cellPhone, "PATIENT", cpf);
+  async function fetchData(email: String, name: String, password: String, cellPhone: String, cpf: String, numSus: String, birthDate: String) {
+
+    await  await registerUser(email, name, password, cellPhone, "PATIENT", cpf, numSus, birthDate).then((result) => {
+
       setData(result.data);
       setDataStatus(result.status);
       console.log(result.data);
       console.log("Status " +result.status);
+
       if (result.status == 201 || result.status == 200) {
         console.log('cadastro realizado com sucesso');
         navigate(ROUTES.CADASTRO_PACIENTE());
       }
-    } catch (error) {
-      console.error('Erro ao fazer cadastro', error);
-      setErro('Cadastro inválido.');
-    }
+
+    }).catch((erro) => {
+
+      if (erro.response && erro.response.status === 400) {
+        setErro(erro);
+        //componente de erro abaixo:
+        console.error('Erro 400: O servidor encontrou um erro interno.');
+        console.error(erro);
+        setErro('Cpf ja existe.');
+      }
+       else {
+        console.error('Erro inesperado:', erro);
+      }
+        
+    })
   }
 
   const handleName = (newName: string) => {
