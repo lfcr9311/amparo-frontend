@@ -4,11 +4,15 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "vite",
-    "dev": "vite",
+    "start": "vite --host",
     "build": "tsc && vite build",
+    "preview": "vite preview --host",
+    "format": "prettier --write .",
+    "prepare": "husky install",
+    "dev": "vite",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "deploy": "aws s3 sync dist/ s3://projeto-amparo",
+    "prod": "npm run build && npm run deploy"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -18,8 +22,11 @@
     "@mui/system": "^5.14.12",
     "axios": "^1.5.0",
     "cpf": "^2.0.1",
+    "husky": "^8.0.3",
+    "icons": "^1.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.11.0",
     "react-router-dom": "^6.15.0"
   },
   "devDependencies": {
