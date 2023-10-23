@@ -21,7 +21,7 @@ export default function Solicitacao() {
         />
         <div style={{padding: '10px'}}></div>
         <CustomButton
-          variant="contained"
+          variant="outlined"
           label="Solicitar"
           onClick={() => console.log('Solicitar')}
         />
