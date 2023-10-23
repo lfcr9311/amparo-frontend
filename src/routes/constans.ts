@@ -14,5 +14,5 @@ export const ROUTES = {
   LISTA_EXAMES: () => '/lista/exames',
   LISTA_INTERACOES: () => '/lista/interacoes',
   FILTRO_BUSCA_MEDICAMENTOS:() => 'lista/filtro',
-  TESTE:() => 'lista/teste',
+  LISTADEINTERACAODOMEDICAMENTO:() => 'medicamentos/interacao',
 };

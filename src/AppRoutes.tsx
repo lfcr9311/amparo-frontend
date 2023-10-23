@@ -11,27 +11,16 @@ import HomeMedico from './pages/HomeMedico/HomeMedico';
 import VisualizacaoPerfilMedico from './pages/VisualizarPerfilMedico/VisualizarPerfilMedico';
 import MenuMedicamentos from './pages/MenuMedicamentos/MenuMedicamentos';
 import ListaMedicamentos from './pages/ListaMedicamentos/ListaMedicamentos';
-import { ListaInteracoes } from './components/ListaInteracoes/ListaInteracoes';
-import  FiltroBuscaMedicamentos  from './components/FiltroBuscaMedicamentos/FiltroBuscaMedicamentos';
-import Teste from './components/Teste/Teste';
+import ListaDeInteracaoDoMedicamento from './pages/ListaDeInteracaoDoMedicamento/ListaDeInteracaoDomedicamento';
 
 export default function AppRoutes() {
   return (
     <Router>
       <div className="App">
         <Routes>
-        <Route path={ROUTES.LISTA_INTERACOES()} element={<ListaInteracoes items={[{ name: 'Medication A', status: 'bom' },
-  { name: 'Medication B', status: 'medio' },  { name: 'Medication C', status: 'ruim' },{ name: 'Medication A', status: 'bom' },
-  { name: 'Medication B', status: 'medio' },  { name: 'Medication C', status: 'ruim' },{ name: 'Medication A', status: 'bom' },
-  { name: 'Medication B', status: 'medio' },  { name: 'Medication C', status: 'ruim' },{ name: 'Medication A', status: 'bom' },
-  { name: 'Medication B', status: 'medio' },  { name: 'Medication ', status: 'ruim' },]} />} />
+       
           <Route path={ROUTES.HOME_MEDICO()} element={<HomeMedico />} />
-          <Route path={ROUTES.FILTRO_BUSCA_MEDICAMENTOS()} element={<FiltroBuscaMedicamentos onStatusChange={function (status: string): void {
-            throw new Error('Function not implemented.');
-          } } onNameChange={function (name: string): void {
-            throw new Error('Function not implemented.');
-          } } />} />
-            <Route path={ROUTES.TESTE()} element={<Teste />} />
+                    <Route path={ROUTES.LISTADEINTERACAODOMEDICAMENTO()} element={<ListaDeInteracaoDoMedicamento />} />
 
           <Route path={ROUTES.HOME_PACIENTE()} element={<HomePaciente />} />
           <Route
