@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
 import './Description.css';
 
-export default function Description() {
-  const [description, setDescription] = useState('');
+interface DescriptionProps {
+  value?: string;
+  onChange: (value: string) => void;
+}
 
-  const handleDescriptionChange = (
-    event: React.ChangeEvent<HTMLTextAreaElement>
-  ) => {
-    setDescription(event.target.value);
+export default function Description({ value, onChange }: DescriptionProps) {
+  const handleValue = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    onChange(event.target.value);
   };
 
   return (
     <textarea
-      value={description}
-      onChange={handleDescriptionChange}
+      value={value || ''}
+      onChange={handleValue}
       placeholder="Descrição..."
       className="description-container"
     />

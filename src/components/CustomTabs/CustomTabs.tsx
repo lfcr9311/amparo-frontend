@@ -10,6 +10,8 @@ interface TabItem {
 interface CustomTabsProps {
   tabs: TabItem[];
   initialTab?: number;
+  setValue?: (value: number) => void;
+  value?: number;
 }
 // @ts-ignore
 const CustomTab = styled(Tab)(({ theme }) => ({
@@ -30,12 +32,11 @@ const CustomTab = styled(Tab)(({ theme }) => ({
   },
 }));
 
-const CustomTabs: React.FC<CustomTabsProps> = ({ tabs, initialTab = 0 }) => {
-  const [value, setValue] = React.useState(initialTab);
-
-  // @ts-ignore
+const CustomTabs: React.FC<CustomTabsProps> = ({ tabs, setValue, value }) => {
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
+    if (setValue) {
+      setValue(newValue);
+    }
   };
 
   return (
@@ -62,7 +63,7 @@ const CustomTabs: React.FC<CustomTabsProps> = ({ tabs, initialTab = 0 }) => {
               height: '39px',
               borderRadius: '100px',
               transition: 'left 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-              bottom: '5px', // Ajusta a posição do indicador para que ele fique abaixo dos rótulos
+              bottom: '5px',
             },
           }}
         >
