@@ -7,7 +7,6 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useState } from 'react';
 import { Box, Button, Switch } from '@mui/material';
 import { ProfileCardStyles } from './ProfilePatientCardStyles';
-import { useNavigate } from 'react-router-dom';
 
 interface CardProps {
   name: string;
@@ -16,30 +15,29 @@ interface CardProps {
   dataNascimento: string;
   numSus?: string;
   profilePicture?: string;
+  onClickDoctors?: () => void;
   onClickChangePassword?: () => void;
   onClickEditProfile?: () => void;
 }
 
+// @ts-ignore
 export function PatientProfileCard({
   name,
   cpf,
   email,
   dataNascimento,
   numSus,
+  profilePicture,
   onClickChangePassword,
+  onClickDoctors,
   onClickEditProfile,
 }: CardProps) {
-  const navigate = useNavigate();
   const [notifications, setNotifications] = useState(false);
 
   const changeNotifications = (notifications: boolean) => {
     if (notifications) console.log('Notificações desabilitadas');
     else console.log('Notificações habilitadas');
   };
-
-  function onClickDoctors() {
-    navigate('/perfil/paciente/meus-medicos');
-  }
 
   return (
     <Box>

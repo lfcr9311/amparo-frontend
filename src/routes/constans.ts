@@ -13,4 +13,8 @@ export const ROUTES = {
   MENU_MEDICAMENTOS: () => '/menu/medicamentos',
   LISTA_MEDICAMENTOS: () => '/lista/medicamentos',
   LISTA_EXAMES: () => '/lista/exames',
+  LISTA_INTERACOES: () => '/lista/interacoes',
+  FILTRO_BUSCA_MEDICAMENTOS:() => 'lista/filtro',
+  LISTADEINTERACAODOMEDICAMENTO:() => 'medicamentos/interacao',
+  FILTROBUSCAMEDICO:() => 'lista/medico',
 };
