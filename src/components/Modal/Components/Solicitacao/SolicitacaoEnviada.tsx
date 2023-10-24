@@ -11,13 +11,18 @@ export default function SolicitacaoEnviada() {
       isOpen={isModalOpen}
       title=""
     >
-      <p className="text-modal" style={{marginBottom: '10px'}}>Solicitação de conexão enviada!</p>
-      <div style={{textAlign: "center"}}>
-        <CustomButton
-          variant="outlined"
-          label="Fechar"
-          onClick={() => console.log('Solicitar')}
-        />
+      <p className="text-modal" style={{ marginBottom: '10px' }}>
+        Solicitação de conexão enviada!
+      </p>
+      <div style={{ textAlign: 'center' }}>
+        <button
+          className="close-button"
+          onClick={() => {
+            setIsModalOpen(!isModalOpen);
+          }}
+        >
+          Fechar
+        </button>
       </div>
     </Modal>
   );
