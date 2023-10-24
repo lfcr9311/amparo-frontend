@@ -114,8 +114,17 @@ const MeusMedicos: React.FC = () => {
   }
 
   useEffect(() => {
+    // remove os acentos e deixa tudo em minúsculo
+    const normalizeText = (text: string) =>
+      text
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase();
+
+    const normalizedSearchText = normalizeText(searchText);
+
     const filteredMedicos = medicosMock.filter((medico) =>
-      medico.name?.toLowerCase().includes(searchText.toLowerCase())
+      normalizeText(medico.name ?? '').includes(normalizedSearchText)
     );
 
     setMedicos(filteredMedicos);
