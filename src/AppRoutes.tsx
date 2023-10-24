@@ -13,6 +13,8 @@ import MenuMedicamentos from './pages/MenuMedicamentos/MenuMedicamentos';
 import ListaMedicamentos from './pages/ListaMedicamentos/ListaMedicamentos';
 import ExamesVazio from './pages/ExamesVazio/ExamesVazio';
 import Exames from './pages/Exames/Exames';
+import EdicaoExamePendente from './pages/EdicaoExamePendente/EdicaoExamePendente';
+import EdicaoExameRealizado from './pages/EdicaoExameRealizado/EdicaoExameRealizado';
 
 export default function AppRoutes() {
   return (
@@ -44,6 +46,14 @@ export default function AppRoutes() {
           <Route
             path={ROUTES.LISTA_MEDICAMENTOS()}
             element={<ListaMedicamentos />}
+          />
+          <Route
+            path={ROUTES.EDICAO_EXAMES_PENDENTES()}
+            element={<EdicaoExamePendente />}
+          />
+          <Route
+            path={ROUTES.EDICAO_EXAMES_REALIZADOS()}
+            element={<EdicaoExameRealizado />}
           />
           <Route path={ROUTES.EXAMES()} element={<Exames />} />
         </Routes>

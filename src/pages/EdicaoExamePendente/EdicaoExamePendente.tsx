@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Descricao from '../../components/Descricao/Descricao';
 import HeaderHome from '../../components/HeaderHome/HeaderHome';
 import EditIcon from '../../assets/EditIcon.svg';
@@ -9,30 +9,28 @@ import Modal from '../../components/Modal/Modal';
 import DateModal from '../../components/Modal/Components/DateModal/DateModal';
 import Description from '../../components/Modal/Components/Description/Description';
 import CustomButton from '../../components/Button/Button';
+import { useLocation } from 'react-router-dom';
 
-interface EdicaoExamePendenteProps {
-  dateTitle: string;
-  descriptionValue: string;
-  dateValue: string;
-}
-
-export default function EdicaoExamePendente({
-  dateTitle,
-  descriptionValue,
-  dateValue,
-}: EdicaoExamePendenteProps) {
+export default function EdicaoExamePendente() {
+  const location = useLocation();
+  const dateTitle = location.state.date;
+  const descriptionValue = location.state.description;
+  const dateValue = dateTitle.split('/').reverse().join('-');
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [tempDate, setTempDate] = useState(dateValue);
   const [date, setDate] = useState(dateValue);
   const [tempDescription, setTempDescription] = useState(descriptionValue);
   const [description, setDescription] = useState(descriptionValue);
+  const newDate = date.split('-').reverse().join('/');
 
   useEffect(() => {
     setDate(tempDate);
-  }, [tempDate]);
-
-  const handleDescription = () => {
     setDescription(tempDescription);
+  }, [tempDate, tempDescription]);
+
+  const handleValues = () => {
+    setDescription(tempDescription);
+    setDate(tempDate);
     setModalIsOpen(false);
   };
 
@@ -40,7 +38,7 @@ export default function EdicaoExamePendente({
     <>
       <HeaderHome title="Pendente" type="headerPage" />
       <div className="top-container">
-        <p className="top-title">{dateTitle}</p>
+        <p className="top-title">{newDate}</p>
         <button
           onClick={() => setModalIsOpen(!modalIsOpen)}
           className="pencil-icon"
@@ -61,7 +59,10 @@ export default function EdicaoExamePendente({
       </div>
       <Modal isOpen={modalIsOpen} isClose={() => setModalIsOpen(!modalIsOpen)}>
         <div className="date">
-          <DateModal value={tempDate} onChange={(value) => setTempDate(value)} />
+          <DateModal
+            value={tempDate}
+            onChange={(value) => setTempDate(value)}
+          />
         </div>
         <div className="button">
           <Description
@@ -71,7 +72,7 @@ export default function EdicaoExamePendente({
           <CustomButton
             variant="contained"
             label="Salvar"
-            onClick={handleDescription}
+            onClick={handleValues}
           />
         </div>
       </Modal>

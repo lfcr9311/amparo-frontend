@@ -3,30 +3,28 @@ import HeaderHome from '../../components/HeaderHome/HeaderHome';
 import Footer from '../../components/Footer/Footer';
 import EditIcon from '../../assets/EditIcon.svg';
 import './EdicaoExameRealizado.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ButtonSalmon } from '../../components/ButtonSalmon/ButtonSalmon';
 import Modal from '../../components/Modal/Modal';
 import DateModal from '../../components/Modal/Components/DateModal/DateModal';
 import Description from '../../components/Modal/Components/Description/Description';
 import InputFile from '../../components/InputFile/InputFile';
 import CustomButton from '../../components/Button/Button';
+import { useLocation } from 'react-router-dom';
 
-interface EdicaoExameRealizadoProps {
-  title: string;
-  descriptionValue: string;
-  dateValue: string;
-}
-
-export default function EdicaoExameRealizado({
-  title,
-  descriptionValue,
-  dateValue,
-}: EdicaoExameRealizadoProps) {
+export default function EdicaoExameRealizado() {
+  const location = useLocation();
+  const dateTitle = location.state.date;
+  const descriptionValue = location.state.description;
+  const dateValue = dateTitle.split('/').reverse().join('-');
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [date, setDate] = useState(dateValue);
+  const [tempDate, setTempDate] = useState(dateValue);
   const [description, setDescription] = useState(descriptionValue);
+  const [tempDescription, setTempDescription] = useState(descriptionValue);
   const [filePdf, setFilePdf] = useState<File | null>(null);
   const [fileImage, setFileImage] = useState<File | null>(null);
+  const newDate = date.split('-').reverse().join('/');
   const handleFilePdf = (file: File | null) => {
     setFilePdf(file);
   };
@@ -34,11 +32,22 @@ export default function EdicaoExameRealizado({
     setFileImage(file);
   };
 
+  useEffect(() => {
+    setDate(tempDate);
+    setDescription(tempDescription);
+  }, [tempDate, tempDescription]);
+
+  const handleValues = () => {
+    setDescription(tempDescription);
+    setDate(tempDate);
+    setModalIsOpen(false);
+  };
+
   return (
     <>
       <HeaderHome title="Realizado" type="headerPage" />
       <div className="top-part">
-        <p className="top-name">{title}</p>
+        <p className="top-name">{newDate}</p>
         <button
           onClick={() => setModalIsOpen(!modalIsOpen)}
           className="edition-icon"
@@ -48,7 +57,7 @@ export default function EdicaoExameRealizado({
       </div>
       <div className="descript-part">
         <p className="descript-name">Descrição</p>
-        <Descricao value={descriptionValue} />
+        <Descricao value={description} />
       </div>
       <div className="buttons-salmon-part">
         <ButtonSalmon
@@ -64,12 +73,15 @@ export default function EdicaoExameRealizado({
       </div>
       <Modal isOpen={modalIsOpen} isClose={() => setModalIsOpen(!modalIsOpen)}>
         <div className="date-div-modal">
-          <DateModal value={date} onChange={(value) => setDate(value)} />
+          <DateModal
+            value={tempDate}
+            onChange={(value) => setTempDate(value)}
+          />
         </div>
         <div className="button-description-modal">
           <Description
-            value={description}
-            onChange={(value) => setDescription(value)}
+            value={tempDescription}
+            onChange={(value) => setTempDescription(value)}
           />
           <InputFile type="image" onChange={handleFileImage} />
           {fileImage && (
@@ -84,7 +96,7 @@ export default function EdicaoExameRealizado({
           <CustomButton
             variant="contained"
             label="Salvar"
-            onClick={() => console.log(date, description)}
+            onClick={handleValues}
           />
         </div>
       </Modal>
