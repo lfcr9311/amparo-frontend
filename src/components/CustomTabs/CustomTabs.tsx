@@ -13,7 +13,7 @@ interface CustomTabsProps {
   setValue?: (value: number) => void;
   value?: number;
 }
-
+// @ts-ignore
 const CustomTab = styled(Tab)(({ theme }) => ({
   minWidth: '100px',
   height: '30px', // Ajuste na altura para corresponder ao design do Figma

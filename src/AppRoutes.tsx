@@ -15,13 +15,17 @@ import ExamesVazio from './pages/ExamesVazio/ExamesVazio';
 import Exames from './pages/Exames/Exames';
 import EdicaoExamePendente from './pages/EdicaoExamePendente/EdicaoExamePendente';
 import EdicaoExameRealizado from './pages/EdicaoExameRealizado/EdicaoExameRealizado';
+import ListaDeInteracaoDoMedicamento from './pages/ListaDeInteracaoDoMedicamento/ListaDeInteracaoDomedicamento';
 
 export default function AppRoutes() {
   return (
     <Router>
       <div className="App">
         <Routes>
+       
           <Route path={ROUTES.HOME_MEDICO()} element={<HomeMedico />} />
+          <Route path={ROUTES.LISTADEINTERACAODOMEDICAMENTO()} element={<ListaDeInteracaoDoMedicamento />} />
+
           <Route path={ROUTES.HOME_PACIENTE()} element={<HomePaciente />} />
           <Route
             path={ROUTES.CADASTRO_PACIENTE()}
