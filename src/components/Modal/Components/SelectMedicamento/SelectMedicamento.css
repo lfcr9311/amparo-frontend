@@ -1,0 +1,24 @@
+.caixa-de-selecao {
+  color: #696969;
+  width: 265px;
+  height: 38px;
+  font-family: Poppins;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  border: none;
+  border-radius: 3px;
+  outline: none;
+  background-color: #eaeaea;
+  padding-left: 8px;
+  margin: 10px;
+  }
+  
+  .caixa-de-selecao .opcao-medication {
+    display: none;
+  }
+  
+  .caixa-de-selecao .opcao-medication:checked {
+    content: "Selecione medicamento";
+  }

@@ -14,7 +14,7 @@ import VisualizacaoPerfilMedico from './pages/VisualizarPerfilMedico/VisualizarP
 import MenuMedicamentos from './pages/MenuMedicamentos/MenuMedicamentos';
 import ListaMedicamentos from './pages/ListaMedicamentos/ListaMedicamentos';
 import ExamesPendentes from './pages/ExamesPendentes/ExamesPendentes';
-import Temporaria from './pages/temporaria';
+import SelectMedicamento from './components/Modal/Components/SelectMedicamento/SelectMedicamento';
 
 export default function AppRoutes() {
   return (
@@ -53,6 +53,11 @@ export default function AppRoutes() {
           <Route
             path={ROUTES.LISTA_MEDICAMENTOS()}
             element={<ListaMedicamentos />}
+          />
+
+          <Route
+            path={"/teste"}
+            element={<SelectMedicamento value={""} medicationList={[]} onChange={() => {}}/>}
           />
 
           <Route path={ROUTES.LISTA_EXAMES()} element={<ExamesPendentes />} />

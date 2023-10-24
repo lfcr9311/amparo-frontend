@@ -19,7 +19,7 @@ export const getUser = async () => {
     const response = await axios.get('/patient', {
       headers: {
         Authorization:
-          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhbXBhcm8tYXBpIiwic3ViIjoiYzM3MzE2MzYtZWExNS00MzI4LTllZTYtNzEwMWM1MzJkNmVhIiwicm9sZXMiOlsiUk9MRV9QQVRJRU5UIl0sImVtYWlsIjoicGFibG8xQGVtYWlsLmNvbS5iciIsIm5hbWUiOiJQYWJsbyIsImV4cCI6MTY5NzAwODUxM30.v6_rBobnUk9q3UAv1g8kpbYkOUe7KlRpe_3luRLbw28',
+          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhbXBhcm8tYXBpIiwic3ViIjoiMjk4NDBhMzAtMWYwYS00NGQzLWI5ZDMtMzNkOTRiNWQ0MGQ4Iiwicm9sZXMiOlsiUk9MRV9QQVRJRU5UIl0sImVtYWlsIjoiZW1haWxkb3BhdWxvQGVtYWlsLmNvbS5iciIsIm5hbWUiOiJQYXVsbyBFZHVhcmRvIEdvbWVzIFNpbHZhIFNvdXphIExpbWEgQ29zdGEgZGEgU2lsdmEgZGUgTGltYSBkYSBDb3N0YSIsImV4cCI6MTY5Nzg2NTI5Mn0.TYcJApsY8HjGDbZNS_ZYW5o5s73tVPUhNSTS7MC6xFg',
       },
     }); // Replace with your endpoint
     console.log(response.data);
