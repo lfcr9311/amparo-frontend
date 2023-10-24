@@ -14,11 +14,11 @@ export const login_post = async (email: String, psw:String) => {
   }
 };
 
-export const isLogged = async (token:String) => {
+export const isLogged = async () => {
   try {
-    const response = await axios.get('/patient', {
+    const response = await axios.get('/auth/valid', {
       headers:{
-        'Authorization': 'Bearer '+token
+        'Authorization': 'Bearer '+localStorage.getItem("authToken")
       }
     }); // Replace with your endpoint
     return response;

@@ -2,23 +2,21 @@
 
 import { isLogged } from "./apiService";
 
-export const isLoggedIn = () => {
-    const token = localStorage.getItem('token');
+export const isLoggedIn = async () => {
+    const token = localStorage.getItem('authToken');
     console.log(token);
-    return getUser(String(token));
-}
-async function getUser(token:String) {
-    try{
-      const result = await isLogged(token);
-      // console.log(result.data);
-      // console.log("Status " +result.status);
-      if(result.status== 201 ||result.status== 200)
-      {
-          console.log("user está autenticado");
-         return true
+    if (token) {
+      try {
+        const result = await isLogged();
+        if (result.status === 201 || result.status === 200) {
+          console.log("User is authenticated");
+          return true;
+        }
+      } catch (error) {
+        localStorage.removeItem("authToken")
+        console.error('Error while checking authentication', error);
       }
-      else return false      
-    } catch (error){
-      console.error('Erro ao fazer login', error);
     }
-  }
+  
+    return false; 
+}

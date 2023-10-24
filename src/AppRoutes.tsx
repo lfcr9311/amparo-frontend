@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import './routes/AppRoutes.css';
 import { ROUTES } from './routes/constans';
 import { Login } from './pages/Login/Login';
@@ -15,16 +15,34 @@ import {isLoggedIn} from './utils/authService'
 import MenuMedicamentos from './pages/MenuMedicamentos/MenuMedicamentos';
 import ListaMedicamentos from './pages/ListaMedicamentos/ListaMedicamentos';
 import ExamesPendentes from './pages/ExamesPendentes/ExamesPendentes';
+import React from 'react';
 export default function AppRoutes() {
-//   const isAuthenticated = isLoggedIn();
-//   console.log(isAuthenticated);
+  
+  function PrivateRoute({ children }: { children: React.ReactNode }) {
+    console.log("i'm here");
+    isLoggedIn().then((isAuthenticated) => {
+      console.log(isAuthenticated);
+      if (isAuthenticated == null) {
+        // If the user is not authenticated, redirect them to the login page
+        return <Route path={ROUTES.LOGIN()} element={<Login />} />;
+      }
+    });
+
+    return children;
+  }
+
   
   return (
     <Router>
       <div className="App">
         <Routes>
           <Route path={ROUTES.HOME_MEDICO()} element={<HomeMedico />} />
-          <Route path={ROUTES.HOME_PACIENTE()} element={<HomePaciente />} />
+
+          <Route path={ROUTES.HOME_PACIENTE()} 
+          element={   <PrivateRoute>
+                      <HomePaciente/>
+                      </PrivateRoute>
+            } />
           <Route
             path={ROUTES.CADASTRO_PACIENTE()}
             element={<CadastroPaciente />}

@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import Textfield from '../../components/Textfield/Textfield';
 import CustomButton from '../../components/Button/Button';
 import { login_post } from '../../utils/apiService';
+import { isLoggedIn } from '../../utils/authService';
 
 export const Login: React.FC = () => {
   const [email, setEmail] = useState<string>('');
@@ -25,6 +26,9 @@ export const Login: React.FC = () => {
       setData(result.data);
       setDataStatus(result.status);
       // console.log("Status " +result.status);
+      localStorage.setItem('authToken', result.data.token);
+      console.log(localStorage.getItem("authToken"));
+      
       if (result.status == 201 || result.status == 200) {
         console.log('login realizado com sucesso');
         navigate(ROUTES.HOME_PACIENTE());
