@@ -1,5 +1,4 @@
 // Header.tsx
-import React from 'react';
 import './HeaderHome.css';
 import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutlined';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
@@ -9,15 +8,15 @@ import CustomTabs from '../CustomTabs/CustomTabs';
 interface HeaderProps {
   title?: string;
   type: 'headerHome' | 'headerChat' | 'headerPage' | 'headerTab';
-  setActiveTab: (tab: string) => void;
-  activeTab: string;
+  setValue?: (value: number) => void;
+  value?: number;
 }
 
 const HeaderHome: React.FC<HeaderProps> = ({
   title,
   type,
-  setActiveTab,
-  activeTab,
+  setValue,
+  value,
 }) => {
   const navigate = useNavigate();
   const handleBack = () => {
@@ -50,8 +49,8 @@ const HeaderHome: React.FC<HeaderProps> = ({
               { content: '', label: 'Pendentes' },
               { content: '', label: 'Realizados' },
             ]}
-            setActiveTab={setActiveTab}
-            activeTab={activeTab}
+            setValue={setValue}
+            value={value}
           />
         ) : (
           <a className="title">{title}</a>

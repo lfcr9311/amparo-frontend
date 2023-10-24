@@ -1,6 +1,6 @@
 import Footer from '../../components/Footer/Footer';
 import HeaderHome from '../../components/HeaderHome/HeaderHome';
-import AddCircleIcon from '../../assets/AddCircle.svg';
+import AddCircleIcon from '../../assets/addCircle.svg';
 import './ExamesPendentes.css';
 import { useState } from 'react';
 import ExamListItem from '../../components/ListItem/ListItem';
@@ -8,7 +8,6 @@ import Modal from '../../components/Modal/Modal';
 import DateModal from '../../components/Modal/Components/DateModal/DateModal';
 import Description from '../../components/Modal/Components/Description/Description';
 import CustomButton from '../../components/Button/Button';
-import InputFile from '../../components/InputFile/InputFile';
 
 export default function ExamesPendentes() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -49,12 +48,14 @@ export default function ExamesPendentes() {
       )}
       <Modal isOpen={isModalOpen} isClose={() => setIsModalOpen(!isModalOpen)}>
         <div className="div-date-modal">
-          <DateModal />
+          <DateModal onChange={function (value: string): void {
+            throw new Error('Function not implemented.');
+          } } />
         </div>
         <div className="description-button-modal">
-          <Description />
-          <InputFile type="image" onChange={() => {}} />
-          <InputFile type="pdf" onChange={() => {}} />
+          <Description onChange={function (value: string): void {
+            throw new Error('Function not implemented.');
+          } } />
           <CustomButton
             variant="contained"
             label="Salvar"
@@ -66,3 +67,4 @@ export default function ExamesPendentes() {
     </>
   );
 }
+

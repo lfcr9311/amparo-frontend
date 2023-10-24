@@ -11,10 +11,10 @@ interface TabItem {
 interface CustomTabsProps {
   tabs: TabItem[];
   initialTab?: number;
-  activeTab?: string;
-  setActiveTab?: (tab: string) => void;
+  setValue?: (value: number) => void;
+  value?: number;
 }
-
+// @ts-ignore
 const CustomTab = styled(Tab)(({ theme }) => ({
   minWidth: '100px',
   height: '30px', // Ajuste na altura para corresponder ao design do Figma
@@ -33,17 +33,11 @@ const CustomTab = styled(Tab)(({ theme }) => ({
   },
 }));
 
-const CustomTabs: React.FC<CustomTabsProps> = ({
-  tabs,
-  initialTab = 0,
-  activeTab,
-  setActiveTab,
-}) => {
-  const [value, setValue] = useState(initialTab);
-
-  const handleChange = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setValue(event.currentTarget);
-    setActiveTab('realizados');
+const CustomTabs: React.FC<CustomTabsProps> = ({ tabs, setValue, value }) => {
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    if (setValue) {
+      setValue(newValue);
+    }
   };
 
   return (
@@ -70,7 +64,7 @@ const CustomTabs: React.FC<CustomTabsProps> = ({
               height: '39px',
               borderRadius: '100px',
               transition: 'left 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-              bottom: '5px', // Ajusta a posição do indicador para que ele fique abaixo dos rótulos
+              bottom: '5px',
             },
           }}
         >

@@ -18,7 +18,7 @@ const HomePaciente = () => {
   const navigate = useNavigate();
   const userIsPatient = true;
   const handleClickExames = () => {
-    navigate(ROUTES.EXAMES_PENDENTES_VAZIO());
+    navigate(ROUTES.EXAMES_VAZIO());
   };
 
   const handleClickMedicamentos = () => {
