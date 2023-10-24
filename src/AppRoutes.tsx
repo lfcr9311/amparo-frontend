@@ -11,6 +11,9 @@ import HomeMedico from './pages/HomeMedico/HomeMedico';
 import VisualizacaoPerfilMedico from './pages/VisualizarPerfilMedico/VisualizarPerfilMedico';
 import MenuMedicamentos from './pages/MenuMedicamentos/MenuMedicamentos';
 import ListaMedicamentos from './pages/ListaMedicamentos/ListaMedicamentos';
+import ExamesPendentes from './pages/ExamesPendentes/ExamesPendentes';
+import Solicitacao from './components/Modal/Components/Solicitacao/SolicitacaoModal';
+import SolicitacaoEnviada from './components/Modal/Components/Solicitacao/SolicitacaoEnviada';
 import ListaDeInteracaoDoMedicamento from './pages/ListaDeInteracaoDoMedicamento/ListaDeInteracaoDomedicamento';
 import PageMedico from './components/FiltroBuscaMedico/PageMedico';
 
