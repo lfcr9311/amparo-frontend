@@ -10,7 +10,6 @@ interface Medico {
   id?: number;
   name?: string;
   profilePicture?: string;
-  especialidade?: string;
   crm?: string;
   uf?: string;
   email?: string;
@@ -22,7 +21,6 @@ const medicosMock: Medico[] = [
     id: 1,
     name: 'João da Silva',
     profilePicture: 'https://i.imgur.com/8Km9tLL.png',
-    especialidade: 'Cardiologista',
     crm: '123456',
     uf: 'SP',
     email: 'joao@email.com',
@@ -32,7 +30,6 @@ const medicosMock: Medico[] = [
     id: 2,
     name: 'Maria Fernanda',
     profilePicture: 'https://i.imgur.com/8Km9tLL.png',
-    especialidade: 'Dermatologista',
     crm: '123457',
     uf: 'RJ',
     email: 'maria@email.com',
@@ -42,7 +39,6 @@ const medicosMock: Medico[] = [
     id: 3,
     name: 'Carlos Roberto',
     profilePicture: 'https://i.imgur.com/8Km9tLL.png',
-    especialidade: 'Pediatra',
     crm: '123458',
     uf: 'MG',
     email: 'carlos@email.com',
@@ -52,7 +48,6 @@ const medicosMock: Medico[] = [
     id: 4,
     name: 'Lucia Helena',
     profilePicture: 'https://i.imgur.com/8Km9tLL.png',
-    especialidade: 'Endocrinologista',
     crm: '123459',
     uf: 'RS',
     email: 'lucia@email.com',
@@ -62,7 +57,6 @@ const medicosMock: Medico[] = [
     id: 5,
     name: 'Paulo Ricardo',
     profilePicture: 'https://i.imgur.com/8Km9tLL.png',
-    especialidade: 'Otorrinolaringologista',
     crm: '123460',
     uf: 'PE',
     email: 'paulo@email.com',
@@ -72,7 +66,6 @@ const medicosMock: Medico[] = [
     id: 6,
     name: 'Ana Clara',
     profilePicture: 'https://i.imgur.com/8Km9tLL.png',
-    especialidade: 'Ortopedista',
     crm: '123461',
     uf: 'BA',
     email: 'ana@email.com',
@@ -82,7 +75,6 @@ const medicosMock: Medico[] = [
     id: 7,
     name: 'Roberto Souza',
     profilePicture: 'https://i.imgur.com/8Km9tLL.png',
-    especialidade: 'Neurologista',
     crm: '123462',
     uf: 'SC',
     email: 'roberto@email.com',
@@ -92,7 +84,6 @@ const medicosMock: Medico[] = [
     id: 8,
     name: 'Juliana Menezes',
     profilePicture: 'https://i.imgur.com/8Km9tLL.png',
-    especialidade: 'Ginecologista',
     crm: '123463',
     uf: 'CE',
     email: 'juliana@email.com',

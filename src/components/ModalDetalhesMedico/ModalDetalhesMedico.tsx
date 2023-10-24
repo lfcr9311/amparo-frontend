@@ -32,7 +32,6 @@ const ModalDetalhesMedico = ({
         />
       </div>
       <h2>{medico?.name}</h2>
-      <p className="specialty">{medico?.especialidade}</p>
       <p className="crm">
         <span
           style={{
