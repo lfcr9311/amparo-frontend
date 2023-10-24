@@ -1,3 +1,5 @@
+import DefaultProfilePicture from '../../assets/DefaultProfilePicture.svg';
+
 interface Medico {
   id?: number;
   name?: string;
@@ -26,7 +28,7 @@ const ModalDetalhesMedico = ({
     <div className="modal-content-container">
       <div className="avatar-container">
         <img
-          src={medico?.profilePicture}
+          src={medico?.profilePicture || DefaultProfilePicture}
           alt="Doctor Avatar"
           className="avatar-image"
         />

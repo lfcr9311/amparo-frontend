@@ -2,6 +2,8 @@ import './CardMedico.css';
 import RightArrow from '../../assets/CardRemedioIcon.svg';
 import Modal from '../Modal/Modal';
 
+import DefaultProfilePicture from '../../assets/DefaultProfilePicture.svg';
+
 interface CardMedicoProps {
   id?: string;
   name?: string;
@@ -11,15 +13,18 @@ interface CardMedicoProps {
 
 export default function CardMedico({
   id,
-  name = 'Nome do Médico',
-  profilePicture = '',
+  name,
+  profilePicture,
   onClick,
 }: CardMedicoProps) {
   return (
     <>
       <button className="cardStyle" onClick={onClick}>
-        <img src={profilePicture || ''} className="avatarStyle" />
-        <span className="cardValueTextStyle">Dr. {name}</span>
+        <img
+          src={profilePicture || DefaultProfilePicture}
+          className="avatarStyle"
+        />
+        <span className="cardValueTextStyle">{name}</span>
 
         <img src={RightArrow} alt="Right Arrow" className="rightArrowStyle" />
       </button>

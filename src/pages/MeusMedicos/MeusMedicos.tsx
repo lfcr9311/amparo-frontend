@@ -20,7 +20,7 @@ const medicosMock: Medico[] = [
   {
     id: 1,
     name: 'João da Silva',
-    profilePicture: 'https://i.imgur.com/8Km9tLL.png',
+    profilePicture: '',
     crm: '123456',
     uf: 'SP',
     email: 'joao@email.com',
@@ -29,7 +29,7 @@ const medicosMock: Medico[] = [
   {
     id: 2,
     name: 'Maria Fernanda',
-    profilePicture: 'https://i.imgur.com/8Km9tLL.png',
+    profilePicture: '',
     crm: '123457',
     uf: 'RJ',
     email: 'maria@email.com',
@@ -38,7 +38,7 @@ const medicosMock: Medico[] = [
   {
     id: 3,
     name: 'Carlos Roberto',
-    profilePicture: 'https://i.imgur.com/8Km9tLL.png',
+    profilePicture: '',
     crm: '123458',
     uf: 'MG',
     email: 'carlos@email.com',
@@ -47,7 +47,7 @@ const medicosMock: Medico[] = [
   {
     id: 4,
     name: 'Lucia Helena',
-    profilePicture: 'https://i.imgur.com/8Km9tLL.png',
+    profilePicture: '',
     crm: '123459',
     uf: 'RS',
     email: 'lucia@email.com',
@@ -56,7 +56,7 @@ const medicosMock: Medico[] = [
   {
     id: 5,
     name: 'Paulo Ricardo',
-    profilePicture: 'https://i.imgur.com/8Km9tLL.png',
+    profilePicture: '',
     crm: '123460',
     uf: 'PE',
     email: 'paulo@email.com',
@@ -65,7 +65,7 @@ const medicosMock: Medico[] = [
   {
     id: 6,
     name: 'Ana Clara',
-    profilePicture: 'https://i.imgur.com/8Km9tLL.png',
+    profilePicture: '',
     crm: '123461',
     uf: 'BA',
     email: 'ana@email.com',
@@ -74,7 +74,7 @@ const medicosMock: Medico[] = [
   {
     id: 7,
     name: 'Roberto Souza',
-    profilePicture: 'https://i.imgur.com/8Km9tLL.png',
+    profilePicture: '',
     crm: '123462',
     uf: 'SC',
     email: 'roberto@email.com',
@@ -83,7 +83,7 @@ const medicosMock: Medico[] = [
   {
     id: 8,
     name: 'Juliana Menezes',
-    profilePicture: 'https://i.imgur.com/8Km9tLL.png',
+    profilePicture: '',
     crm: '123463',
     uf: 'CE',
     email: 'juliana@email.com',
@@ -95,6 +95,7 @@ const MeusMedicos: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [medicos, setMedicos] = useState<Medico[]>([]);
   const [medico, setMedico] = useState<Medico>();
+  const [searchText, setSearchText] = useState('');
 
   useEffect(() => {
     // TODO: Buscar médicos do usuário logado
@@ -106,12 +107,25 @@ const MeusMedicos: React.FC = () => {
     setMedico(medico);
   }
 
+  useEffect(() => {
+    const filteredMedicos = medicosMock.filter((medico) =>
+      medico.name?.toLowerCase().includes(searchText.toLowerCase())
+    );
+
+    setMedicos(filteredMedicos);
+  }, [searchText]);
+
   return (
     <>
       <HeaderHome title="Meus Médicos" type="headerPage" />
       <div className="search-container">
         {/* TODO: temporário, componente de busca está em desenvolvimento */}
-        <input type="text" placeholder="Buscar..." />
+        <input
+          type="text"
+          placeholder="Buscar..."
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+        />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="36"
