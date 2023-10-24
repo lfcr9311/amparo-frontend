@@ -19,12 +19,12 @@ export default function Modal({
     return (
       <div className="background-container">
         <div className="modal-container">
-          {/* <div className="header-modal-container">
+          <div className="header-modal-container">
             <p className="title-modal">{title}</p>
             <button className="button-close" onClick={isClose}>
               <img src={Close} />
             </button>
-          </div> */}
+          </div>
           <div className="body-modal-container">{children}</div>
         </div>
       </div>
