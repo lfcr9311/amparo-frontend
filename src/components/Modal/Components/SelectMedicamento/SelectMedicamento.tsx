@@ -1,4 +1,5 @@
 import './SelectMedicamento.css';
+import ArrowForwardIosRoundedIcon from '@mui/icons-material/ArrowForwardIosRounded';
 
 interface SelectMedicamentoProps {
   onChange: (nomeDoRemedio: string) => void;
@@ -7,7 +8,6 @@ interface SelectMedicamentoProps {
 }
 
 export default function SelectMedicamento({onChange, value, medicationList} : SelectMedicamentoProps) {
-
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const nomeDoRemedio = e.target.value;
     onChange(nomeDoRemedio);
@@ -22,25 +22,23 @@ export default function SelectMedicamento({onChange, value, medicationList} : Se
   const list = (medicationList == null || medicationList == undefined) ? exemploList : medicationList;
 
   return (
-    <>
-      <select
-        className='caixa-de-selecao'
-        onChange={handleChange}
-        value={value}
+    <div className='select-container'>
+        <select
+          className='caixa-de-selecao'
+          onChange={handleChange}
+          value={value}
         >
-        <option className='opcao' value='' disabled selected>
-          Selecione seu medicamento...
-        </option>
-        {list.map((remedios) => (
-          <option 
-          className='opcao-medication'
-          key={remedios}
-          value={remedios}
-          >
-            {remedios}
-          </option>
-        ))}
-      </select>
-    </>
+          <option value="" disabled selected>Selecione o medicamento...</option>
+          {list.map((remedios) => (
+            <option
+              key={remedios}
+              value={remedios}
+            >
+              {remedios}
+            </option>
+          ))}
+        </select>
+        <ArrowForwardIosRoundedIcon className='arrow-icon' />
+    </div>
   )
 }
