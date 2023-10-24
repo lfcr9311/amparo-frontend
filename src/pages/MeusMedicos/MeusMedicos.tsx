@@ -5,6 +5,7 @@ import Footer from '../../components/Footer/Footer';
 import CardMedico from '../../components/CardMedico/CardMedico';
 import Modal from '../../components/Modal/Modal';
 import ModalDetalhesMedico from '../../components/ModalDetalhesMedico/ModalDetalhesMedico';
+import Solicitacao from '../../components/Modal/Components/Solicitacao/SolicitacaoModal';
 
 interface Medico {
   id?: number;
@@ -92,7 +93,8 @@ const medicosMock: Medico[] = [
 ];
 
 const MeusMedicos: React.FC = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalDetalhesOpen, setisModalDetalhesOpen] = useState(false);
+  const [isModalSolicitacaoOpen, setisModalSolicitacaoOpen] = useState(false);
   const [medicos, setMedicos] = useState<Medico[]>([]);
   const [medico, setMedico] = useState<Medico>();
   const [searchText, setSearchText] = useState('');
@@ -103,8 +105,12 @@ const MeusMedicos: React.FC = () => {
   }, []);
 
   function handleCardClick(medico: Medico) {
-    setIsModalOpen(!isModalOpen);
+    setisModalDetalhesOpen(!isModalDetalhesOpen);
     setMedico(medico);
+  }
+
+  function handleAddButtonClick() {
+    setisModalSolicitacaoOpen(!isModalSolicitacaoOpen);
   }
 
   useEffect(() => {
@@ -132,6 +138,7 @@ const MeusMedicos: React.FC = () => {
           height="36"
           viewBox="0 0 36 36"
           fill="none"
+          onClick={() => handleAddButtonClick()}
         >
           <path
             d="M18 0C8.064 0 0 8.064 0 18C0 27.936 8.064 36 18 36C27.936 36 36 27.936 36 18C36 8.064 27.936 0 18 0ZM27 19.8H19.8V27H16.2V19.8H9V16.2H16.2V9H19.8V16.2H27V19.8Z"
@@ -153,17 +160,21 @@ const MeusMedicos: React.FC = () => {
       </div>
 
       <Modal
-        isOpen={isModalOpen}
+        isOpen={isModalDetalhesOpen}
         title=""
-        isClose={() => setIsModalOpen(!isModalOpen)}
+        isClose={() => setisModalDetalhesOpen(!isModalDetalhesOpen)}
         children={
           <ModalDetalhesMedico
             medico={medico}
-            isModalOpen={isModalOpen}
-            setIsModalOpen={setIsModalOpen}
+            isModalOpen={isModalDetalhesOpen}
+            setIsModalOpen={setisModalDetalhesOpen}
             setMedico={setMedico}
           />
         }
+      />
+      <Solicitacao
+        isModalOpen={isModalSolicitacaoOpen}
+        setIsModalOpen={setisModalSolicitacaoOpen}
       />
 
       <Footer user="patient" />
