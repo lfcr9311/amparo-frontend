@@ -23,7 +23,7 @@ export default function AppRoutes() {
       <div className="App">
         <Routes>
           <Route path={ROUTES.HOME_MEDICO()} element={<HomeMedico />} />
-          <Route path={ROUTES.HOME_PACIENTE()} element={<SolicitacaoEnviada />} />
+          <Route path={ROUTES.HOME_PACIENTE()} element={<HomePaciente />} />
           <Route
             path={ROUTES.CADASTRO_PACIENTE()}
             element={<CadastroPaciente />}
