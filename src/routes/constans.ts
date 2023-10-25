@@ -18,4 +18,8 @@ export const ROUTES = {
   FILTRO_BUSCA_MEDICAMENTOS:() => 'lista/filtro',
   LISTADEINTERACAODOMEDICAMENTO:() => 'medicamentos/interacao',
   FILTROBUSCAMEDICO:() => 'lista/medico',
+  MODALPACIENTE:() => 'modal/paciente',
+  NOMEPERFIL:() => 'modal/nome',
+  DADOSPERFIL:() => 'modal/dados',
+  MODALBOTAO:() => 'modal/botao',
 };

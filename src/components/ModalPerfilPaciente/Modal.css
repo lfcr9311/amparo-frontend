@@ -1,43 +1,51 @@
+/* Modal.css */
+
 .background-container {
   position: fixed;
   top: 0;
   bottom: 0;
   right: 0;
   left: 0;
-  background-color: rgb(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .modal-container {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 339px;
-  height: auto;
+  width: 339px; /* Largura fixa */
+  height: 445.25px; /* Altura definida */
+  top: 400px; /* Posicionamento superior */
+  padding: 16px 0 5px 0; /* Preenchimento superior e inferior */
   border-radius: 12px;
   background-color: #fbf8f8;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .header-modal-container {
+  align-items: center;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  flex-direction: row;
-  height: 60px;
-  margin-top: 4%;
-  margin-left: 15%;
-  margin-right: 5%;
-  font-family: 'Poppins';
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
+  padding: 60px;
+  margin-left: 65px;
+  white-space: nowrap;
 }
 
 .button-close {
   border: none;
-  background-color: #fbf8f8;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.button-close img {
+  width: 32px;
+  height: 32px;
+}
+
+.body-modal-container {
+  padding: 20px;
+  text-align: center;
 }
 
 .title-modal {
@@ -48,3 +56,5 @@
   font-weight: 500;
   line-height: normal;
 }
+
+/* Add any other styles as needed */

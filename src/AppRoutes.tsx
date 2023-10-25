@@ -21,11 +21,29 @@ import SolicitacaoEnviada from './components/Modal/Components/Solicitacao/Solici
 import ListaDeInteracaoDoMedicamento from './pages/ListaDeInteracaoDoMedicamento/ListaDeInteracaoDomedicamento';
 import PageMedico from './components/FiltroBuscaMedico/PageMedico';
 
+import ModalPerfilPaciente from './components/ModalPerfilPaciente/ModalPerfilPaciente';
+import {Nome} from './components/ModalPerfilPaciente/ComponentsModalPaciente/NomePerfil/NomePerfil.tsx';
+import {Informacoes} from './components/ModalPerfilPaciente/ComponentsModalPaciente/DadosPessoais/DadosPessoais.tsx';
+import {Botoes} from './components/ModalPerfilPaciente/ComponentsModalPaciente/ButtonsDoModal/ButtonsDoModal.tsx';
+
+
+
+
+
 export default function AppRoutes() {
   return (
     <Router>
       <div className="App">
         <Routes>
+
+
+          <Route path={ROUTES.MODALPACIENTE()} element={<ModalPerfilPaciente isOpen={true} isClose={undefined} name={'José da aaaaaaaaaaSilva'} cpf={'123123'} email={'123123'} nSus={'123213'}
+            onclickExames={() => {console.log("Click");}} onclickMedicamentos={() => {console.log("Click");}} />} />
+          <Route path={ROUTES.NOMEPERFIL()} element={<Nome name={'Jao'} />} />
+          <Route path={ROUTES.DADOSPERFIL()} element={<Informacoes cpf={'1234'} email={'lucas@lucaslucas'} nSus={'987654321'} />} />
+
+          <Route path={ROUTES.MODALBOTAO()} element={<Botoes onclickExames={() => {console.log("Click");}} onclickMedicamentos={() => {console.log("Click");}} />} />
+
 
           <Route path={ROUTES.HOME_MEDICO()} element={<HomeMedico />} />
           <Route path={ROUTES.LISTADEINTERACAODOMEDICAMENTO()} element={<ListaDeInteracaoDoMedicamento />} />
