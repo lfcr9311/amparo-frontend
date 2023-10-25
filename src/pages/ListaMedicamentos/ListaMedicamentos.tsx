@@ -24,10 +24,24 @@ const fadeInOut = {
   visible: { opacity: 1, y: 0 },
 };
 
+//dados mocados
 const mockedMedicationsList = [
+  { label: 'Tenofovir' },
+  { label: 'Emtricitabina' },
+  { label: 'Efavirenz' },
+  { label: 'Lamivudina' },
+  { label: 'Zidovudina' },
+  { label: 'Abacavir' },
+  { label: 'Darunavir' },
+  { label: 'Ritonavir' },
+  { label: 'Dolutegravir' },
+  { label: 'Raltegravir' },
   { label: 'Paracetamol' },
   { label: 'Ibuprofeno' },
   { label: 'Amoxicilina' },
+  { label: 'Aspirina' },
+  { label: 'Atorvastatina' },
+  { label: 'Metformina' },
   // ...outros medicamentos
 ];
 
@@ -55,7 +69,7 @@ export default function ListaMedicamentos() {
   ]);
 
   const resetModal = () => {
-    setMedicamentoNome(null);  // modificação aqui
+    setMedicamentoNome(null);
     setDosagem('');
     setFrequencia('');
     setDataFinal('');
@@ -110,7 +124,7 @@ export default function ListaMedicamentos() {
     }
 
     const novoMedicamento = {
-      label: medicamentoNome.label,  // modificação aqui
+      label: medicamentoNome.label,
       dosagem: dosagem,
       frequencia: frequencia,
       dataFinal: usoContinuo ? "Uso contínuo" : dataFinal
@@ -126,7 +140,7 @@ export default function ListaMedicamentos() {
     setDataFinal('');
     setUsoContinuo(false);
 
-    //imprime a lista de medicamentos e suas informaçoes
+    //imprime a lista completa de medicamentos e suas informaçoes
     setTimeout(() => {
       console.log("Lista de Medicamentos:");
       [...medicamentos, novoMedicamento].forEach(medicamento => {
