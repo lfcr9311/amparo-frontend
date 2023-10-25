@@ -8,7 +8,7 @@ export const isLoggedIn = async () => {
     if (token) {
       try {
         const result = await isLogged();
-        if (result.status === 201 || result.status === 200) {
+        if (result.status === 204) {
           console.log("User is authenticated");
           return true;
         }

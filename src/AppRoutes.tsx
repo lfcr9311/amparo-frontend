@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate, useNavigate } from 'react-router-dom';
 import './routes/AppRoutes.css';
 import { ROUTES } from './routes/constans';
 import { Login } from './pages/Login/Login';
@@ -19,15 +19,14 @@ import React from 'react';
 export default function AppRoutes() {
   
   function PrivateRoute({ children }: { children: React.ReactNode }) {
-    console.log("i'm here");
     isLoggedIn().then((isAuthenticated) => {
       console.log(isAuthenticated);
-      if (isAuthenticated == null) {
-        // If the user is not authenticated, redirect them to the login page
-        return <Route path={ROUTES.LOGIN()} element={<Login />} />;
+      if (!isAuthenticated) {
+        return window.location.href = ROUTES.LOGIN();
+        // return <Navigate to={ROUTES.LOGIN()}/>
       }
     });
-
+  
     return children;
   }
 
@@ -36,7 +35,12 @@ export default function AppRoutes() {
     <Router>
       <div className="App">
         <Routes>
-          <Route path={ROUTES.HOME_MEDICO()} element={<HomeMedico />} />
+          <Route path={ROUTES.HOME_MEDICO()} 
+          element={ <PrivateRoute>
+                    <HomeMedico />
+                    </PrivateRoute>
+          } 
+            />
 
           <Route path={ROUTES.HOME_PACIENTE()} 
           element={   <PrivateRoute>
@@ -51,20 +55,36 @@ export default function AppRoutes() {
           <Route path={ROUTES.IDENTIFICACAO()} element={<Identificacao />} />
           <Route
             path={ROUTES.EXAMES_PENDENTES_VAZIO()}
-            element={<ExamesPendentes/>}
+            element={
+            <PrivateRoute>
+              <ExamesPendentes/>
+            </PrivateRoute>
+          }
           />
           <Route
             path={ROUTES.EXAMES_REALIZADOS_VAZIO()}
-            element={<ExamesRealizadosVazio />}
+            element={
+              <PrivateRoute>
+              <ExamesRealizadosVazio />
+              </PrivateRoute>
+          }
           />
           <Route path={ROUTES.LOGIN()} element={<Login />} />
           <Route
             path={ ROUTES.PERFIL_PACIENTE() }
-            element={<VisualizacaoPerfilPaciente />}
+            element={
+              <PrivateRoute>
+              <VisualizacaoPerfilPaciente />
+              </PrivateRoute>
+          }
           />       
           <Route
             path={ROUTES.PERFIL_MEDICO()}
-            element={<VisualizacaoPerfilMedico />}
+            element={
+              <PrivateRoute>
+              <VisualizacaoPerfilMedico />
+              </PrivateRoute>
+          }
           />
           <Route
             path={ROUTES.MENU_MEDICAMENTOS()}
@@ -72,10 +92,19 @@ export default function AppRoutes() {
           />
           <Route
             path={ROUTES.LISTA_MEDICAMENTOS()}
-            element={<ListaMedicamentos />}
+            element={
+              <PrivateRoute>
+              <ListaMedicamentos />
+              </PrivateRoute>
+          }
           />
 
-          <Route path={ROUTES.LISTA_EXAMES()} element={<ExamesPendentes />} />
+          <Route path={ROUTES.LISTA_EXAMES()} 
+          element={
+            <PrivateRoute>
+              <ExamesPendentes />
+            </PrivateRoute>
+          } />
         </Routes>
       </div>
     </Router>
