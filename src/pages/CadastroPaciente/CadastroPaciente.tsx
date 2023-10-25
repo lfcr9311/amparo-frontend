@@ -17,40 +17,62 @@ export const CadastroPaciente = () => {
   const [validPassword, setValidPassaword] = useState<boolean>(true);
   const [cpfValue, setCpfValue] = useState<string>('');
   const [isValidCpf, setIsValidCpf] = useState<boolean>(true);
-  const [cpfTouched, setCpfTouched] = useState<boolean>(false);
-  const [pswTouched, setPswTouched] = useState<boolean>(false);
+  const [isValidEmail, setIsValidEmail] = useState<boolean>(true);
+  const [isValidName, setIsValidName] = useState<boolean>(true);
+  const [isValidDate, setIsValidDate] = useState<boolean>(true);
+  const [isValidPsw, setIsValidPsw] = useState<boolean>(true);;
   const [data, setData] = useState<String>();
   const [dataStatus, setDataStatus] = useState<Number>();
   const [erro, setErro] = useState<string>('');
   const navigate = useNavigate();
 
   const buttonCLick = () => {
+
     if (password === confirmPassword) {
       setValidPassaword(true);
     } else {
       setValidPassaword(false);
     }
-
     if (cpf.isValid(cpfValue)) {
       setIsValidCpf(true);
     } else {
       setIsValidCpf(false);
     }
-    console.log('psw touched ' + pswTouched);
-    console.log('cpf touched ' + cpfTouched);
-    console.log('cpf correct ' + isValidCpf);
-    console.log('psw correct ' + validPassword);
-
-    if (validPassword && pswTouched && cpf.isValid(cpfValue) && (dataStatus == 201 || dataStatus == 200)) {
-      fetchData(email, name, password, "111111111", cpfValue, "123456789123456", "23/10/2000");
+    if (name == ''){
+      setIsValidName(false);
+    } else {
+      setIsValidName(true);
+    }
+    if (email == '') {
+      setIsValidEmail(false);
+    } else {
+      setIsValidEmail(true);
+    }
+    if (date == ''){
+      setIsValidDate(false);
+    } else {
+      setIsValidDate(true);
+    }
+    if (password == ''){
+      setIsValidPsw(false);
+    } else {
+      setIsValidPsw(true);
+    }
+    
+    if (isValidName && isValidEmail && validPassword && cpf.isValid(cpfValue) && (dataStatus == 201 || dataStatus == 200)) {
+      fetchData(email, name, password, "111111111", cpfValue, "123456789123456", date);
       return;
     }
   };
 
+    const validateEmail = (input: string) => {
+      const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
+      setIsValidEmail(emailRegex.test(input));
+    };
+
   async function fetchData(email: String, name: String, password: String, cellPhone: String, cpf: String, numSus: String, birthDate: String) {
 
-    await  await registerUser(email, name, password, cellPhone, "PATIENT", cpf, numSus, birthDate).then((result) => {
-
+    await registerUser(email, name, password, cellPhone, "PATIENT", cpf, numSus, birthDate).then((result) => {
       setData(result.data);
       setDataStatus(result.status);
       console.log(result.data);
@@ -68,40 +90,66 @@ export const CadastroPaciente = () => {
         //componente de erro abaixo:
         console.error('Erro 400: O servidor encontrou um erro interno.');
         console.error(erro);
-        setErro('Cpf ja existe.');
       }
        else {
         console.error('Erro inesperado:', erro);
       }
-        
     })
   }
+
+  const validateDate = (input: string) => {
+
+    const parts = input.split('-');
+
+    if (parts.length === 3) { 
+      const year = parts[0];
+      const month = parts[1];
+      const day = parts[2];
+      const formattedDate = `${day}/${month}/${year}`;
+
+
+      const dateRegex = /^(\d{2})\/(\d{2})\/(\d{4})$/;
+      const match = formattedDate.match(dateRegex);
+
+      if (match) {
+        setIsValidDate(true);
+      } else {
+        setIsValidDate(false);
+      }
+    } else {
+      setIsValidDate(false);
+    }
+
+  };
 
   const handleName = (newName: string) => {
     setName(newName);
   };
 
   const handleEmail = (newEmail: string) => {
-    setEmail(newEmail);
+    const inputValue = newEmail;
+    setEmail(inputValue);
+    validateEmail(inputValue);
   };
 
   const handleDate = (newDate: string) => {
-    setDate(newDate);
+    const inputValue = newDate;
+    validateDate(inputValue);
+    setDate(inputValue); 
   };
 
   const handleCpf = (newCpf: string) => {
-    setCpfTouched(true);
     setCpfValue(newCpf);
   };
 
   const handlePassword = (newPassoword: string) => {
-    setPswTouched(true);
     setPassword(newPassoword);
   };
 
   const handleConfirmPassword = (newConfirmPassword: string) => {
     setConfirmPassword(newConfirmPassword);
   };
+
   const handleClickFazerLogin = () => {
     navigate(ROUTES.LOGIN());
   };
@@ -116,13 +164,17 @@ export const CadastroPaciente = () => {
             label="Nome Completo"
             value={name}
             type="name"
+            error={!isValidName}
             onChange={handleName}
+            helperText={!isValidName ? 'Insira um nome' : ''}
           />
           <Textfield
             label="Email"
             type="email"
             onChange={handleEmail}
             value={email}
+            error={!isValidEmail}
+            helperText= {!isValidEmail ? 'Email inválido' : ''}
           />
           <Textfield
             label="CPF"
@@ -137,19 +189,23 @@ export const CadastroPaciente = () => {
             type="date"
             onChange={handleDate}
             value={date}
+            error={!isValidDate}
+            helperText={!isValidDate ? 'Data inválida' : ''}
           />
           <Textfield
             label="Senha"
             type="password"
             onChange={handlePassword}
+            error={!isValidPsw}
             value={password}
+            helperText={!isValidPsw ? 'Insira uma senha' : ''}
           />
           <Textfield
             label="Confirmar Senha"
             type="password"
             onChange={handleConfirmPassword}
             error={!validPassword}
-            helperText={!validPassword ? 'Senha não correspondentes' : ''}
+            helperText={ !isValidPsw ? 'Insira uma senha' : !validPassword ? 'Senha não correspondentes' : ''}
             value={confirmPassword}
           />
           <Button

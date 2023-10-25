@@ -17,24 +17,65 @@ export const CadastroMedico = () => {
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [validPassword, setValidPassaword] = useState<boolean>(true);
-  const [pswTouched, setpswTouched] = useState<boolean>(false);
   const [data, setData] = useState<String>();
   const [dataStatus, setDataStatus] = useState<Number>();
   const [erro, setErro] = useState<string>('');
+  const [isValidCrm, setIsValidCrm] = useState<boolean>(true);
+  const [isValidEmail, setIsValidEmail] = useState<boolean>(true);
+  const [isValidName, setIsValidName] = useState<boolean>(true);
+  const [isValidCell, setIsValidCell] = useState<boolean>(true);
+  const [isValidPsw, setIsValidPsw] = useState<boolean>(true);;
   const navigate = useNavigate();
 
   const buttonCLick = () => {
-    fetchData(email, name, password, telefone, "DOCTOR", crm, state);
     
-    if (password === confirmPassword) {
+    if (password == confirmPassword) {
       setValidPassaword(true);
     } else {
       setValidPassaword(false);
     }
-    if (pswTouched && (dataStatus == 201 || dataStatus == 200)) {
+    if (crm == '') {
+      setIsValidCrm(false);
+    } else {
+      setIsValidCrm(true);
+    }
+    if (name == ''){
+      setIsValidName(false);
+    } else {
+      setIsValidName(true);
+    }
+    if (email == '') {
+      setIsValidEmail(false);
+    } else {
+      setIsValidEmail(true);
+    }
+    if (telefone == ''){
+      setIsValidCell(false);
+    } else {
+      setIsValidCell(true);
+    }
+    if (password == ''){
+      setIsValidPsw(false);
+    } else {
+      setIsValidPsw(true);
+    }
+
+    console.log(isValidName)
+    console.log(isValidEmail)
+    console.log(validPassword)
+    console.log(isValidCrm)
+    console.log(dataStatus)
+
+    if (isValidName && isValidEmail && validPassword && isValidCrm && (dataStatus == 201 || dataStatus == 200)) {
+      fetchData(email, name, password, telefone, "DOCTOR", crm, state);
       navigate(ROUTES.HOME_MEDICO());
       return;
     }
+  };
+
+  const validateEmail = (input: string) => {
+    const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
+    setIsValidEmail(emailRegex.test(input));
   };
 
   async function fetchData(email: String, name: String, password: String, cellPhone: String, userType: String, crm: String, uf: String) {
@@ -45,7 +86,6 @@ export const CadastroMedico = () => {
       console.log("Status " + result.status);
       if (result.status == 201 || result.status == 200) {
         console.log('cadastro realizado com sucesso');
-        // navigate(ROUTES.CADASTRO_MEDICO());
       }
     })
     .catch((erro) => {
@@ -73,12 +113,23 @@ export const CadastroMedico = () => {
     setState(targetValue);
   };
 
+  const validateCrm = (input: string) => {
+    if (input.length === 6){
+      setIsValidCrm(true);
+    } else {
+      setIsValidCrm(false);
+    }
+  }
+
   const handleCrm = (newCrm: string) => {
-    setCrm(newCrm);
+      validateCrm(newCrm);
+      setCrm(newCrm);
   };
 
   const handleEmail = (newEmail: string) => {
-    setEmail(newEmail);
+    const inputValue = newEmail;
+    setEmail(inputValue);
+    validateEmail(inputValue);
   };
 
   const handleTelefone = (newTelefone: string) => {
@@ -90,9 +141,9 @@ export const CadastroMedico = () => {
   };
 
   const handleConfirmPassword = (newConfirmPassword: string) => {
-    setpswTouched(true);
     setConfirmPassword(newConfirmPassword);
   };
+
   const handleClickFazerLogin = () => {
     navigate(ROUTES.LOGIN());
   };
@@ -107,7 +158,9 @@ export const CadastroMedico = () => {
             label="Nome Completo"
             value={name}
             type="name"
+            error={!isValidName}
             onChange={handleName}
+            helperText={!isValidName ? 'Insira um nome' : ''}
           />
           <div className="crm-state-container">
             <SelectComponent label="UF" value={state} onChange={handleState} />
@@ -115,6 +168,8 @@ export const CadastroMedico = () => {
               label="CRM"
               type="text"
               value={crm}
+              error = {!isValidCrm}
+              helperText={!isValidCrm ? 'Insira um CRM correto' : ''}
               onChange={handleCrm}
               width="233px"
             />
@@ -123,26 +178,32 @@ export const CadastroMedico = () => {
             label="Email"
             type="email"
             onChange={handleEmail}
+            error={!isValidEmail}
+            helperText= {!isValidEmail ? 'Email inválido' : ''}
             value={email}
           />
           <Textfield
             label="Telefone"
             type="text"
             onChange={handleTelefone}
+            error={!isValidCell}
+            helperText= {!isValidCell ? 'Telefone inválido' : ''}
             value={telefone}
           />
           <Textfield
             label="Senha"
             type="password"
             onChange={handlePassword}
+            error={!isValidPsw}
             value={password}
+            helperText={!isValidPsw ? 'Insira uma senha' : ''}
           />
           <Textfield
             label="Confirmar Senha"
             type="password"
             onChange={handleConfirmPassword}
             error={!validPassword}
-            helperText={!validPassword ? 'Senha não correspondentes' : ''}
+            helperText={ !isValidPsw ? 'Insira uma senha' : !validPassword ? 'Senha não correspondentes' : ''}
             value={confirmPassword}
           />
           <Button
