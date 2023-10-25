@@ -1,5 +1,4 @@
 import React from 'react';
-import IconProfile from '../../../../assets/IconProfile.svg';
 
 import './NomePerfil.css';
 
@@ -17,7 +16,7 @@ const nameStyle = {
 export function Nome({ name }: NomeProps) {
   return (
     <div className="profile-box">
-      <img src={IconProfile} alt="Profile" className="profile-image" />
+      
       <p className="name" style={nameStyle}>{name}</p>
     </div>
   );

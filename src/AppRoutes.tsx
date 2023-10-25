@@ -37,7 +37,7 @@ export default function AppRoutes() {
         <Routes>
 
 
-          <Route path={ROUTES.MODALPACIENTE()} element={<ModalPerfilPaciente isOpen={true} isClose={undefined} name={'José da aaaaaaaaaaSilva'} cpf={'123123'} email={'123123'} nSus={'123213'}
+          <Route path={ROUTES.MODALPACIENTE()} element={<ModalPerfilPaciente isOpen={true} isClose={undefined} name={'José da '} cpf={'055.800.100-88'} email={'lucas@teste.com'} nSus={'584713611554'}
             onclickExames={() => {console.log("Click");}} onclickMedicamentos={() => {console.log("Click");}} />} />
           <Route path={ROUTES.NOMEPERFIL()} element={<Nome name={'Jao'} />} />
           <Route path={ROUTES.DADOSPERFIL()} element={<Informacoes cpf={'1234'} email={'lucas@lucaslucas'} nSus={'987654321'} />} />
