@@ -1,0 +1,26 @@
+.componente-time {
+    width: 300px;
+}
+
+.horario {
+    font-family: Poppins;
+    color: #696969;
+    max-width: 94px;
+    min-width: none;
+    font-size: 14px;
+    text-wrap: pretty;
+}
+
+.hora-minuto{
+    height: 10px;
+    width: 70px;
+    border: none;
+    border-radius: 3px;
+    outline: none;
+    background-color: #eaeaea;
+    padding-left: 12px;
+    font-family: Poppins;
+    font-size: 14px;
+    font-weight: 500;
+    color: #696969;
+}
