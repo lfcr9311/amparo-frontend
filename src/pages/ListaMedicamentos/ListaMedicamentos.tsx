@@ -9,8 +9,7 @@ import TextfieldModal from '../../components/Modal/Components/TextfieldModal';
 import SelectFrequencia from '../../components/Modal/Components/SelectFrequencia/SelectFrequencia';
 import DateModal from '../../components/Modal/Components/DateModal/DateModal';
 import { motion } from "framer-motion";
-import Autocomplete from '@mui/material/Autocomplete';
-import TextField from '@mui/material/TextField';
+import MedicinenameModal from '../../components/Modal/Components/medicinenameModal/medicinenameModal';
 
 
 interface Medicamento {
@@ -182,21 +181,15 @@ export default function ListaMedicamentos() {
       >
         <form>
           <div className='content-texto-modal'>
-            <Autocomplete
-              value={medicamentoNome}
-              onChange={(event, newValue) => setMedicamentoNome(newValue)}  // newValue será { label: string } | null
-              options={mockedMedicationsList}
-              getOptionLabel={(option) => option.label}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  error={erroMedicamentoNome}
-                  helperText={mensagemErroMedicamentoNome}
-                  label="Nome do Medicamento"
-                  variant="outlined"
-                />
-              )}
+            <MedicinenameModal
+              label="Nome do Medicamento"
+              options={mockedMedicationsList.map(medicamento => medicamento.label)}
+              value={medicamentoNome?.label || null}
+              onChange={(newValue) => setMedicamentoNome(newValue ? { label: newValue } : null)}
+              error={erroMedicamentoNome}
+              helperText={mensagemErroMedicamentoNome}
             />
+
             <TextfieldModal
               label="Dosagem"
               value={dosagem}
