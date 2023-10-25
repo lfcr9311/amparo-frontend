@@ -19,6 +19,7 @@ import ExamesPendentes from './pages/ExamesPendentes/ExamesPendentes';
 import Solicitacao from './components/Modal/Components/Solicitacao/SolicitacaoModal';
 import SolicitacaoEnviada from './components/Modal/Components/Solicitacao/SolicitacaoEnviada';
 import ListaDeInteracaoDoMedicamento from './pages/ListaDeInteracaoDoMedicamento/ListaDeInteracaoDomedicamento';
+import MeusMedicos from './pages/MeusMedicos/MeusMedicos';
 import PageMedico from './components/FiltroBuscaMedico/PageMedico';
 
 export default function AppRoutes() {
@@ -26,9 +27,11 @@ export default function AppRoutes() {
     <Router>
       <div className="App">
         <Routes>
-
           <Route path={ROUTES.HOME_MEDICO()} element={<HomeMedico />} />
-          <Route path={ROUTES.LISTADEINTERACAODOMEDICAMENTO()} element={<ListaDeInteracaoDoMedicamento />} />
+          <Route
+            path={ROUTES.LISTADEINTERACAODOMEDICAMENTO()}
+            element={<ListaDeInteracaoDoMedicamento />}
+          />
           <Route path={ROUTES.FILTROBUSCAMEDICO()} element={<PageMedico />} />
           <Route path={ROUTES.HOME_PACIENTE()} element={<HomePaciente />} />
           <Route
@@ -47,6 +50,11 @@ export default function AppRoutes() {
             path={ROUTES.PERFIL_MEDICO()}
             element={<VisualizacaoPerfilMedico />}
           />
+          <Route
+            path={ROUTES.PERFIL_PACIENTE_MEUS_MEDICOS()}
+            element={<MeusMedicos />}
+          />
+
           <Route
             path={ROUTES.MENU_MEDICAMENTOS()}
             element={<MenuMedicamentos />}
