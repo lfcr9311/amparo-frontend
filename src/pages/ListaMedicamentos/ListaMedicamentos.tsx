@@ -157,6 +157,8 @@ export default function ListaMedicamentos() {
     setTimeout(() => setShowSuccessMessage(false), 3000);
   };
 
+
+
   return (
     <>
       <HeaderHome title="Medicamentos" type="headerPage" />
@@ -199,7 +201,7 @@ export default function ListaMedicamentos() {
               label="Nome do Medicamento"
               options={mockedMedicationsList.map(medicamento => medicamento.label)}
               value={medicamentoNome?.label || null}
-              onChange={(newValue) => setMedicamentoNome(newValue ? { label: newValue } : null)}
+              onChange={(newValue: string | null) => setMedicamentoNome(newValue ? { label: newValue } : null)}
               error={erroMedicamentoNome}
               helperText={mensagemErroMedicamentoNome}
             />

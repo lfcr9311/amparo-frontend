@@ -1,7 +1,7 @@
 import { Autocomplete, TextField } from "@mui/material";
 import { FC, useState } from "react";
 
-interface medicinenameModalProps {
+interface MedicinameModalProps {
     label: string;
     options: string[];
     value: string | null;
@@ -12,7 +12,7 @@ interface medicinenameModalProps {
     classname?: string;
 }
 
-const medicinenameModal: FC<medicinenameModalProps> = ({
+const MedicinenameModal: FC<MedicinameModalProps> = ({
     label,
     options,
     value,
@@ -24,22 +24,20 @@ const medicinenameModal: FC<medicinenameModalProps> = ({
 }) => {
     const [internalValue, setInternalValue] = useState(value);
 
-    const handleValue = (value: string | null) => {
-        onChange(value);
-        setInternalValue(value);
-    };
-
     return (
         <Autocomplete
+            freeSolo
             value={internalValue}
             options={options}
-            onChange={(_event, newValue) => handleValue(newValue)}
+            onInputChange={(_event, newValue) => {
+                setInternalValue(newValue);
+                onChange(newValue);
+            }}
             renderInput={(params) => (
                 <TextField
                     {...params}
                     className={classname}
                     label={label}
-                    value={internalValue}
                     error={error}
                     helperText={helperText}
                     size="small"
@@ -95,4 +93,4 @@ const medicinenameModal: FC<medicinenameModalProps> = ({
     );
 };
 
-export default medicinenameModal;
+export default MedicinenameModal;
