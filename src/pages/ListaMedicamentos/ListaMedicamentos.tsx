@@ -9,6 +9,9 @@ import TextfieldModal from '../../components/Modal/Components/TextfieldModal';
 import SelectFrequencia from '../../components/Modal/Components/SelectFrequencia/SelectFrequencia';
 import DateModal from '../../components/Modal/Components/DateModal/DateModal';
 import { motion } from "framer-motion";
+import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
+
 
 interface Medicamento {
   label: string;
@@ -22,10 +25,18 @@ const fadeInOut = {
   visible: { opacity: 1, y: 0 },
 };
 
+const mockedMedicationsList = [
+  { label: 'Paracetamol' },
+  { label: 'Ibuprofeno' },
+  { label: 'Amoxicilina' },
+  // ...outros medicamentos
+];
+
+
 export default function ListaMedicamentos() {
   const [usoContinuo, setUsoContinuo] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [medicamentoNome, setMedicamentoNome] = useState('');
+  const [medicamentoNome, setMedicamentoNome] = useState<{ label: string } | null>(null);
   const [dosagem, setDosagem] = useState('');
   const [frequencia, setFrequencia] = useState('');
   const [dataFinal, setDataFinal] = useState('');
@@ -45,7 +56,7 @@ export default function ListaMedicamentos() {
   ]);
 
   const resetModal = () => {
-    setMedicamentoNome('');
+    setMedicamentoNome(null);  // modificação aqui
     setDosagem('');
     setFrequencia('');
     setDataFinal('');
@@ -56,8 +67,9 @@ export default function ListaMedicamentos() {
     setMensagemErroData('');
   };
 
+
   useEffect(() => {
-    if (medicamentoNome.trim()) {
+    if (medicamentoNome && medicamentoNome.label.trim()) {
       setErroMedicamentoNome(false);
       setMensagemErroMedicamentoNome("");
     }
@@ -80,7 +92,7 @@ export default function ListaMedicamentos() {
 
   const handleAddMedicamento = () => {
 
-    if (!medicamentoNome.trim()) {
+    if (!medicamentoNome || !medicamentoNome.label.trim()) {
       setErroMedicamentoNome(true);
       setMensagemErroMedicamentoNome("Campo obrigatório");
       return;
@@ -99,7 +111,7 @@ export default function ListaMedicamentos() {
     }
 
     const novoMedicamento = {
-      label: medicamentoNome,
+      label: medicamentoNome.label,  // modificação aqui
       dosagem: dosagem,
       frequencia: frequencia,
       dataFinal: usoContinuo ? "Uso contínuo" : dataFinal
@@ -109,7 +121,7 @@ export default function ListaMedicamentos() {
 
     setIsModalOpen(false);
 
-    setMedicamentoNome('');
+    setMedicamentoNome(null);
     setDosagem('');
     setFrequencia('');
     setDataFinal('');
@@ -170,13 +182,20 @@ export default function ListaMedicamentos() {
       >
         <form>
           <div className='content-texto-modal'>
-            <TextfieldModal
-              label="Nome do Medicamento"
+            <Autocomplete
               value={medicamentoNome}
-              type="text"
-              onChange={(value) => setMedicamentoNome(value)}
-              error={erroMedicamentoNome}
-              helperText={mensagemErroMedicamentoNome}
+              onChange={(event, newValue) => setMedicamentoNome(newValue)}  // newValue será { label: string } | null
+              options={mockedMedicationsList}
+              getOptionLabel={(option) => option.label}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  error={erroMedicamentoNome}
+                  helperText={mensagemErroMedicamentoNome}
+                  label="Nome do Medicamento"
+                  variant="outlined"
+                />
+              )}
             />
             <TextfieldModal
               label="Dosagem"
