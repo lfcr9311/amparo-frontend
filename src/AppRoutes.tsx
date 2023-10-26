@@ -32,7 +32,8 @@ export default function AppRoutes() {
       if (!isAuthenticated) {
         return window.location.href = ROUTES.LOGIN();
       }
-      else if (localStorage.getItem('idUser')== null){
+      else if (localStorage.getItem('userId')== null){
+        
         fetchData()
       }
     });

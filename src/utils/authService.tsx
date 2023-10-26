@@ -22,15 +22,13 @@ export const isLoggedIn = async () => {
 export const setUserId = async () => {
    await getPatient().then((response) => {
     if(response.status == 200){
-      localStorage.setItem("idUser", response.data.id)
-      console.log("userId ", localStorage.getItem("idUser"));
+      localStorage.setItem("userId", response.data.id)
       
     }
   }).catch( async error =>{
     await getDoctor().then((response)=>{
       if(response.status == 200){
-          console.log("userId ", localStorage.getItem("idUser"));
-          localStorage.setItem("idUser", response.data.id)
+          localStorage.setItem("userId", response.data.id)
         }
       })
     console.error(error)

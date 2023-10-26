@@ -11,7 +11,7 @@ import ExamFilter from '../../components/ExamFilter/examFilter';
 import InputFile from '../../components/InputFile/InputFile';
 import { format } from 'date-fns';
 import './Exames.css';
-import { getExamesPendente, getExamesRealizados } from '../../utils/apiService';
+import { addExamePendente, getExamesPendente, getExamesRealizados } from '../../utils/apiService';
 import ExamesVazio from '../../components/ExamesVazio/ExamesVazio';
 
 interface Exames {
@@ -31,6 +31,7 @@ export default function Exames() {
   const [descriptionPendentes, setDescriptionPendentes] = useState('');
   const [dateRealizados, setDateRealizados] = useState('');
   const [descriptionRealizados, setDescriptionRealizados] = useState('');
+  const [addExam, setAddExam] = useState('');
   const [filePdf, setFilePdf] = useState<File | null>(null);
   const [fileImage, setFileImage] = useState<File | null>(null);
   const [examesPendentes, setExamesPendentes] = useState<Exames[]>([]);
@@ -53,7 +54,18 @@ export default function Exames() {
         setExamesRealizados(response.data)
         console.log(examesPendentes);
     })
-  },[])
+  },[addExam])
+  const handleSalvarPendente = () => {
+      addExamePendente(descriptionPendentes, datePendestes).then((response) => {
+        if(response.status == 200){
+          console.log("Adicionando novo exame");
+          setDatePendentes("")
+          setDescriptionPendentes("")
+          setIsModalPendentesOpen(false)
+          setAddExam(response.data)
+        }
+      })
+  }
   return (
     <>
       <HeaderHome type="headerTab" value={value} setValue={setValue} />
@@ -76,7 +88,7 @@ export default function Exames() {
           {examesPendentes.map((exam, index) => (
             <ExamListItem
             key={index} // Make sure to provide a unique key
-            date={format(new Date(exam.examDate), 'yyyy/MM/dd')}
+            date={format(new Date(exam.examDate), 'dd/MM/yyyy')}
             exam={exam.description}
             description={exam.description}
             type={'pendente'} // Adjust based on your data
@@ -101,8 +113,7 @@ export default function Exames() {
             <CustomButton
             variant="contained"
             label="Salvar"
-            onClick={() => {console.log(examesPendentes, datePendestes);
-            }}
+            onClick={handleSalvarPendente}
             />
             </div>
             </Modal>
@@ -130,7 +141,7 @@ export default function Exames() {
           <ExamFilter
             tabs={[
               { content: '', label: '30 dias' },
-              { content: '', label: '60 dias' },
+              { content: '', label: '6 meses' },
               { content: '', label: 'Todos' },
             ]}
           />
@@ -138,7 +149,7 @@ export default function Exames() {
             {examesRealizados.map((exam, index)=> (
                <ExamListItem
                key={index} // Make sure to provide a unique key
-               date={format(new Date(exam.examDate), 'yyyy/MM/dd')}
+               date={format(new Date(exam.examDate), 'dd/MM/yyyy')}
                exam={exam.description}
                description={exam.description}
                type={'realizado'} // Adjust based on your data
