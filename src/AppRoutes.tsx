@@ -20,11 +20,6 @@ import ListaDeInteracaoDoMedicamento from './pages/ListaDeInteracaoDoMedicamento
 import MeusMedicos from './pages/MeusMedicos/MeusMedicos';
 import PageMedico from './components/FiltroBuscaMedico/PageMedico';
 
-import ModalPerfilPaciente from './components/ModalPerfilPaciente/ModalPerfilPaciente';
-import {Nome} from './components/ModalPerfilPaciente/ComponentsModalPaciente/NomePerfil/NomePerfil.tsx';
-import {Informacoes} from './components/ModalPerfilPaciente/ComponentsModalPaciente/DadosPessoais/DadosPessoais.tsx';
-import {Botoes} from './components/ModalPerfilPaciente/ComponentsModalPaciente/ButtonsDoModal/ButtonsDoModal.tsx';
-
 
 
 
