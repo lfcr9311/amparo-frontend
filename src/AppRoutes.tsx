@@ -4,8 +4,6 @@ import { ROUTES } from './routes/constans';
 import { Login } from './pages/Login/Login';
 import HomePaciente from './pages/HomePaciente/HomePaciente';
 import VisualizacaoPerfilPaciente from './pages/VisualizarPerfil/VisualizarPerfil';
-import ExamesRealizadosVazio from './pages/ExamesRealizadosVazio/ExamesRealizadosVazio';
-import ExamesPendentesVazio from './pages/ExamesPendentesVazio/ExamesPendentesVazio';
 import { CadastroPaciente } from './pages/CadastroPaciente/CadastroPaciente';
 import { CadastroMedico } from './pages/CadastroMedico/CadastroMedico';
 import { Identificacao } from './pages/Identificacao/Identificacao';
@@ -14,8 +12,14 @@ import VisualizacaoPerfilMedico from './pages/VisualizarPerfilMedico/VisualizarP
 import {isLoggedIn} from './utils/authService'
 import MenuMedicamentos from './pages/MenuMedicamentos/MenuMedicamentos';
 import ListaMedicamentos from './pages/ListaMedicamentos/ListaMedicamentos';
+import ExamesVazio from './pages/ExamesVazio/ExamesVazio';
+import Exames from './pages/Exames/Exames';
+import EdicaoExamePendente from './pages/EdicaoExamePendente/EdicaoExamePendente';
+import EdicaoExameRealizado from './pages/EdicaoExameRealizado/EdicaoExameRealizado';
 import ExamesPendentes from './pages/ExamesPendentes/ExamesPendentes';
-import React from 'react';
+import ListaDeInteracaoDoMedicamento from './pages/ListaDeInteracaoDoMedicamento/ListaDeInteracaoDomedicamento';
+import PageMedico from './components/FiltroBuscaMedico/PageMedico';
+
 export default function AppRoutes() {
   
   function PrivateRoute({ children }: { children: React.ReactNode }) {
@@ -23,7 +27,6 @@ export default function AppRoutes() {
       console.log(isAuthenticated);
       if (!isAuthenticated) {
         return window.location.href = ROUTES.LOGIN();
-        // return <Navigate to={ROUTES.LOGIN()}/>
       }
     });
   
@@ -47,6 +50,9 @@ export default function AppRoutes() {
                       <HomePaciente/>
                       </PrivateRoute>
             } />
+
+          <Route path={ROUTES.LISTADEINTERACAODOMEDICAMENTO()} element={<ListaDeInteracaoDoMedicamento />} />
+          <Route path={ROUTES.FILTROBUSCAMEDICO()} element={<PageMedico />} />
           <Route
             path={ROUTES.CADASTRO_PACIENTE()}
             element={<CadastroPaciente />}
@@ -54,21 +60,21 @@ export default function AppRoutes() {
           <Route path={ROUTES.CADASTRO_MEDICO()} element={<CadastroMedico />} />
           <Route path={ROUTES.IDENTIFICACAO()} element={<Identificacao />} />
           <Route
-            path={ROUTES.EXAMES_PENDENTES_VAZIO()}
+            path={ROUTES.EXAMES_VAZIO()}
             element={
             <PrivateRoute>
-              <ExamesPendentes/>
+              <ExamesVazio/>
             </PrivateRoute>
           }
-          />
-          <Route
-            path={ROUTES.EXAMES_REALIZADOS_VAZIO()}
+          /> 
+          {/* <Route
+            path={ROUTES.EXAMES()}
             element={
               <PrivateRoute>
               <ExamesRealizadosVazio />
               </PrivateRoute>
           }
-          />
+          /> */}
           <Route path={ROUTES.LOGIN()} element={<Login />} />
           <Route
             path={ ROUTES.PERFIL_PACIENTE() }
@@ -105,6 +111,15 @@ export default function AppRoutes() {
               <ExamesPendentes />
             </PrivateRoute>
           } />
+          <Route
+            path={ROUTES.EDICAO_EXAMES_PENDENTES()}
+            element={<EdicaoExamePendente />}
+          />
+          <Route
+            path={ROUTES.EDICAO_EXAMES_REALIZADOS()}
+            element={<EdicaoExameRealizado />}
+          />
+          <Route path={ROUTES.EXAMES()} element={<Exames />} />
         </Routes>
       </div>
     </Router>

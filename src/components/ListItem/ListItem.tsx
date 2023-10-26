@@ -3,15 +3,34 @@ import ListItemText from '@mui/material/ListItemText';
 import IconButton from '@mui/material/IconButton';
 import './ListItem.css';
 import { ArrowForwardIos } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
+import { ROUTES } from '../../routes/constans';
 
 interface ExamListProps {
   date: string;
   exam: string;
+  description: string;
+  type: 'pendente' | 'realizado';
 }
 
-export default function ExamListItem({ date, exam }: ExamListProps) {
+export default function ExamListItem({
+  date,
+  exam,
+  description,
+  type,
+}: ExamListProps) {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(
+      type === 'pendente'
+        ? ROUTES.EDICAO_EXAMES_PENDENTES()
+        : ROUTES.EDICAO_EXAMES_REALIZADOS(),
+      { state: { date: date, description: description } }
+    );
+  };
+
   return (
-    <div className="frame">
+    <div className="frame" onClick={handleClick}>
       <ListItem
         key={'key'}
         className="list-item"
@@ -35,6 +54,7 @@ export default function ExamListItem({ date, exam }: ExamListProps) {
               fontStyle: 'normal',
               fontWeight: '500',
               lineHeight: '150%',
+              marginRight: '20px',
             },
           }}
         />

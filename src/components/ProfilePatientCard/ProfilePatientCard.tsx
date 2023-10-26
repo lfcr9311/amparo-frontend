@@ -20,6 +20,7 @@ interface CardProps {
   onClickEditProfile?: () => void;
 }
 
+// @ts-ignore
 export function PatientProfileCard({ name, cpf, email, dataNascimento, numSus, profilePicture, onClickChangePassword, onClickDoctors, onClickEditProfile }: CardProps) {
   const [notifications, setNotifications] = useState(false);
 
