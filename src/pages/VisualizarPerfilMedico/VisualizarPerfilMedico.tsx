@@ -8,6 +8,9 @@ import TextfieldModal from '../../components/Modal/Components/TextfieldModal';
 import SelectConvenios from '../../components/Modal/Components/SelectConvenios/SelectConvenios';
 import SelectModal from '../../components/Modal/Components/SelectModal/SelectModal';
 import CustomButton from '../../components/Button/Button';
+import { Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { ROUTES } from '../../routes/constans';
 
 const VisualizacaoPerfilMedico = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -17,6 +20,13 @@ const VisualizacaoPerfilMedico = () => {
   const [ddd, setDdd] = useState('');
   const [phone, setPhone] = useState('');
   const [convenios, setConvenios] = useState('');
+  const navigate = useNavigate()
+  const handleDeletar = () => {
+    console.log("im here");
+    
+    localStorage.removeItem('authToken')
+    navigate(ROUTES.LOGIN())
+  }
 
   return (
     <>
@@ -89,11 +99,24 @@ const VisualizacaoPerfilMedico = () => {
             </div>
           </form>
         </Modal>
-        <span className="span-container">
-          <a className="delete-container" href="">
-            Deletar Conta
-          </a>
-        </span>
+        <div >
+        <Button  
+        sx={{ 
+            color: '#e10e17',
+            textAlign: 'center',
+            fontFamily: 'Poppins',
+            fontSize: '15px',
+            fontStyle: 'normal',
+            fontWeight: 400,
+            lineHeight: 'normal',
+            textDecoration: 'none',
+            textTransform: 'none',
+          }} 
+          onClick={handleDeletar}
+        >
+              Sair da Conta
+          </Button>
+        </div>
       </div>
       <div className="footer-container">
         <Footer user="doctor" />

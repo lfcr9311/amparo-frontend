@@ -25,7 +25,7 @@ export default function ExamesPendentes() {
         </button>
       </div>
       <div className="cards-exames">
-        <ExamListItem date="23/02/18" exam="Hemograma" />
+        {/* <ExamListItem date="23/02/18" exam="Hemograma" />
         <ExamListItem date="23/02/18" exam="TGO" />
         <ExamListItem date="23/02/18" exam="TGP" />
         <ExamListItem date="23/02/18" exam="Testosterona" />
@@ -34,7 +34,7 @@ export default function ExamesPendentes() {
         <ExamListItem date="23/02/18" exam="Vitamina D" />
         <ExamListItem date="23/02/18" exam="Vitamina B12" />
         <ExamListItem date="23/02/18" exam="Glicose" />
-        <ExamListItem date="23/02/18" exam="Leucócitos" />
+        <ExamListItem date="23/02/18" exam="Leucócitos" /> */}
       </div>
       <Modal isOpen={isModalOpen} isClose={() => setIsModalOpen(!isModalOpen)}>
         <div className="div-date-modal">

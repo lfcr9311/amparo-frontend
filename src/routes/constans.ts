@@ -7,13 +7,13 @@ export const ROUTES = {
   EXAMES_VAZIO: () => '/exames/vazio',
   LOGIN: () => '*',
   PERFIL_PACIENTE: () => '/perfil/paciente',
+  PERFIL_PACIENTE_MEUS_MEDICOS: () => '/perfil/paciente/meus-medicos',
   PERFIL_MEDICO: () => '/perfil/medico',
   MENU_MEDICAMENTOS: () => '/menu/medicamentos',
   LISTA_MEDICAMENTOS: () => '/lista/medicamentos',
   EXAMES: () => '/exames',
   EDICAO_EXAMES_PENDENTES: () => '/exames/edicao/pendentes',
   EDICAO_EXAMES_REALIZADOS: () => '/exames/edicao/realizados',
-  LISTADEINTERACAODOMEDICAMENTO:() => 'medicamentos/interacao',
-  FILTROBUSCAMEDICO:() => 'lista/medico',
-  
+  LISTADEINTERACAODOMEDICAMENTO: () => 'medicamentos/interacao',
+  FILTROBUSCAMEDICO: () => 'lista/medico',
 };
