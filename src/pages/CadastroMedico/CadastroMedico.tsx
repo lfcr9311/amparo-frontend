@@ -13,7 +13,7 @@ export const CadastroMedico = () => {
   const [email, setEmail] = useState<string>('');
   const [state, setState] = useState<string>('');
   const [crm, setCrm] = useState<string>('');
-  const [telefone, setTelefone] = useState<string>('');
+  const [phone, setPhone] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [validPassword, setValidPassaword] = useState<boolean>(true);
@@ -23,7 +23,7 @@ export const CadastroMedico = () => {
   const [isValidCrm, setIsValidCrm] = useState<boolean>(true);
   const [isValidEmail, setIsValidEmail] = useState<boolean>(true);
   const [isValidName, setIsValidName] = useState<boolean>(true);
-  const [isValidCell, setIsValidCell] = useState<boolean>(true);
+  const [isValidPhone, setIsValidPhone] = useState<boolean>(true);
   const [isValidPsw, setIsValidPsw] = useState<boolean>(true);;
   const navigate = useNavigate();
 
@@ -49,10 +49,10 @@ export const CadastroMedico = () => {
     } else {
       setIsValidEmail(true);
     }
-    if (telefone == ''){
-      setIsValidCell(false);
+    if (phone == ''){
+      setIsValidPhone(false);
     } else {
-      setIsValidCell(true);
+      setIsValidPhone(true);
     }
     if (password == ''){
       setIsValidPsw(false);
@@ -60,14 +60,8 @@ export const CadastroMedico = () => {
       setIsValidPsw(true);
     }
 
-    console.log(isValidName)
-    console.log(isValidEmail)
-    console.log(validPassword)
-    console.log(isValidCrm)
-    console.log(dataStatus)
-
     if (isValidName && isValidEmail && validPassword && isValidCrm && (dataStatus == 201 || dataStatus == 200)) {
-      fetchData(email, name, password, telefone, "DOCTOR", crm, state);
+      fetchData(email, name, password, phone, "DOCTOR", crm, state);
       navigate(ROUTES.HOME_MEDICO());
       return;
     }
@@ -132,8 +126,23 @@ export const CadastroMedico = () => {
     validateEmail(inputValue);
   };
 
-  const handleTelefone = (newTelefone: string) => {
-    setTelefone(newTelefone);
+  const validatePhone = (input : string) => {
+    
+    const isNumeric = /^\d+$/.test(input);
+    const isPhoneNumberValid = input.length === 11;
+
+    if(isNumeric && isPhoneNumberValid){
+      setIsValidPhone(isNumeric && isPhoneNumberValid);
+    } else {
+      setIsValidPhone(false);
+    }
+
+  };
+
+  const handlePhone = (newPhone: string) => {
+    const cel = newPhone;
+    validatePhone(cel);
+    setPhone(cel);
   };
 
   const handlePassword = (newPassoword: string) => {
@@ -185,27 +194,30 @@ export const CadastroMedico = () => {
           <Textfield
             label="Telefone"
             type="text"
-            onChange={handleTelefone}
-            error={!isValidCell}
-            helperText= {!isValidCell ? 'Telefone inválido' : ''}
-            value={telefone}
+            onChange={handlePhone}
+            error={!isValidPhone}
+            helperText= {!isValidPhone ? 'Telefone inválido' : ''}
+            value={phone}
           />
           <Textfield
             label="Senha"
             type="password"
             onChange={handlePassword}
-            error={!isValidPsw}
+            error={!validPassword || !isValidPsw}
             value={password}
             helperText={!isValidPsw ? 'Insira uma senha' : ''}
           />
           <Textfield
-            label="Confirmar Senha"
-            type="password"
-            onChange={handleConfirmPassword}
-            error={!validPassword}
-            helperText={ !isValidPsw ? 'Insira uma senha' : !validPassword ? 'Senha não correspondentes' : ''}
-            value={confirmPassword}
-          />
+              label="Confirmar Senha"
+              type="password"
+              onChange={handleConfirmPassword}
+              error={!validPassword || !isValidPsw}
+              helperText={
+              !isValidPsw ? 'Insira uma senha' : !validPassword ? 'Senha não corresponde'
+              : ''
+            }
+          value={confirmPassword}
+        />
           <Button
             margin-botton="20px"
             variant="contained"

@@ -58,6 +58,8 @@ export const CadastroPaciente = () => {
     } else {
       setIsValidPsw(true);
     }
+
+    console.log(email, name, password, cpfValue, date);
     
     if (isValidName && isValidEmail && validPassword && cpf.isValid(cpfValue) && (dataStatus == 201 || dataStatus == 200)) {
       fetchData(email, name, password, "111111111", cpfValue, "123456789123456", date);
@@ -204,7 +206,7 @@ export const CadastroPaciente = () => {
             label="Confirmar Senha"
             type="password"
             onChange={handleConfirmPassword}
-            error={!validPassword}
+            error={!validPassword || !isValidPsw}
             helperText={ !isValidPsw ? 'Insira uma senha' : !validPassword ? 'Senha não correspondentes' : ''}
             value={confirmPassword}
           />
