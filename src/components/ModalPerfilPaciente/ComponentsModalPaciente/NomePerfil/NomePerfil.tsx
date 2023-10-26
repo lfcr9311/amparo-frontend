@@ -1,6 +1,5 @@
 import React from 'react';
 
-import './NomePerfil.css';
 
 interface NomeProps {
   name: string;
@@ -15,9 +14,7 @@ const nameStyle = {
 
 export function Nome({ name }: NomeProps) {
   return (
-    <div className="profile-box">
       
       <p className="name" style={nameStyle}>{name}</p>
-    </div>
   );
 }

@@ -39,13 +39,19 @@ export default function ModalPerfilPaciente({
         <div className="modal-container">
           <div className="header-modal-container">
             <img src={IconProfile} alt="Profile" className="profile-image" />
-              <button className="button-close" onClick={isClose}>
-                <img src={Close} alt="Close" />
-              </button>
+            <button className="button-close" onClick={isClose}>
+              <img src={Close} alt="Close" />
+            </button>
+
+          </div>
+          <div className="neck-profile-name">
             <Nome name={name} />
           </div>
           <div className="body-modal-container">
             <Informacoes cpf={cpf} email={email} nSus={nSus} />
+
+          </div>
+          <div className="footer-modal-container">
             <Botoes
               onclickExames={onclickExames}
               onclickMedicamentos={onclickMedicamentos}

@@ -12,7 +12,7 @@ const buttonStyle = {
   height: '68px',
   borderRadius: '5px',
   backgroundColor: '#E76553',
-  outline: 'none',
+  border: 'none',
 };
 
 const containerStyle = {

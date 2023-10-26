@@ -4,68 +4,78 @@
   bottom: 0;
   right: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgb(0, 0, 0, 0.5);
   z-index: 1000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .modal-container {
+  position: fixed;
   width: 339px;
-  height: 445.25px;
-  top: 400px;
-  padding: 16px 0 5px 0;
+  min-height: 445.25px;
+  height: auto;
+  margin-top: -50px;
   border-radius: 12px;
   background-color: #fbf8f8;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .header-modal-container {
-  display: flex;
-  justify-content: space-between; 
-  align-items: center; /
-  
+  display: fixed;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  height: 60px;
+  margin-top: 4%;
+  margin-left: 15%;
+  margin-right: 5%;
+  justify-content: center;
+
 }
 
 
 .profile-image {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  
+  width: 95px;
+  height: 95px;
+  margin-top: 100px;
+  margin-right: 5px;
 
 }
 
-
 .button-close {
+  display: fixed;
   border: none;
   background-color: transparent;
   cursor: pointer;
 }
 
 .button-close img {
-  margin-bottom: 210px;
-  margin-left:50px;
+  display: fixed;
+  margin-right: -120px;
+
   width: 32px;
   height: 32px;
 }
 
-.button-style{
-margin-left: 12px;
+.neck-profile-name {
+  display: fixed;
+  font-size: 16px;
+  font-family: Poppins;
+  margin-top: 80px;
+
 }
+
 .body-modal-container {
   padding: 20px;
-  margin-left: 10px;
-  margin-top: 20px;
+  margin-left: 5px;
+  margin-top: -5px;
 
 }
 
-.title-modal {
-  color: #4d4c4c;
-  font-family: Poppins;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
+
+.footer-modal-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 50px;
 }

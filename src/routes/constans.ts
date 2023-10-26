@@ -10,16 +10,10 @@ export const ROUTES = {
   PERFIL_MEDICO: () => '/perfil/medico',
   MENU_MEDICAMENTOS: () => '/menu/medicamentos',
   LISTA_MEDICAMENTOS: () => '/lista/medicamentos',
-  LISTA_EXAMES: () => '/lista/exames',
   EXAMES: () => '/exames',
   EDICAO_EXAMES_PENDENTES: () => '/exames/edicao/pendentes',
   EDICAO_EXAMES_REALIZADOS: () => '/exames/edicao/realizados',
-  LISTA_INTERACOES: () => '/lista/interacoes',
-  FILTRO_BUSCA_MEDICAMENTOS:() => 'lista/filtro',
   LISTADEINTERACAODOMEDICAMENTO:() => 'medicamentos/interacao',
   FILTROBUSCAMEDICO:() => 'lista/medico',
-  MODALPACIENTE:() => 'modal/paciente',
-  NOMEPERFIL:() => 'modal/nome',
-  DADOSPERFIL:() => 'modal/dados',
-  MODALBOTAO:() => 'modal/botao',
+  
 };
