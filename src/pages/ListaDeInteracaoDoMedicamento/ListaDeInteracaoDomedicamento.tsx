@@ -1,10 +1,13 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import FiltroBuscaMedicamentos from '../../components/FiltroBuscaMedicamentos/FiltroBuscaMedicamentos';
 import { ListaInteracoes } from '../../components/ListaInteracoes/ListaInteracoes';
+import HeaderHome from '../../components/HeaderHome/HeaderHome';
+import Footer from '../../components/Footer/Footer';
+import './ListaDeInteracaoDoMedicamento.css';
 
 
 
-const TerceiroComponente = () => {
+const US21ListaDeInteracaoMedicamentos = () => {
   const [filtroStatus, setFiltroStatus] = useState('semFiltroDeStatus');
   const [filtroText, setFiltroText] = useState('');
   const [listaDeMedicamentosCompleta] = useState([
@@ -30,12 +33,28 @@ const TerceiroComponente = () => {
     setFiltroText(text);
   };
   return (
-    <div>
-      <FiltroBuscaMedicamentos onStatusChange={handleFiltroStatusChange} onNameChange={handleFiltroTextChange} status={filtroStatus} />
-      <ListaInteracoes items={listaDeMedicamentosCompleta.filter(item => (item.status === filtroStatus || filtroStatus === 'semFiltroDeStatus') && 
-      item.name.toLowerCase().includes(filtroText.toLowerCase()) )} />
-    </div>
+    <>
+      <HeaderHome title="Medicamentos" type="headerPage" />
+      <div className='body-container'>
+        <div className='title-body'>Paracetamol</div>
+
+        <div className='body-filtro'>
+          <FiltroBuscaMedicamentos onStatusChange={handleFiltroStatusChange} onNameChange={handleFiltroTextChange} status={filtroStatus} />
+        </div>
+        <div className='body-lista'>
+
+          <ListaInteracoes items={listaDeMedicamentosCompleta.filter(item => (item.status === filtroStatus || filtroStatus === 'semFiltroDeStatus') &&
+            item.name.toLowerCase().includes(filtroText.toLowerCase()))} />
+        </div>
+
+      </div>
+
+
+
+      <Footer user="patient" />
+
+    </>
   );
 };
 
-export default TerceiroComponente;
+export default US21ListaDeInteracaoMedicamentos;

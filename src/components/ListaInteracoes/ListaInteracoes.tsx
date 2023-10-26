@@ -31,6 +31,7 @@ export const ListaInteracoes: React.FC<CustomListaInteracoesProps> = ({ items })
         position: 'relative',
         overflow: 'auto',
         maxHeight: 355,
+        height: 'auto',
         fontFamily: 'Poppins',
         '& ul': { padding: 0 },
       }}
