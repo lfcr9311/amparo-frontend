@@ -1,0 +1,38 @@
+.medication-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-left: 25px;
+    margin-bottom: 4px;
+    margin-top: -5px;
+    align-items: flex-start;
+}
+
+.administration {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-left: 27px;
+    margin-bottom: 4px;
+    align-items: flex-start;
+}
+
+.continuo {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-left: 27px;
+    margin-bottom: 4px;
+    align-items: center;
+    color: #696969;
+    font-family: Poppins;
+    font-size: 13px;
+}
+
+.botao {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-bottom: 8px;
+    align-items: center;
+}
