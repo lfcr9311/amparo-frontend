@@ -122,8 +122,8 @@ try {
 export const addExamePendente = async (description: String, examDate: string ) => {
   const body = {
     description: description || null,
-    exam_date: examDate+"T04:20:00.000",
-    is_done: false,
+    examDate: examDate+"T04:20:00.000",
+    isDone: false,
     file: null,
     image: null
   }; 
