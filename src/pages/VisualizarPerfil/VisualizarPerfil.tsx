@@ -6,7 +6,7 @@ import Modal from '../../components/Modal/Modal';
 import { useEffect, useState } from 'react';
 import TextfieldModal from '../../components/Modal/Components/TextfieldModal';
 import CustomButton from '../../components/Button/Button';
-import { getUser } from '../../utils/apiService';
+import { editUser, getUser } from '../../utils/apiService';
 
 const VisualizacaoPerfilPaciente = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -35,6 +35,16 @@ const VisualizacaoPerfilPaciente = () => {
       console.error('Erro ao fazer login', error);
     }
   }
+async function update() {
+  try {
+    const result = await editUser(name, cellphone, cpf, "null", email, dataNascimento, nSus);
+    console.log(result);
+    setIsModalOpen(!isModalOpen);
+  }
+  catch(e) {
+    console.log(e)
+  }
+}
 
   useEffect(() => {
     fetchData();
@@ -117,7 +127,12 @@ const VisualizacaoPerfilPaciente = () => {
               <CustomButton
                 variant="contained"
                 label="Salvar"
-                onClick={() => console.log('Salvar')}
+                onClick={() => {
+                  async function callUpdate() {
+                    await(update());
+                  }
+                  callUpdate();
+                }}
               />
             </div>
           </form>
