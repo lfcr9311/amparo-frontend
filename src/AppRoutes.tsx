@@ -56,7 +56,11 @@ export default function AppRoutes() {
                 <ListaDeInteracaoDoMedicamento />
                 </PrivateRoute>
                 } />
-          <Route path={ROUTES.FILTROBUSCAMEDICO()} element={<PageMedico />} />
+          <Route path={ROUTES.FILTROBUSCAMEDICO()} element={
+          <PrivateRoute>
+          <PageMedico />
+          </PrivateRoute>
+          } />
           <Route
             path={ROUTES.CADASTRO_PACIENTE()}
             element={<CadastroPaciente />}
