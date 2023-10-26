@@ -4,7 +4,6 @@ import { isLogged } from "./apiService";
 
 export const isLoggedIn = async () => {
     const token = localStorage.getItem('authToken');
-    console.log(token);
     if (token) {
       try {
         const result = await isLogged();

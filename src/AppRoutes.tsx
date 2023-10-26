@@ -24,7 +24,6 @@ export default function AppRoutes() {
   
   function PrivateRoute({ children }: { children: React.ReactNode }) {
     isLoggedIn().then((isAuthenticated) => {
-      console.log(isAuthenticated);
       if (!isAuthenticated) {
         return window.location.href = ROUTES.LOGIN();
       }
