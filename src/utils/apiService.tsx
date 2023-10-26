@@ -45,7 +45,7 @@ try {
 }
 }
 
-export const registerUser = async (email: String, name: String, password: String, cellphone: String, userType: String, cpf: String) => {
+export const registerUser = async (email: String, name: String, password: String, cellphone: String, userType: String, cpf: String, numSus: String, birthDate: String) => {
   const registerBody = {
     email: email,
     name: name,
@@ -53,6 +53,8 @@ export const registerUser = async (email: String, name: String, password: String
     cellphone: cellphone,
     cpf: cpf,
     userType: userType,
+    numSus: numSus, 
+    birthDate: birthDate
   }
 try {
   const response = await axios.post('/auth/register', JSON.stringify(registerBody));
