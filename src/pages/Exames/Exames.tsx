@@ -11,16 +11,17 @@ import ExamFilter from '../../components/ExamFilter/examFilter';
 import InputFile from '../../components/InputFile/InputFile';
 import { format } from 'date-fns';
 import './Exames.css';
-import { getExamesPendente } from '../../utils/apiService';
+import { getExamesPendente, getExamesRealizados } from '../../utils/apiService';
+import ExamesVazio from '../../components/ExamesVazio/ExamesVazio';
 
-interface ExamesPendentes {
+interface Exames {
   id: string;
   description: string;
   examDate: string;
   is_done: boolean;
   id_patient: string;
-  file: File | null;
-  image: File | null;
+  file: string | null;
+  image: string | null;
 }
 export default function Exames() {
   const [value, setValue] = useState(0);
@@ -32,7 +33,8 @@ export default function Exames() {
   const [descriptionRealizados, setDescriptionRealizados] = useState('');
   const [filePdf, setFilePdf] = useState<File | null>(null);
   const [fileImage, setFileImage] = useState<File | null>(null);
-  const [examesPendentes, setExamesPendentes] = useState<ExamesPendentes[]>([]);
+  const [examesPendentes, setExamesPendentes] = useState<Exames[]>([]);
+  const [examesRealizados, setExamesRealizados] = useState<Exames[]>([]);
   const handleFilePdf = (file: File | null) => {
     setFilePdf(file);
   };
@@ -41,64 +43,81 @@ export default function Exames() {
     setFileImage(file);
   };
   useEffect(() => {
-    getExamesPendente(descriptionPendentes, datePendestes).then((response)=>{
+    getExamesPendente().then((response)=>{
         if(response.status==200){
           setExamesPendentes(response.data)
           console.log(examesPendentes);
         }
     });
+    getExamesRealizados().then((response) => {      
+        setExamesRealizados(response.data)
+        console.log(examesPendentes);
+    })
   },[])
   return (
     <>
       <HeaderHome type="headerTab" value={value} setValue={setValue} />
       {value === 0 ? (
-        <>
+        examesPendentes.length ===0 ? (
+          <ExamesVazio value={value}/>
+        ) : (
+
+          <div className='body-exames'>
           <div className="content-header-pendentes">
-            <p className="title-exames-page-title">Exames</p>
-            <button
-              className="add-button-icon"
-              onClick={() => setIsModalPendentesOpen(!isModalPendentesOpen)}
-            >
-              <img src={AddCircleIcon} className="add-circle-icon" />
-            </button>
+          <p className="title-exames-page-title">Exames</p>
+          <button
+          className="add-button-icon"
+          onClick={() => setIsModalPendentesOpen(!isModalPendentesOpen)}
+          >
+          <img src={AddCircleIcon} className="add-circle-icon" />
+          </button>
           </div>
           <div className="cards-exames-pendentes">
-              {examesPendentes.map((exam, index) => (
-                 <ExamListItem
-                 key={index} // Make sure to provide a unique key
-                 date={format(new Date(exam.examDate), 'yyyy/MM/dd')}
-                 exam={exam.description}
-                 description={exam.description}
-                 type={'pendente'} // Adjust based on your data
-               />
-              ))}
-          </div>
-          <Modal
+          {examesPendentes.map((exam, index) => (
+            <ExamListItem
+            key={index} // Make sure to provide a unique key
+            date={format(new Date(exam.examDate), 'yyyy/MM/dd')}
+            exam={exam.description}
+            description={exam.description}
+            type={'pendente'} // Adjust based on your data
+            />
+            ))}
+            </div>
+            <Modal
             isOpen={isModalPendentesOpen}
             isClose={() => setIsModalPendentesOpen(!isModalPendentesOpen)}
-          >
+            >
             <div className="div-date-modal">
-              <DateModal
-                value={datePendestes}
-                onChange={(value) => setDatePendentes(value)}
-              />
+            <DateModal
+            value={datePendestes}
+            onChange={(value) => setDatePendentes(value)}
+            />
             </div>
             <div className="description-button-modal">
-              <Description
-                value={descriptionPendentes}
-                onChange={(value) => setDescriptionPendentes(value)}
-              />
-              <CustomButton
-                variant="contained"
-                label="Salvar"
-                onClick={() => {console.log(examesPendentes, datePendestes);
-                }}
-              />
+            <Description
+            value={descriptionPendentes}
+            onChange={(value) => setDescriptionPendentes(value)}
+            />
+            <CustomButton
+            variant="contained"
+            label="Salvar"
+            onClick={() => {console.log(examesPendentes, datePendestes);
+            }}
+            />
             </div>
-          </Modal>
-        </>
-      ) : (
-        <>
+            </Modal>
+            </div>
+          
+          )
+          ) : (
+            examesRealizados.length === 0 ? 
+            (
+              <ExamesVazio value={value}/>
+            ) 
+            : (
+              
+
+        <div className='body-exames'>
           <div className="content-header-realizados">
             <p className="title-exames-page-title">Exames</p>
             <button
@@ -116,66 +135,15 @@ export default function Exames() {
             ]}
           />
           <div className="cards-exames-realizados">
-            <ExamListItem
-              date="23/02/2018"
-              exam="Hemograma"
-              description="Exame de hemograma"
-              type="realizado"
-            />
-            <ExamListItem
-              date="23/02/2018"
-              exam="TGO"
-              description="Exame de TGO"
-              type="realizado"
-            />
-            <ExamListItem
-              date="23/02/2018"
-              exam="TGP"
-              description="Exame de TGP"
-              type="realizado"
-            />
-            <ExamListItem
-              date="23/02/2018"
-              exam="Testosterona"
-              description="Exame de Testosterona"
-              type="realizado"
-            />
-            <ExamListItem
-              date="23/02/2018"
-              exam="Calcio"
-              description="Exame de Calcio"
-              type="realizado"
-            />
-            <ExamListItem
-              date="23/02/2018"
-              exam="Potássio"
-              description="Exame de Potássio"
-              type="realizado"
-            />
-            <ExamListItem
-              date="23/02/2018"
-              exam="Vitamina D"
-              description="Exame de Vitamina D"
-              type="realizado"
-            />
-            <ExamListItem
-              date="23/02/2018"
-              exam="Vitamina B12"
-              description="Exame de Vitamina B12"
-              type="realizado"
-            />
-            <ExamListItem
-              date="23/02/2018"
-              exam="Glicose"
-              description="Exame de Glicose"
-              type="realizado"
-            />
-            <ExamListItem
-              date="23/02/2018"
-              exam="Leucócitos"
-              description="Exame de Leucócitos"
-              type="realizado"
-            />
+            {examesRealizados.map((exam, index)=> (
+               <ExamListItem
+               key={index} // Make sure to provide a unique key
+               date={format(new Date(exam.examDate), 'yyyy/MM/dd')}
+               exam={exam.description}
+               description={exam.description}
+               type={'realizado'} // Adjust based on your data
+               />
+            ))}
           </div>
           <Modal
             isOpen={isModalRealizadosOpen}
@@ -218,7 +186,8 @@ export default function Exames() {
               />
             </div>
           </Modal>
-        </>
+        </div>
+            )
       )}
       <Footer user="patient" />
     </>

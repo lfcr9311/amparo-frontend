@@ -9,10 +9,9 @@ import { CadastroMedico } from './pages/CadastroMedico/CadastroMedico';
 import { Identificacao } from './pages/Identificacao/Identificacao';
 import HomeMedico from './pages/HomeMedico/HomeMedico';
 import VisualizacaoPerfilMedico from './pages/VisualizarPerfilMedico/VisualizarPerfilMedico';
-import {isLoggedIn} from './utils/authService'
+import {isLoggedIn, setUserId} from './utils/authService'
 import MenuMedicamentos from './pages/MenuMedicamentos/MenuMedicamentos';
 import ListaMedicamentos from './pages/ListaMedicamentos/ListaMedicamentos';
-import ExamesVazio from './pages/ExamesVazio/ExamesVazio';
 import Exames from './pages/Exames/Exames';
 import EdicaoExamePendente from './pages/EdicaoExamePendente/EdicaoExamePendente';
 import EdicaoExameRealizado from './pages/EdicaoExameRealizado/EdicaoExameRealizado';
@@ -21,14 +20,19 @@ import MeusMedicos from './pages/MeusMedicos/MeusMedicos';
 import PageMedico from './components/FiltroBuscaMedico/PageMedico';
 
 export default function AppRoutes() {
-  
+  const fetchData = async () => {
+    await setUserId()
+  }
   function PrivateRoute({ children }: { children: React.ReactNode }) {
     isLoggedIn().then((isAuthenticated) => {
       if (!isAuthenticated) {
         return window.location.href = ROUTES.LOGIN();
       }
+      else if (localStorage.getItem('idUser')== null){
+        fetchData()
+      }
     });
-  
+    
     return children;
   }
 
@@ -67,14 +71,6 @@ export default function AppRoutes() {
           />
           <Route path={ROUTES.CADASTRO_MEDICO()} element={<CadastroMedico />} />
           <Route path={ROUTES.IDENTIFICACAO()} element={<Identificacao />} />
-          <Route
-            path={ROUTES.EXAMES_VAZIO()}
-            element={
-            <PrivateRoute>
-              <ExamesVazio/>
-            </PrivateRoute>
-          }
-          /> 
           <Route path={ROUTES.LOGIN()} element={<Login />} />
           <Route
             path={ ROUTES.PERFIL_PACIENTE() }

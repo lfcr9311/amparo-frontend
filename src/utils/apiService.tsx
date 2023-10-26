@@ -26,20 +26,54 @@ export const isLogged = async () => {
     throw error;
   }
 };
-export const getExamesPendente = async (description: String, examDate: string ) => {
-  const body = {
-    description: description,
-    examDate: examDate,
-    is_done: false,
-  }; 
+export const getExamesPendente = async () => {
   try {
     const response = await axios.get(`/patient/${localStorage.getItem("userId")}/exam/pending/list`, {
       headers:{
         'Authorization': 'Bearer '+localStorage.getItem("authToken")
-      },
-      params: body
+      }
     }, 
     );  // Replace with your endpoint
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+export const getExamesRealizados = async () => {
+  try {
+    const response = await axios.get(`/patient/${localStorage.getItem("userId")}/exam/done/list`, {
+      headers:{
+        'Authorization': 'Bearer '+localStorage.getItem("authToken")
+      }
+    }, 
+    );  // Replace with your endpoint
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+export const getPatient = async () => {
+  console.log("getting patient");
+  
+  try {
+    const response = await axios.get('/patient', {
+      headers:{
+        'Authorization': 'Bearer '+localStorage.getItem("authToken")
+      }
+    });
+    
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+export const getDoctor = async () => {
+  try {
+    const response = await axios.get('/doctor', {
+      headers:{
+        'Authorization': 'Bearer '+localStorage.getItem("authToken")
+      }
+    }); // Replace with your endpoint
     return response;
   } catch (error) {
     throw error;
