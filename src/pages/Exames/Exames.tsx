@@ -1,7 +1,7 @@
 import Footer from '../../components/Footer/Footer';
 import HeaderHome from '../../components/HeaderHome/HeaderHome';
 import AddCircleIcon from '../../assets/AddCircle.svg';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ExamListItem from '../../components/ListItem/ListItem';
 import Modal from '../../components/Modal/Modal';
 import DateModal from '../../components/Modal/Components/DateModal/DateModal';
@@ -9,8 +9,19 @@ import Description from '../../components/Modal/Components/Description/Descripti
 import CustomButton from '../../components/Button/Button';
 import ExamFilter from '../../components/ExamFilter/examFilter';
 import InputFile from '../../components/InputFile/InputFile';
+import { format } from 'date-fns';
 import './Exames.css';
+import { getExamesPendente } from '../../utils/apiService';
 
+interface ExamesPendentes {
+  id: string;
+  description: string;
+  examDate: string;
+  is_done: boolean;
+  id_patient: string;
+  file: File | null;
+  image: File | null;
+}
 export default function Exames() {
   const [value, setValue] = useState(0);
   const [isModalPendentesOpen, setIsModalPendentesOpen] = useState(false);
@@ -21,7 +32,7 @@ export default function Exames() {
   const [descriptionRealizados, setDescriptionRealizados] = useState('');
   const [filePdf, setFilePdf] = useState<File | null>(null);
   const [fileImage, setFileImage] = useState<File | null>(null);
-
+  const [examesPendentes, setExamesPendentes] = useState<ExamesPendentes[]>([]);
   const handleFilePdf = (file: File | null) => {
     setFilePdf(file);
   };
@@ -29,7 +40,14 @@ export default function Exames() {
   const handleFileImage = (file: File | null) => {
     setFileImage(file);
   };
-
+  useEffect(() => {
+    getExamesPendente(descriptionPendentes, datePendestes).then((response)=>{
+        if(response.status==200){
+          setExamesPendentes(response.data)
+          console.log(examesPendentes);
+        }
+    });
+  },[])
   return (
     <>
       <HeaderHome type="headerTab" value={value} setValue={setValue} />
@@ -45,66 +63,15 @@ export default function Exames() {
             </button>
           </div>
           <div className="cards-exames-pendentes">
-            <ExamListItem
-              date="23/02/2018"
-              exam="Hemograma"
-              description="Exame de hemograma"
-              type="pendente"
-            />
-            <ExamListItem
-              date="23/02/2018"
-              exam="TGO"
-              description="Exame de TGO"
-              type="pendente"
-            />
-            <ExamListItem
-              date="23/02/2018"
-              exam="TGP"
-              description="Exame de TGP"
-              type="pendente"
-            />
-            <ExamListItem
-              date="23/02/2018"
-              exam="Testosterona"
-              description="Exame de Testosterona"
-              type="pendente"
-            />
-            <ExamListItem
-              date="23/02/2018"
-              exam="Calcio"
-              description="Exame de Calcio"
-              type="pendente"
-            />
-            <ExamListItem
-              date="23/02/2018"
-              exam="Potássio"
-              description="Exame de Potássio"
-              type="pendente"
-            />
-            <ExamListItem
-              date="23/02/2018"
-              exam="Vitamina D"
-              description="Exame de Vitamina D"
-              type="pendente"
-            />
-            <ExamListItem
-              date="23/02/2018"
-              exam="Vitamina B12"
-              description="Exame de Vitamina B12"
-              type="pendente"
-            />
-            <ExamListItem
-              date="23/02/2018"
-              exam="Glicose"
-              description="Exame de Glicose"
-              type="pendente"
-            />
-            <ExamListItem
-              date="23/02/2018"
-              exam="Leucócitos"
-              description="Exame de Leucócitos"
-              type="pendente"
-            />
+              {examesPendentes.map((exam, index) => (
+                 <ExamListItem
+                 key={index} // Make sure to provide a unique key
+                 date={format(new Date(exam.examDate), 'yyyy/MM/dd')}
+                 exam={exam.description}
+                 description={exam.description}
+                 type={'pendente'} // Adjust based on your data
+               />
+              ))}
           </div>
           <Modal
             isOpen={isModalPendentesOpen}
@@ -124,7 +91,8 @@ export default function Exames() {
               <CustomButton
                 variant="contained"
                 label="Salvar"
-                onClick={() => console.log(datePendestes, descriptionPendentes)}
+                onClick={() => {console.log(examesPendentes, datePendestes);
+                }}
               />
             </div>
           </Modal>
