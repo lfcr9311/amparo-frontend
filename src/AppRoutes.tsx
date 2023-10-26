@@ -18,6 +18,7 @@ import EdicaoExamePendente from './pages/EdicaoExamePendente/EdicaoExamePendente
 import EdicaoExameRealizado from './pages/EdicaoExameRealizado/EdicaoExameRealizado';
 import ExamesPendentes from './pages/ExamesPendentes/ExamesPendentes';
 import ListaDeInteracaoDoMedicamento from './pages/ListaDeInteracaoDoMedicamento/ListaDeInteracaoDomedicamento';
+import MeusMedicos from './pages/MeusMedicos/MeusMedicos';
 import PageMedico from './components/FiltroBuscaMedico/PageMedico';
 
 export default function AppRoutes() {
@@ -50,7 +51,7 @@ export default function AppRoutes() {
                       <HomePaciente/>
                       </PrivateRoute>
             } />
-
+          
           <Route path={ROUTES.LISTADEINTERACAODOMEDICAMENTO()} element={<ListaDeInteracaoDoMedicamento />} />
           <Route path={ROUTES.FILTROBUSCAMEDICO()} element={<PageMedico />} />
           <Route
@@ -67,14 +68,6 @@ export default function AppRoutes() {
             </PrivateRoute>
           }
           /> 
-          {/* <Route
-            path={ROUTES.EXAMES()}
-            element={
-              <PrivateRoute>
-              <ExamesRealizadosVazio />
-              </PrivateRoute>
-          }
-          /> */}
           <Route path={ROUTES.LOGIN()} element={<Login />} />
           <Route
             path={ ROUTES.PERFIL_PACIENTE() }
@@ -92,6 +85,11 @@ export default function AppRoutes() {
               </PrivateRoute>
           }
           />
+          <Route
+            path={ROUTES.PERFIL_PACIENTE_MEUS_MEDICOS()}
+            element={<MeusMedicos />}
+          />
+
           <Route
             path={ROUTES.MENU_MEDICAMENTOS()}
             element={<MenuMedicamentos />}

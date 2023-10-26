@@ -38,7 +38,6 @@ const VisualizacaoPerfilPaciente = () => {
             cpf="123.456.789-00"
             dataNascimento="23/02/1980"
             onClickChangePassword={() => console.log('Change Password')}
-            onClickDoctors={() => console.log('Click Doctors')}
             onClickEditProfile={() => setIsModalOpen(!isModalOpen)}
             numSus="012345678901235"
           />
