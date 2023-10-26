@@ -11,8 +11,10 @@ import CustomButton from '../../components/Button/Button';
 import DateModal from '../../components/Modal/Components/DateModal/DateModal';
 import InputFile from '../../components/InputFile/InputFile';
 
-const ExamesVazio: React.FC = () => {
-  const [value, setValue] = useState(0);
+ interface ExamesVaziosProps{
+  value: number
+ }
+const ExamesVazio: React.FC<ExamesVaziosProps> = ({value}) => {
   const [isModalPendentesOpen, setIsModalPendentesOpen] = useState(false);
   const [isModalRealizadosOpen, setIsModalRealizadosOpen] = useState(false);
   const [datePendestes, setDatePendentes] = useState('');
@@ -29,9 +31,6 @@ const ExamesVazio: React.FC = () => {
   };
   return (
     <>
-      <div className="header">
-        <HeaderHome value={value} setValue={setValue} type="headerTab" />
-      </div>
       {value === 0 ? (
         <div className="exames-pendentes-vazio">
           <div className="texto">Nenhum exame pendente</div>
