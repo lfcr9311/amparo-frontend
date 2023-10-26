@@ -1,7 +1,8 @@
 .select-container {
   position: relative;
-  width: 265px;
-  margin: 10px;
+  width: 290px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .caixa-de-selecao {
@@ -13,7 +14,7 @@
   background-color: #eaeaea;
   padding-left: 10px;
   font-family: Poppins;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
   color: #696969;
   appearance: none;

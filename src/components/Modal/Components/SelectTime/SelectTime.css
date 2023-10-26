@@ -5,14 +5,13 @@
 .horario {
     font-family: Poppins;
     color: #696969;
-    max-width: 94px;
-    min-width: none;
-    font-size: 14px;
-    text-wrap: pretty;
+    font-size: 13px;
+    width: 20px;
+    overflow-wrap: break-word;
 }
 
 .hora-minuto{
-    height: 3px;
+    height: 0px;
     width: 72px;
     border: none;
     border-radius: 3px;
@@ -20,7 +19,7 @@
     background-color: #eaeaea;
     padding-left: 12px;
     font-family: Poppins;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
     color: #696969;
 }
