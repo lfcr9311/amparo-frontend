@@ -1,47 +1,47 @@
 .footer-container {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .header-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 120%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120%;
 }
 
 .delete-container {
-    color: #E10E17;
-    text-align: center;
-    font-family: Poppins;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    text-decoration: none;
+  color: #e10e17;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-decoration: none;
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
 }
 
 .content-modal {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    gap: 15px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .cellphone-container {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    gap: 9px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 9px;
 }

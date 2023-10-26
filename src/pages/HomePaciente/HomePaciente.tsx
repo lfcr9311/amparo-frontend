@@ -15,7 +15,7 @@ const HomePaciente = () => {
   const navigate = useNavigate();
   const userIsPatient = true;
   const handleClickExames = () => {
-    navigate(ROUTES.EXAMES_PENDENTES_VAZIO());
+    navigate(ROUTES.EXAMES_VAZIO());
   };
 
   const handleClickMedicamentos = () => {
@@ -32,7 +32,7 @@ const HomePaciente = () => {
 
   return (
     <div className="container-home">
-      <HeaderHome type="headerHome" title="Olá, Fulano!"></HeaderHome>
+      <HeaderHome type="headerHome" title="Olá, Martin!"></HeaderHome>
       <div className="body">
         <div className="sub-header">
           <img
