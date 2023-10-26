@@ -1,0 +1,32 @@
+.select-container {
+    position: relative;
+    width: 290px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .caixa-de-selecao {
+    width: 100%;
+    height: 38px;
+    border: none;
+    border-radius: 3px;
+    outline: none;
+    background-color: #eaeaea;
+    padding-left: 10px;
+    font-family: Poppins;
+    font-size: 13px;
+    font-weight: 500;
+    color: #696969;
+    appearance: none;
+  }
+  
+  .arrow-icon {
+    position: absolute;
+    top: 20%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #696969;
+    transform: rotate(90deg);
+    max-width: 15px;
+  }
