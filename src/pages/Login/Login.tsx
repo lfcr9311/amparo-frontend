@@ -30,8 +30,6 @@ export const Login: React.FC = () => {
       setDataStatus(result.status);
       // console.log("Status " +result.status);
       localStorage.setItem('authToken', result.data.token);
-      console.log(localStorage.getItem("authToken"));
-      
       if (result.status == 201 || result.status == 200) {
         console.log('login realizado com sucesso');
         navigate(ROUTES.HOME_PACIENTE());

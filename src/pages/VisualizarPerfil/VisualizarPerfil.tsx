@@ -23,6 +23,7 @@ const VisualizacaoPerfilPaciente = () => {
     console.log("im here");
     
     localStorage.removeItem('authToken')
+    localStorage.removeItem('idUser')
     navigate(ROUTES.LOGIN())
   }
   return (
