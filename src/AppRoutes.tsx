@@ -16,7 +16,6 @@ import ExamesVazio from './pages/ExamesVazio/ExamesVazio';
 import Exames from './pages/Exames/Exames';
 import EdicaoExamePendente from './pages/EdicaoExamePendente/EdicaoExamePendente';
 import EdicaoExameRealizado from './pages/EdicaoExameRealizado/EdicaoExameRealizado';
-import ExamesPendentes from './pages/ExamesPendentes/ExamesPendentes';
 import ListaDeInteracaoDoMedicamento from './pages/ListaDeInteracaoDoMedicamento/ListaDeInteracaoDomedicamento';
 import MeusMedicos from './pages/MeusMedicos/MeusMedicos';
 import PageMedico from './components/FiltroBuscaMedico/PageMedico';
@@ -52,7 +51,12 @@ export default function AppRoutes() {
                       </PrivateRoute>
             } />
           
-          <Route path={ROUTES.LISTADEINTERACAODOMEDICAMENTO()} element={<ListaDeInteracaoDoMedicamento />} />
+          <Route path={ROUTES.LISTADEINTERACAODOMEDICAMENTO()} 
+                element={
+                  <PrivateRoute>
+                <ListaDeInteracaoDoMedicamento />
+                </PrivateRoute>
+                } />
           <Route path={ROUTES.FILTROBUSCAMEDICO()} element={<PageMedico />} />
           <Route
             path={ROUTES.CADASTRO_PACIENTE()}
@@ -87,12 +91,20 @@ export default function AppRoutes() {
           />
           <Route
             path={ROUTES.PERFIL_PACIENTE_MEUS_MEDICOS()}
-            element={<MeusMedicos />}
+            element={
+            <PrivateRoute>
+            <MeusMedicos />
+            </PrivateRoute>         
+            }
           />
 
           <Route
             path={ROUTES.MENU_MEDICAMENTOS()}
-            element={<MenuMedicamentos />}
+            element={
+                <PrivateRoute>
+                <MenuMedicamentos />
+                </PrivateRoute>
+              }
           />
           <Route
             path={ROUTES.LISTA_MEDICAMENTOS()}
@@ -102,22 +114,27 @@ export default function AppRoutes() {
               </PrivateRoute>
           }
           />
-
-          <Route path={ROUTES.LISTA_EXAMES()} 
-          element={
-            <PrivateRoute>
-              <ExamesPendentes />
-            </PrivateRoute>
-          } />
           <Route
             path={ROUTES.EDICAO_EXAMES_PENDENTES()}
-            element={<EdicaoExamePendente />}
+            element={
+              <PrivateRoute>
+              <EdicaoExamePendente />
+              </PrivateRoute>
+          }
           />
           <Route
             path={ROUTES.EDICAO_EXAMES_REALIZADOS()}
-            element={<EdicaoExameRealizado />}
+            element={
+              <PrivateRoute>
+              <EdicaoExameRealizado />
+              </PrivateRoute>  
+          }
           />
-          <Route path={ROUTES.EXAMES()} element={<Exames />} />
+          <Route path={ROUTES.EXAMES()} element={
+            <PrivateRoute>
+            <Exames />
+            </PrivateRoute>
+          } />
         </Routes>
       </div>
     </Router>

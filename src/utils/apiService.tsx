@@ -26,3 +26,16 @@ export const isLogged = async () => {
     throw error;
   }
 };
+export const addExamePendente = async (description: String, examDate: string ) => {
+  const body = {
+    description: description,
+    examDate: examDate,
+    is_done: false,
+  }; 
+  try {
+    const response = await axios.post('/patiente/893d1d3d-fb61-45fa-8454-212362754d04/exam', JSON.stringify(body));  // Replace with your endpoint
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
