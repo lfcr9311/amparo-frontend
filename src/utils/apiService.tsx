@@ -7,7 +7,7 @@ export const login_post = async (email: String, psw:String) => {
     password: psw
   }; 
   try {
-    const response = await axios.post('/auth/login', JSON.stringify(loginBody));  // Replace with your endpoint
+    const response = await axios.post('/auth/login', JSON.stringify(loginBody)); 
     return response;
   } catch (error) {
     throw error;
@@ -68,6 +68,63 @@ export const getPatient = async () => {
   }
 };
 export const getDoctor = async () => {
+  console.log("getting doctor");
+  
+  try {
+    const response = await axios.get('/doctor', {
+      headers:{
+        'Authorization': 'Bearer '+localStorage.getItem("authToken")
+      }
+    });
+    
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+export const registerDoctor = async (email: String, name: String, password: String, cellphone: String, userType: String, crm: String, uf: String) => {
+  const registerBody = {
+    email: email,
+    name: name,
+    password: password,
+    cellphone: cellphone,
+    userType: userType,
+    crm: crm,
+    uf: uf
+  }
+try {
+  const response = await axios.post('/auth/register', JSON.stringify(registerBody));
+  return response;
+} catch (error) {
+  throw error;
+}
+}
+
+export const registerUser = async (email: String, name: String, password: String, cellphone: String, userType: String, cpf: String, numSus: String, birthDate: String) => {
+  const registerBody = {
+    email: email,
+    name: name,
+    password: password,
+    cellphone: cellphone,
+    cpf: cpf,
+    userType: userType,
+    numSus: numSus, 
+    birthDate: birthDate
+  }
+try {
+  const response = await axios.post('/auth/register', JSON.stringify(registerBody));
+  return response;
+} catch (error) {
+  throw error;
+}
+}
+
+export const addExamePendente = async (description: String, examDate: string ) => {
+  const body = {
+    description: description,
+    examDate: examDate,
+    is_done: false,
+  }; 
   try {
     const response = await axios.get('/doctor', {
       headers:{
