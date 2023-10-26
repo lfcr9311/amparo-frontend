@@ -1,19 +1,21 @@
-import { useState } from 'react';
 import './DateModal.css';
 
-export default function DateModal() {
-  const [date, setDate] = useState('');
+interface DateModalProps {
+  value?: string;
+  onChange: (value: string) => void;
+}
 
-  const handleValue = (value: string) => {
-    setDate(value);
+export default function DateModal({ value, onChange }: DateModalProps) {
+  const handleValue = (event: React.ChangeEvent<HTMLInputElement>) => {
+    onChange(event.target.value);
   };
 
   return (
     <input
       type="date"
       className="date-picker"
-      value={date}
-      onChange={(event) => handleValue(event.target.value)}
+      value={value || ''}
+      onChange={handleValue}
     />
   );
 }

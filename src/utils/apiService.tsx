@@ -14,14 +14,14 @@ export const login_post = async (email: String, psw:String) => {
   }
 };
 
-export const getUser = async () => {
+export const isLogged = async () => {
   try {
-    const response = await axios.get('/patient', {
+    const response = await axios.get('/auth/valid', {
       headers:{
-        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhbXBhcm8tYXBpIiwic3ViIjoiZDAzYTMwY2UtMjBmZC00ZDM2LWIwNTEtMjMwYzU1ZmNkZmU1Iiwicm9sZXMiOlsiUk9MRV9QQVRJRU5UIl0sImVtYWlsIjoibGVvQGVtYWlsLmNvbSIsIm5hbWUiOiJMZW8gdGlrdG9rZXIiLCJleHAiOjE2OTY0ODIzNjh9.4yuePJomwVVIoLTEsMh5qRUbydQxRDNe6OEI6yKyMLc'
+        'Authorization': 'Bearer '+localStorage.getItem("authToken")
       }
     }); // Replace with your endpoint
-    return response.data;
+    return response;
   } catch (error) {
     throw error;
   }
@@ -63,3 +63,17 @@ try {
   throw error;
 }
 }
+
+export const addExamePendente = async (description: String, examDate: string ) => {
+  const body = {
+    description: description,
+    examDate: examDate,
+    is_done: false,
+  }; 
+  try {
+    const response = await axios.post('/patiente/893d1d3d-fb61-45fa-8454-212362754d04/exam', JSON.stringify(body));  // Replace with your endpoint
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
