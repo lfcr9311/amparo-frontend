@@ -17,7 +17,7 @@ const TextfieldModal: React.FC<TextfieldModalProps> = ({
   value,
   onChange,
   type,
-  error,
+  error = false,
   helperText,
   classname,
   width = 270,
