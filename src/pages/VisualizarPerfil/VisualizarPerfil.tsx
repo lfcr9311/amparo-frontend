@@ -28,8 +28,8 @@ const VisualizacaoPerfilPaciente = () => {
       setName(result.name);
       setCpf(result.cpf);
       setEmail(result.email);
-      setDataNascimento(result.dataNascimento);
-      setNSus(result.nSus);
+      setDataNascimento(result.birthDate.substring(0,10));
+      setNSus(result.numSus);
       setCellphone(result.cellphone);
     } catch (error) {
       console.error('Erro ao fazer login', error);
@@ -37,6 +37,8 @@ const VisualizacaoPerfilPaciente = () => {
   }
 async function update() {
   try {
+    console.log(name)
+    console.log(cellphone)
     const result = await editUser(name, cellphone, cpf, "null", email, dataNascimento, nSus);
     console.log(result);
     setIsModalOpen(!isModalOpen);
