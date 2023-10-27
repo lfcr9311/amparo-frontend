@@ -10,6 +10,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../routes/constans';
 import { Button } from '@mui/material';
 import { getPatient } from '../../utils/apiService';
+import { format } from 'date-fns';
 
 const VisualizacaoPerfilPaciente = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -23,19 +24,19 @@ const VisualizacaoPerfilPaciente = () => {
   const navigate = useNavigate()
   const handleDeletar = () => {
     console.log("im here");
-    
+
     localStorage.removeItem('authToken')
     localStorage.removeItem('userId')
     navigate(ROUTES.LOGIN())
   }
-  useEffect(() =>{
-    getPatient().then((response) =>{
+  useEffect(() => {
+    getPatient().then((response) => {
       const att = response.data
       setName(att.name)
       setEmail(att.email)
       setDataNascimento(att.birthDate)
       setNSus(att.numSus)
-      setCpf(att.cpf)     
+      setCpf(att.cpf)
     })
   }, [])
   return (
@@ -49,7 +50,7 @@ const VisualizacaoPerfilPaciente = () => {
             name={name}
             email={email}
             cpf={cpf}
-            dataNascimento={dataNascimento}
+            dataNascimento={format(new Date(dataNascimento), 'dd/MM/yyyy')}
             onClickChangePassword={() => console.log('Change Password')}
             onClickEditProfile={() => setIsModalOpen(!isModalOpen)}
             numSus={nSus}
@@ -111,21 +112,21 @@ const VisualizacaoPerfilPaciente = () => {
           </form>
         </Modal>
         <div >
-        <Button  
-        sx={{ 
-            color: '#e10e17',
-            textAlign: 'center',
-            fontFamily: 'Poppins',
-            fontSize: '15px',
-            fontStyle: 'normal',
-            fontWeight: 400,
-            lineHeight: 'normal',
-            textDecoration: 'none',
-            textTransform: 'none',
-          }} 
-          onClick={handleDeletar}
-        >
-              Sair da Conta
+          <Button
+            sx={{
+              color: '#e10e17',
+              textAlign: 'center',
+              fontFamily: 'Poppins',
+              fontSize: '15px',
+              fontStyle: 'normal',
+              fontWeight: 400,
+              lineHeight: 'normal',
+              textDecoration: 'none',
+              textTransform: 'none',
+            }}
+            onClick={handleDeletar}
+          >
+            Sair da Conta
           </Button>
         </div>
       </div>
