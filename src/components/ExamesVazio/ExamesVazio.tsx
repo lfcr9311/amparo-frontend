@@ -12,13 +12,29 @@ import DateModal from '../../components/Modal/Components/DateModal/DateModal';
 import InputFile from '../../components/InputFile/InputFile';
 
 interface ExamesVaziosProps {
-  value: number
+  value: number;
+  handleSalvar: () => void;
+  descriptionPendentes: string;
+  datePendestes: string;
+  isModalPendentesOpen: boolean;
+  setIsModalPendentesOpen: (open: boolean) => void;
+  setDescriptionPendentes: (value: string) => void;
+  setDatePendentes: (value: string) => void;
 }
-const ExamesVazio: React.FC<ExamesVaziosProps> = ({ value }) => {
-  const [isModalPendentesOpen, setIsModalPendentesOpen] = useState(false);
+const ExamesVazio: React.FC<ExamesVaziosProps> = ({
+  value,
+  handleSalvar,
+  descriptionPendentes,
+  datePendestes,
+  isModalPendentesOpen,
+  setIsModalPendentesOpen,
+  setDescriptionPendentes,
+  setDatePendentes
+
+
+}) => {
+
   const [isModalRealizadosOpen, setIsModalRealizadosOpen] = useState(false);
-  const [datePendestes, setDatePendentes] = useState('');
-  const [descriptionPendentes, setDescriptionPendentes] = useState('');
   const [dateRealizados, setDateRealizados] = useState('');
   const [descriptionRealizados, setDescriptionRealizados] = useState('');
   const [filePdf, setFilePdf] = useState<File | null>(null);
@@ -63,7 +79,11 @@ const ExamesVazio: React.FC<ExamesVaziosProps> = ({ value }) => {
               <CustomButton
                 variant="contained"
                 label="Salvar"
-                onClick={() => console.log(datePendestes, descriptionPendentes)}
+                onClick={() => {
+                  handleSalvar()
+                  setIsModalPendentesOpen(false);
+                }
+                }
               />
             </div>
           </Modal>

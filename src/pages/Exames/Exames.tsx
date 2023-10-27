@@ -44,161 +44,182 @@ export default function Exames() {
     setFileImage(file);
   };
   useEffect(() => {
-    getExamesPendente().then((response)=>{
-        if(response.status==200){
-          setExamesPendentes(response.data)
-          console.log(examesPendentes);
-        }
-    });
-    getExamesRealizados().then((response) => {      
-        setExamesRealizados(response.data)
+    getExamesPendente().then((response) => {
+      if (response.status == 200) {
+        setExamesPendentes(response.data)
         console.log(examesPendentes);
+      }
+    });
+    getExamesRealizados().then((response) => {
+      setExamesRealizados(response.data)
+      console.log(examesPendentes);
     })
-  },[addExam])
+  }, [addExam])
   const handleSalvarPendente = () => {
-      addExamePendente(descriptionPendentes, datePendestes).then((response) => {
-        if(response.status == 200){
-          console.log("Adicionando novo exame");
-          setDatePendentes("")
-          setDescriptionPendentes("")
-          setIsModalPendentesOpen(false)
-          setAddExam(response.data)
-        }
-      })
+    console.log("im here" + descriptionPendentes);
+
+    addExamePendente(descriptionPendentes, datePendestes).then((response) => {
+      if (response.status == 200) {
+        console.log("Adicionando novo exame");
+        setDatePendentes("")
+        setDescriptionPendentes("")
+        setIsModalPendentesOpen(false)
+        setAddExam(response.data)
+      }
+    })
   }
   return (
     <>
       <HeaderHome type="headerTab" value={value} setValue={setValue} />
       {value === 0 ? (
-        examesPendentes.length ===0 ? (
-          <ExamesVazio value={value}/>
+        examesPendentes.length === 0 ? (
+          <ExamesVazio
+            value={value}
+            handleSalvar={handleSalvarPendente}
+            descriptionPendentes={descriptionPendentes}
+            datePendestes={datePendestes}
+            isModalPendentesOpen={isModalPendentesOpen}
+            setIsModalPendentesOpen={setIsModalPendentesOpen}
+            setDescriptionPendentes={setDescriptionPendentes}
+            setDatePendentes={setDatePendentes}
+
+          />
         ) : (
 
           <div className='body-exames'>
-          <div className="content-header-pendentes">
-          <p className="title-exames-page-title">Exames</p>
-          <button
-          className="add-button-icon"
-          onClick={() => setIsModalPendentesOpen(!isModalPendentesOpen)}
-          >
-          <img src={AddCircleIcon} className="add-circle-icon" />
-          </button>
-          </div>
-          <div className="cards-exames-pendentes">
-          {examesPendentes.map((exam, index) => (
-            <ExamListItem
-            key={index} // Make sure to provide a unique key
-            date={format(new Date(exam.examDate), 'dd/MM/yyyy')}
-            exam={exam.description}
-            description={exam.description}
-            type={'pendente'} // Adjust based on your data
-            />
-            ))}
+            <div className="content-header-pendentes">
+              <p className="title-exames-page-title">Exames</p>
+              <button
+                className="add-button-icon"
+                onClick={() => setIsModalPendentesOpen(!isModalPendentesOpen)}
+              >
+                <img src={AddCircleIcon} className="add-circle-icon" />
+              </button>
+            </div>
+            <div className="cards-exames-pendentes">
+              {examesPendentes.map((exam, index) => (
+                <ExamListItem
+                  key={index} // Make sure to provide a unique key
+                  date={format(new Date(exam.examDate), 'dd/MM/yyyy')}
+                  exam={exam.description}
+                  description={exam.description}
+                  type={'pendente'} // Adjust based on your data
+                />
+              ))}
             </div>
             <Modal
-            isOpen={isModalPendentesOpen}
-            isClose={() => setIsModalPendentesOpen(!isModalPendentesOpen)}
+              isOpen={isModalPendentesOpen}
+              isClose={() => setIsModalPendentesOpen(!isModalPendentesOpen)}
             >
-            <div className="div-date-modal">
-            <DateModal
-            value={datePendestes}
-            onChange={(value) => setDatePendentes(value)}
-            />
-            </div>
-            <div className="description-button-modal">
-            <Description
-            value={descriptionPendentes}
-            onChange={(value) => setDescriptionPendentes(value)}
-            />
-            <CustomButton
-            variant="contained"
-            label="Salvar"
-            onClick={handleSalvarPendente}
-            />
-            </div>
+              <div className="div-date-modal">
+                <DateModal
+                  value={datePendestes}
+                  onChange={(value) => setDatePendentes(value)}
+                />
+              </div>
+              <div className="description-button-modal">
+                <Description
+                  value={descriptionPendentes}
+                  onChange={(value) => setDescriptionPendentes(value)}
+                />
+                <CustomButton
+                  variant="contained"
+                  label="Salvar"
+                  onClick={handleSalvarPendente}
+                />
+              </div>
             </Modal>
-            </div>
-          
-          )
-          ) : (
-            examesRealizados.length === 0 ? 
-            (
-              <ExamesVazio value={value}/>
-            ) 
-            : (
-              
+          </div>
 
-        <div className='body-exames'>
-          <div className="content-header-realizados">
-            <p className="title-exames-page-title">Exames</p>
-            <button
-              className="add-button-icon"
-              onClick={() => setIsModalRealizadosOpen(!isModalRealizadosOpen)}
-            >
-              <img src={AddCircleIcon} className="add-circle-icon" />
-            </button>
-          </div>
-          <ExamFilter
-            tabs={[
-              { content: '', label: '30 dias' },
-              { content: '', label: '6 meses' },
-              { content: '', label: 'Todos' },
-            ]}
-          />
-          <div className="cards-exames-realizados">
-            {examesRealizados.map((exam, index)=> (
-               <ExamListItem
-               key={index} // Make sure to provide a unique key
-               date={format(new Date(exam.examDate), 'dd/MM/yyyy')}
-               exam={exam.description}
-               description={exam.description}
-               type={'realizado'} // Adjust based on your data
-               />
-            ))}
-          </div>
-          <Modal
-            isOpen={isModalRealizadosOpen}
-            isClose={() => setIsModalRealizadosOpen(!isModalRealizadosOpen)}
-          >
-            <div className="div-date-modal">
-              <DateModal
-                value={dateRealizados}
-                onChange={(value) => setDateRealizados(value)}
+        )
+      ) : (
+        examesRealizados.length === 0 ?
+          (
+            <ExamesVazio
+              value={value}
+              handleSalvar={handleSalvarPendente}
+              descriptionPendentes={descriptionPendentes}
+              datePendestes={datePendestes}
+              isModalPendentesOpen={isModalPendentesOpen}
+              setIsModalPendentesOpen={setIsModalPendentesOpen}
+              setDescriptionPendentes={setDescriptionPendentes}
+              setDatePendentes={setDatePendentes}
+            />
+          )
+          : (
+
+
+            <div className='body-exames'>
+              <div className="content-header-realizados">
+                <p className="title-exames-page-title">Exames</p>
+                <button
+                  className="add-button-icon"
+                  onClick={() => setIsModalRealizadosOpen(!isModalRealizadosOpen)}
+                >
+                  <img src={AddCircleIcon} className="add-circle-icon" />
+                </button>
+              </div>
+              <ExamFilter
+                tabs={[
+                  { content: '', label: '30 dias' },
+                  { content: '', label: '6 meses' },
+                  { content: '', label: 'Todos' },
+                ]}
               />
+              <div className="cards-exames-realizados">
+                {examesRealizados.map((exam, index) => (
+                  <ExamListItem
+                    key={index} // Make sure to provide a unique key
+                    date={format(new Date(exam.examDate), 'dd/MM/yyyy')}
+                    exam={exam.description}
+                    description={exam.description}
+                    type={'realizado'} // Adjust based on your data
+                  />
+                ))}
+              </div>
+              <Modal
+                isOpen={isModalRealizadosOpen}
+                isClose={() => setIsModalRealizadosOpen(!isModalRealizadosOpen)}
+              >
+                <div className="div-date-modal">
+                  <DateModal
+                    value={dateRealizados}
+                    onChange={(value) => setDateRealizados(value)}
+                  />
+                </div>
+                <div className="description-button-modal">
+                  <Description
+                    value={descriptionRealizados}
+                    onChange={(value) => setDescriptionRealizados(value)}
+                  />
+                  <InputFile type="image" onChange={handleFileImage} />
+                  {fileImage && (
+                    <p className="file-selected">
+                      Arquivo selecionado: {fileImage.name}
+                    </p>
+                  )}
+                  <InputFile type="pdf" onChange={handleFilePdf} />
+                  {filePdf && (
+                    <p className="file-selected">
+                      Arquivo selecionado: {filePdf.name}
+                    </p>
+                  )}
+                  <CustomButton
+                    variant="contained"
+                    label="Salvar"
+                    onClick={() =>
+                      console.log(
+                        dateRealizados,
+                        descriptionRealizados,
+                        fileImage,
+                        filePdf
+                      )
+                    }
+                  />
+                </div>
+              </Modal>
             </div>
-            <div className="description-button-modal">
-              <Description
-                value={descriptionRealizados}
-                onChange={(value) => setDescriptionRealizados(value)}
-              />
-              <InputFile type="image" onChange={handleFileImage} />
-              {fileImage && (
-                <p className="file-selected">
-                  Arquivo selecionado: {fileImage.name}
-                </p>
-              )}
-              <InputFile type="pdf" onChange={handleFilePdf} />
-              {filePdf && (
-                <p className="file-selected">
-                  Arquivo selecionado: {filePdf.name}
-                </p>
-              )}
-              <CustomButton
-                variant="contained"
-                label="Salvar"
-                onClick={() =>
-                  console.log(
-                    dateRealizados,
-                    descriptionRealizados,
-                    fileImage,
-                    filePdf
-                  )
-                }
-              />
-            </div>
-          </Modal>
-        </div>
-            )
+          )
       )}
       <Footer user="patient" />
     </>
