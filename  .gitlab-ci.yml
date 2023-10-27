@@ -1,0 +1,23 @@
+stages:
+  - test
+  - deploy
+
+npm-test:
+  image: node:18-alpine
+  stage: test
+  tags:
+    - test
+  script:
+    - npm ci
+    - npm test
+
+Docker Run:
+  image: node:18-alpine
+  stage: deploy
+  tags:
+    - deploy
+  script:
+    - npm run prod
+  only:
+    - main
+    - dev
