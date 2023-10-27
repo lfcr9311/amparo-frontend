@@ -2,7 +2,7 @@ import HeaderHome from '../../components/HeaderHome/HeaderHome';
 import Footer from '../../components/Footer/Footer';
 import './ExamesVazio.css';
 import HappyIcon from '../../assets/HappyIcon.svg';
-import AddIcon from '../../assets/AddIcon.svg';
+import AddIcon from '../../assets/addIcon.svg';
 import SadIcon from '../../assets/SadIcon.svg';
 import { useState } from 'react';
 import Modal from '../../components/Modal/Modal';
@@ -11,10 +11,10 @@ import CustomButton from '../../components/Button/Button';
 import DateModal from '../../components/Modal/Components/DateModal/DateModal';
 import InputFile from '../../components/InputFile/InputFile';
 
- interface ExamesVaziosProps{
+interface ExamesVaziosProps {
   value: number
- }
-const ExamesVazio: React.FC<ExamesVaziosProps> = ({value}) => {
+}
+const ExamesVazio: React.FC<ExamesVaziosProps> = ({ value }) => {
   const [isModalPendentesOpen, setIsModalPendentesOpen] = useState(false);
   const [isModalRealizadosOpen, setIsModalRealizadosOpen] = useState(false);
   const [datePendestes, setDatePendentes] = useState('');
