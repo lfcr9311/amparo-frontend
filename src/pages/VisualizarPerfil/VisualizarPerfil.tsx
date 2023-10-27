@@ -50,7 +50,8 @@ const VisualizacaoPerfilPaciente = () => {
             name={name}
             email={email}
             cpf={cpf}
-            dataNascimento={format(new Date(dataNascimento), 'dd/MM/yyyy')}
+            // dataNascimento={format(new Date(dataNascimento), 'dd/MM/yyyy')}
+            dataNascimento={dataNascimento}
             onClickChangePassword={() => console.log('Change Password')}
             onClickEditProfile={() => setIsModalOpen(!isModalOpen)}
             numSus={nSus}
