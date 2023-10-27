@@ -1,19 +1,36 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import './DateModal.css';
 
-export default function DateModal() {
-  const [date, setDate] = useState('');
+type DateModalProps = {
+  value?: string;
+  onChange?: (selectedDate: string) => void;
+  disabled?: boolean;
+  error?: boolean;
+  helperText?: string;
+}
 
-  const handleValue = (value: string) => {
-    setDate(value);
+const DateModal: React.FC<DateModalProps> = ({ value = '', onChange, disabled, error, helperText }) => {
+  const [date, setDate] = useState(value);
+
+  const handleValueChange = (newDate: string) => {
+    setDate(newDate);
+    if (onChange) {
+      onChange(newDate);
+    }
   };
 
   return (
-    <input
-      type="date"
-      className="date-picker"
-      value={date}
-      onChange={(event) => handleValue(event.target.value)}
-    />
+    <div>
+      <input
+        type="date"
+        className={`date-picker ${error ? 'date-error' : ''}`}
+        value={date}
+        onChange={(event) => handleValueChange(event.target.value)}
+        disabled={disabled}
+      />
+      {error && <p className="error-text">{helperText}</p>}
+    </div>
   );
 }
+
+export default DateModal;

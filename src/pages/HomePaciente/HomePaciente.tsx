@@ -10,12 +10,21 @@ import { ROUTES } from '../../routes/constans';
 import Footer from '../../components/Footer/Footer';
 import { useNavigate } from 'react-router-dom';
 import logoLogin from '../../assets/amparo.svg';
+import { useEffect, useState } from 'react';
+import { getPatient } from '../../utils/apiService';
 
 const HomePaciente = () => {
   const navigate = useNavigate();
+  const [name, setName] = useState('');
   const userIsPatient = true;
+  useEffect(() =>{
+    getPatient().then((response) =>{
+      const att = response.data
+      setName(att.name)    
+    })
+  }, [])
   const handleClickExames = () => {
-    navigate(ROUTES.EXAMES_PENDENTES_VAZIO());
+    navigate(ROUTES.EXAMES());
   };
 
   const handleClickMedicamentos = () => {
@@ -32,7 +41,7 @@ const HomePaciente = () => {
 
   return (
     <div className="container-home">
-      <HeaderHome type="headerHome" title="Olá, Fulano!"></HeaderHome>
+      <HeaderHome type="headerHome" title={"Olá, "+name.split(' ')[0]}></HeaderHome>
       <div className="body">
         <div className="sub-header">
           <img

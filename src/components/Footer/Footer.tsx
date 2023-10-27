@@ -9,6 +9,7 @@ import { ROUTES } from '../../routes/constans';
 const containerStyle: React.CSSProperties = {
   width: 'auto',
   height: '109px',
+  backgroundColor: '#ffffff',
   gap: '75px',
   display: 'flex',
   justifyContent: 'center',
@@ -22,6 +23,7 @@ const containerStyle: React.CSSProperties = {
 const iconStyle: React.CSSProperties = {
   alignItems: 'center',
   justifyContent: 'center',
+  backgroundColor: '#ffffff',
   display: 'flex',
   width: '50px',
   height: '27px',
