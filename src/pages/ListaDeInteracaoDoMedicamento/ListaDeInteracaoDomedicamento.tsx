@@ -15,24 +15,24 @@ const US21ListaDeInteracaoMedicamentos = ({ nomeDoMedicamentoQuePossuiInteracao 
 
   const [filtroText, setFiltroText] = useState('');
   const [listaDeMedicamentosCompleta] = useState([
-    { name: ' Alfa', status: 'bom' },
-    { name: ' altarica', status: 'medio' },
-    { name: ' Careta', status: 'ruim' },
-    { name: ' dionisio', status: 'bom' },
-    { name: ' Blue', status: 'medio' },
-    { name: ' Ccaraca', status: 'ruim' },
-    { name: ' Aasd', status: 'bom' },
-    { name: ' Bdas', status: 'medio' },
-    { name: ' Csdasd', status: 'ruim' },
-    { name: ' Aasd', status: 'bom' },
-    { name: ' Bfa', status: 'medio' },
-    { name: ' Cfas', status: 'ruim' },
-    { name: ' Aasd', status: 'bom' },
-    { name: ' Bdas', status: 'medio' },
-    { name: ' Csdasd', status: 'ruim' },
-    { name: ' Aasd', status: 'bom' },
-    { name: ' Bfa', status: 'medio' },
-    { name: ' Cfas', status: 'ruim' },
+    { name: 'Paracetamol', status: 'bom' },
+    { name: 'Ibuprofeno', status: 'medio' },
+    { name: 'Amoxicilina', status: 'ruim' },
+    { name: 'Omeprazol', status: 'bom' },
+    { name: 'Sertralina', status: 'medio' },
+    { name: 'Metformina', status: 'ruim' },
+    { name: 'Atorvastatina', status: 'bom' },
+    { name: 'Loratadina', status: 'medio' },
+    { name: 'Lisinopril', status: 'ruim' },
+    { name: 'Diclofenaco', status: 'bom' },
+    { name: 'Ranitidina', status: 'medio' },
+    { name: 'Pantoprazol', status: 'ruim' },
+    { name: 'Ciprofloxacino', status: 'bom' },
+    { name: 'Metronidazol', status: 'medio' },
+    { name: 'Furosemida', status: 'ruim' },
+    { name: 'Dexametasona', status: 'bom' },
+    { name: 'Fluoxetina', status: 'medio' },
+    { name: 'Tramadol', status: 'ruim' }
   ]);
 
   const handleFiltroStatusChange = (selectedStatus: string) => {
