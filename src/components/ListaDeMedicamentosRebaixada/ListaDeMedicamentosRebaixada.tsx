@@ -4,12 +4,14 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
-
+import { useNavigate } from 'react-router-dom';
 import IconeMedicamentoBom from '../../assets/IconeMedicamentoBom.svg';
 import IconeMedicamentoMedio from '../../assets/IconeMedicamentoMedio.svg';
 import IconeMedicamentoRuim from '../../assets/IconeMedicamentoRuim.svg';
+import { ROUTES } from '../../routes/constans';
 
 interface CustomListaInteracoesProps {
+    name: string;
     items: { name: string; status: string }[];
 }
 
@@ -19,12 +21,19 @@ const classificandoIcones: Record<string, React.ReactNode> = {
     ruim: <img src={IconeMedicamentoRuim} alt="Ruim" style={{ marginRight: '-3.5px' }} />,
 };
 
-export const ListaInteracoes: React.FC<CustomListaInteracoesProps> = ({ items }) => {
+export const ListaInteracoes: React.FC<CustomListaInteracoesProps> = ({ items, name }) => {
     const listaDeMedicamentosRecebida = items
-        .slice()
-        .sort((a, b) => a.name.localeCompare(b.name))
-        .slice(0, 5);
-
+    .slice()
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .slice(0, 5);
+    
+    const navigate = useNavigate();
+    
+    
+    
+    const handleLinkClick = (items: { name: string, status: string }[], nome: string) => {
+        navigate(ROUTES.LISTADEINTERACAODOMEDICAMENTO(), { state: { items: items, nome: nome } });
+    };
     return (
         <div>
             <List
@@ -55,7 +64,9 @@ export const ListaInteracoes: React.FC<CustomListaInteracoesProps> = ({ items })
                     </div>
                 ))}
                 <div style={{ textAlign: 'center' }}>
-                    <a href="/medicamentos/interacao" style={{ textDecoration: 'none' }}>
+                    <a href="/medicamentos/interacao" style={{ textDecoration: 'none' }}
+                        onClick={() => handleLinkClick(items, name)}
+                    >
                         <Typography
                             variant="body1"
                             component="span"
