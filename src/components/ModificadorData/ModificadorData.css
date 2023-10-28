@@ -1,0 +1,45 @@
+/* Estilize o contêiner do DateSelector */
+.date-selector-container {
+    display: flex;
+    align-items: center;
+}
+
+/* Estilize o botão de navegação à esquerda */
+.prev-button {
+    background-color: #eaeaea;
+    /* Cor de fundo do botão anterior */
+    border: none;
+    padding: 5px 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+/* Estilize o botão de navegação à direita */
+.next-button {
+    background-color: #eaeaea;
+    /* Cor de fundo do botão seguinte */
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+/* Estilize o texto da data */
+.date-text {
+    font-family: Poppins;
+    font-size: 25px;
+    font-weight: 500;
+    line-height: 38px;
+    letter-spacing: 0em;
+    text-align: left;
+
+}
+
+.prev-button img {
+    width: 10px;
+    height: 20px;
+}
+
+.next-button img {
+    width: 20px;
+    height: 20px;
+}
