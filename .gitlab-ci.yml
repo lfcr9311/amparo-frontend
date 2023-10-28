@@ -13,7 +13,7 @@ Docker Run:
   image: sleavely/node-awscli:18.x
   stage: deploy
   script:
-    - npm run ci
+    - npm ci
     - npm run prod
   only:
     - main
