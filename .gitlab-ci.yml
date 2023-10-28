@@ -12,7 +12,7 @@ npm-test:
     - npm test
 
 Docker Run:
-  image: node:18-alpine
+  image: sleavely/node-awscli:18.x
   stage: deploy
   tags:
     - deploy
