@@ -21,11 +21,10 @@ export const CadastroPaciente = () => {
   const [isValidName, setIsValidName] = useState<boolean>(true);
   const [isValidDate, setIsValidDate] = useState<boolean>(true);
   const [isValidPsw, setIsValidPsw] = useState<boolean>(true);;
-  // @ts-ignore
   const [data, setData] = useState<String>();
   const [dataStatus, setDataStatus] = useState<Number>();
-  // @ts-ignore
   const [erro, setErro] = useState<string>('');
+  const [formattedDate, setFormattedDate] = useState<string>('');
   const navigate = useNavigate();
 
   const buttonCLick = () => {
@@ -61,10 +60,10 @@ export const CadastroPaciente = () => {
       setIsValidPsw(true);
     }
 
-    console.log(email, name, password, cpfValue, date);
+    console.log(email, name, password, cpfValue, formattedDate);
 
-    if (isValidName && isValidEmail && validPassword && cpf.isValid(cpfValue) && (dataStatus == 201 || dataStatus == 200)) {
-      fetchData(email, name, password, "111111111", cpfValue, "123456789123456", date);
+    if (isValidName && isValidEmail && validPassword && cpf.isValid(cpfValue)) {
+      fetchData(email, name, password, "111111111", cpfValue, "123456789123456", formattedDate);
       return;
     }
   };
@@ -84,7 +83,7 @@ export const CadastroPaciente = () => {
 
       if (result.status == 201 || result.status == 200) {
         console.log('cadastro realizado com sucesso');
-        navigate(ROUTES.CADASTRO_PACIENTE());
+        navigate(ROUTES.LOGIN());
       }
 
     }).catch((erro) => {
@@ -109,8 +108,7 @@ export const CadastroPaciente = () => {
       const year = parts[0];
       const month = parts[1];
       const day = parts[2];
-      const formattedDate = `${day}/${month}/${year}`;
-
+      setFormattedDate(`${day}/${month}/${year}`);
 
       const dateRegex = /^(\d{2})\/(\d{2})\/(\d{4})$/;
       const match = formattedDate.match(dateRegex);
@@ -233,3 +231,4 @@ export const CadastroPaciente = () => {
     </div>
   );
 };
+
