@@ -121,12 +121,14 @@ try {
 
 export const addExamePendente = async (description: String, examDate: string ) => {
   const body = {
-    description: description,
-    examDate: examDate,
-    is_done: false,
+    description: description || null,
+    examDate: examDate+"T04:20:00.000",
+    isDone: false,
+    file: null,
+    image: null
   }; 
   try {
-    const response = await axios.get('/doctor', {
+    const response = await axios.post(`/patient/${localStorage.getItem("userId")}/exam`, body,{
       headers:{
         'Authorization': 'Bearer '+localStorage.getItem("authToken")
       }
