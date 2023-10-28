@@ -3,7 +3,6 @@ import HeaderHome from '../../components/HeaderHome/HeaderHome';
 import AddCircleIcon from '../../assets/addCircle.svg';
 import './ExamesPendentes.css';
 import { useState } from 'react';
-import ExamListItem from '../../components/ListItem/ListItem';
 import Modal from '../../components/Modal/Modal';
 import DateModal from '../../components/Modal/Components/DateModal/DateModal';
 import Description from '../../components/Modal/Components/Description/Description';
@@ -38,14 +37,11 @@ export default function ExamesPendentes() {
       </div>
       <Modal isOpen={isModalOpen} isClose={() => setIsModalOpen(!isModalOpen)}>
         <div className="div-date-modal">
-          <DateModal onChange={function (value: string): void {
-            throw new Error('Function not implemented.');
-          } } />
+          <DateModal />
         </div>
         <div className="description-button-modal">
-          <Description onChange={function (value: string): void {
-            throw new Error('Function not implemented.');
-          } } />
+
+          <Description onChange={() => console.log()} />
           <CustomButton
             variant="contained"
             label="Salvar"

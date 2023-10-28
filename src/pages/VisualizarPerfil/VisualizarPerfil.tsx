@@ -6,11 +6,10 @@ import Modal from '../../components/Modal/Modal';
 import { useEffect, useState } from 'react';
 import TextfieldModal from '../../components/Modal/Components/TextfieldModal';
 import CustomButton from '../../components/Button/Button';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../routes/constans';
 import { Button } from '@mui/material';
 import { getPatient } from '../../utils/apiService';
-import { format } from 'date-fns';
 
 const VisualizacaoPerfilPaciente = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -50,7 +49,6 @@ const VisualizacaoPerfilPaciente = () => {
             name={name}
             email={email}
             cpf={cpf}
-            // dataNascimento={format(new Date(dataNascimento), 'dd/MM/yyyy')}
             dataNascimento={dataNascimento}
             onClickChangePassword={() => console.log('Change Password')}
             onClickEditProfile={() => setIsModalOpen(!isModalOpen)}

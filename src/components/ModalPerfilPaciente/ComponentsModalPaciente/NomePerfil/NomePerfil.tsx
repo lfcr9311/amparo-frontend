@@ -1,6 +1,3 @@
-import React from 'react';
-
-
 interface NomeProps {
   name: string;
 }
@@ -14,7 +11,7 @@ const nameStyle = {
 
 export function Nome({ name }: NomeProps) {
   return (
-      
-      <p className="name" style={nameStyle}>{name}</p>
+
+    <p className="name" style={nameStyle}>{name}</p>
   );
 }

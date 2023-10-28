@@ -1,6 +1,5 @@
 import './CardMedico.css';
 import RightArrow from '../../assets/CardRemedioIcon.svg';
-import Modal from '../Modal/Modal';
 
 import DefaultProfilePicture from '../../assets/DefaultProfilePicture.svg';
 
@@ -12,7 +11,6 @@ interface CardMedicoProps {
 }
 
 export default function CardMedico({
-  id,
   name,
   profilePicture,
   onClick,
