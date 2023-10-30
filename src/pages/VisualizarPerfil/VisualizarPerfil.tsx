@@ -11,10 +11,26 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../routes/constans';
 import { Button } from '@mui/material';
 import { getPatient } from '../../utils/apiService';
-import { format } from 'date-fns';
+
+interface apiInfo {
+  name: string,
+  cpf: string,
+  email: string,
+  birthDate: string,
+  numSus: string,
+  cellphone: string
+}
 
 const VisualizacaoPerfilPaciente = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [apiInfo, setApiInfo] = useState({
+    name: '',
+    cpf: '',
+    email: '',
+    birthDate: '',
+    numSus: '',
+    cellphone: ''
+  })
   const [name, setName] = useState('');
   const [cpf, setCpf] = useState('');
   const [email, setEmail] = useState('');
@@ -29,6 +45,15 @@ const VisualizacaoPerfilPaciente = () => {
 async function update() {
   try {
     await editUser(name, cellphone, cpf, "null", email, dataNascimento, nSus);
+    const att = await getPatient() as unknown as apiInfo;
+    setApiInfo({
+      name: att.name,
+      email: att.email,
+      birthDate: att.birthDate,
+      numSus: att.numSus,
+      cellphone: att.cellphone,
+      cpf: att.cpf
+    })
     setIsModalOpen(!isModalOpen);
   }
   catch(e) {
@@ -46,6 +71,14 @@ async function update() {
   useEffect(() => {
     getPatient().then((response) => {
       const att = response.data
+      setApiInfo({
+        name: att.name,
+        email: att.email,
+        birthDate: att.birthDate,
+        numSus: att.numSus,
+        cellphone: att.cellphone,
+        cpf: att.cpf
+      })
       setName(att.name)
       setEmail(att.email)
       setDataNascimento(att.birthDate)
@@ -67,7 +100,6 @@ async function update() {
             name={name}
             email={email}
             cpf={cpf}
-            // dataNascimento={format(new Date(dataNascimento), 'dd/MM/yyyy')}
             dataNascimento={dataNascimento}
             onClickChangePassword={() => console.log('Change Password')}
             onClickEditProfile={() => setIsModalOpen(!isModalOpen)}
@@ -77,7 +109,14 @@ async function update() {
         <Modal
           isOpen={isModalOpen}
           title="Perfil"
-          isClose={() => setIsModalOpen(!isModalOpen)}
+          isClose={() => {
+            setName(apiInfo.name);
+            setEmail(apiInfo.email);
+            setDataNascimento(apiInfo.birthDate);
+            setNSus(apiInfo.numSus);
+            setCellphone(apiInfo.cellphone);
+            setCpf(apiInfo.cpf);
+          }}
         >
           <form>
             <div className="content-modal">

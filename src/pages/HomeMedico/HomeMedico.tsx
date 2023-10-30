@@ -6,19 +6,10 @@ import MedicamentosIcon from '../../assets/MedicationIcon.svg';
 import InfoIcon from '../../assets/InfoIcon.svg';
 import PacientIcon from '../../assets/PacientIcon.svg';
 import ConsultIcon from '../../assets/ConsultIcon.svg';
-// @ts-ignore
-import { ROUTES } from '../../routes/constans';
 import Footer from '../../components/Footer/Footer';
-// import { useNavigate } from 'react-router-dom';
 import logoLogin from '../../assets/amparo.svg';
 
 const HomeMedico = () => {
-  // AINDA N TEM TELA
-  // const navigate = useNavigate();
-  // const handleClickExames = () => {
-  //   navigate();
-  // };
-
   const userIsPatient = false;
   const handleClickMedicamentos = () => {
     console.log('Cheguei aqui!!!');
@@ -49,7 +40,7 @@ const HomeMedico = () => {
             <MenuButton
               title={userIsPatient ? 'Exames' : 'Pacientes'}
               image={userIsPatient ? ExameIcon : PacientIcon}
-              onClick={() => {}}
+              onClick={() => { }}
             />
           </div>
           <MenuButton
