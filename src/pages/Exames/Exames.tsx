@@ -1,6 +1,6 @@
 import Footer from '../../components/Footer/Footer';
 import HeaderHome from '../../components/HeaderHome/HeaderHome';
-import AddCircleIcon from '../../assets/addCircle.svg';
+import AddCircleIcon from '../../assets/AddCircle.svg';
 import { useEffect, useState } from 'react';
 import ExamListItem from '../../components/ListItem/ListItem';
 import Modal from '../../components/Modal/Modal';

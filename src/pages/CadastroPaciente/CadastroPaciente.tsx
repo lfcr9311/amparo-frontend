@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Textfield from '../../components/Textfield/Textfield';
 import Button from '../../components/Button/Button';
-import Logo from '../../assets/amparo.svg';
+import Logo from '../../assets/Amparo.svg';
 import cpf from 'cpf';
 import './CadastroPaciente.css';
 import { ROUTES } from '../../routes/constans';
