@@ -6,7 +6,7 @@ import Modal from '../../components/Modal/Modal';
 import { useEffect, useState } from 'react';
 import TextfieldModal from '../../components/Modal/Components/TextfieldModal';
 import CustomButton from '../../components/Button/Button';
-import { editUser, getUser } from '../../utils/apiService';
+import { editUser } from '../../utils/apiService';
 import { Link, useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../routes/constans';
 import { Button } from '@mui/material';
@@ -26,26 +26,9 @@ const VisualizacaoPerfilPaciente = () => {
   const firstName = firstAndLastName[0];
   const lastName = firstAndLastName[firstAndLastName.length - 1];
 
-  async function fetchData() {
-    try {
-      const result = await getUser();
-      console.log(result);
-      setName(result.name);
-      setCpf(result.cpf);
-      setEmail(result.email);
-      setDataNascimento(result.birthDate.substring(0,10));
-      setNSus(result.numSus);
-      setCellphone(result.cellphone);
-    } catch (error) {
-      console.error('Erro ao fazer login', error);
-    }
-  }
 async function update() {
   try {
-    console.log(name)
-    console.log(cellphone)
-    const result = await editUser(name, cellphone, cpf, "null", email, dataNascimento, nSus);
-    console.log(result);
+    await editUser(name, cellphone, cpf, "null", email, dataNascimento, nSus);
     setIsModalOpen(!isModalOpen);
   }
   catch(e) {
@@ -53,13 +36,8 @@ async function update() {
   }
 }
 
-  useEffect(() => {
-    fetchData();
-    console.log();
-  }, []);
   const navigate = useNavigate()
   const handleDeletar = () => {
-    console.log("im here");
 
     localStorage.removeItem('authToken')
     localStorage.removeItem('userId')
@@ -72,6 +50,7 @@ async function update() {
       setEmail(att.email)
       setDataNascimento(att.birthDate)
       setNSus(att.numSus)
+      setCellphone(att.cellphone)
       setCpf(att.cpf)
     })
   }, [])
