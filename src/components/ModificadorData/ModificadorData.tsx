@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import SetaDataDireita from '../../assets/SetaDataDireita.svg';
 import SetaDataEsquerda from '../../assets/SetaDataEsquerda.svg';
-
+import './ModificadorData.css';
 
 const DateSelector: React.FC = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -33,11 +33,11 @@ const DateSelector: React.FC = () => {
 
   return (
     <div className="date-selector-container">
-      <button className="prev-button" onClick={handlePrevDay}>
-        <img src={SetaDataEsquerda} alt="Anterior" />
+      <button  className="prev-button" onClick={handlePrevDay}>
+        <img src={SetaDataEsquerda} alt="Anterior"  />
       </button>
       <span className="date-text">{formatDate(selectedDate)}</span>
-      <button className="next-button" onClick={handleNextDay}>
+      <button   className="next-button"  onClick={handleNextDay}>
         <img src={SetaDataDireita} alt="Seguinte" />
       </button>
     </div>
