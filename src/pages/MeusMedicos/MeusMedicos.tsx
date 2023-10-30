@@ -108,7 +108,7 @@ const MeusMedicos: React.FC = () => {
             ) : (
               <div className='no-doctors'>
                 <h3>Não foram encontrados médicos.</h3>
-                <p>Clique no botão de adicionar para solicitar um novo médico.</p>
+                <p>Clique no botão de adicionar para adicionar um novo médico.</p>
               </div>
             )}
           </div>
