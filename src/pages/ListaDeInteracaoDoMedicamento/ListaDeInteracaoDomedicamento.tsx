@@ -3,7 +3,7 @@ import FiltroBuscaMedicamentos from '../../components/FiltroBuscaMedicamentos/Fi
 import { ListaInteracoes } from '../../components/ListaInteracoes/ListaInteracoes';
 import HeaderHome from '../../components/HeaderHome/HeaderHome';
 import Footer from '../../components/Footer/Footer';
-import './ListaDeInteracaoDoMedicamento.css';
+import './ListaDeInteracaoDomedicamento.css';
 
 interface ListaDeInteracaoDoMedicamentoProps {
   nomeDoMedicamentoQuePossuiInteracao?: string;
