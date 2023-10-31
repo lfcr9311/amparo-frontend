@@ -1,11 +1,11 @@
 .texto-informacoes-box {
     overflow-y: scroll;
     max-height: 300px;
-    width: 1000%;
     scrollbar-width: thin;
     scrollbar-color: #CECCCC #f0f0f0;
   }
 .texto-informacoes-box {
+    align-items: center;
     overflow-y: scroll;
     max-height: 70%;
     max-width: 90%;
