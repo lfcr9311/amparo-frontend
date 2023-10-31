@@ -11,7 +11,7 @@ import ExamFilter from '../../components/ExamFilter/examFilter';
 import InputFile from '../../components/InputFile/InputFile';
 import { format } from 'date-fns';
 import './Exames.css';
-import { addExamePendente, getExamesPendente, getExamesRealizados } from '../../utils/apiService';
+import { addExamePendente, addExameRealizado, addFileOrImage, getExamesPendente, getExamesRealizados } from '../../utils/apiService';
 import ExamesVazio from '../../components/ExamesVazio/ExamesVazio';
 
 interface Exames {
@@ -34,6 +34,8 @@ export default function Exames() {
   const [addExam, setAddExam] = useState('');
   const [filePdf, setFilePdf] = useState<File | null>(null);
   const [fileImage, setFileImage] = useState<File | null>(null);
+  const [fileImageURL, setFileImageURL] = useState('')
+  const [filePdfURL, setFilePdfURL] = useState('')
   const [examesPendentes, setExamesPendentes] = useState<Exames[]>([]);
   const [examesRealizados, setExamesRealizados] = useState<Exames[]>([]);
   const handleFilePdf = (file: File | null) => {
@@ -42,6 +44,7 @@ export default function Exames() {
 
   const handleFileImage = (file: File | null) => {
     setFileImage(file);
+
   };
   useEffect(() => {
     getExamesPendente().then((response) => {
@@ -52,20 +55,53 @@ export default function Exames() {
     });
     getExamesRealizados().then((response) => {
       setExamesRealizados(response.data)
-      console.log(examesPendentes);
+      console.log("realizados -> ", examesRealizados);
     })
   }, [addExam])
   const handleSalvarPendente = () => {
     console.log("im here" + descriptionPendentes);
 
     addExamePendente(descriptionPendentes, datePendestes).then((response) => {
-      if (response.status == 200) {
-        console.log("Adicionando novo exame");
-        setDatePendentes("")
-        setDescriptionPendentes("")
-        setIsModalPendentesOpen(false)
-        setAddExam(response.data)
-      }
+      console.log("Adicionando novo exame");
+      setDatePendentes("")
+      setDescriptionPendentes("")
+      setIsModalPendentesOpen(false)
+      setAddExam(response.data)
+    }).catch((error) => {
+      console.error(error);
+
+    })
+  }
+
+  const handleSalvarRealizado = () => {
+    if (fileImage) {
+      console.log("file image", fileImage);
+
+      addFileOrImage(fileImage).then((response) => {
+        setFileImageURL(response.data.url)
+      }).catch((error) => {
+        console.error(error);
+
+      })
+    }
+    if (filePdf) {
+      addFileOrImage(filePdf).then((response) => {
+        setFilePdfURL(response.data.url)
+      }).catch((error) => {
+        console.error(error);
+
+      })
+    }
+
+    addExameRealizado(descriptionRealizados, dateRealizados, fileImageURL || '', filePdfURL || '').then((response) => {
+      console.log("Adicionando novo exame realizado");
+      setDateRealizados("")
+      setDescriptionRealizados("")
+      setIsModalRealizadosOpen(false)
+      setAddExam(response.data)
+    }).catch((error) => {
+      console.error(error);
+
     })
   }
   return (
@@ -207,14 +243,7 @@ export default function Exames() {
                   <CustomButton
                     variant="contained"
                     label="Salvar"
-                    onClick={() =>
-                      console.log(
-                        dateRealizados,
-                        descriptionRealizados,
-                        fileImage,
-                        filePdf
-                      )
-                    }
+                    onClick={handleSalvarRealizado}
                   />
                 </div>
               </Modal>
