@@ -3,17 +3,19 @@ import HeaderHome from '../../components/HeaderHome/HeaderHome';
 import Footer from '../../components/Footer/Footer';
 import { PatientProfileCard } from '../../components/ProfilePatientCard/ProfilePatientCard';
 import Modal from '../../components/Modal/Modal';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import TextfieldModal from '../../components/Modal/Components/TextfieldModal';
 import CustomButton from '../../components/Button/Button';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../routes/constans';
 import { Button } from '@mui/material';
+import { getPatient } from '../../utils/apiService';
 
 const VisualizacaoPerfilPaciente = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [name, setName] = useState('');
   const [cpf, setCpf] = useState('');
+  const [email, setEmail] = useState('');
   const [dataNascimento, setDataNascimento] = useState('');
   const [nSus, setNSus] = useState('');
   const [ddd, setDdd] = useState('');
@@ -21,10 +23,21 @@ const VisualizacaoPerfilPaciente = () => {
   const navigate = useNavigate()
   const handleDeletar = () => {
     console.log("im here");
-    
+
     localStorage.removeItem('authToken')
+    localStorage.removeItem('userId')
     navigate(ROUTES.LOGIN())
   }
+  useEffect(() => {
+    getPatient().then((response) => {
+      const att = response.data
+      setName(att.name)
+      setEmail(att.email)
+      setDataNascimento(att.birthDate)
+      setNSus(att.numSus)
+      setCpf(att.cpf)
+    })
+  }, [])
   return (
     <>
       <div className="header-container">
@@ -33,13 +46,13 @@ const VisualizacaoPerfilPaciente = () => {
       <div className="container">
         <div className="profile-card-container">
           <PatientProfileCard
-            name="Fulano da Silva"
-            email="fulanodasilva1@hotmail.com"
-            cpf="123.456.789-00"
-            dataNascimento="23/02/1980"
+            name={name}
+            email={email}
+            cpf={cpf}
+            dataNascimento={dataNascimento}
             onClickChangePassword={() => console.log('Change Password')}
             onClickEditProfile={() => setIsModalOpen(!isModalOpen)}
-            numSus="012345678901235"
+            numSus={nSus}
           />
         </div>
         <Modal
@@ -98,21 +111,21 @@ const VisualizacaoPerfilPaciente = () => {
           </form>
         </Modal>
         <div >
-        <Button  
-        sx={{ 
-            color: '#e10e17',
-            textAlign: 'center',
-            fontFamily: 'Poppins',
-            fontSize: '15px',
-            fontStyle: 'normal',
-            fontWeight: 400,
-            lineHeight: 'normal',
-            textDecoration: 'none',
-            textTransform: 'none',
-          }} 
-          onClick={handleDeletar}
-        >
-              Sair da Conta
+          <Button
+            sx={{
+              color: '#e10e17',
+              textAlign: 'center',
+              fontFamily: 'Poppins',
+              fontSize: '15px',
+              fontStyle: 'normal',
+              fontWeight: 400,
+              lineHeight: 'normal',
+              textDecoration: 'none',
+              textTransform: 'none',
+            }}
+            onClick={handleDeletar}
+          >
+            Sair da Conta
           </Button>
         </div>
       </div>

@@ -1,5 +1,4 @@
-// @ts-ignore
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Logo from '../../assets/amparo.svg';
 import './Login.css';
 import { Link } from 'react-router-dom';
@@ -13,8 +12,6 @@ export const Login: React.FC = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [erro, setErro] = useState<string>('');
-  // @ts-ignore
-  const [clicked, setClicked] = useState<boolean>(false);
   const navigate = useNavigate();
   // @ts-ignore
   const [data, setData] = useState<String>();
@@ -25,13 +22,9 @@ export const Login: React.FC = () => {
   async function fetchData(email: String, psw: String) {
     try {
       const result = await login_post(email, psw);
-      // console.log(result.data);
       setData(result.data);
       setDataStatus(result.status);
-      // console.log("Status " +result.status);
       localStorage.setItem('authToken', result.data.token);
-      console.log(localStorage.getItem("authToken"));
-      
       if (result.status == 201 || result.status == 200) {
         console.log('login realizado com sucesso');
         navigate(ROUTES.HOME_PACIENTE());
@@ -47,7 +40,6 @@ export const Login: React.FC = () => {
 
   const handlePassword = (newPassword: string) => {
     setPassword(newPassword);
-    // setClicked(false);
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -87,7 +79,6 @@ export const Login: React.FC = () => {
             margin-bottom="20px"
             variant="contained"
             label="Entrar"
-            // onClick={() => (setClicked(!clicked))}
             type="submit"
           />
         </div>

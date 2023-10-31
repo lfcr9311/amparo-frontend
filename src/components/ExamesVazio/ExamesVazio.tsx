@@ -1,8 +1,7 @@
-import HeaderHome from '../../components/HeaderHome/HeaderHome';
 import Footer from '../../components/Footer/Footer';
 import './ExamesVazio.css';
 import HappyIcon from '../../assets/HappyIcon.svg';
-import AddIcon from '../../assets/AddIcon.svg';
+import AddIcon from '../../assets/addIcon.svg';
 import SadIcon from '../../assets/SadIcon.svg';
 import { useState } from 'react';
 import Modal from '../../components/Modal/Modal';
@@ -11,12 +10,30 @@ import CustomButton from '../../components/Button/Button';
 import DateModal from '../../components/Modal/Components/DateModal/DateModal';
 import InputFile from '../../components/InputFile/InputFile';
 
-const ExamesVazio: React.FC = () => {
-  const [value, setValue] = useState(0);
-  const [isModalPendentesOpen, setIsModalPendentesOpen] = useState(false);
+interface ExamesVaziosProps {
+  value: number;
+  handleSalvar: () => void;
+  descriptionPendentes: string;
+  datePendestes: string;
+  isModalPendentesOpen: boolean;
+  setIsModalPendentesOpen: (open: boolean) => void;
+  setDescriptionPendentes: (value: string) => void;
+  setDatePendentes: (value: string) => void;
+}
+const ExamesVazio: React.FC<ExamesVaziosProps> = ({
+  value,
+  handleSalvar,
+  descriptionPendentes,
+  datePendestes,
+  isModalPendentesOpen,
+  setIsModalPendentesOpen,
+  setDescriptionPendentes,
+  setDatePendentes
+
+
+}) => {
+
   const [isModalRealizadosOpen, setIsModalRealizadosOpen] = useState(false);
-  const [datePendestes, setDatePendentes] = useState('');
-  const [descriptionPendentes, setDescriptionPendentes] = useState('');
   const [dateRealizados, setDateRealizados] = useState('');
   const [descriptionRealizados, setDescriptionRealizados] = useState('');
   const [filePdf, setFilePdf] = useState<File | null>(null);
@@ -29,9 +46,6 @@ const ExamesVazio: React.FC = () => {
   };
   return (
     <>
-      <div className="header">
-        <HeaderHome value={value} setValue={setValue} type="headerTab" />
-      </div>
       {value === 0 ? (
         <div className="exames-pendentes-vazio">
           <div className="texto">Nenhum exame pendente</div>
@@ -64,7 +78,11 @@ const ExamesVazio: React.FC = () => {
               <CustomButton
                 variant="contained"
                 label="Salvar"
-                onClick={() => console.log(datePendestes, descriptionPendentes)}
+                onClick={() => {
+                  handleSalvar()
+                  setIsModalPendentesOpen(false);
+                }
+                }
               />
             </div>
           </Modal>

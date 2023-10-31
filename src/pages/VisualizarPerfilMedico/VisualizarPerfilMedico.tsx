@@ -25,6 +25,7 @@ const VisualizacaoPerfilMedico = () => {
     console.log("im here");
     
     localStorage.removeItem('authToken')
+    localStorage.removeItem('userId')
     navigate(ROUTES.LOGIN())
   }
 
