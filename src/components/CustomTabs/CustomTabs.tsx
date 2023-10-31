@@ -34,6 +34,7 @@ const CustomTab = styled(Tab)(({ theme }) => ({
 
 const CustomTabs: React.FC<CustomTabsProps> = ({ tabs, setValue, value }) => {
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    event.preventDefault();
     if (setValue) {
       setValue(newValue);
     }

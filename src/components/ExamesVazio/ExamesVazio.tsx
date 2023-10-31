@@ -1,4 +1,3 @@
-import HeaderHome from '../../components/HeaderHome/HeaderHome';
 import Footer from '../../components/Footer/Footer';
 import './ExamesVazio.css';
 import HappyIcon from '../../assets/HappyIcon.svg';
