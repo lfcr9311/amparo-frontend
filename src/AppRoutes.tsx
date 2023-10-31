@@ -19,10 +19,6 @@ import ListaDeInteracaoDoMedicamento from './pages/ListaDeInteracaoDoMedicamento
 import MeusMedicos from './pages/MeusMedicos/MeusMedicos';
 import PageMedico from './components/FiltroBuscaMedico/PageMedico';
 
-
-
-
-
 export default function AppRoutes() {
   const fetchData = async () => {
     await setUserId()

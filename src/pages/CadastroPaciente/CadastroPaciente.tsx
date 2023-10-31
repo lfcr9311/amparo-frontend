@@ -20,9 +20,12 @@ export const CadastroPaciente = () => {
   const [isValidEmail, setIsValidEmail] = useState<boolean>(true);
   const [isValidName, setIsValidName] = useState<boolean>(true);
   const [isValidDate, setIsValidDate] = useState<boolean>(true);
-  const [isValidPsw, setIsValidPsw] = useState<boolean>(true);;
+  const [isValidPsw, setIsValidPsw] = useState<boolean>(true);
+  // @ts-ignore
   const [data, setData] = useState<String>();
+  // @ts-ignore
   const [dataStatus, setDataStatus] = useState<Number>();
+  // @ts-ignore
   const [erro, setErro] = useState<string>('');
   const [formattedDate, setFormattedDate] = useState<string>('');
   const navigate = useNavigate();
