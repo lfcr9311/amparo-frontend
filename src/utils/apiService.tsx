@@ -1,13 +1,13 @@
 // src/api-service.ts
 import axios from '../api';
 
-export const login_post = async (email: String, psw:String) => {
+export const login_post = async (email: String, psw: String) => {
   const loginBody = {
     email: email,
     password: psw
-  }; 
+  };
   try {
-    const response = await axios.post('/auth/login', JSON.stringify(loginBody)); 
+    const response = await axios.post('/auth/login', JSON.stringify(loginBody));
     return response;
   } catch (error) {
     throw error;
@@ -17,8 +17,8 @@ export const login_post = async (email: String, psw:String) => {
 export const isLogged = async () => {
   try {
     const response = await axios.get('/auth/valid', {
-      headers:{
-        'Authorization': 'Bearer '+localStorage.getItem("authToken")
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem("authToken")
       }
     }); // Replace with your endpoint
     return response;
@@ -29,10 +29,10 @@ export const isLogged = async () => {
 export const getExamesPendente = async () => {
   try {
     const response = await axios.get(`/patient/${localStorage.getItem("userId")}/exam/pending/list`, {
-      headers:{
-        'Authorization': 'Bearer '+localStorage.getItem("authToken")
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem("authToken")
       }
-    }, 
+    },
     );  // Replace with your endpoint
     return response;
   } catch (error) {
@@ -42,10 +42,10 @@ export const getExamesPendente = async () => {
 export const getExamesRealizados = async () => {
   try {
     const response = await axios.get(`/patient/${localStorage.getItem("userId")}/exam/done/list`, {
-      headers:{
-        'Authorization': 'Bearer '+localStorage.getItem("authToken")
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem("authToken")
       }
-    }, 
+    },
     );  // Replace with your endpoint
     return response;
   } catch (error) {
@@ -54,14 +54,14 @@ export const getExamesRealizados = async () => {
 };
 export const getPatient = async () => {
   console.log("getting patient");
-  
+
   try {
     const response = await axios.get('/patient', {
-      headers:{
-        'Authorization': 'Bearer '+localStorage.getItem("authToken")
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem("authToken")
       }
     });
-    
+
     return response;
   } catch (error) {
     throw error;
@@ -69,14 +69,14 @@ export const getPatient = async () => {
 };
 export const getDoctor = async () => {
   console.log("getting doctor");
-  
+
   try {
     const response = await axios.get('/doctor', {
-      headers:{
-        'Authorization': 'Bearer '+localStorage.getItem("authToken")
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem("authToken")
       }
     });
-    
+
     return response;
   } catch (error) {
     throw error;
@@ -92,12 +92,12 @@ export const registerDoctor = async (email: String, name: String, password: Stri
     crm: crm,
     uf: uf
   }
-try {
-  const response = await axios.post('/auth/register', JSON.stringify(registerBody));
-  return response;
-} catch (error) {
-  throw error;
-}
+  try {
+    const response = await axios.post('/auth/register', JSON.stringify(registerBody));
+    return response;
+  } catch (error) {
+    throw error;
+  }
 }
 
 export const registerUser = async (email: String, name: String, password: String, cellphone: String, userType: String, cpf: String, numSus: String, birthDate: String) => {
@@ -108,31 +108,49 @@ export const registerUser = async (email: String, name: String, password: String
     cellphone: cellphone,
     cpf: cpf,
     userType: userType,
-    numSus: numSus, 
+    numSus: numSus,
     birthDate: birthDate
   }
-try {
-  const response = await axios.post('/auth/register', JSON.stringify(registerBody));
-  return response;
-} catch (error) {
-  throw error;
-}
+  try {
+    const response = await axios.post('/auth/register', JSON.stringify(registerBody));
+    return response;
+  } catch (error) {
+    throw error;
+  }
 }
 
-export const addExamePendente = async (description: String, examDate: string ) => {
+export const addExamePendente = async (description: String, examDate: string) => {
   const body = {
     description: description || null,
-    examDate: examDate+"T04:20:00.000",
+    examDate: examDate + "T04:20:00.000",
     isDone: false,
     file: null,
     image: null
-  }; 
+  };
   try {
-    const response = await axios.post(`/patient/${localStorage.getItem("userId")}/exam`, body,{
-      headers:{
-        'Authorization': 'Bearer '+localStorage.getItem("authToken")
+    const response = await axios.post(`/patient/${localStorage.getItem("userId")}/exam`, body, {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem("authToken")
       }
     }); // Replace with your endpoint
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+export const editExamesPendente = async (description: string, examDate: string, isDone: boolean) => {
+  const body = {
+    description: description,
+    examDate: examDate,
+    isDone: isDone,
+    file: null,
+    image: null
+  };
+  try {
+    const response = await axios.put(
+      `/patient/${localStorage.getItem("userId")}/exam/4c3b402b-93b9-4c3e-abaf-d42f12a2c8c9`,
+      body
+    );  // Replace with your endpoint
     return response;
   } catch (error) {
     throw error;

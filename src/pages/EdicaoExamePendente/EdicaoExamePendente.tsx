@@ -10,6 +10,7 @@ import DateModal from '../../components/Modal/Components/DateModal/DateModal';
 import Description from '../../components/Modal/Components/Description/Description';
 import CustomButton from '../../components/Button/Button';
 import { useLocation } from 'react-router-dom';
+import { editExamesPendente } from '../../utils/apiService';
 
 export default function EdicaoExamePendente() {
   const location = useLocation();
@@ -29,6 +30,8 @@ export default function EdicaoExamePendente() {
   }, [tempDate, tempDescription]);
 
   const handleValues = () => {
+    console.log(tempDescription, tempDate);
+    editExamesPendente(tempDescription, tempDate, false);
     setDescription(tempDescription);
     setDate(tempDate);
     setModalIsOpen(false);
