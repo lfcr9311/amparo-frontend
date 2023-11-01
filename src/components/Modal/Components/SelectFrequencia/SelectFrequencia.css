@@ -3,10 +3,10 @@
   align-items: center;
   border-radius: 3px;
   background: #eaeaea;
-  width: 120px;
+  width: 140px;
   max-width: 145px;
   gap: 10px;
-  height: 42.6px;
+  height: 42px;
   border: none;
 
 }
@@ -25,7 +25,7 @@
   background-color: #eaeaea;
   margin: 10px;
   width: 120px;
-  /* Faça-o ocupar todo o espaço disponível no contêiner */
+  max-width: 145px;
 }
 
 .select-component-frequencia .option {
