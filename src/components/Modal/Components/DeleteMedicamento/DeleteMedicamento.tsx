@@ -1,6 +1,6 @@
 import './DeleteMedicamento.css';
 
-interface DeleteMedicamnentoProps {
+interface DeleteMedicamentoProps {
   isModalOpen: boolean;
   setIsModalOpen: (value: boolean) => void;
 }
@@ -8,7 +8,7 @@ interface DeleteMedicamnentoProps {
 export default function DeleteMedicamento({
   isModalOpen,
   setIsModalOpen
-}: DeleteMedicamnentoProps) {
+}: DeleteMedicamentoProps) {
   return (
     <div className="background-container">
       <div className="modal-container">
@@ -31,7 +31,6 @@ export default function DeleteMedicamento({
                 console.log("deletado !")
               }}
             > Deletar </button>
-
           </div>
         </div>
       </div>
