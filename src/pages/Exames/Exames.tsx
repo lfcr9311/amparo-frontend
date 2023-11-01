@@ -34,8 +34,6 @@ export default function Exames() {
   const [addExam, setAddExam] = useState('');
   const [filePdf, setFilePdf] = useState<File | null>(null);
   const [fileImage, setFileImage] = useState<File | null>(null);
-  const [fileImageURL, setFileImageURL] = useState('')
-  const [filePdfURL, setFilePdfURL] = useState('')
   const [examesPendentes, setExamesPendentes] = useState<Exames[]>([]);
   const [examesRealizados, setExamesRealizados] = useState<Exames[]>([]);
   const handleFilePdf = (file: File | null) => {
@@ -55,6 +53,8 @@ export default function Exames() {
     });
     getExamesRealizados().then((response) => {
       setExamesRealizados(response.data)
+
+    }).finally(() => {
       console.log("realizados -> ", examesRealizados);
     })
   }, [addExam])
@@ -73,37 +73,35 @@ export default function Exames() {
     })
   }
 
-  const handleSalvarRealizado = () => {
-    if (fileImage) {
-      console.log("file image", fileImage);
+  const handleSalvarRealizado = async () => {
+    try {
+      let fileImageURL = "";
+      let filePdfURL = "";
 
-      addFileOrImage(fileImage).then((response) => {
-        setFileImageURL(response.data.url)
-      }).catch((error) => {
-        console.error(error);
+      if (fileImage) {
+        const response = await addFileOrImage(fileImage);
+        fileImageURL = response.data.url;
+      }
 
-      })
-    }
-    if (filePdf) {
-      addFileOrImage(filePdf).then((response) => {
-        setFilePdfURL(response.data.url)
-      }).catch((error) => {
-        console.error(error);
+      if (filePdf) {
+        const response = await addFileOrImage(filePdf);
+        filePdfURL = response.data.url;
+      }
 
-      })
-    }
+      console.log("PDF ", fileImageURL);
+      console.log("Img ", filePdf);
 
-    addExameRealizado(descriptionRealizados, dateRealizados, fileImageURL || '', filePdfURL || '').then((response) => {
+      const response = await addExameRealizado(descriptionRealizados, dateRealizados, fileImageURL || '', filePdfURL || '');
       console.log("Adicionando novo exame realizado");
-      setDateRealizados("")
-      setDescriptionRealizados("")
-      setIsModalRealizadosOpen(false)
-      setAddExam(response.data)
-    }).catch((error) => {
+      setDateRealizados("");
+      setDescriptionRealizados("");
+      setIsModalRealizadosOpen(false);
+      setAddExam(response.data);
+    } catch (error) {
       console.error(error);
+    }
+  };
 
-    })
-  }
   return (
     <>
       <HeaderHome type="headerTab" value={value} setValue={setValue} />
