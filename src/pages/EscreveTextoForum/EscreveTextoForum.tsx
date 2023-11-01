@@ -1,38 +1,26 @@
 import React from "react";
-import Textfield  from "../../components/TextFieldForum/ComponentTextFieldForum";
+import {MultilineTextFields}  from "../../components/TextFieldForum/ComponentTextFieldForum";
+import HeaderHome from "../../components/HeaderHome/HeaderHome";
+import Footer from "../../components/Footer/Footer";
 
-interface EscreveTextoForumProps {
-    titulo: string;
-    previa: string;
-    autor: string;
-    data: string;
-    texto: string;
-    referencias: string;
-}
 
-const EscreveTextoForumProps: React.FC<EscreveTextoForumProps> = ({
-    titulo,
-    previa,
-    autor,
-    data,
-    texto,
-    referencias,
-}) => {
+export default  function EscreveTextoForumProps() {
     return (
-        <div className="texto-informacoes-box">
-            <div className="texto-informacoes-titulo">{titulo}</div>
-            
-            <div className="texto-informacoes-previa">{previa}</div>
-            <br/>
-            <div className="texto-informacoes-data-autor">{data},{autor}</div>
-            <br/>
-            <div className="texto-informacoes-texto">{texto}</div>
-            <br/>
-            <div className="texto-titulo-referencia">Referências</div>
-            <br/>
-            <div className="texto-informacoes-referencias">{referencias}</div>
-        </div>
+        <>
+ <HeaderHome title="Informações" type="headerPage" />        <div className="texto-informacoes-box">
+        <div className="texto-informacoes-titulo"><MultilineTextFields tituloDoTextField={"Titulo"} quantidadeLinhas={3}  /></div>
+
+        <div className="texto-informacoes-previa"></div>
+        <br />
+        <div className="texto-informacoes-data-autor"></div>
+        <br />
+        <div className="texto-informacoes-texto"></div>
+        <br />
+        <br />
+        <div className="texto-informacoes-referencias"></div>
+    </div>
+    <Footer user="patient" />
+    </>
     );
 };
 
-export default EscreveTextoForumProps;
