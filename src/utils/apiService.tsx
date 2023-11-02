@@ -138,6 +138,44 @@ export const addExamePendente = async (description: String, examDate: string) =>
     throw error;
   }
 };
+export const addExameRealizado = async (description: String, examDate: string, image: string | null, file: string | null) => {
+  const body = {
+    description: description || null,
+    examDate: examDate + "T04:20:00.000",
+    isDone: true,
+    file: file || null,
+    image: image || null
+  };
+  try {
+    const response = await axios.post(`/patient/${localStorage.getItem("userId")}/exam`, body, {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem("authToken")
+      }
+    }); // Replace with your endpoint
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const addFileOrImage = async (file: File | null) => {
+  const body = {
+    file: file || null
+  };
+  try {
+    const response = await axios.post(`file/upload`, body, {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem("authToken"),
+        "Content-Type": "multipart/form-data"
+      }
+    }); // Replace with your endpoint
+    console.log("adding file...", response.data.url);
+
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
 export const editExamesPendente = async (description: string, examDate: string, isDone: boolean, examId: string) => {
   const body = {
     description: description,
