@@ -116,6 +116,16 @@ export default function Exames() {
             setIsModalPendentesOpen={setIsModalPendentesOpen}
             setDescriptionPendentes={setDescriptionPendentes}
             setDatePendentes={setDatePendentes}
+            descriptionRealizados={descriptionPendentes}
+            dateRealizados={datePendestes}
+            isModalRealizadosOpen={isModalPendentesOpen}
+            setIsModalRealizadosOpen={setIsModalPendentesOpen}
+            setDescriptionRealizados={setDescriptionPendentes}
+            setDateRealizados={setDatePendentes}
+            fileImage={fileImage}
+            setFileImage={setFileImage}
+            filePdf={filePdf}
+            setFilePdf={setFilePdf}
 
           />
         ) : (
@@ -178,6 +188,16 @@ export default function Exames() {
               setIsModalPendentesOpen={setIsModalPendentesOpen}
               setDescriptionPendentes={setDescriptionPendentes}
               setDatePendentes={setDatePendentes}
+              descriptionRealizados={descriptionPendentes}
+              dateRealizados={datePendestes}
+              isModalRealizadosOpen={isModalPendentesOpen}
+              setIsModalRealizadosOpen={setIsModalPendentesOpen}
+              setDescriptionRealizados={setDescriptionPendentes}
+              setDateRealizados={setDatePendentes}
+              fileImage={fileImage}
+              setFileImage={setFileImage}
+              filePdf={filePdf}
+              setFilePdf={setFilePdf}
             />
           )
           : (
