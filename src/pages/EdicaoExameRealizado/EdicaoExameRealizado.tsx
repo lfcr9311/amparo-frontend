@@ -11,7 +11,7 @@ import Description from '../../components/Modal/Components/Description/Descripti
 import InputFile from '../../components/InputFile/InputFile';
 import CustomButton from '../../components/Button/Button';
 import { useLocation } from 'react-router-dom';
-import { editExamesRealizados } from '../../utils/apiService';
+import { addFileOrImage, editExamesRealizados } from '../../utils/apiService';
 
 export default function EdicaoExameRealizado() {
   const location = useLocation();
@@ -40,10 +40,34 @@ export default function EdicaoExameRealizado() {
   }, [tempDate, tempDescription]);
 
   const handleValues = () => {
-    editExamesRealizados(tempDescription, tempDate, false, filePdf, fileImage, location.state.id);
+    handleEditarRealizado();
     setDescription(tempDescription);
     setDate(tempDate);
     setModalIsOpen(false);
+  };
+
+  const handleEditarRealizado = async () => {
+    try {
+      let fileImageURL = "";
+      let filePdfURL = "";
+
+      if (fileImage) {
+        const response = await addFileOrImage(fileImage);
+        fileImageURL = response.data.url;
+      }
+
+      if (filePdf) {
+        const response = await addFileOrImage(filePdf);
+        filePdfURL = response.data.url;
+      }
+
+      console.log("PDF ", fileImageURL);
+      console.log("Img ", filePdf);
+
+      await editExamesRealizados(tempDescription, tempDate, true, filePdfURL || ' ', fileImageURL || ' ', location.state.id);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
