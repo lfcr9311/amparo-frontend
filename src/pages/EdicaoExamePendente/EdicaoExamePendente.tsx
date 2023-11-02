@@ -30,8 +30,7 @@ export default function EdicaoExamePendente() {
   }, [tempDate, tempDescription]);
 
   const handleValues = () => {
-    console.log(tempDescription, tempDate);
-    editExamesPendente(tempDescription, tempDate, false);
+    editExamesPendente(tempDescription, tempDate, false, location.state.id);
     setDescription(tempDescription);
     setDate(tempDate);
     setModalIsOpen(false);

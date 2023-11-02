@@ -11,6 +11,7 @@ import Description from '../../components/Modal/Components/Description/Descripti
 import InputFile from '../../components/InputFile/InputFile';
 import CustomButton from '../../components/Button/Button';
 import { useLocation } from 'react-router-dom';
+import { editExamesRealizados } from '../../utils/apiService';
 
 export default function EdicaoExameRealizado() {
   const location = useLocation();
@@ -25,6 +26,7 @@ export default function EdicaoExameRealizado() {
   const [filePdf, setFilePdf] = useState<File | null>(null);
   const [fileImage, setFileImage] = useState<File | null>(null);
   const newDate = date.split('-').reverse().join('/');
+
   const handleFilePdf = (file: File | null) => {
     setFilePdf(file);
   };
@@ -38,6 +40,7 @@ export default function EdicaoExameRealizado() {
   }, [tempDate, tempDescription]);
 
   const handleValues = () => {
+    editExamesRealizados(tempDescription, tempDate, false, filePdf, fileImage, location.state.id);
     setDescription(tempDescription);
     setDate(tempDate);
     setModalIsOpen(false);

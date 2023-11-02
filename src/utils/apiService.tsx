@@ -138,18 +138,45 @@ export const addExamePendente = async (description: String, examDate: string) =>
     throw error;
   }
 };
-export const editExamesPendente = async (description: string, examDate: string, isDone: boolean) => {
+export const editExamesPendente = async (description: string, examDate: string, isDone: boolean, examId: string) => {
   const body = {
     description: description,
-    examDate: examDate,
+    examDate: examDate + "T04:20:00.000",
     isDone: isDone,
     file: null,
     image: null
   };
   try {
     const response = await axios.put(
-      `/patient/${localStorage.getItem("userId")}/exam/4c3b402b-93b9-4c3e-abaf-d42f12a2c8c9`,
-      body
+      `/patient/${localStorage.getItem("userId")}/exam/${examId}`,
+      body, {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem("authToken")
+      }
+    }
+    );  // Replace with your endpoint
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const editExamesRealizados = async (description: string, examDate: string, isDone: boolean, file: string, image: string, examId: string) => {
+  const body = {
+    description: description,
+    examDate: examDate + "T04:20:00.000",
+    isDone: isDone,
+    file: file || null,
+    image: image || null
+  };
+  try {
+    const response = await axios.put(
+      `/patient/${localStorage.getItem("userId")}/exam/${examId}`,
+      body, {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem("authToken")
+      }
+    }
     );  // Replace with your endpoint
     return response;
   } catch (error) {
