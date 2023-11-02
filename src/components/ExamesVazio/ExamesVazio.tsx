@@ -52,6 +52,16 @@ const ExamesVazio: React.FC<ExamesVaziosProps> = ({
   setFilePdf
 
 }) => {
+  const handleFilePdf = (file: File | null) => {
+    if (file)
+      setFilePdf(file);
+  };
+
+  const handleFileImage = (file: File | null) => {
+    if (file)
+      setFileImage(file);
+
+  };
 
   return (
     <>
@@ -140,14 +150,7 @@ const ExamesVazio: React.FC<ExamesVaziosProps> = ({
                 <CustomButton
                   variant="contained"
                   label="Salvar"
-                  onClick={() =>
-                    console.log(
-                      dateRealizados,
-                      descriptionRealizados,
-                      fileImage,
-                      filePdf
-                    )
-                  }
+                  onClick={handleSalvar}
                 />
               </div>
             </Modal>
