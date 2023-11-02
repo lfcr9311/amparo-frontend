@@ -21,11 +21,11 @@ export const CadastroPaciente = () => {
   const [isValidName, setIsValidName] = useState<boolean>(true);
   const [isValidDate, setIsValidDate] = useState<boolean>(true);
   const [isValidPsw, setIsValidPsw] = useState<boolean>(true);
-  //@ts-ignore
+  // @ts-ignore
   const [data, setData] = useState<String>();
-  //@ts-ignore
+  // @ts-ignore
   const [dataStatus, setDataStatus] = useState<Number>();
-  //@ts-ignore
+  // @ts-ignore
   const [erro, setErro] = useState<string>('');
 
   const [formattedDate, setFormattedDate] = useState<string>('');
