@@ -9,7 +9,7 @@ import ConsultIcon from '../../assets/ConsultIcon.svg';
 import { ROUTES } from '../../routes/constans';
 import Footer from '../../components/Footer/Footer';
 import { useNavigate } from 'react-router-dom';
-import logoLogin from '../../assets/amparo.svg';
+import logoLogin from '../../assets/Amparo.svg';
 import { useEffect, useState } from 'react';
 import { getPatient } from '../../utils/apiService';
 

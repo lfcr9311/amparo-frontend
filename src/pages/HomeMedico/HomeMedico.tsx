@@ -7,7 +7,7 @@ import InfoIcon from '../../assets/InfoIcon.svg';
 import PacientIcon from '../../assets/PacientIcon.svg';
 import ConsultIcon from '../../assets/ConsultIcon.svg';
 import Footer from '../../components/Footer/Footer';
-import logoLogin from '../../assets/amparo.svg';
+import logoLogin from '../../assets/Amparo.svg';
 
 const HomeMedico = () => {
   const userIsPatient = false;
