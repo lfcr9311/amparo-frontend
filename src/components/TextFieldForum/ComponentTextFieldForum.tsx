@@ -6,33 +6,41 @@ import './ComponentTextFieldForum.css';
 interface MultilineTextFieldsProps {
     tituloDoTextField: string;
     quantidadeLinhas: number;
+    mensagemQuadroEmBranco: string;
 }
 
 
-export const MultilineTextFields: React.FC<MultilineTextFieldsProps> = ({ quantidadeLinhas, tituloDoTextField }) => {
+export const MultilineTextFields: React.FC<MultilineTextFieldsProps> = ({ quantidadeLinhas, tituloDoTextField, mensagemQuadroEmBranco  }) => {
 
 
     return (
         <Box
             component="form"
             sx={{
-                '& .MuiTextField-root': { m: 1, width: '25ch' },
-                borderColor: 'red',
+                '& .MuiTextField-root': { m: 1, width: '360px', },
             }}
             noValidate
             autoComplete="off"
         >
-            <div>
+            <div className='div-forum-style'>
 
 
                 <TextField
                     id="outlined-multiline-static"
-                    label={tituloDoTextField}
+                    label={<span className='textfield-forum-title-style'>{tituloDoTextField}
+                    </span>
+                    }
                     multiline
                     rows={quantidadeLinhas}
-                    defaultValue="Default Value"
+                    defaultValue={mensagemQuadroEmBranco}
                     className='textfield-forum-style'
+                    color="error" focused
+
+
                 />
+            
+
+
             </div>
         </Box>
     );
