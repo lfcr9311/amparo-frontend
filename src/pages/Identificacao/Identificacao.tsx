@@ -1,4 +1,4 @@
-import Logo from '../../assets/amparo.svg';
+import Logo from '../../assets/Amparo.svg';
 import './Identificacao.css';
 import { ROUTES } from '../../routes/constans';
 import MenuButton from '../../components/MenuButton/MenuButton';

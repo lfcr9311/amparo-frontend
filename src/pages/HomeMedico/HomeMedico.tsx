@@ -7,7 +7,7 @@ import InfoIcon from '../../assets/InfoIcon.svg';
 import PacientIcon from '../../assets/PacientIcon.svg';
 import ConsultIcon from '../../assets/ConsultIcon.svg';
 import Footer from '../../components/Footer/Footer';
-import logoLogin from '../../assets/amparo.svg';
+import logoLogin from '../../assets/Amparo.svg';
 
 const HomeMedico = () => {
   const userIsPatient = false;
@@ -24,10 +24,10 @@ const HomeMedico = () => {
   };
 
   return (
-    <div className="container-home">
+    <>
       <HeaderHome type="headerHome" title="Olá, Dr. Fulano!"></HeaderHome>
-      <div className="body">
-        <div className="sub-header">
+      <div className="home-medico-container">
+        <div className="sub-header-home-medico">
           <img
             style={{ width: '25px', height: '32px' }}
             src={logoLogin}
@@ -65,7 +65,7 @@ const HomeMedico = () => {
         </div>
       </div>
       <Footer user="doctor" />
-    </div>
+    </>
   );
 };
 

@@ -9,7 +9,7 @@ import ConsultIcon from '../../assets/ConsultIcon.svg';
 import { ROUTES } from '../../routes/constans';
 import Footer from '../../components/Footer/Footer';
 import { useNavigate } from 'react-router-dom';
-import logoLogin from '../../assets/amparo.svg';
+import logoLogin from '../../assets/Amparo.svg';
 import { useEffect, useState } from 'react';
 import { getPatient } from '../../utils/apiService';
 
@@ -17,10 +17,10 @@ const HomePaciente = () => {
   const navigate = useNavigate();
   const [name, setName] = useState('');
   const userIsPatient = true;
-  useEffect(() =>{
-    getPatient().then((response) =>{
+  useEffect(() => {
+    getPatient().then((response) => {
       const att = response.data
-      setName(att.name)    
+      setName(att.name)
     })
   }, [])
   const handleClickExames = () => {
@@ -40,10 +40,10 @@ const HomePaciente = () => {
   };
 
   return (
-    <div className="container-home">
-      <HeaderHome type="headerHome" title={"Olá, "+name.split(' ')[0]}></HeaderHome>
-      <div className="body">
-        <div className="sub-header">
+    <>
+      <HeaderHome type="headerHome" title={"Olá, " + name.split(' ')[0]}></HeaderHome>
+      <div className="home-paciente-container">
+        <div className="sub-header-home-paciente">
           <img
             style={{ width: '25px', height: '32px' }}
             src={logoLogin}
@@ -81,7 +81,7 @@ const HomePaciente = () => {
         </div>
       </div>
       <Footer user="patient" />
-    </div>
+    </>
   );
 };
 
