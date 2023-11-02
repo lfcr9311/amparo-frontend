@@ -143,11 +143,12 @@ export default function Exames() {
             <div className="cards-exames-pendentes">
               {examesPendentes.map((exam, index) => (
                 <ExamListItem
-                  key={index} // Make sure to provide a unique key
+                  key={index}
                   date={format(new Date(exam.examDate), 'dd/MM/yyyy')}
                   exam={exam.description}
                   description={exam.description}
-                  type={'pendente'} // Adjust based on your data
+                  type={'pendente'}
+                  id={exam.id}
                 />
               ))}
             </div>
@@ -223,11 +224,12 @@ export default function Exames() {
               <div className="cards-exames-realizados">
                 {examesRealizados.map((exam, index) => (
                   <ExamListItem
-                    key={index} // Make sure to provide a unique key
+                    key={index}
                     date={format(new Date(exam.examDate), 'dd/MM/yyyy')}
                     exam={exam.description}
                     description={exam.description}
-                    type={'realizado'} // Adjust based on your data
+                    type={'realizado'}
+                    id={exam.id}
                   />
                 ))}
               </div>

@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 
 interface CustomButtonSalmonProps {
     label: string;
-    icon?:boolean;  //Testar
+    icon?: boolean;
     onClick: () => void;
 }
 
@@ -23,10 +23,10 @@ export const ButtonSalmon: React.FC<CustomButtonSalmonProps> = ({ label, icon, o
         height: "53px",
         width: "164px",
     };
-    if (!icon){
+    if (!icon) {
         return (
             <Button
-                style={buttonStyle}            
+                style={buttonStyle}
                 onClick={onClick}
                 variant='contained'
             >
@@ -34,30 +34,23 @@ export const ButtonSalmon: React.FC<CustomButtonSalmonProps> = ({ label, icon, o
             </Button>
         );
     }
-    else{
-        return(
+    else {
+        return (
             <Button
-
-            
-            sx={{
-                '& > :not(style)': {
-                  m: 1,
-                  marginTop:2.5,
-                },
-              }}
-
-
-            style={buttonStyle}            
-            onClick={onClick}
-            variant='contained'
-            
-            startIcon = {<Box><CheckCircleOutlineIcon sx={{fontSize: 30}}/> </Box>}
-            
-                  
+                sx={{
+                    '& > :not(style)': {
+                        m: 1,
+                        marginTop: 2.5,
+                    },
+                }}
+                style={buttonStyle}
+                onClick={onClick}
+                variant='contained'
+                startIcon={<Box><CheckCircleOutlineIcon sx={{ fontSize: 30 }} /> </Box>}
             >
                 {label}
             </Button>
-            
+
         );
     }
 

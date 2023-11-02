@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes, Navigate, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './routes/AppRoutes.css';
 import { ROUTES } from './routes/constans';
 import { Login } from './pages/Login/Login';
@@ -9,7 +9,7 @@ import { CadastroMedico } from './pages/CadastroMedico/CadastroMedico';
 import { Identificacao } from './pages/Identificacao/Identificacao';
 import HomeMedico from './pages/HomeMedico/HomeMedico';
 import VisualizacaoPerfilMedico from './pages/VisualizarPerfilMedico/VisualizarPerfilMedico';
-import {isLoggedIn, setUserId} from './utils/authService'
+import { isLoggedIn, setUserId } from './utils/authService'
 import MenuMedicamentos from './pages/MenuMedicamentos/MenuMedicamentos';
 import ListaMedicamentos from './pages/ListaMedicamentos/ListaMedicamentos';
 import Exames from './pages/Exames/Exames';
@@ -18,10 +18,6 @@ import EdicaoExameRealizado from './pages/EdicaoExameRealizado/EdicaoExameRealiz
 import ListaDeInteracaoDoMedicamento from './pages/ListaDeInteracaoDoMedicamento/ListaDeInteracaoDomedicamento';
 import MeusMedicos from './pages/MeusMedicos/MeusMedicos';
 import PageMedico from './components/FiltroBuscaMedico/PageMedico';
-
-
-
-
 
 export default function AppRoutes() {
   const fetchData = async () => {
@@ -32,43 +28,43 @@ export default function AppRoutes() {
       if (!isAuthenticated) {
         return window.location.href = ROUTES.LOGIN();
       }
-      else if (localStorage.getItem('userId')== null){
-        
+      else if (localStorage.getItem('userId') == null) {
+
         fetchData()
       }
     });
-    
+
     return children;
   }
 
-  
+
   return (
     <Router>
       <div className="App">
         <Routes>
-          <Route path={ROUTES.HOME_MEDICO()} 
-          element={ <PrivateRoute>
-                    <HomeMedico />
-                    </PrivateRoute>
-          } 
-            />
+          <Route path={ROUTES.HOME_MEDICO()}
+            element={<PrivateRoute>
+              <HomeMedico />
+            </PrivateRoute>
+            }
+          />
 
-          <Route path={ROUTES.HOME_PACIENTE()} 
-          element={   <PrivateRoute>
-                      <HomePaciente/>
-                      </PrivateRoute>
+          <Route path={ROUTES.HOME_PACIENTE()}
+            element={<PrivateRoute>
+              <HomePaciente />
+            </PrivateRoute>
             } />
-          
-          <Route path={ROUTES.LISTADEINTERACAODOMEDICAMENTO()} 
-                element={
-                  <PrivateRoute>
+
+          <Route path={ROUTES.LISTADEINTERACAODOMEDICAMENTO()}
+            element={
+              <PrivateRoute>
                 <ListaDeInteracaoDoMedicamento />
-                </PrivateRoute>
-                } />
+              </PrivateRoute>
+            } />
           <Route path={ROUTES.FILTROBUSCAMEDICO()} element={
-          <PrivateRoute>
-          <PageMedico />
-          </PrivateRoute>
+            <PrivateRoute>
+              <PageMedico />
+            </PrivateRoute>
           } />
           <Route
             path={ROUTES.CADASTRO_PACIENTE()}
@@ -78,65 +74,65 @@ export default function AppRoutes() {
           <Route path={ROUTES.IDENTIFICACAO()} element={<Identificacao />} />
           <Route path={ROUTES.LOGIN()} element={<Login />} />
           <Route
-            path={ ROUTES.PERFIL_PACIENTE() }
+            path={ROUTES.PERFIL_PACIENTE()}
             element={
               <PrivateRoute>
-              <VisualizacaoPerfilPaciente />
+                <VisualizacaoPerfilPaciente />
               </PrivateRoute>
-          }
-          />       
+            }
+          />
           <Route
             path={ROUTES.PERFIL_MEDICO()}
             element={
               <PrivateRoute>
-              <VisualizacaoPerfilMedico />
+                <VisualizacaoPerfilMedico />
               </PrivateRoute>
-          }
+            }
           />
           <Route
             path={ROUTES.PERFIL_PACIENTE_MEUS_MEDICOS()}
             element={
-            <PrivateRoute>
-            <MeusMedicos />
-            </PrivateRoute>         
+              <PrivateRoute>
+                <MeusMedicos />
+              </PrivateRoute>
             }
           />
 
           <Route
             path={ROUTES.MENU_MEDICAMENTOS()}
             element={
-                <PrivateRoute>
+              <PrivateRoute>
                 <MenuMedicamentos />
-                </PrivateRoute>
-              }
+              </PrivateRoute>
+            }
           />
           <Route
             path={ROUTES.LISTA_MEDICAMENTOS()}
             element={
               <PrivateRoute>
-              <ListaMedicamentos />
+                <ListaMedicamentos />
               </PrivateRoute>
-          }
+            }
           />
           <Route
             path={ROUTES.EDICAO_EXAMES_PENDENTES()}
             element={
               <PrivateRoute>
-              <EdicaoExamePendente />
+                <EdicaoExamePendente />
               </PrivateRoute>
-          }
+            }
           />
           <Route
             path={ROUTES.EDICAO_EXAMES_REALIZADOS()}
             element={
               <PrivateRoute>
-              <EdicaoExameRealizado />
-              </PrivateRoute>  
-          }
+                <EdicaoExameRealizado />
+              </PrivateRoute>
+            }
           />
           <Route path={ROUTES.EXAMES()} element={
             <PrivateRoute>
-            <Exames />
+              <Exames />
             </PrivateRoute>
           } />
         </Routes>

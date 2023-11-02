@@ -7,7 +7,6 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useState } from 'react';
 import { Box, Button, Switch } from '@mui/material';
 import { ProfileCardStyles } from './ProfilePatientCardStyles';
-import { useNavigate } from 'react-router-dom';
 
 interface CardProps {
   name: string;
@@ -35,7 +34,6 @@ export function PatientProfileCard({
 }: CardProps) {
   const [notifications, setNotifications] = useState(false);
 
-  const navigate = useNavigate();
   const changeNotifications = (notifications: boolean) => {
     if (notifications) console.log('Notificações desabilitadas');
     else console.log('Notificações habilitadas');
@@ -47,7 +45,7 @@ export function PatientProfileCard({
         <Box sx={ProfileCardStyles.contentStyle}>
           <Avatar
             alt="Avatar"
-            src="url-da-sua-imagem"
+            src={profilePicture != undefined ? profilePicture : undefined}
             sx={ProfileCardStyles.avatarStyle}
           >
             <IconButton>
@@ -124,7 +122,7 @@ export function PatientProfileCard({
         </IconButton>
         <Button
           sx={ProfileCardStyles.myDoctorButtonStyle}
-          onClick={() => navigate('/perfil/paciente/meus-medicos')}
+          onClick={onClickDoctors}
         >
           Meus Médicos
         </Button>

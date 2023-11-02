@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import Textfield from '../../components/Textfield/Textfield';
 import Button from '../../components/Button/Button';
-import Logo from '../../assets/amparo.svg';
+import Logo from '../../assets/Amparo.svg';
 import './CadastroMedico.css';
 import SelectComponent from '../../components/Select/Select';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../routes/constans';
-import  {registerDoctor } from '../../utils/apiService';
+import { registerDoctor } from '../../utils/apiService';
 
 export const CadastroMedico = () => {
   const [name, setName] = useState<string>('');
@@ -17,8 +17,10 @@ export const CadastroMedico = () => {
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [validPassword, setValidPassaword] = useState<boolean>(true);
+  // @ts-ignore
   const [data, setData] = useState<String>();
   const [dataStatus, setDataStatus] = useState<Number>();
+  // @ts-ignore
   const [erro, setErro] = useState<string>('');
   const [isValidCrm, setIsValidCrm] = useState<boolean>(true);
   const [isValidEmail, setIsValidEmail] = useState<boolean>(true);
@@ -28,7 +30,7 @@ export const CadastroMedico = () => {
   const navigate = useNavigate();
 
   const buttonCLick = () => {
-    
+
     if (password == confirmPassword) {
       setValidPassaword(true);
     } else {
@@ -39,7 +41,7 @@ export const CadastroMedico = () => {
     } else {
       setIsValidCrm(true);
     }
-    if (name == ''){
+    if (name == '') {
       setIsValidName(false);
     } else {
       setIsValidName(true);
@@ -49,12 +51,12 @@ export const CadastroMedico = () => {
     } else {
       setIsValidEmail(true);
     }
-    if (phone == ''){
+    if (phone == '') {
       setIsValidPhone(false);
     } else {
       setIsValidPhone(true);
     }
-    if (password == ''){
+    if (password == '') {
       setIsValidPsw(false);
     } else {
       setIsValidPsw(true);
@@ -74,7 +76,7 @@ export const CadastroMedico = () => {
 
   async function fetchData(email: String, name: String, password: String, cellPhone: String, userType: String, crm: String, uf: String) {
 
-    await registerDoctor(email, name, password, cellPhone, userType, crm, uf).then( (result) => {
+    await registerDoctor(email, name, password, cellPhone, userType, crm, uf).then((result) => {
       setData(result.data);
       setDataStatus(result.status);
       console.log("Status " + result.status);
@@ -82,16 +84,16 @@ export const CadastroMedico = () => {
         console.log('cadastro realizado com sucesso');
       }
     })
-    .catch((erro) => {
-      if (erro.response && erro.response.status === 500) {
-        setErro(erro);
-        //componente de erro abaixo:
-        console.error('Erro 500: O servidor encontrou um erro interno.');
-      }
-       else {
-        console.error('Erro inesperado:', erro);
-      }
-    })
+      .catch((erro) => {
+        if (erro.response && erro.response.status === 500) {
+          setErro(erro);
+          //componente de erro abaixo:
+          console.error('Erro 500: O servidor encontrou um erro interno.');
+        }
+        else {
+          console.error('Erro inesperado:', erro);
+        }
+      })
 
   }
 
@@ -108,7 +110,7 @@ export const CadastroMedico = () => {
   };
 
   const validateCrm = (input: string) => {
-    if (input.length === 6){
+    if (input.length === 6) {
       setIsValidCrm(true);
     } else {
       setIsValidCrm(false);
@@ -116,8 +118,8 @@ export const CadastroMedico = () => {
   }
 
   const handleCrm = (newCrm: string) => {
-      validateCrm(newCrm);
-      setCrm(newCrm);
+    validateCrm(newCrm);
+    setCrm(newCrm);
   };
 
   const handleEmail = (newEmail: string) => {
@@ -126,12 +128,12 @@ export const CadastroMedico = () => {
     validateEmail(inputValue);
   };
 
-  const validatePhone = (input : string) => {
-    
+  const validatePhone = (input: string) => {
+
     const isNumeric = /^\d+$/.test(input);
     const isPhoneNumberValid = input.length === 11;
 
-    if(isNumeric && isPhoneNumberValid){
+    if (isNumeric && isPhoneNumberValid) {
       setIsValidPhone(isNumeric && isPhoneNumberValid);
     } else {
       setIsValidPhone(false);
@@ -177,7 +179,7 @@ export const CadastroMedico = () => {
               label="CRM"
               type="text"
               value={crm}
-              error = {!isValidCrm}
+              error={!isValidCrm}
               helperText={!isValidCrm ? 'Insira um CRM correto' : ''}
               onChange={handleCrm}
               width="233px"
@@ -188,7 +190,7 @@ export const CadastroMedico = () => {
             type="email"
             onChange={handleEmail}
             error={!isValidEmail}
-            helperText= {!isValidEmail ? 'Email inválido' : ''}
+            helperText={!isValidEmail ? 'Email inválido' : ''}
             value={email}
           />
           <Textfield
@@ -196,7 +198,7 @@ export const CadastroMedico = () => {
             type="text"
             onChange={handlePhone}
             error={!isValidPhone}
-            helperText= {!isValidPhone ? 'Telefone inválido' : ''}
+            helperText={!isValidPhone ? 'Telefone inválido' : ''}
             value={phone}
           />
           <Textfield
@@ -208,16 +210,16 @@ export const CadastroMedico = () => {
             helperText={!isValidPsw ? 'Insira uma senha' : ''}
           />
           <Textfield
-              label="Confirmar Senha"
-              type="password"
-              onChange={handleConfirmPassword}
-              error={!validPassword || !isValidPsw}
-              helperText={
+            label="Confirmar Senha"
+            type="password"
+            onChange={handleConfirmPassword}
+            error={!validPassword || !isValidPsw}
+            helperText={
               !isValidPsw ? 'Insira uma senha' : !validPassword ? 'Senha não corresponde'
-              : ''
+                : ''
             }
-          value={confirmPassword}
-        />
+            value={confirmPassword}
+          />
           <Button
             margin-botton="20px"
             variant="contained"

@@ -1,4 +1,3 @@
-import React from 'react';
 import MedicationIcon from '../../../../assets/MedicationIcon.svg';
 import ExameIcon from '../../../../assets/ExameIcon.svg';
 
@@ -22,18 +21,18 @@ const containerStyle = {
 const iconStyle = {
   width: '38px',
   height: '42px',
-  marginTop: '8px', 
+  marginTop: '8px',
 
 };
 const labelStyle = {
   fontFamily: 'Poppins',
-  fontSize: '17px', 
+  fontSize: '17px',
   fontStyle: 'italic',
   fontWeight: 500,
   lineHeight: '26px',
   marginTop: '20px',
   marginLeft: '-5px',
-   
+
 };
 
 export function Botoes({ onclickExames, onclickMedicamentos }: BotoesProps) {
