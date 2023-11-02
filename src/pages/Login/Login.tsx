@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Logo from '../../assets/amparo.svg';
+import Logo from '../../assets/Amparo.svg';
 import './Login.css';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../../routes/constans';
