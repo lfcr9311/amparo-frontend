@@ -12,48 +12,20 @@ import { ROUTES } from '../../routes/constans';
 import { Button } from '@mui/material';
 import { getPatient } from '../../utils/apiService';
 
-interface apiInfo {
-  name: string,
-  cpf: string,
-  email: string,
-  birthDate: string,
-  numSus: string,
-  cellphone: string
-}
 
 const VisualizacaoPerfilPaciente = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // const [apiInfo, setApiInfo] = useState({
-  //   name: '',
-  //   cpf: '',
-  //   email: '',
-  //   birthDate: '',
-  //   numSus: '',
-  //   cellphone: ''
-  // })
   const [name, setName] = useState('');
   const [cpf, setCpf] = useState('');
   const [email, setEmail] = useState('');
   const [dataNascimento, setDataNascimento] = useState('');
   const [nSus, setNSus] = useState('');
-  const [ddd, setDdd] = useState('');
+  const [ddd, setDdd] = useState('51');
   const [cellphone, setCellphone] = useState('');
-  const firstAndLastName = name.split(' ');
-  const firstName = firstAndLastName[0];
-  const lastName = firstAndLastName[firstAndLastName.length - 1];
 
 async function update() {
   try {
     await editUser(name, cellphone, cpf, "null", email, dataNascimento, nSus);
-    // const att = await getPatient() as unknown as apiInfo;
-    // setApiInfo({
-    //   name: att.name,
-    //   email: att.email,
-    //   birthDate: att.birthDate,
-    //   numSus: att.numSus,
-    //   cellphone: att.cellphone,
-    //   cpf: att.cpf
-    // })
     setIsModalOpen(!isModalOpen);
   }
   catch(e) {
@@ -71,14 +43,6 @@ async function update() {
   useEffect(() => {
     getPatient().then((response) => {
       const att = response.data
-      // setApiInfo({
-      //   name: att.name,
-      //   email: att.email,
-      //   birthDate: att.birthDate,
-      //   numSus: att.numSus,
-      //   cellphone: att.cellphone,
-      //   cpf: att.cpf
-      // })
       setName(att.name)
       setEmail(att.email)
       setDataNascimento(att.birthDate)
@@ -146,7 +110,7 @@ async function update() {
               <div className="cellphone-container">
                 <TextfieldModal
                   label="DDD"
-                  value={"51"}
+                  value={ddd}
                   type="text"
                   width="65.5px"
                   onChange={(value) => setDdd(value)}
