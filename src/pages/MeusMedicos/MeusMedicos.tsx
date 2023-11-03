@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import {useEffect, useState} from 'react';
 import HeaderHome from '../../components/HeaderHome/HeaderHome';
 import './MeusMedicosStyle.css'; // Importe o arquivo CSS
 import Footer from '../../components/Footer/Footer';
@@ -6,8 +6,8 @@ import Modal from '../../components/Modal/Modal';
 import ModalDetalhesMedico from '../../components/ModalDetalhesMedico/ModalDetalhesMedico';
 import Solicitacao from '../../components/Modal/Components/Solicitacao/SolicitacaoModal';
 import CardUsuario from '../../components/CardUsuario/CardUsuario';
-import { CircularProgress } from '@mui/material';
-import { fetchMeusMedicos } from '../../utils/apiService.tsx';
+import {CircularProgress} from '@mui/material';
+import { addDoctor, fetchMeusMedicos, searchDoctor } from '../../utils/apiService.tsx';
 
 interface Medico {
   id: number;
@@ -28,6 +28,8 @@ const MeusMedicos: React.FC = () => {
   const [medico, setMedico] = useState<Medico>();
   const [searchText, setSearchText] = useState('');
   const [isLoading, setIsLoading] = useState(true);
+  const [uf, setUf] = useState('');
+  const [crm, setCrm] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,15 +47,6 @@ const MeusMedicos: React.FC = () => {
     fetchData();
   }, []);
 
-  const handleCardClick = (selectedMedico: Medico) => {
-    setisModalDetalhesOpen(!isModalDetalhesOpen);
-    setMedico(selectedMedico);
-  };
-
-  const handleAddButtonClick = () => {
-    setisModalSolicitacaoOpen(!isModalSolicitacaoOpen);
-  };
-
   useEffect(() => {
     const normalizeText = (text: string) =>
       text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
@@ -67,10 +60,31 @@ const MeusMedicos: React.FC = () => {
     setMedicos(filteredMedicos);
   }, [searchText, originalMedicos]);
 
+  const handleCardClick = (selectedMedico: Medico) => {
+    setisModalDetalhesOpen(!isModalDetalhesOpen);
+    setMedico(selectedMedico);
+  };
+
+  const handleAddButtonClick = () => {
+    setisModalSolicitacaoOpen(!isModalSolicitacaoOpen);
+  };
+
+  const onClickButton = () => {
+    searchDoctor(crm, uf).then((response) => {
+      addDoctor(response.data.id).then((response) => {
+        console.log(`Médico adicionado com sucesso ${response}`)
+        setisModalSolicitacaoOpen(false);
+        window.location.reload();
+      })
+    }).catch((err) => {
+      console.log(`Erro ao pesquisar Médico ${err}`)
+    })
+  }
+
   return (
     <>
-      <HeaderHome title='Meus Médicos' type='headerPage' />
-      {isLoading && <CircularProgress color="error" />}
+      <HeaderHome title='Meus Médicos' type='headerPage'/>
+      {isLoading && <CircularProgress color="error"/>}
       {!isLoading && (
         <>
           <div className='search-container'>
@@ -130,9 +144,14 @@ const MeusMedicos: React.FC = () => {
       <Solicitacao
         isModalOpen={isModalSolicitacaoOpen}
         setIsModalOpen={setisModalSolicitacaoOpen}
+        onClickButton={onClickButton}
+        setCrm={setCrm}
+        crm={crm}
+        setUf={setUf}
+        uf={uf}
       />
 
-      <Footer user='patient' />
+      <Footer user='patient'/>
     </>
   );
 };
