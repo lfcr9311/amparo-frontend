@@ -71,6 +71,22 @@ const MeusMedicos: React.FC = () => {
     setisModalSolicitacaoOpen(!isModalSolicitacaoOpen);
   };
 
+  useEffect(() => {
+    if (errorSnackbar) {
+      setTimeout(() => {
+        setSuccessSnackbar(false);
+      }, 2000);
+    }
+  }, [successSnackbar]);
+
+  useEffect(() => {
+    if (errorSnackbar) {
+      setTimeout(() => {
+        setErrorSnackbar(false);
+      }, 2000);
+    }
+  }, [errorSnackbar]);
+  
   const onClickButton = () => {
     searchDoctor(crm, uf).then((response) => {
       addDoctor(response.data.id).then((response) => {
