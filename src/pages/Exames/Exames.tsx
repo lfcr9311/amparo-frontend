@@ -11,7 +11,7 @@ import ExamFilter from '../../components/ExamFilter/examFilter';
 import InputFile from '../../components/InputFile/InputFile';
 import { format } from 'date-fns';
 import './Exames.css';
-import { addExamePendente, getExamesPendente, getExamesRealizados } from '../../utils/apiService';
+import { addExamePendente, addExameRealizado, addFileOrImage, getExamesPendente, getExamesRealizados } from '../../utils/apiService';
 import ExamesVazio from '../../components/ExamesVazio/ExamesVazio';
 
 interface Exames {
@@ -42,6 +42,7 @@ export default function Exames() {
 
   const handleFileImage = (file: File | null) => {
     setFileImage(file);
+
   };
   useEffect(() => {
     getExamesPendente().then((response) => {
@@ -52,22 +53,55 @@ export default function Exames() {
     });
     getExamesRealizados().then((response) => {
       setExamesRealizados(response.data)
-      console.log(examesPendentes);
+
+    }).finally(() => {
+      console.log("realizados -> ", examesRealizados);
     })
   }, [addExam])
   const handleSalvarPendente = () => {
     console.log("im here" + descriptionPendentes);
 
     addExamePendente(descriptionPendentes, datePendestes).then((response) => {
-      if (response.status == 200) {
-        console.log("Adicionando novo exame");
-        setDatePendentes("")
-        setDescriptionPendentes("")
-        setIsModalPendentesOpen(false)
-        setAddExam(response.data)
-      }
+      console.log("Adicionando novo exame");
+      setDatePendentes("")
+      setDescriptionPendentes("")
+      setIsModalPendentesOpen(false)
+      setAddExam(response.data)
+    }).catch((error) => {
+      console.error(error);
+
     })
   }
+
+  const handleSalvarRealizado = async () => {
+    try {
+      let fileImageURL = "";
+      let filePdfURL = "";
+
+      if (fileImage) {
+        const response = await addFileOrImage(fileImage);
+        fileImageURL = response.data.url;
+      }
+
+      if (filePdf) {
+        const response = await addFileOrImage(filePdf);
+        filePdfURL = response.data.url;
+      }
+
+      console.log("PDF ", fileImageURL);
+      console.log("Img ", filePdf);
+
+      const response = await addExameRealizado(descriptionRealizados, dateRealizados, fileImageURL || '', filePdfURL || '');
+      console.log("Adicionando novo exame realizado");
+      setDateRealizados("");
+      setDescriptionRealizados("");
+      setIsModalRealizadosOpen(false);
+      setAddExam(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <>
       <HeaderHome type="headerTab" value={value} setValue={setValue} />
@@ -99,11 +133,12 @@ export default function Exames() {
             <div className="cards-exames-pendentes">
               {examesPendentes.map((exam, index) => (
                 <ExamListItem
-                  key={index} // Make sure to provide a unique key
+                  key={index}
                   date={format(new Date(exam.examDate), 'dd/MM/yyyy')}
                   exam={exam.description}
                   description={exam.description}
-                  type={'pendente'} // Adjust based on your data
+                  type={'pendente'}
+                  id={exam.id}
                 />
               ))}
             </div>
@@ -169,11 +204,12 @@ export default function Exames() {
               <div className="cards-exames-realizados">
                 {examesRealizados.map((exam, index) => (
                   <ExamListItem
-                    key={index} // Make sure to provide a unique key
+                    key={index}
                     date={format(new Date(exam.examDate), 'dd/MM/yyyy')}
                     exam={exam.description}
                     description={exam.description}
-                    type={'realizado'} // Adjust based on your data
+                    type={'realizado'}
+                    id={exam.id}
                   />
                 ))}
               </div>
@@ -207,14 +243,7 @@ export default function Exames() {
                   <CustomButton
                     variant="contained"
                     label="Salvar"
-                    onClick={() =>
-                      console.log(
-                        dateRealizados,
-                        descriptionRealizados,
-                        fileImage,
-                        filePdf
-                      )
-                    }
+                    onClick={handleSalvarRealizado}
                   />
                 </div>
               </Modal>

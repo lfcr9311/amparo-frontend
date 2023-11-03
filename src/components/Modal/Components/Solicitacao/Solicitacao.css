@@ -1,6 +1,23 @@
 .modal-content {
-    text-align: center;
-    padding: 5px;
-    width: 339px;
-    height: 132px;
+  text-align: center;
+  padding: 5px;
+  width: 339px;
+  height: auto;
+}
+
+.solicitacao-search-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  gap: 1rem;
+}
+
+.solicitacao-input {
+  height: 0.15rem;
+  color: #696969;
+  border: none;
+  background-color: #EAEAEA;
+  border-radius: 50px;
 }

@@ -2,18 +2,20 @@ stages:
   - test
   - deploy
 
-npm-test:
+build:
   image: node:18-alpine
   stage: test
   script:
     - npm ci
     - npm test
+    - npm run build
 
 Docker Run:
   image: sleavely/node-awscli:18.x
   stage: deploy
   script:
     - npm ci
+    - sh deploy.sh production $PRODUCTION_ACCESS_KEY_ID $PRODUCTION_SECRET_ACCESS_KEY
     - npm run prod
   only:
     - main
