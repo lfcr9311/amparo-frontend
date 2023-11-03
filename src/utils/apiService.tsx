@@ -29,9 +29,10 @@ export const isLogged = async () => {
 
 export const editUser = async (name: String, cellphone: String, cpf: String, profilePicture: String, email: String, birthDate: String, nroSus: String) => {
   try {
+    console.log({ name, cellphone, cpf, profilePicture, email, birthDate, numSus: nroSus})
     const response = await axios.put('/patient', { name, cellphone, cpf, profilePicture, email, birthDate, numSus: nroSus} , {
       headers: {
-        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhbXBhcm8tYXBpIiwic3ViIjoiNDNiM2Y0NzQtZGJlMy00NzI4LWIzNWYtZTU5NDcxMTRmYzgxIiwicm9sZXMiOlsiUk9MRV9QQVRJRU5UIl0sImVtYWlsIjoidGVzdEBlbWFpbC5jb20iLCJuYW1lIjoidGVzdCIsImV4cCI6MTY5ODQ3MzI4OX0.NCeQ5oO_f45Y_acpayzVNuMeSRXSx-vZkxVI1H96Fmw'
+        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhbXBhcm8tYXBpIiwic3ViIjoiNjhhMWE5NzUtYTdmZS00MTIzLTk5NjgtNjU5NzAwNDc5MDQ0Iiwicm9sZXMiOlsiUk9MRV9QQVRJRU5UIl0sImVtYWlsIjoicmljYXJkb0BlbWFpbC5jb20iLCJuYW1lIjoicmljYXJkbyIsImV4cCI6MTY5OTA2OTIxNX0.SCh3V10RbQRet4ojjwaKlrm9Ef4f9im1h4aKUdyD30E'
       }
     });
     return response.data

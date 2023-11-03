@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import TextfieldModal from '../../components/Modal/Components/TextfieldModal';
 import CustomButton from '../../components/Button/Button';
 import { editUser } from '../../utils/apiService';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../routes/constans';
 import { Button } from '@mui/material';
 import { getPatient } from '../../utils/apiService';
@@ -23,14 +23,14 @@ interface apiInfo {
 
 const VisualizacaoPerfilPaciente = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [apiInfo, setApiInfo] = useState({
-    name: '',
-    cpf: '',
-    email: '',
-    birthDate: '',
-    numSus: '',
-    cellphone: ''
-  })
+  // const [apiInfo, setApiInfo] = useState({
+  //   name: '',
+  //   cpf: '',
+  //   email: '',
+  //   birthDate: '',
+  //   numSus: '',
+  //   cellphone: ''
+  // })
   const [name, setName] = useState('');
   const [cpf, setCpf] = useState('');
   const [email, setEmail] = useState('');
@@ -45,16 +45,16 @@ const VisualizacaoPerfilPaciente = () => {
 async function update() {
   try {
     await editUser(name, cellphone, cpf, "null", email, dataNascimento, nSus);
-    const att = await getPatient() as unknown as apiInfo;
-    setApiInfo({
-      name: att.name,
-      email: att.email,
-      birthDate: att.birthDate,
-      numSus: att.numSus,
-      cellphone: att.cellphone,
-      cpf: att.cpf
-    })
-    setIsModalOpen(!isModalOpen);
+    // const att = await getPatient() as unknown as apiInfo;
+    // setApiInfo({
+    //   name: att.name,
+    //   email: att.email,
+    //   birthDate: att.birthDate,
+    //   numSus: att.numSus,
+    //   cellphone: att.cellphone,
+    //   cpf: att.cpf
+    // })
+    // setIsModalOpen(!isModalOpen);
   }
   catch(e) {
     console.log(e)
@@ -71,14 +71,14 @@ async function update() {
   useEffect(() => {
     getPatient().then((response) => {
       const att = response.data
-      setApiInfo({
-        name: att.name,
-        email: att.email,
-        birthDate: att.birthDate,
-        numSus: att.numSus,
-        cellphone: att.cellphone,
-        cpf: att.cpf
-      })
+      // setApiInfo({
+      //   name: att.name,
+      //   email: att.email,
+      //   birthDate: att.birthDate,
+      //   numSus: att.numSus,
+      //   cellphone: att.cellphone,
+      //   cpf: att.cpf
+      // })
       setName(att.name)
       setEmail(att.email)
       setDataNascimento(att.birthDate)
@@ -109,14 +109,6 @@ async function update() {
         <Modal
           isOpen={isModalOpen}
           title="Perfil"
-          isClose={() => {
-            setName(apiInfo.name);
-            setEmail(apiInfo.email);
-            setDataNascimento(apiInfo.birthDate);
-            setNSus(apiInfo.numSus);
-            setCellphone(apiInfo.cellphone);
-            setCpf(apiInfo.cpf);
-          }}
         >
           <form>
             <div className="content-modal">
