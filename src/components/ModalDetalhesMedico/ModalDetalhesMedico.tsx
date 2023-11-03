@@ -1,21 +1,22 @@
 import DefaultProfilePicture from '../../assets/DefaultProfilePicture.svg';
+import { Dispatch, SetStateAction } from 'react';
 
 interface Medico {
-  id?: number;
-  name?: string;
+  id: number;
+  email: string;
+  name: string;
+  cellphone: string;
   profilePicture?: string;
-  especialidade?: string;
-  crm?: string;
-  uf?: string;
-  email?: string;
-  telefone?: string;
+  isAnonymous: boolean;
+  crm: string;
+  uf: string;
 }
 
 interface ModalDetalhesMedicoProps {
   medico?: Medico;
   isModalOpen: boolean;
   setIsModalOpen: (value: boolean) => void;
-  setMedico: (value: Medico | undefined) => void;
+  setMedico: Dispatch<SetStateAction<any>>;
 }
 
 const ModalDetalhesMedico = ({
@@ -33,7 +34,7 @@ const ModalDetalhesMedico = ({
           className="avatar-image"
         />
       </div>
-      <h2>{medico?.name}</h2>
+      <h2>Dr. {medico?.name}</h2>
       <p className="crm">
         <span
           style={{
@@ -83,7 +84,7 @@ const ModalDetalhesMedico = ({
                 </g>
               </svg>
             </span>{' '}
-            {medico?.telefone}
+            {medico?.cellphone}
           </p>
         </div>
       </div>

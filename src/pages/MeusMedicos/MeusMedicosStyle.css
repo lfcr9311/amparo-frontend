@@ -2,7 +2,7 @@
   font-family: 'Poppins', sans-serif;
 }
 
-.body-container {
+.my-doctors-container {
   height: 22.5rem;
   overflow-y: auto;
   gap: 10px;
