@@ -54,7 +54,7 @@ async function update() {
     //   cellphone: att.cellphone,
     //   cpf: att.cpf
     // })
-    // setIsModalOpen(!isModalOpen);
+    setIsModalOpen(!isModalOpen);
   }
   catch(e) {
     console.log(e)
@@ -86,7 +86,7 @@ async function update() {
       setCellphone(att.cellphone)
       setCpf(att.cpf)
     })
-  }, [])
+  }, [isModalOpen])
   return (
     <>
       <div className="header-container">
@@ -109,6 +109,7 @@ async function update() {
         <Modal
           isOpen={isModalOpen}
           title="Perfil"
+          isClose={() => setIsModalOpen(!isModalOpen)}
         >
           <form>
             <div className="content-modal">
