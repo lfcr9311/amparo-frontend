@@ -1,0 +1,32 @@
+.date-selector-container {
+    display: flex;
+    align-items: center;
+}
+
+.prev-button {
+    opacity: 1;
+    background-color: #ffff;
+    border: none;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.next-button {
+    opacity: 1;
+    background-color: #ffff;
+    border: none;
+    margin-left: 10px;
+    margin-top: 9px;
+
+}
+
+.date-text {
+    font-family: Poppins;
+    font-size: 25px;
+    color: #4D4C4C;
+    font-weight: 500;
+    line-height: 38px;
+    letter-spacing: 0em;
+    text-align: left;
+
+}

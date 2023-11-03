@@ -11,6 +11,7 @@ interface ExamListProps {
   exam: string;
   description: string;
   type: 'pendente' | 'realizado';
+  id: string
 }
 
 export default function ExamListItem({
@@ -18,6 +19,7 @@ export default function ExamListItem({
   exam,
   description,
   type,
+  id
 }: ExamListProps) {
   const navigate = useNavigate();
   const handleClick = () => {
@@ -25,7 +27,7 @@ export default function ExamListItem({
       type === 'pendente'
         ? ROUTES.EDICAO_EXAMES_PENDENTES()
         : ROUTES.EDICAO_EXAMES_REALIZADOS(),
-      { state: { date: date, description: description } }
+      { state: { date: date, description: description, id: id } }
     );
   };
 
