@@ -1,4 +1,4 @@
-import './CardMedico.css';
+import './CardUsuario.css';
 import RightArrow from '../../assets/CardRemedioIcon.svg';
 
 import DefaultProfilePicture from '../../assets/DefaultProfilePicture.svg';
@@ -10,7 +10,7 @@ interface CardMedicoProps {
   onClick?: () => void;
 }
 
-export default function CardMedico({
+export default function CardUsuario({
   name,
   profilePicture,
   onClick,
