@@ -38,15 +38,17 @@ export default function EscreveTextoForumProps() {
                 <div >
                     <MultilineTextFields tituloDoTextField={"Links"}
                         quantidadeLinhas={3}
-                        mensagemQuadroEmBranco={"Insira as referências..."}
+                        mensagemQuadroEmBranco={"Insira as referências separadas por virgula..."}
                     />
                 </div>
+
+
+
                 <div className="escreve-button-salvar">
                     <CustomButton
                         variant="contained"
                         label="Salvar"
                     // onClick={() => console.log('salvar')}        
-
                     />
                 </div>
 

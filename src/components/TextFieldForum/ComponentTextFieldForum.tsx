@@ -17,7 +17,7 @@ export const MultilineTextFields: React.FC<MultilineTextFieldsProps> = ({ quanti
         <Box
             component="form"
             sx={{
-                '& .MuiTextField-root': { m: 1, width: '360px', },
+                '& .MuiTextField-root': { m: 1, width: '320px', },
             }}
             noValidate
             autoComplete="off"
@@ -31,11 +31,11 @@ export const MultilineTextFields: React.FC<MultilineTextFieldsProps> = ({ quanti
                     </span>
                     }
                     multiline
-                    rows={quantidadeLinhas}
                     defaultValue={mensagemQuadroEmBranco}
+                    rows={quantidadeLinhas}
                     className='textfield-forum-style'
                     color="error" focused
-
+                    
 
                 />
             
