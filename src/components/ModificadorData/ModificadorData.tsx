@@ -25,7 +25,7 @@ const DateSelector: React.FC = () => {
       month: 'short',
     };
     const formattedDate = date.toLocaleDateString('pt-BR', options);
-
+    //@ts-ignore
     return formattedDate.replace(/^(.)(.*)(\s)(.)(.*)$/, (match, p1, p2, p3, p4, p5) => {
       return p1.toUpperCase() + p2 + p3 + p4.toUpperCase() + p5;
     });
