@@ -72,7 +72,7 @@ const MeusMedicos: React.FC = () => {
   };
 
   useEffect(() => {
-    if (errorSnackbar) {
+    if (setSuccessSnackbar) {
       setTimeout(() => {
         setSuccessSnackbar(false);
       }, 2000);
@@ -181,7 +181,7 @@ const MeusMedicos: React.FC = () => {
         uf={uf}
       />
 
-      <Snackbar open={successSnackbar} autoHideDuration={2000}>
+      <Snackbar open={successSnackbar} autoHideDuration={6000}>
         <Alert onClose={() => {
           setSuccessSnackbar(false);
         }} severity="success" sx={{ width: '100%' }}>
