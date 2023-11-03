@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import HeaderHome from '../../components/HeaderHome/HeaderHome';
 import './MeusMedicosStyle.css'; // Importe o arquivo CSS
 import Footer from '../../components/Footer/Footer';
@@ -6,7 +6,7 @@ import Modal from '../../components/Modal/Modal';
 import ModalDetalhesMedico from '../../components/ModalDetalhesMedico/ModalDetalhesMedico';
 import Solicitacao from '../../components/Modal/Components/Solicitacao/SolicitacaoModal';
 import CardUsuario from '../../components/CardUsuario/CardUsuario';
-import {CircularProgress} from '@mui/material';
+import { Alert, CircularProgress, Snackbar } from '@mui/material';
 import { addDoctor, fetchMeusMedicos, searchDoctor } from '../../utils/apiService.tsx';
 
 interface Medico {
@@ -30,22 +30,24 @@ const MeusMedicos: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [uf, setUf] = useState('');
   const [crm, setCrm] = useState('');
+  const [successSnackbar, setSuccessSnackbar] = useState(false);
+  const [errorSnackbar, setErrorSnackbar] = useState(false);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const doctors = await fetchMeusMedicos();
-        setOriginalMedicos(doctors);
-        setMedicos(doctors);
-      } catch (err) {
-        console.error(err);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
     fetchData();
   }, []);
+
+  const fetchData = async () => {
+    try {
+      const doctors = await fetchMeusMedicos();
+      setOriginalMedicos(doctors);
+      setMedicos(doctors);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
     const normalizeText = (text: string) =>
@@ -72,19 +74,31 @@ const MeusMedicos: React.FC = () => {
   const onClickButton = () => {
     searchDoctor(crm, uf).then((response) => {
       addDoctor(response.data.id).then((response) => {
-        console.log(`Médico adicionado com sucesso ${response}`)
+        console.log(`Médico adicionado com sucesso ${response}`);
         setisModalSolicitacaoOpen(false);
-        window.location.reload();
-      })
+        setSuccessSnackbar(true);
+        setisModalSolicitacaoOpen(false);
+        setCrm('');
+        setUf('')
+        fetchData();
+      }).catch((err) => {
+        console.log(`Erro ao adicionar Médico ${err}`);
+        setErrorSnackbar(true);
+        setCrm('');
+        setUf('')
+      });
     }).catch((err) => {
-      console.log(`Erro ao pesquisar Médico ${err}`)
-    })
-  }
+      console.log(`Erro ao pesquisar Médico ${err}`);
+      setErrorSnackbar(true);
+      setCrm('');
+      setUf('')
+    });
+  };
 
   return (
     <>
-      <HeaderHome title='Meus Médicos' type='headerPage'/>
-      {isLoading && <CircularProgress color="error"/>}
+      <HeaderHome title='Meus Médicos' type='headerPage' />
+      {isLoading && <CircularProgress color='error' />}
       {!isLoading && (
         <>
           <div className='search-container'>
@@ -151,7 +165,22 @@ const MeusMedicos: React.FC = () => {
         uf={uf}
       />
 
-      <Footer user='patient'/>
+      <Snackbar open={successSnackbar} autoHideDuration={2000}>
+        <Alert onClose={() => {
+          setSuccessSnackbar(false);
+        }} severity="success" sx={{ width: '100%' }}>
+          Solicitação enviada com sucesso!
+        </Alert>
+      </Snackbar>
+
+      <Snackbar open={errorSnackbar} autoHideDuration={6000}>
+        <Alert onClose={() => {
+          setErrorSnackbar(false);
+        }} severity="error" sx={{ width: '100%' }}>
+          Erro ao enviar solicitação!
+        </Alert>
+      </Snackbar>
+      <Footer user='patient' />
     </>
   );
 };
