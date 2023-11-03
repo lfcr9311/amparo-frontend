@@ -20,10 +20,6 @@ import MeusMedicos from './pages/MeusMedicos/MeusMedicos';
 import PageMedico from './components/FiltroBuscaMedico/PageMedico';
 import { ButtonSalmonPageInfo } from './components/ButtonSalmon/ButtonSalmonPageInfo';
 
-
-
-
-
 export default function AppRoutes() {
   const fetchData = async () => {
     await setUserId()

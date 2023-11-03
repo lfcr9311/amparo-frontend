@@ -3,37 +3,21 @@ import FiltroBuscaMedicamentos from '../../components/FiltroBuscaMedicamentos/Fi
 import { ListaInteracoes } from '../../components/ListaInteracoes/ListaInteracoes';
 import HeaderHome from '../../components/HeaderHome/HeaderHome';
 import Footer from '../../components/Footer/Footer';
-import './ListaDeInteracaoDoMedicamento.css';
+import './ListaDeInteracaoDomedicamento.css';
+import { useLocation } from 'react-router-dom';
 
-interface ListaDeInteracaoDoMedicamentoProps {
-  nomeDoMedicamentoQuePossuiInteracao?: string;
-  listaRecebidaDeInteracoesDoMedicamento?: { name: string; status: string }[];
-}
 
-const US21ListaDeInteracaoMedicamentos = ({ nomeDoMedicamentoQuePossuiInteracao = "Medicamento" }: ListaDeInteracaoDoMedicamentoProps) => {
+
+const US21ListaDeInteracaoMedicamentos = () => {
   const [filtroStatus, setFiltroStatus] = useState('semFiltroDeStatus');
+  const location = useLocation();
+
+  const listaDeMedicamentosCompleta = location.state.items;
+  const nomeDoMedicamentoQuePossuiInteracao = location.state.nome;
+
 
   const [filtroText, setFiltroText] = useState('');
-  const [listaDeMedicamentosCompleta] = useState([
-    { name: 'Paracetamol', status: 'bom' },
-    { name: 'Ibuprofeno', status: 'medio' },
-    { name: 'Amoxicilina', status: 'ruim' },
-    { name: 'Omeprazol', status: 'bom' },
-    { name: 'Sertralina', status: 'medio' },
-    { name: 'Metformina', status: 'ruim' },
-    { name: 'Atorvastatina', status: 'bom' },
-    { name: 'Loratadina', status: 'medio' },
-    { name: 'Lisinopril', status: 'ruim' },
-    { name: 'Diclofenaco', status: 'bom' },
-    { name: 'Ranitidina', status: 'medio' },
-    { name: 'Pantoprazol', status: 'ruim' },
-    { name: 'Ciprofloxacino', status: 'bom' },
-    { name: 'Metronidazol', status: 'medio' },
-    { name: 'Furosemida', status: 'ruim' },
-    { name: 'Dexametasona', status: 'bom' },
-    { name: 'Fluoxetina', status: 'medio' },
-    { name: 'Tramadol', status: 'ruim' }
-  ]);
+
 
   const handleFiltroStatusChange = (selectedStatus: string) => {
     setFiltroStatus(selectedStatus);
@@ -54,7 +38,7 @@ const US21ListaDeInteracaoMedicamentos = ({ nomeDoMedicamentoQuePossuiInteracao 
           <FiltroBuscaMedicamentos onStatusChange={handleFiltroStatusChange} onNameChange={handleFiltroTextChange} status={filtroStatus} />
         </div>
         <div className='body-lista'>
-          <ListaInteracoes items={listaDeMedicamentosCompleta.filter(item => (item.status === filtroStatus || filtroStatus === 'semFiltroDeStatus') &&
+          <ListaInteracoes items={listaDeMedicamentosCompleta.filter((item: { status: string; name: string; }) => (item.status === filtroStatus || filtroStatus === 'semFiltroDeStatus') &&
             item.name.toLowerCase().includes(filtroText.toLowerCase()))} />
         </div>
 
