@@ -2,12 +2,13 @@ stages:
   - test
   - deploy
 
-npm-test:
+build:
   image: node:18-alpine
   stage: test
   script:
     - npm ci
     - npm test
+    - npm run build
 
 Docker Run:
   image: sleavely/node-awscli:18.x
