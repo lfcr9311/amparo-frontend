@@ -13,7 +13,6 @@ export const ButtonSalmonPageInfo: React.FC = () => {
         color: 'white',
         fontFamily: 'Poppins',
         fontSize: '19px',
-        fontWeight: '500',
         borderRadius: "10px",
         height: "124px",
         width: "307px",
@@ -25,22 +24,24 @@ export const ButtonSalmonPageInfo: React.FC = () => {
                 '& > :not(style)': {
                     m: 1,
                     marginTop: 2.5,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    textAlign: 'start'
+                    
                 },
+                
+
             }}
             style={buttonStyle}
             onClick={() => { }}
             variant='contained'
             endIcon={<Box><ArrowForwardIos sx={{ fontSize: 30 }} /> </Box>}
         >
-            <div style={{
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                overflow: 'auto'
-            }}>
-                <p style={{ fontSize: '15px', lineHeight: '14px', lineBreak: 'normal' }}>
+            <div>
+                <p style={{ fontSize: '19px', lineHeight: '18px', fontWeight: '400' }}>
                     Como se previnir de doenças respiratórias
                 </p>
-                <p style={{ fontSize: '11px', lineHeight: '16px' }}>
+                <p style={{ fontSize: '11px', lineHeight: '12px', fontWeight: '100' }}>
                     Há 5 dias | Dr. Marcelo Igansi (CRM/UF 010203)
                 </p>
             </div>
