@@ -1,18 +1,49 @@
+import { useState } from 'react';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import './CardRemedio.css';
-import CardRemedioIcon from '../../assets/CardRemedioIcon.svg';
 
-interface CardRemedioProps {
+interface Medicamento {
   label: string;
-  onClick: () => void;
+  dosagem?: string;
+  frequencia?: string;
+  dataFinal?: string | "Uso contínuo";
 }
 
-export default function CardRemedio({ label, onClick }: CardRemedioProps) {
+interface CardRemedioProps {
+  medicamento: Medicamento;
+}
+
+export default function CardRemedio({ medicamento }: CardRemedioProps) {
+  const [expanded, setExpanded] = useState(false);
+
+  const toggleAccordion = () => {
+    setExpanded(!expanded);
+  };
+
   return (
-    <button className="card-remedio" onClick={onClick}>
-      <p className="label-card">{label}</p>
-      <div className="icon-wrapper">
-        <img className="card-remedio-icon" src={CardRemedioIcon} />
-      </div>
-    </button>
+    <div>
+      <Accordion expanded={expanded} onChange={toggleAccordion}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <div className="card-remedio-header">
+            <p className="label-card">{medicamento.label}</p>
+
+          </div>
+        </AccordionSummary>
+        <AccordionDetails>
+          <div className="medicamento-info">
+            <p>Dosagem: {medicamento.dosagem || 'Não informado'}</p>
+            <p>Frequência: {medicamento.frequencia || 'Não informado'}</p>
+            <p>Data final: {medicamento.dataFinal || 'Não informado'}</p>
+          </div>
+        </AccordionDetails>
+      </Accordion>
+    </div>
   );
 }

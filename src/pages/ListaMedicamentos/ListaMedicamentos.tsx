@@ -180,8 +180,7 @@ export default function ListaMedicamentos() {
         {medicamentos.map((medicamento, index) => (
           <CardRemedio
             key={index}
-            label={medicamento.label}
-            onClick={() => console.log(medicamento.label)}
+            medicamento={medicamento}
           />
         ))}
       </div>

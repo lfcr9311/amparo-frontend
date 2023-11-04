@@ -1,7 +1,6 @@
 .card-remedio {
   display: flex;
   justify-content: space-between;
-  /* Move o conteúdo para os lados opostos */
   width: 295px;
   height: 87px;
   padding: 8px 12px;
@@ -20,7 +19,6 @@
   font-weight: 500;
   line-height: normal;
   margin-right: auto;
-  /* Empurra o ícone para a direita */
 }
 
 .card-remedio-icon {
