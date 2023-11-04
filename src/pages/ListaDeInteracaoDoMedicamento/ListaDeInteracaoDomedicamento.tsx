@@ -8,8 +8,8 @@ import { useLocation } from 'react-router-dom';
 
 
 
-const US21ListaDeInteracaoMedicamentos = () => {
-  const [filtroStatus, setFiltroStatus] = useState('semFiltroDeStatus');
+const ListaDeInteracaoMedicamentos = () => {
+  const [filtroStatus, setFiltroStatus] = useState(0);
   const location = useLocation();
 
   const listaDeMedicamentosCompleta = location.state.items;
@@ -19,7 +19,7 @@ const US21ListaDeInteracaoMedicamentos = () => {
   const [filtroText, setFiltroText] = useState('');
 
 
-  const handleFiltroStatusChange = (selectedStatus: string) => {
+  const handleFiltroStatusChange = (selectedStatus: number) => {
     setFiltroStatus(selectedStatus);
   }
 
@@ -38,7 +38,7 @@ const US21ListaDeInteracaoMedicamentos = () => {
           <FiltroBuscaMedicamentos onStatusChange={handleFiltroStatusChange} onNameChange={handleFiltroTextChange} status={filtroStatus} />
         </div>
         <div className='body-lista'>
-          <ListaInteracoes items={listaDeMedicamentosCompleta.filter((item: { status: number; name: string; }) => (item.status === filtroStatus || filtroStatus === 'semFiltroDeStatus') &&
+          <ListaInteracoes items={listaDeMedicamentosCompleta.filter((item: { status: number; name: string; }) => (item.status === filtroStatus || filtroStatus === 0) &&
             item.name.toLowerCase().includes(filtroText.toLowerCase()))} />
         </div>
 
@@ -48,4 +48,4 @@ const US21ListaDeInteracaoMedicamentos = () => {
   );
 };
 
-export default US21ListaDeInteracaoMedicamentos;
+export default ListaDeInteracaoMedicamentos;

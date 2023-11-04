@@ -18,7 +18,8 @@ import EdicaoExameRealizado from './pages/EdicaoExameRealizado/EdicaoExameRealiz
 import ListaDeInteracaoDoMedicamento from './pages/ListaDeInteracaoDoMedicamento/ListaDeInteracaoDomedicamento';
 import MeusMedicos from './pages/MeusMedicos/MeusMedicos';
 import PageMedico from './components/FiltroBuscaMedico/PageMedico';
-import { ListaInteracoes } from './components/ListaDeMedicamentosRebaixada/ListaDeMedicamentosRebaixada';
+import { ListaInteracoesRebaixada } from './components/ListaDeMedicamentosRebaixada/ListaDeMedicamentosRebaixada';
+import US21ListaDeInteracaoMedicamentos from './pages/ListaDeInteracaoDoMedicamento/ListaDeInteracaoDomedicamento';
 
 export default function AppRoutes() {
   const fetchData = async () => {
@@ -51,10 +52,16 @@ export default function AppRoutes() {
             </PrivateRoute>
             }
           />
+          <Route path={ROUTES.LISTADEINTERACAODOMEDICAMENTO()}
+            element={<PrivateRoute>
+              <US21ListaDeInteracaoMedicamentos />
+            </PrivateRoute>
+            }
+          />
 
           <Route path={ROUTES.LISTAREBAIXADA()}
             element={<PrivateRoute>
-              <ListaInteracoes items={[
+              <ListaInteracoesRebaixada items={[
                 { name: 'Paracetamol', status: 3 },
                 { name: 'CIbuprofeno', status: 1 },
                 { name: 'Amoxicilina', status: 2 },
@@ -64,7 +71,7 @@ export default function AppRoutes() {
                 { name: 'BParacetamol', status: 3 },
                 { name: 'DIbuprofeno', status: 1 },
                 { name: 'CAmoxicilina', status: 2 },
-              ]} name={'Tribolona'} />
+              ]} name={'Aspirina'} />
 
 
             </PrivateRoute>

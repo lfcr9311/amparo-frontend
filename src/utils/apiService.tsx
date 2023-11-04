@@ -21,7 +21,7 @@ export const getIncompatibilyList = async (medicineId: number) => {
         'Authorization': 'Bearer ' + localStorage.getItem("authToken")
       }
     })
-    response.data.map((incompability: any) => ({ name: incompability.name, status: incompability.severity }))
+    return response.data.map((incompability: any) => ({ name: incompability.name, status: incompability.severity }))
   } catch (error) {
     throw error;
   }
@@ -43,10 +43,10 @@ export const isLogged = async () => {
 export const getExamesPendente = async () => {
   try {
     const response = await axios.get(`/patient/${localStorage.getItem("userId")}/exam/pending/list`, {
-        headers: {
-          'Authorization': 'Bearer ' + localStorage.getItem("authToken")
-        }
-      },
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem("authToken")
+      }
+    },
     );  // Replace with your endpoint
     return response;
   } catch (error) {
@@ -56,10 +56,10 @@ export const getExamesPendente = async () => {
 export const getExamesRealizados = async () => {
   try {
     const response = await axios.get(`/patient/${localStorage.getItem("userId")}/exam/done/list`, {
-        headers: {
-          'Authorization': 'Bearer ' + localStorage.getItem("authToken")
-        }
-      },
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem("authToken")
+      }
+    },
     );  // Replace with your endpoint
     return response;
   } catch (error) {
@@ -216,10 +216,10 @@ export const editExamesPendente = async (description: string, examDate: string, 
     const response = await axios.put(
       `/patient/${localStorage.getItem("userId")}/exam/${examId}`,
       body, {
-        headers: {
-          'Authorization': 'Bearer ' + localStorage.getItem("authToken")
-        }
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem("authToken")
       }
+    }
     );  // Replace with your endpoint
     return response;
   } catch (error) {
@@ -239,10 +239,10 @@ export const editExamesRealizados = async (description: string, examDate: string
     const response = await axios.put(
       `/patient/${localStorage.getItem("userId")}/exam/${examId}`,
       body, {
-        headers: {
-          'Authorization': 'Bearer ' + localStorage.getItem("authToken")
-        }
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem("authToken")
       }
+    }
     );  // Replace with your endpoint
     return response;
   } catch (error) {
@@ -253,10 +253,10 @@ export const editExamesRealizados = async (description: string, examDate: string
 export const searchDoctor = async (crm: string, uf: string) => {
   try {
     const response = await axios.get(`/doctor/crm/${crm}/uf/${uf}`, {
-        headers: {
-          'Authorization': 'Bearer ' + localStorage.getItem("authToken")
-        }
-      },
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem("authToken")
+      }
+    },
     );  // Replace with your endpoint
     return response;
   } catch (error) {
@@ -267,10 +267,10 @@ export const searchDoctor = async (crm: string, uf: string) => {
 export const addDoctor = async (doctorId: string) => {
   try {
     const response = await axios.post(`/link/to/doctor/${doctorId}`, {}, {
-        headers: {
-          'Authorization': 'Bearer ' + localStorage.getItem("authToken")
-        }
-      },
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem("authToken")
+      }
+    },
     );  // Replace with your endpoint
     return response;
   } catch (error) {

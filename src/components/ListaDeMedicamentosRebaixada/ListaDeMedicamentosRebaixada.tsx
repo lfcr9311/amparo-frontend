@@ -22,9 +22,9 @@ const classificandoIcones: Record<string, React.ReactNode> = {
     3: <img src={IconeMedicamentoRuim} alt="Ruim" style={{ marginRight: '-3.5px' }} />,
 };
 
-export const ListaInteracoes: React.FC<CustomListaInteracoesProps> = ({ items, name }) => {
+export const ListaInteracoesRebaixada: React.FC<CustomListaInteracoesProps> = ({ items, name }) => {
 
-    const tiposDeClassificacao = [1,2,3];
+    const tiposDeClassificacao = [1, 2, 3];
 
     const listaDeMedicamentosRecebida = items
         .slice()
@@ -32,7 +32,7 @@ export const ListaInteracoes: React.FC<CustomListaInteracoesProps> = ({ items, n
             const orderA = tiposDeClassificacao.indexOf(a.status);
             const orderB = tiposDeClassificacao.indexOf(b.status);
             if (orderA !== orderB) {
-                return orderB - orderA; 
+                return orderB - orderA;
             }
             return a.name.localeCompare(b.name);
         })
@@ -66,7 +66,7 @@ export const ListaInteracoes: React.FC<CustomListaInteracoesProps> = ({ items, n
                             <ListItemText
                                 primary={medicamento.name}
                                 sx={{
-                                    //{  color: medicamento.status === 3 ? 'red' : 'inherit',}
+                                    color: medicamento.status === 3 ? 'red' : 'inherit',
                                 }}
                             />
                             {classificandoIcones[medicamento.status]}
