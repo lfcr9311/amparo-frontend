@@ -14,6 +14,20 @@ export const login_post = async (email: String, psw: String) => {
   }
 };
 
+export const getIncompatibilyList = async (medicineId: number) => {
+  try {
+    const response = await axios.get(`/medicine/incompatibility/${medicineId}`, {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem("authToken")
+      }
+    })
+    response.data.map((incompability: any) => ({ name: incompability.name, status: incompability.severity }))
+  } catch (error) {
+    throw error;
+  }
+}
+
+
 export const isLogged = async () => {
   try {
     const response = await axios.get('/auth/valid', {

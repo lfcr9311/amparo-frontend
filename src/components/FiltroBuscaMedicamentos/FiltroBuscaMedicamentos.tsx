@@ -9,9 +9,9 @@ import IconeMedicamentoMedio from '../../assets/IconeMedicamentoMedio.svg';
 import IconeMedicamentoRuim from '../../assets/IconeMedicamentoRuim.svg';
 
 interface CustomFiltroBuscaMedicamentosProps {
-  onStatusChange: (status: string) => void;
+  onStatusChange: (status: number) => void;
   onNameChange: (name: string) => void; 
-  status : string;
+  status : number;
 }
 
 const FiltroBuscaMedicamentos: React.FC<CustomFiltroBuscaMedicamentosProps> = ({ onStatusChange,onNameChange ,status}) => {
@@ -24,7 +24,7 @@ const FiltroBuscaMedicamentos: React.FC<CustomFiltroBuscaMedicamentosProps> = ({
   };
  
   const handleStatusChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    const selectedStatus = event.target.value as string;
+    const selectedStatus = event.target.value as number;
     console.log(selectedStatus);
     onStatusChange(selectedStatus);
   };
@@ -69,13 +69,13 @@ const FiltroBuscaMedicamentos: React.FC<CustomFiltroBuscaMedicamentosProps> = ({
         >
           <MenuItem value="semFiltroDeStatus">  </MenuItem>
           <MenuItem value="bom">
-            <img src={IconeMedicamentoBom} alt="bom" style={{ marginRight: '-20px', marginLeft: '20px' }} />
+            1:<img src={IconeMedicamentoBom} alt="bom" style={{ marginRight: '-20px', marginLeft: '20px' }} />
           </MenuItem>
           <MenuItem value="medio">
-            <img src={IconeMedicamentoMedio} alt="medio" style={{ marginRight: '-20px', marginLeft: '20px' }} />
+            2:<img src={IconeMedicamentoMedio} alt="medio" style={{ marginRight: '-20px', marginLeft: '20px' }} />
           </MenuItem>
           <MenuItem value="ruim" >
-            <img src={IconeMedicamentoRuim} alt="ruim" style={{ marginRight: '-20px', marginLeft: '11px' }} />
+           3: <img src={IconeMedicamentoRuim} alt="ruim" style={{ marginRight: '-20px', marginLeft: '11px' }} />
           </MenuItem>
         </Select>
       </FormControl>

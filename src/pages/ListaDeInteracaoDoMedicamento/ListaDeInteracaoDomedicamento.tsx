@@ -38,7 +38,7 @@ const US21ListaDeInteracaoMedicamentos = () => {
           <FiltroBuscaMedicamentos onStatusChange={handleFiltroStatusChange} onNameChange={handleFiltroTextChange} status={filtroStatus} />
         </div>
         <div className='body-lista'>
-          <ListaInteracoes items={listaDeMedicamentosCompleta.filter((item: { status: string; name: string; }) => (item.status === filtroStatus || filtroStatus === 'semFiltroDeStatus') &&
+          <ListaInteracoes items={listaDeMedicamentosCompleta.filter((item: { status: number; name: string; }) => (item.status === filtroStatus || filtroStatus === 'semFiltroDeStatus') &&
             item.name.toLowerCase().includes(filtroText.toLowerCase()))} />
         </div>
 

@@ -18,6 +18,7 @@ import EdicaoExameRealizado from './pages/EdicaoExameRealizado/EdicaoExameRealiz
 import ListaDeInteracaoDoMedicamento from './pages/ListaDeInteracaoDoMedicamento/ListaDeInteracaoDomedicamento';
 import MeusMedicos from './pages/MeusMedicos/MeusMedicos';
 import PageMedico from './components/FiltroBuscaMedico/PageMedico';
+import { ListaInteracoes } from './components/ListaDeMedicamentosRebaixada/ListaDeMedicamentosRebaixada';
 
 export default function AppRoutes() {
   const fetchData = async () => {
@@ -26,6 +27,8 @@ export default function AppRoutes() {
   function PrivateRoute({ children }: { children: React.ReactNode }) {
     isLoggedIn().then((isAuthenticated) => {
       if (!isAuthenticated) {
+        return children;
+
         return window.location.href = ROUTES.LOGIN();
       }
       else if (localStorage.getItem('userId') == null) {
@@ -49,9 +52,21 @@ export default function AppRoutes() {
             }
           />
 
-          <Route path={ROUTES.HOME_PACIENTE()}
+          <Route path={ROUTES.LISTAREBAIXADA()}
             element={<PrivateRoute>
-              <HomePaciente />
+              <ListaInteracoes items={[
+                { name: 'Paracetamol', status: 3 },
+                { name: 'CIbuprofeno', status: 1 },
+                { name: 'Amoxicilina', status: 2 },
+                { name: 'AParacetamol', status: 3 },
+                { name: 'Ibuprofeno', status: 1 },
+                { name: 'BAmoxicilina', status: 2 },
+                { name: 'BParacetamol', status: 3 },
+                { name: 'DIbuprofeno', status: 1 },
+                { name: 'CAmoxicilina', status: 2 },
+              ]} name={'Tribolona'} />
+
+
             </PrivateRoute>
             } />
 
