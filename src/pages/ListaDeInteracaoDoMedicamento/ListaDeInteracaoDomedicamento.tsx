@@ -32,7 +32,8 @@ const ListaDeInteracaoMedicamentos = () => {
     <>
       <HeaderHome title="Medicamentos" type="headerPage" />
       <div className='body-container'>
-        <div className='title-body' title={nomeDoMedicamentoQuePossuiInteracao}>{nomeDoMedicamentoQuePossuiInteracao}</div>
+
+        <div className='title-body' >{nomeDoMedicamentoQuePossuiInteracao}</div>
 
         <div className='body-filtro'>
           <FiltroBuscaMedicamentos onStatusChange={handleFiltroStatusChange} onNameChange={handleFiltroTextChange} status={filtroStatus} />

@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './routes/AppRoutes.css';
 import { ROUTES } from './routes/constans';
 import { Login } from './pages/Login/Login';
+//@ts-ignore
 import HomePaciente from './pages/HomePaciente/HomePaciente';
 import VisualizacaoPerfilPaciente from './pages/VisualizarPerfil/VisualizarPerfil';
 import { CadastroPaciente } from './pages/CadastroPaciente/CadastroPaciente';
