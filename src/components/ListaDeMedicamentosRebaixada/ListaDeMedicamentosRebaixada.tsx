@@ -49,7 +49,7 @@ export const ListaInteracoesRebaixada: React.FC<CustomListaInteracoesProps> = ({
         <div>
             <List
                 sx={{
-                    width: 297,
+                    width: 267,
                     bgcolor: '#DCDCDC',
                     position: 'relative',
                     overflow: 'auto',

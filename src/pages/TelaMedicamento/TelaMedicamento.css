@@ -1,11 +1,101 @@
-.body-container-tela-medicamento{
+.body-container-remedio {
     flex: 0.7;
     display: flex;
     flex-direction: column;
-    height: 60%;
-    width: 30%;
-    align-items: center;
+    min-height: 50%;
+    margin-top: 3%;
+    min-width: 75%;
+    align-items: left;
+    padding: 20px;
     padding-bottom: 50px;
-    border-radius: 12px; ;
+    border-radius: 12px;
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
+    overflow-y: scroll;
+
+
+
+}
+
+.nome-remedio {
+    font-family: Poppins;
+    font-size: 25px;
+    font-weight: 600;
+    max-width: 80%;
+    line-height: 38px;
+    letter-spacing: 0em;
+    margin-top: -10%;
+    color: #343131;
+    overflow-wrap: break-word;
+
+}
+
+.div-edit-medicamento {
+
+    display: flex;
+    justify-content: right;
+    
+
+}
+
+.edition-icon-medicamento {
+    display: fixed;
+    border: none;
+    background-color: #fbf8f8;
+    right: 15%;
+}
+
+.infos-remedio {
+    font-family: Poppins;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 23px;
+    letter-spacing: 0em;
+    color: #343131;
+    margin-right: 5%;
+}
+
+
+
+.informacao-de-uso-remedio {
+    font-family: Poppins;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 23px;
+    letter-spacing: 0em;
+    text-align: left;
+
+}
+
+
+
+.bula-medicamento {
+    width: Fixed (162px);
+    height: Fixed (45px);
+    padding: 6px, 8px, 6px, 8px;
+    border-radius: 12px;
+    gap: 10px;
+}
+
+
+
+
+.bula-medicamento {
+
+    display: flex;
+    justify-content: center;
+}
+
+
+
+
+.deletar-remedio {
+    margin-top: 2%;
+    font-family: Poppins;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: #E10E17;
+    
 }
