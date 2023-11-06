@@ -1,0 +1,17 @@
+.notifications-container {
+    display: flex;
+    width: 200px;
+    height: 75px;
+    padding: 8px 8px 8px 18px;
+    align-items: center;
+    gap: 21px;
+    border-radius: 10px;
+    background: #E76553;
+}
+
+.frame {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 6px;
+}
