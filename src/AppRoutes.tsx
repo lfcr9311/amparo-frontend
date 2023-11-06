@@ -73,7 +73,7 @@ export default function AppRoutes() {
           />
           <Route path={ROUTES.CADASTRO_MEDICO()} element={<CadastroMedico />} />
           <Route path={ROUTES.IDENTIFICACAO()} element={<Identificacao />} />
-          <Route path={ROUTES.LOGIN()} element={<ButtonSalmonPageInfo />} />
+          <Route path={ROUTES.LOGIN()} element={<Login />}/>
           <Route
             path={ROUTES.PERFIL_PACIENTE()}
             element={
