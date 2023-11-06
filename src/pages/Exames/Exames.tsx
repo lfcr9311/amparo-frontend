@@ -96,6 +96,8 @@ export default function Exames() {
       setDateRealizados("");
       setDescriptionRealizados("");
       setIsModalRealizadosOpen(false);
+      setFileImage(null);
+      setFilePdf(null)
       setAddExam(response.data);
     } catch (error) {
       console.error(error);
@@ -116,6 +118,16 @@ export default function Exames() {
             setIsModalPendentesOpen={setIsModalPendentesOpen}
             setDescriptionPendentes={setDescriptionPendentes}
             setDatePendentes={setDatePendentes}
+            descriptionRealizados={descriptionPendentes}
+            dateRealizados={datePendestes}
+            isModalRealizadosOpen={isModalPendentesOpen}
+            setIsModalRealizadosOpen={setIsModalPendentesOpen}
+            setDescriptionRealizados={setDescriptionPendentes}
+            setDateRealizados={setDatePendentes}
+            fileImage={fileImage}
+            setFileImage={setFileImage}
+            filePdf={filePdf}
+            setFilePdf={setFilePdf}
 
           />
         ) : (
@@ -172,13 +184,24 @@ export default function Exames() {
           (
             <ExamesVazio
               value={value}
-              handleSalvar={handleSalvarPendente}
+              handleSalvar={handleSalvarRealizado}
               descriptionPendentes={descriptionPendentes}
               datePendestes={datePendestes}
               isModalPendentesOpen={isModalPendentesOpen}
               setIsModalPendentesOpen={setIsModalPendentesOpen}
               setDescriptionPendentes={setDescriptionPendentes}
               setDatePendentes={setDatePendentes}
+
+              descriptionRealizados={descriptionRealizados}
+              dateRealizados={dateRealizados}
+              isModalRealizadosOpen={isModalRealizadosOpen}
+              setIsModalRealizadosOpen={setIsModalRealizadosOpen}
+              setDescriptionRealizados={setDescriptionRealizados}
+              setDateRealizados={setDateRealizados}
+              fileImage={fileImage}
+              setFileImage={setFileImage}
+              filePdf={filePdf}
+              setFilePdf={setFilePdf}
             />
           )
           : (
