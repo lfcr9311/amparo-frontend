@@ -11,7 +11,7 @@ import './TelaMedicamento.css';
 interface MedicamentoProps {
     id: number;
     name: string;
-    
+
     dosagem?: '1 caps/dia';
     frequencia?: String | '3x Semana';
     dataFinal?: String | '26/12/2023';
@@ -47,16 +47,7 @@ export const TelaMedicamento: React.FC<MedicamentoProps> = ({ id, name, dosagem,
             backgroundColor: '#DCDCDC',
         },
     }));
-    const ColorButtonDeletar = styled(ButtonMUI)<ButtonProps>(() => ({
 
-        fontFamily: 'Poppins',
-        fontSize: '19px',
-        fontWeight: 400,
-        fontsize: '13px',
-        textAlign: 'center',
-        color: '#E10E17',
-
-    }));
 
     const listaFixa: { name: string; status: number }[] = [
         { name: "Remédio G", status: 1 },
@@ -128,8 +119,24 @@ export const TelaMedicamento: React.FC<MedicamentoProps> = ({ id, name, dosagem,
 
             </div>
             <div className='deletar-remedio'>
-                <ColorButtonDeletar variant='text'>Deletar medicamento
-                </ColorButtonDeletar>                </div>
+
+                <ButtonMUI
+                    sx={{
+                        display: "flex",
+                        fontSize: "12px",
+                        marginBottom: "20px",
+                        fontFamily: "Poppins",
+                        cursor: "pointer",
+                        color: "#E10E17",
+                        border: "none",
+                        background: "none",
+                        outline: "none",
+                    }}
+                    onClick={() => setModalIsOpen(!modalIsOpen)}
+                >
+
+                    Deletar conta
+                </ButtonMUI>           </div>
             <Footer user="patient" />
         </>
     );
