@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
 import Logo from '../../assets/Amparo.svg';
 import './Login.css';
-import { Link } from 'react-router-dom';
+import { Link, Routes } from 'react-router-dom';
 import { ROUTES } from '../../routes/constans';
 import { useNavigate } from 'react-router-dom';
 import Textfield from '../../components/Textfield/Textfield';
 import CustomButton from '../../components/Button/Button';
 import { login_post } from '../../utils/apiService';
+import { jwtDecode } from "jwt-decode";
+
+interface decodeBody {
+  userId: string,
+  roles: Array<String>
+}
 
 export const Login: React.FC = () => {
   const [email, setEmail] = useState<string>('');
@@ -25,10 +31,13 @@ export const Login: React.FC = () => {
       setData(result.data);
       setDataStatus(result.status);
       localStorage.setItem('authToken', result.data.token);
-      if (result.status == 201 || result.status == 200) {
-        console.log('login realizado com sucesso');
+      const decode = jwtDecode(result.data.token) as decodeBody
+      const role = decode.roles
+      console.log('Decoded token:', decode);
+      console.log('Decoded token:', role[0]);
+      if (role[0] == "ROLE_PATIENT")
         navigate(ROUTES.HOME_PACIENTE());
-      }
+      else navigate(ROUTES.HOME_MEDICO())
     } catch (error) {
       console.error('Erro ao fazer login', error);
       setErro('Email ou senha inválidos.');
