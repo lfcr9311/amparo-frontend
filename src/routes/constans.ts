@@ -16,4 +16,5 @@ export const ROUTES = {
   EDICAO_EXAMES_REALIZADOS: () => '/exames/edicao/realizados',
   LISTADEINTERACAODOMEDICAMENTO: () => '/medicamentos/interacao',
   FILTROBUSCAMEDICO: () => '/lista/medico',
+  EXAMESPENDENTESMEDICO: () => '/exames/pendentes/medico',
 };
