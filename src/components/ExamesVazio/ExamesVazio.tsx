@@ -19,6 +19,17 @@ interface ExamesVaziosProps {
   setIsModalPendentesOpen: (open: boolean) => void;
   setDescriptionPendentes: (value: string) => void;
   setDatePendentes: (value: string) => void;
+  descriptionRealizados: string;
+  dateRealizados: string;
+  isModalRealizadosOpen: boolean;
+  setIsModalRealizadosOpen: (open: boolean) => void;
+  setDescriptionRealizados: (value: string) => void;
+  setDateRealizados: (value: string) => void;
+  filePdf: File | null;
+  fileImage: File | null;
+  setFilePdf: (value: File) => void;
+  setFileImage: (value: File) => void;
+
 }
 const ExamesVazio: React.FC<ExamesVaziosProps> = ({
   value,
@@ -28,22 +39,30 @@ const ExamesVazio: React.FC<ExamesVaziosProps> = ({
   isModalPendentesOpen,
   setIsModalPendentesOpen,
   setDescriptionPendentes,
-  setDatePendentes
-
+  setDatePendentes,
+  descriptionRealizados,
+  dateRealizados,
+  isModalRealizadosOpen,
+  setIsModalRealizadosOpen,
+  setDescriptionRealizados,
+  setDateRealizados,
+  fileImage,
+  filePdf,
+  setFileImage,
+  setFilePdf
 
 }) => {
-
-  const [isModalRealizadosOpen, setIsModalRealizadosOpen] = useState(false);
-  const [dateRealizados, setDateRealizados] = useState('');
-  const [descriptionRealizados, setDescriptionRealizados] = useState('');
-  const [filePdf, setFilePdf] = useState<File | null>(null);
-  const [fileImage, setFileImage] = useState<File | null>(null);
   const handleFilePdf = (file: File | null) => {
-    setFilePdf(file);
+    if (file)
+      setFilePdf(file);
   };
+
   const handleFileImage = (file: File | null) => {
-    setFileImage(file);
+    if (file)
+      setFileImage(file);
+
   };
+
   return (
     <>
       {value === 0 ? (
@@ -131,14 +150,7 @@ const ExamesVazio: React.FC<ExamesVaziosProps> = ({
                 <CustomButton
                   variant="contained"
                   label="Salvar"
-                  onClick={() =>
-                    console.log(
-                      dateRealizados,
-                      descriptionRealizados,
-                      fileImage,
-                      filePdf
-                    )
-                  }
+                  onClick={handleSalvar}
                 />
               </div>
             </Modal>
