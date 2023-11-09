@@ -10,6 +10,7 @@ import SelectFrequencia from '../../components/Modal/Components/SelectFrequencia
 import DateModal from '../../components/Modal/Components/DateModal/DateModal';
 import { motion } from "framer-motion";
 import MedicinenameModal from '../../components/Modal/Components/medicinenameModal/medicinenameModal';
+import { useLocation } from 'react-router-dom';
 
 
 interface Medicamento {
@@ -17,6 +18,7 @@ interface Medicamento {
   dosagem?: string;
   frequencia?: string;
   dataFinal?: string | "Uso contínuo";
+  id?: string;
 }
 
 const fadeInOut = {
@@ -26,27 +28,27 @@ const fadeInOut = {
 
 //dados mocados
 const mockedMedicationsList = [
-  { label: 'Tenofovir' },
-  { label: 'Emtricitabina' },
-  { label: 'Efavirenz' },
-  { label: 'Lamivudina' },
-  { label: 'Zidovudina' },
-  { label: 'Abacavir' },
-  { label: 'Darunavir' },
-  { label: 'Ritonavir' },
-  { label: 'Dolutegravir' },
-  { label: 'Raltegravir' },
-  { label: 'Paracetamol' },
-  { label: 'Ibuprofeno' },
-  { label: 'Amoxicilina' },
-  { label: 'Aspirina' },
-  { label: 'Atorvastatina' },
-  { label: 'Metformina' },
-  // ...outros medicamentos
+  { label: 'Tenofovir', id: '1' },
+  { label: 'Emtricitabina', id: '2' },
+  { label: 'Efavirenz', id: '3' },
+  { label: 'Lamivudina', id: '4' },
+  { label: 'Zidovudina', id: '5' },
+  { label: 'Abacavir', id: '6' },
+  { label: 'Darunavir', id: '7' },
+  { label: 'Ritonavir', id: '8' },
+  { label: 'Dolutegravir', id: '9' },
+  { label: 'Raltegravir', id: '10' },
+  { label: 'Paracetamol', id: '11' },
+  { label: 'Ibuprofeno', id: '12' },
+  { label: 'Amoxicilina', id: '13' },
+  { label: 'Aspirina', id: '14' },
+  { label: 'Atorvastatina', id: '15' },
+  { label: 'Metformina', id: '16' },
 ];
 
 
 export default function ListaMedicamentos() {
+  const location = useLocation();
   const [usoContinuo, setUsoContinuo] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [medicamentoNome, setMedicamentoNome] = useState<{ label: string } | null>(null);
@@ -58,14 +60,12 @@ export default function ListaMedicamentos() {
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [erroData, setErroData] = useState(false);
   const [mensagemErroData, setMensagemErroData] = useState('');
-
-
-
+  const [medId, setMedId] = useState('');
 
   const [medicamentos, setMedicamentos] = useState<Medicamento[]>([
-    { label: "Remedio 1" },
-    { label: "Remedio 2" },
-    { label: "Remedio 3" }
+    { label: "Remedio 1", id: medId },
+    { label: "Remedio 2", id: medId },
+    { label: "Remedio 3", id: medId }
   ]);
 
   const resetModal = () => {
@@ -78,6 +78,7 @@ export default function ListaMedicamentos() {
     setMensagemErroMedicamentoNome('');
     setErroData(false);
     setMensagemErroData('');
+    setMedId('');
   };
 
 
@@ -127,7 +128,8 @@ export default function ListaMedicamentos() {
       label: medicamentoNome.label,
       dosagem: dosagem,
       frequencia: frequencia,
-      dataFinal: usoContinuo ? "Uso contínuo" : dataFinal
+      dataFinal: usoContinuo ? "Uso contínuo" : dataFinal,
+      id: medId
     };
 
     setMedicamentos(prevMedicamentos => [...prevMedicamentos, novoMedicamento]);
@@ -149,6 +151,7 @@ export default function ListaMedicamentos() {
                 Dosagem: ${medicamento.dosagem}
                 Frequência: ${medicamento.frequencia}
                 Data Final: ${medicamento.dataFinal}
+                id: ${medicamento.id}
             `);
       });
     }, 0);
@@ -156,8 +159,6 @@ export default function ListaMedicamentos() {
     setShowSuccessMessage(true);
     setTimeout(() => setShowSuccessMessage(false), 3000);
   };
-
-
 
   return (
     <>

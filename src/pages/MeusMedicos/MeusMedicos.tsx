@@ -86,7 +86,7 @@ const MeusMedicos: React.FC = () => {
       }, 2000);
     }
   }, [errorSnackbar]);
-  
+
   const onClickButton = () => {
     searchDoctor(crm, uf).then((response) => {
       addDoctor(response.data.id).then((response) => {

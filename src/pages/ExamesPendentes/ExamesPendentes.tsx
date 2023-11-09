@@ -23,18 +23,6 @@ export default function ExamesPendentes() {
           <img src={AddCircleIcon} className="add-circle-icon" />
         </button>
       </div>
-      <div className="cards-exames">
-        {/* <ExamListItem date="23/02/18" exam="Hemograma" />
-        <ExamListItem date="23/02/18" exam="TGO" />
-        <ExamListItem date="23/02/18" exam="TGP" />
-        <ExamListItem date="23/02/18" exam="Testosterona" />
-        <ExamListItem date="23/02/18" exam="Calcio" />
-        <ExamListItem date="23/02/18" exam="Potássio" />
-        <ExamListItem date="23/02/18" exam="Vitamina D" />
-        <ExamListItem date="23/02/18" exam="Vitamina B12" />
-        <ExamListItem date="23/02/18" exam="Glicose" />
-        <ExamListItem date="23/02/18" exam="Leucócitos" /> */}
-      </div>
       <Modal isOpen={isModalOpen} isClose={() => setIsModalOpen(!isModalOpen)}>
         <div className="div-date-modal">
           <DateModal />
