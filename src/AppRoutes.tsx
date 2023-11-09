@@ -18,6 +18,7 @@ import EdicaoExameRealizado from './pages/EdicaoExameRealizado/EdicaoExameRealiz
 import ListaDeInteracaoDoMedicamento from './pages/ListaDeInteracaoDoMedicamento/ListaDeInteracaoDomedicamento';
 import MeusMedicos from './pages/MeusMedicos/MeusMedicos';
 import PageMedico from './components/FiltroBuscaMedico/PageMedico';
+import BuscaMedicamentos from './pages/BuscaMedicamentos/BuscaMedicamentos';
 
 export default function AppRoutes() {
   const fetchData = async () => {
@@ -134,6 +135,9 @@ export default function AppRoutes() {
             <PrivateRoute>
               <Exames />
             </PrivateRoute>
+          } />
+          <Route path={ROUTES.TELA_BUSCA_MEDICAMENTO()} element={
+            <BuscaMedicamentos />
           } />
         </Routes>
       </div>
