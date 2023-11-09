@@ -15,8 +15,7 @@ Docker Run:
   stage: deploy
   script:
     - npm ci
-    - sh deploy.sh production $PRODUCTION_ACCESS_KEY_ID $PRODUCTION_SECRET_ACCESS_KEY
-    - npm run prod
+    - AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY npm run prod
   only:
     - main
     - dev
