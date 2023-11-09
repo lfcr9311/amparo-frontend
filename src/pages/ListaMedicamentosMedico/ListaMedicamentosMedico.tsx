@@ -9,7 +9,6 @@ interface Medicamento {
     frequencia?: string;
     dataFinal?: string | "Uso contínuo";
 }
-
 export default function ListaMedicamentosMedico() {
     const title = 'Medicamentos de fulano';
 

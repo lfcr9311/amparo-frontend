@@ -98,7 +98,6 @@ export default function AppRoutes() {
               </PrivateRoute>
             }
           />
-
           <Route
             path={ROUTES.MENU_MEDICAMENTOS()}
             element={

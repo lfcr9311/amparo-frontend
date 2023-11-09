@@ -17,4 +17,5 @@ export const ROUTES = {
   LISTADEINTERACAODOMEDICAMENTO: () => '/medicamentos/interacao',
   FILTROBUSCAMEDICO: () => '/lista/medico',
   MENU_MEDICAMENTOS_MEDICO: () => '/menu/medicamentos/medico',
+  
 };
