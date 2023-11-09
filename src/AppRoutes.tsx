@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './routes/AppRoutes.css';
 import { ROUTES } from './routes/constans';
 import { Login } from './pages/Login/Login';
-//@ts-ignore
 import HomePaciente from './pages/HomePaciente/HomePaciente';
 import VisualizacaoPerfilPaciente from './pages/VisualizarPerfil/VisualizarPerfil';
 import { CadastroPaciente } from './pages/CadastroPaciente/CadastroPaciente';
@@ -19,8 +18,6 @@ import EdicaoExameRealizado from './pages/EdicaoExameRealizado/EdicaoExameRealiz
 import ListaDeInteracaoDoMedicamento from './pages/ListaDeInteracaoDoMedicamento/ListaDeInteracaoDomedicamento';
 import MeusMedicos from './pages/MeusMedicos/MeusMedicos';
 import PageMedico from './components/FiltroBuscaMedico/PageMedico';
-import { ListaInteracoesRebaixada } from './components/ListaDeMedicamentosRebaixada/ListaDeMedicamentosRebaixada';
-import US21ListaDeInteracaoMedicamentos from './pages/ListaDeInteracaoDoMedicamento/ListaDeInteracaoDomedicamento';
 
 export default function AppRoutes() {
   const fetchData = async () => {
@@ -29,8 +26,6 @@ export default function AppRoutes() {
   function PrivateRoute({ children }: { children: React.ReactNode }) {
     isLoggedIn().then((isAuthenticated) => {
       if (!isAuthenticated) {
-        return children;
-
         return window.location.href = ROUTES.LOGIN();
       }
       else if (localStorage.getItem('userId') == null) {
@@ -53,28 +48,10 @@ export default function AppRoutes() {
             </PrivateRoute>
             }
           />
-          <Route path={ROUTES.LISTADEINTERACAODOMEDICAMENTO()}
+
+          <Route path={ROUTES.HOME_PACIENTE()}
             element={<PrivateRoute>
-              <US21ListaDeInteracaoMedicamentos />
-            </PrivateRoute>
-            }
-          />
-
-          <Route path={ROUTES.LISTAREBAIXADA()}
-            element={<PrivateRoute>
-              <ListaInteracoesRebaixada items={[
-                { name: 'Paracetamol', status: 3 },
-                { name: 'CIbuprofeno', status: 1 },
-                { name: 'Amoxicilina', status: 2 },
-                { name: 'AParacetamol', status: 3 },
-                { name: 'Ibuprofeno', status: 1 },
-                { name: 'BAmoxicilina', status: 2 },
-                { name: 'BParacetamol', status: 3 },
-                { name: 'DIbuprofeno', status: 1 },
-                { name: 'CAmoxicilina', status: 2 },
-              ]} name={'Aspirina'} />
-
-
+              <HomePaciente />
             </PrivateRoute>
             } />
 

@@ -12,9 +12,9 @@ interface MedicamentoProps {
     id: number;
     name: string;
 
-    dosagem?: '1 caps/dia';
-    frequencia?: String | '3x Semana';
-    dataFinal?: String | '26/12/2023';
+    dosagem?: String;
+    frequencia?: String;
+    dataFinal?: String;
 }
 
 
@@ -102,6 +102,8 @@ export const TelaMedicamento: React.FC<MedicamentoProps> = ({ id, name, dosagem,
                         ? <div className='texto-sem-interacoes-remedio' title={'Sem interações'}>
                             <div className='div-lista-interacoes-remedio'>
                                 <ListaInteracoesRebaixada items={listaFixa} name={name} />
+                                 {//colocar sem interacao  
+                                }
                             </div>
                         </div>
                         : <div className='div-lista-interacoes-remedio'>
