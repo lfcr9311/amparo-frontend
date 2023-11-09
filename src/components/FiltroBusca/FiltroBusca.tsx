@@ -1,13 +1,13 @@
 import { TextField } from "@mui/material";
 import { useState } from "react";
 
-interface TextFieldRemediosProps {
+interface FiltroBuscaProps {
   value: string;
   onChange: (value: any) => void;
   classname?: string;
 }
 
-export default function TextFieldRemedios({ value, onChange, classname}: TextFieldRemediosProps ) {
+export default function FiltroBusca({ value, onChange, classname}: FiltroBuscaProps ) {
   const [internalValue, setInternalValue] = useState(value);
 
   const handleValue = (value: string) => {

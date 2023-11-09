@@ -2,9 +2,9 @@ import Footer from '../../components/Footer/Footer';
 import HeaderHome from '../../components/HeaderHome/HeaderHome';
 import './BuscaMedicamentos.css';
 import ExamFilter from '../../components/ExamFilter/examFilter';
-import TextFieldRemedios from '../../components/TextFieldRemedios/TextFieldRemedios';
 import { useState } from 'react';
 import CardMedicine from '../../components/CardMedicine/CardMedicine';
+import FiltroBusca from '../../components/FiltroBusca/FiltroBusca';
 
 
 interface Medicamento {
@@ -25,7 +25,7 @@ export default function BuscaMedicamentos() {
             <HeaderHome title="Medicamentos" type="headerPage" />
            <p className='busca-medicamento-title'>Remedios</p>
             <div className='search-div-medicamentos'>
-                <TextFieldRemedios
+                <FiltroBusca
                     value={findMedicine}
                     onChange={(e) => setMedicine(e.target.value)}
                 />
