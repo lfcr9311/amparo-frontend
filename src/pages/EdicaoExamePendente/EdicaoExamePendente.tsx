@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import Descricao from '../../components/Descricao/Descricao';
 import HeaderHome from '../../components/HeaderHome/HeaderHome';
 import EditIcon from '../../assets/EditIcon.svg';
 import './EdicaoExamePendente.css';

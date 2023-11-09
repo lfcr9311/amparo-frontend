@@ -32,7 +32,7 @@ export const ListaInteracoes: React.FC<CustomListaInteracoesProps> = ({ items, n
     
     
     const handleLinkClick = (items: { name: string, status: string }[], nome: string) => {
-        navigate(ROUTES.LISTADEINTERACAODOMEDICAMENTO(), { state: { items: items, nome: nome } });
+        navigate(ROUTES.LISTA_INTERACAO_MEDICAMENTO(), { state: { items: items, nome: nome } });
     };
     return (
         <div>
