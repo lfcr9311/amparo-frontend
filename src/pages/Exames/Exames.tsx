@@ -145,6 +145,7 @@ export default function Exames() {
             <div className="cards-exames-pendentes">
               {examesPendentes.map((exam, index) => (
                 <ExamListItem
+                  onClickPermisson={true}
                   key={index}
                   date={format(new Date(exam.examDate), 'dd/MM/yyyy')}
                   exam={exam.description}
@@ -227,6 +228,7 @@ export default function Exames() {
               <div className="cards-exames-realizados">
                 {examesRealizados.map((exam, index) => (
                   <ExamListItem
+                    onClickPermisson={true}
                     key={index}
                     date={format(new Date(exam.examDate), 'dd/MM/yyyy')}
                     exam={exam.description}

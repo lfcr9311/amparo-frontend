@@ -11,7 +11,8 @@ interface ExamListProps {
   exam: string;
   description: string;
   type: 'pendente' | 'realizado';
-  id: string
+  id: string;
+  onClickPermisson: boolean;
 }
 
 export default function ExamListItem({
@@ -19,7 +20,8 @@ export default function ExamListItem({
   exam,
   description,
   type,
-  id
+  id,
+  onClickPermisson
 }: ExamListProps) {
   const navigate = useNavigate();
   const handleClick = () => {
@@ -31,8 +33,10 @@ export default function ExamListItem({
     );
   };
 
+  const handleClickNull = () => {};
+
   return (
-    <div className="frame" onClick={handleClick}>
+    <div className="frame" onClick={onClickPermisson ? handleClick : handleClickNull}>
       <ListItem
         key={'key'}
         className="list-item"
