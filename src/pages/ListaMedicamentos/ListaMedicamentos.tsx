@@ -59,9 +59,6 @@ export default function ListaMedicamentos() {
   const [erroData, setErroData] = useState(false);
   const [mensagemErroData, setMensagemErroData] = useState('');
 
-
-
-
   const [medicamentos, setMedicamentos] = useState<Medicamento[]>([
     { label: "Remedio 1" },
     { label: "Remedio 2" },
@@ -101,7 +98,6 @@ export default function ListaMedicamentos() {
       setMensagemErroData('');
     }
   }, [dataFinal]);
-
 
   const handleAddMedicamento = () => {
 
