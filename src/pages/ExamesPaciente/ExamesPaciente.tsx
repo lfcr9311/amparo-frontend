@@ -10,7 +10,7 @@ import CustomButton from '../../components/Button/Button';
 import ExamFilter from '../../components/ExamFilter/examFilter';
 import InputFile from '../../components/InputFile/InputFile';
 import { format } from 'date-fns';
-import './Exames.css';
+import './ExamesPaciente.css';
 import { addExamePendente, addExameRealizado, addFileOrImage, getExamesPendente, getExamesRealizados } from '../../utils/apiService';
 import ExamesVazio from '../../components/ExamesVazio/ExamesVazio';
 
@@ -23,7 +23,7 @@ interface Exames {
   file: string | null;
   image: string | null;
 }
-export default function Exames() {
+export default function ExamesPaciente() {
   const [value, setValue] = useState(0);
   const [isModalPendentesOpen, setIsModalPendentesOpen] = useState(false);
   const [isModalRealizadosOpen, setIsModalRealizadosOpen] = useState(false);
@@ -128,10 +128,8 @@ export default function Exames() {
             setFileImage={setFileImage}
             filePdf={filePdf}
             setFilePdf={setFilePdf}
-
           />
         ) : (
-
           <div className='body-exames'>
             <div className="content-header-pendentes">
               <p className="title-exames-page-title">Exames</p>
@@ -205,8 +203,6 @@ export default function Exames() {
             />
           )
           : (
-
-
             <div className='body-exames'>
               <div className="content-header-realizados">
                 <p className="title-exames-page-title">Exames</p>

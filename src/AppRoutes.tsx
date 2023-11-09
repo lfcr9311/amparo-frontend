@@ -12,7 +12,7 @@ import VisualizacaoPerfilMedico from './pages/VisualizarPerfilMedico/VisualizarP
 import { isLoggedIn, setUserId } from './utils/authService'
 import MenuMedicamentos from './pages/MenuMedicamentos/MenuMedicamentos';
 import ListaMedicamentos from './pages/ListaMedicamentos/ListaMedicamentos';
-import Exames from './pages/Exames/Exames';
+import ExamesPaciente from './pages/ExamesPaciente/ExamesPaciente';
 import EdicaoExamePendente from './pages/EdicaoExamePendente/EdicaoExamePendente';
 import EdicaoExameRealizado from './pages/EdicaoExameRealizado/EdicaoExameRealizado';
 import ListaDeInteracaoDoMedicamento from './pages/ListaDeInteracaoDoMedicamento/ListaDeInteracaoDomedicamento';
@@ -55,13 +55,13 @@ export default function AppRoutes() {
             </PrivateRoute>
             } />
 
-          <Route path={ROUTES.LISTADEINTERACAODOMEDICAMENTO()}
+          <Route path={ROUTES.LISTA_INTERACAO_MEDICAMENTO()}
             element={
               <PrivateRoute>
                 <ListaDeInteracaoDoMedicamento />
               </PrivateRoute>
             } />
-          <Route path={ROUTES.FILTROBUSCAMEDICO()} element={
+          <Route path={ROUTES.LISTA_MEDICO()} element={
             <PrivateRoute>
               <PageMedico />
             </PrivateRoute>
@@ -132,7 +132,7 @@ export default function AppRoutes() {
           />
           <Route path={ROUTES.EXAMES()} element={
             <PrivateRoute>
-              <Exames />
+              <ExamesPaciente />
             </PrivateRoute>
           } />
         </Routes>

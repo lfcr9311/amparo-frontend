@@ -15,7 +15,7 @@
 .top-container {
   display: flex;
   flex-direction: row;
-  gap: 140px;
+  gap: 160px;
   margin-bottom: -20px;
   margin-top: -140px;
 }
@@ -60,4 +60,20 @@
   align-items: center;
   justify-content: center;
   gap: 15px;
+}
+
+.description-value-edit{
+  color: #4d4c4c;
+  background-color: #ffffff;
+  border-radius: 10px;
+  text-align: justify;
+  font-family: Poppins;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding: 10px;
+  height: 250px;
+  width: 315px;
+  margin-top: -1%;
 }

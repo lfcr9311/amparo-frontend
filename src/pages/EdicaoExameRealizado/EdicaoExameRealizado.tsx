@@ -84,7 +84,7 @@ export default function EdicaoExameRealizado() {
       </div>
       <div className="descript-part">
         <p className="descript-name">Descrição</p>
-        <Descricao value={description} />
+        <p className="descript-value-done">{description}</p>
       </div>
       <div className="buttons-salmon-part">
         <ButtonSalmon
