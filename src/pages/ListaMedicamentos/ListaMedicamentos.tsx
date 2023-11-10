@@ -10,6 +10,7 @@ import SelectFrequencia from '../../components/Modal/Components/SelectFrequencia
 import DateModal from '../../components/Modal/Components/DateModal/DateModal';
 import { motion } from "framer-motion";
 import MedicinenameModal from '../../components/Modal/Components/medicinenameModal/medicinenameModal';
+import Checkbox from '@mui/material/Checkbox';
 
 
 interface Medicamento {
@@ -227,12 +228,12 @@ export default function ListaMedicamentos() {
             />
           </div>
           <div className="checkbox-container">
-            <input
-              type="checkbox"
+            <Checkbox
               id="uso-continuo"
               className={erroData ? 'checkbox-error' : ''}
               checked={usoContinuo}
               onChange={() => setUsoContinuo(!usoContinuo)}
+              inputProps={{ 'aria-label': 'Uso contínuo' }}
             />
             <label htmlFor="uso-continuo">Uso contínuo</label>
           </div>
