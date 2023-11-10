@@ -8,12 +8,9 @@ import PacientIcon from '../../assets/PacientIcon.svg';
 import ConsultIcon from '../../assets/ConsultIcon.svg';
 import Footer from '../../components/Footer/Footer';
 import logoLogin from '../../assets/Amparo.svg';
-import { ROUTES } from '../../routes/constans';
-import { useNavigate } from 'react-router-dom';
 
 const HomeMedico = () => {
   const userIsPatient = false;
-  const navigate = useNavigate();
 
 
   const handleClickMedicamentos = () => {

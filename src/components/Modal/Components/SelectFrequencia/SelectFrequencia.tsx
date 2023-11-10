@@ -7,9 +7,12 @@ interface StateSelectProps {
 }
 
 const SelectFrequencia: React.FC<StateSelectProps> = ({ onChange, value }) => {
-  const frequencias = ['Diariamente'];
+
+  const frequencias = ['3 horas', '6 horas', '12 horas'];
+
+  frequencias.push('Diariamente');
   for (let i = 2; i <= 30; i++) {
-    frequencias.push(` ${i} dias`);
+    frequencias.push(`${i} dias`);
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -22,10 +25,10 @@ const SelectFrequencia: React.FC<StateSelectProps> = ({ onChange, value }) => {
       <select
         className="select-component-frequencia"
         onChange={handleChange}
-        value={value} 
+        value={value}
       >
         <option className="option" value="" disabled>
-          Frequência 
+          Frequência
         </option>
         {frequencias.map((frequencia) => (
           <option
