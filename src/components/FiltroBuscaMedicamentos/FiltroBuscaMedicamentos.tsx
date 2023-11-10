@@ -9,22 +9,22 @@ import IconeMedicamentoMedio from '../../assets/IconeMedicamentoMedio.svg';
 import IconeMedicamentoRuim from '../../assets/IconeMedicamentoRuim.svg';
 
 interface CustomFiltroBuscaMedicamentosProps {
-  onStatusChange: (status: string) => void;
-  onNameChange: (name: string) => void; 
-  status : string;
+  onStatusChange: (status: number) => void;
+  onNameChange: (name: string) => void;
+  status: number;
 }
 
-const FiltroBuscaMedicamentos: React.FC<CustomFiltroBuscaMedicamentosProps> = ({ onStatusChange,onNameChange ,status}) => {
+const FiltroBuscaMedicamentos: React.FC<CustomFiltroBuscaMedicamentosProps> = ({ onStatusChange, onNameChange, status }) => {
 
   const handleSearchTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const name = event.target.value ;
+    const name = event.target.value;
     console.log(name);
     onNameChange(name);
 
   };
- 
+
   const handleStatusChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    const selectedStatus = event.target.value as string;
+    const selectedStatus = event.target.value as number;
     console.log(selectedStatus);
     onStatusChange(selectedStatus);
   };
@@ -67,14 +67,14 @@ const FiltroBuscaMedicamentos: React.FC<CustomFiltroBuscaMedicamentosProps> = ({
             },
           }}
         >
-          <MenuItem value="semFiltroDeStatus">  </MenuItem>
-          <MenuItem value="bom">
+          <MenuItem value={0}></MenuItem>
+          <MenuItem value={1}>
             <img src={IconeMedicamentoBom} alt="bom" style={{ marginRight: '-20px', marginLeft: '20px' }} />
           </MenuItem>
-          <MenuItem value="medio">
+          <MenuItem value={2}>
             <img src={IconeMedicamentoMedio} alt="medio" style={{ marginRight: '-20px', marginLeft: '20px' }} />
           </MenuItem>
-          <MenuItem value="ruim" >
+          <MenuItem value={3}>
             <img src={IconeMedicamentoRuim} alt="ruim" style={{ marginRight: '-20px', marginLeft: '11px' }} />
           </MenuItem>
         </Select>
