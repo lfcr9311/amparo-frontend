@@ -3,8 +3,6 @@ import './ExamesVazio.css';
 import HappyIcon from '../../assets/HappyIcon.svg';
 import AddIcon from '../../assets/AddIcon.svg';
 import SadIcon from '../../assets/SadIcon.svg';
-//@ts-ignore
-import { useState } from 'react';
 import Modal from '../../components/Modal/Modal';
 import Description from '../../components/Modal/Components/Description/Description';
 import CustomButton from '../../components/Button/Button';
