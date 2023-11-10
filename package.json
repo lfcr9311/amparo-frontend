@@ -9,7 +9,6 @@
     "build": "tsc && vite build",
     "preview": "vite preview --host",
     "format": "prettier --write .",
-    "prepare": "husky install",
     "dev": "vite",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "deploy": "aws s3 sync dist/ s3://projeto-amparo",
@@ -18,6 +17,7 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@esbuild/darwin-arm64": "^0.19.5",
     "@mui/icons-material": "^5.14.7",
     "@mui/material": "^5.14.7",
     "@mui/system": "^5.14.12",
@@ -25,7 +25,6 @@
     "cpf": "^2.0.1",
     "date-fns": "^2.30.0",
     "framer-motion": "^10.16.4",
-    "husky": "^8.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.11.0",

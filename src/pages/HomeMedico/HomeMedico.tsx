@@ -17,15 +17,15 @@ const HomeMedico = () => {
 
 
   const handleClickMedicamentos = () => {
-   navigate(ROUTES.TELA_BUSCA_MEDICAMENTO());
+    navigate(ROUTES.TELA_BUSCA_MEDICAMENTO());
   };
 
   const handleClickInfo = () => {
-    
+
   };
 
   const handleClickConsutas = () => {
-    
+
   };
 
   const handleClickPaciente = () => {
