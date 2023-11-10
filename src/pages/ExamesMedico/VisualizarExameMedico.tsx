@@ -6,6 +6,7 @@ import { ButtonSalmon } from '../../components/ButtonSalmon/ButtonSalmon';
 import { useLocation } from 'react-router-dom';
 
 export default function VisualizarExameMedico() {
+  // Na hora da integração com o backend pode usar
   //  const location = useLocation();
   //  const dateTitle = location.state.date;
   //  const descriptionValue = location.state.description;
