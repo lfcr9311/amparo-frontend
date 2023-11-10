@@ -10,7 +10,6 @@ import DateModal from '../../components/Modal/Components/DateModal/DateModal';
 import { motion } from "framer-motion";
 import MedicinenameModal from '../../components/Modal/Components/medicinenameModal/medicinenameModal';
 import Checkbox from '@mui/material/Checkbox';
-import MenuItem from '@mui/material/MenuItem';
 import DosagemModal from '../../components/Modal/Components/DosagemModal/dosagemModal';
 
 
@@ -61,8 +60,6 @@ export default function ListaMedicamentos() {
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [erroData, setErroData] = useState(false);
   const [mensagemErroData, setMensagemErroData] = useState('');
-  const [erroDosagem, setErroDosagem] = useState(false);
-  const [mensagemErroDosagem, setMensagemErroDosagem] = useState('');
 
 
   const [unidadeMedida, setUnidadeMedida] = useState('mg');
@@ -217,8 +214,6 @@ export default function ListaMedicamentos() {
               unidadeMedida={unidadeMedida}
               onDosagemChange={(novaDosagem: string) => setDosagem(novaDosagem)}
               onUnidadeMedidaChange={(novaUnidade: string) => setUnidadeMedida(novaUnidade)}
-              erroDosagem={erroDosagem}
-              mensagemErroDosagem={mensagemErroDosagem}
             />
 
           </div>
