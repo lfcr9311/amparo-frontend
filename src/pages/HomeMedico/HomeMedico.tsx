@@ -32,10 +32,6 @@ const HomeMedico = () => {
     console.log('ir para tela de exames de pacientes.')
   };
 
-  const handleClickPaciente = () => {
-    console.log('ir para tela de exames de pacientes.')
-  };
-
   return (
     <>
       <HeaderHome type="headerHome" title="Olá, Dr. Fulano!"></HeaderHome>
