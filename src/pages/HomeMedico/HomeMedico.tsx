@@ -11,6 +11,8 @@ import logoLogin from '../../assets/Amparo.svg';
 
 const HomeMedico = () => {
   const userIsPatient = false;
+
+
   const handleClickMedicamentos = () => {
     console.log('Cheguei aqui!!!');
   };
@@ -21,6 +23,10 @@ const HomeMedico = () => {
 
   const handleClickConsutas = () => {
     console.log('Cheguei aqui!!!');
+  };
+
+  const handleClickPaciente = () => {
+    console.log('ir para tela de exames de pacientes.')
   };
 
   return (
@@ -40,7 +46,7 @@ const HomeMedico = () => {
             <MenuButton
               title={userIsPatient ? 'Exames' : 'Pacientes'}
               image={userIsPatient ? ExameIcon : PacientIcon}
-              onClick={() => { }}
+              onClick={handleClickPaciente}
             />
           </div>
           <MenuButton
