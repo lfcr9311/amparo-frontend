@@ -14,6 +14,8 @@ import { useNavigate } from 'react-router-dom';
 const HomeMedico = () => {
   const userIsPatient = false;
   const navigate = useNavigate();
+
+
   const handleClickMedicamentos = () => {
    navigate(ROUTES.TELA_BUSCA_MEDICAMENTO());
   };
@@ -24,6 +26,14 @@ const HomeMedico = () => {
 
   const handleClickConsutas = () => {
     
+  };
+
+  const handleClickPaciente = () => {
+    console.log('ir para tela de exames de pacientes.')
+  };
+
+  const handleClickPaciente = () => {
+    console.log('ir para tela de exames de pacientes.')
   };
 
   return (
@@ -43,7 +53,7 @@ const HomeMedico = () => {
             <MenuButton
               title={userIsPatient ? 'Exames' : 'Pacientes'}
               image={userIsPatient ? ExameIcon : PacientIcon}
-              onClick={() => { }}
+              onClick={handleClickPaciente}
             />
           </div>
           <MenuButton
