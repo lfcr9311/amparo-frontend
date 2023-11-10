@@ -1,10 +1,13 @@
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import IconButton from '@mui/material/IconButton';
-import HomeIcon from '../../assets/Home.svg';
-import ChatIcon from '../../assets/Chat.svg';
-import ProfileIcon from '../../assets/Profile.svg';
+import HomeIconSelected from '../../assets/HomeIconSelected.svg';
+import HomeIconNormal from '../../assets/HomeIconNormal.svg';
+import ChatIconNormal from '../../assets/ChatIconNormal.svg';
+import ProfileIconNormal from '../../assets/ProfileIconNormal.svg';
+import ProfileIconSelected from '../../assets/ProfileIconSelected.svg';
 import Icon from '@mui/material/Icon';
 import { ROUTES } from '../../routes/constans';
+import { useEffect, useState } from 'react';
 
 const containerStyle: React.CSSProperties = {
   width: 'auto',
@@ -44,6 +47,21 @@ interface FooterProps {
 
 export default function Footer({ user }: FooterProps) {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const [isSelectedHome, setIsSelectedHome] = useState(true);
+  const [isSelectedProfile, setIsSelectedProfile] = useState(false);
+  const isSelectedChat = true;
+
+  useEffect(() => {
+    const pathname = location.pathname;
+    setIsSelectedHome(
+      pathname === ROUTES.HOME_PACIENTE() || pathname === ROUTES.HOME_MEDICO()
+    );
+    setIsSelectedProfile(
+      pathname === ROUTES.PERFIL_PACIENTE() || pathname === ROUTES.PERFIL_MEDICO()
+    );
+  }, [location.pathname]);
 
   const handleCLickPerfilPaciente = () => {
     navigate(ROUTES.PERFIL_PACIENTE());
@@ -67,11 +85,10 @@ export default function Footer({ user }: FooterProps) {
         onClick={
           user === 'patient' ? handleClickHomePaciente : handleClickHomeMedico
         }
-        sx={{ color: '#000000' }}
       >
         <div>
           <Icon style={iconStyle}>
-            <img src={HomeIcon} />
+            <img src={isSelectedHome ? HomeIconSelected : HomeIconNormal} />
           </Icon>
           <div style={textStyle}>Home</div>
         </div>
@@ -80,11 +97,10 @@ export default function Footer({ user }: FooterProps) {
         onClick={
           user === 'patient' ? handleClickHomePaciente : handleClickHomeMedico
         }
-        sx={{ color: '#000000' }}
       >
         <div>
           <Icon style={iconStyle}>
-            <img src={ChatIcon} />
+            <img src={isSelectedChat ? ChatIconNormal : ChatIconNormal} />
           </Icon>
           <div style={textStyle}>Chat</div>
         </div>
@@ -95,11 +111,12 @@ export default function Footer({ user }: FooterProps) {
             ? handleCLickPerfilPaciente
             : handleCLickPerfilMedico
         }
-        sx={{ color: '#000000' }}
       >
         <div>
           <Icon style={iconStyle}>
-            <img src={ProfileIcon} />
+            <img
+              src={isSelectedProfile ? ProfileIconSelected : ProfileIconNormal}
+            />
           </Icon>
           <div style={textStyle}>Perfil</div>
         </div>
