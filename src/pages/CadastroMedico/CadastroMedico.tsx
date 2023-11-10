@@ -62,7 +62,7 @@ export const CadastroMedico = () => {
       setIsValidPsw(true);
     }
 
-    if (isValidName && isValidEmail && validPassword && isValidCrm && (dataStatus == 201 || dataStatus == 200)) {
+    if (isValidName && isValidEmail && validPassword && isValidCrm) {
       fetchData(email, name, password, phone, "DOCTOR", crm, state);
       navigate(ROUTES.HOME_MEDICO());
       return;
