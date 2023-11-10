@@ -73,6 +73,7 @@
     width: Fixed (162px);
     height: Fixed (45px);
     padding: 6px, 8px, 6px, 8px;
+    margin-top: 10px;
     border-radius: 12px;
     gap: 10px;
 }

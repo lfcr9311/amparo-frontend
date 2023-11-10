@@ -12,15 +12,29 @@ interface MedicamentoProps {
     id: number;
     name: string;
 
-    dosagem?: String;
-    frequencia?: String;
-    dataFinal?: String;
+    dosagem?: String; //tem que pegar do back
+    frequencia?: String;//tem que pegar do back
+    dataFinal?: String;//tem que pegar do back
 }
 
 
 export const TelaMedicamento: React.FC<MedicamentoProps> = ({ id, name, dosagem, frequencia, dataFinal }) => {
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     const [listaIncompatibilidade, setListaIncompatibilidade] = useState<any[]>([]);
     useState(() => {
         getIncompatibilyList(id).then((listIncompatibility) => {
@@ -71,13 +85,14 @@ export const TelaMedicamento: React.FC<MedicamentoProps> = ({ id, name, dosagem,
 
             <div className='body-container-remedio'>
                 <div className='div-edit-medicamento'>
-                    <button
+                    <div> <ButtonMUI
                         onClick={() => setModalIsOpen(!modalIsOpen)}
                         className="edition-icon-medicamento"
                     >
 
                         <img src={EditIcon} />
-                    </button>
+                    </ButtonMUI>
+                    </div>
                 </div>
                 <div className='nome-remedio'> {name}</div>
 
@@ -102,7 +117,7 @@ export const TelaMedicamento: React.FC<MedicamentoProps> = ({ id, name, dosagem,
                         ? <div className='texto-sem-interacoes-remedio' title={'Sem interações'}>
                             <div className='div-lista-interacoes-remedio'>
                                 <ListaInteracoesRebaixada items={listaFixa} name={name} />
-                                 {//colocar sem interacao  
+                                {//colocar sem interacao  
                                 }
                             </div>
                         </div>
