@@ -7,7 +7,7 @@ import { styled } from '@mui/material/styles';
 import { useState } from 'react';
 import EditIcon from '../../assets/EditIcon.svg';
 import './TelaMedicamento.css';
-
+import { ModalEdicaoDosagem } from '../../components/ModalEdicaoDosagem/ModalEdicaoDosagem';
 interface MedicamentoProps {
     id: number;
     name: string;
@@ -22,19 +22,6 @@ export const TelaMedicamento: React.FC<MedicamentoProps> = ({ id, name, dosagem,
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
-
-
-
-
-
-
-
-
-
-
-
-
-    
     const [listaIncompatibilidade, setListaIncompatibilidade] = useState<any[]>([]);
     useState(() => {
         getIncompatibilyList(id).then((listIncompatibility) => {
@@ -92,7 +79,7 @@ export const TelaMedicamento: React.FC<MedicamentoProps> = ({ id, name, dosagem,
 
                         <img src={EditIcon} />
                     </ButtonMUI>
-                    </div>
+                        {modalIsOpen && <ModalEdicaoDosagem isOpen={modalIsOpen} onClose={() => setModalIsOpen(false)} />}                    </div>
                 </div>
                 <div className='nome-remedio'> {name}</div>
 
