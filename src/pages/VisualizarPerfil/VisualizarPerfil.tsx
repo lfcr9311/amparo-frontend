@@ -54,9 +54,7 @@ async function update() {
   return (
     <>
       <div className="header-container">
-        <HeaderHome type="headerPage" title="Perfil" setActiveTab={function (): void {
-          throw new Error('Function not implemented.');
-        } } activeTab={''} />
+        <HeaderHome type="headerPage" title="Perfil" />
       </div>
       <div className="container">
         <div className="profile-card-container">
