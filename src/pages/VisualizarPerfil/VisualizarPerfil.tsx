@@ -11,25 +11,54 @@ import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../routes/constans';
 import { Button } from '@mui/material';
 import { getPatient } from '../../utils/apiService';
+import { z } from 'zod';
 
 
 const VisualizacaoPerfilPaciente = () => {
+  const patientSchema = z.object({
+    cpf: z.string().min(11, { message: "CPF deve ter 11 caracteres" }).max(11, { message: "CPF deve ter 11 caracteres"}),
+    email: z.string().email({ message: "E-mail Inválido" }),
+    name: z.string().min(3, { message: "Nome deve ter pelo menos 3 caracteres" }),
+    phone: z.string().regex(/^\d{10,11}$/, { message: "Telefone inválido" }), 
+  })
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [name, setName] = useState('');
   const [cpf, setCpf] = useState('');
   const [email, setEmail] = useState('');
   const [dataNascimento, setDataNascimento] = useState('');
+  // const [submitFailed, setSubmitFailed] = useState<boolean>(false);
   const [nSus, setNSus] = useState('');
+  const [errors, setErrors] = useState({
+    cpf: '',
+    email: '',
+    name: ''
+  });
   const [ddd, setDdd] = useState('51');
   const [cellphone, setCellphone] = useState('');
 
 async function update() {
   try {
+    setErrors({
+      cpf: '',
+      email: '',
+      name: ''
+    });
+    // setSubmitFailed(false);
+    const formData = { cpf, email, name };
+    patientSchema.parse(formData);
     await editUser(name, cellphone, cpf, "null", email, dataNascimento, nSus);
     setIsModalOpen(!isModalOpen);
   }
   catch(e) {
-    console.log(e)
+    if (e instanceof z.ZodError) {
+      e.errors.forEach((err) => {
+        setErrors(prev => ({ ...prev, [err.path[0]]: err.message }));
+      });
+    }
+    else {
+      console.log(e);
+    }
   }
 }
 
@@ -78,11 +107,15 @@ async function update() {
               <TextfieldModal
                 label="Seu nome"
                 value={name}
+                error={Boolean(errors.name)}
+                helperText={Boolean(errors.name) ? errors.name : ''}
                 type="text"
                 onChange={(value) => setName(value)}
               />
               <TextfieldModal
                 label="CPF"
+                error={Boolean(errors.cpf)}
+                helperText={Boolean(errors.cpf) ? errors.cpf : ''}
                 value={cpf}
                 type="text"
                 onChange={(value) => setCpf(value)}
@@ -90,6 +123,8 @@ async function update() {
               <TextfieldModal
                 label="Email"
                 value={email}
+                error={Boolean(errors.email)}
+                helperText={Boolean(errors.email) ? errors.email : ''}
                 type="text"
                 onChange={(value) => setEmail(value)} 
               />
