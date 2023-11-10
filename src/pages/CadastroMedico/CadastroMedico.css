@@ -61,7 +61,7 @@ body {
 
 .crm-state-container {
   display: flex;
-  align-items: center;
+  align-items: top;
   flex-direction: row;
   gap: 9px;
 }
