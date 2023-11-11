@@ -138,6 +138,9 @@ export default function AppRoutes() {
           <Route path={ROUTES.MENU_MEDICAMENTOS_MEDICO()} element={
             <ListaMedicamentosMedico />
           } />
+          <Route path={ROUTES.LISTA_MEDICAMENTOS_MEDICO()} element={
+            <ListaMedicamentosMedico />
+          } />
         </Routes>
       </div>
     </Router>

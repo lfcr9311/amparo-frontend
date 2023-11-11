@@ -36,8 +36,4 @@ export default function ListaMedicamentosMedico() {
             <Footer user='doctor' />
         </>
     )
-
-
-
-
 }
