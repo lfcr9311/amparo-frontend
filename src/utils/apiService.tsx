@@ -155,6 +155,20 @@ export const addExamePendente = async (description: String, examDate: string) =>
   }
 };
 
+export const fetchMeusPacientes = () => {
+  const authToken = localStorage.getItem('authToken');
+  return axios.get('/link/patient', {
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+    },
+  }).then((response) => {
+    return response.data;
+  }).catch((error) => {
+    console.error(error);
+    throw error;
+  })
+}
+
 export const fetchMeusMedicos = () => {
   const authToken = localStorage.getItem('authToken');
   return axios.get('/link/doctor', {
