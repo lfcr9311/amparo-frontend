@@ -44,11 +44,6 @@ export const ListaInteracoesRebaixada: React.FC<CustomListaInteracoesProps> = ({
 
     const handleLinkClick = (items: { name: string, status: number }[], nome: string) => {
         navigate(ROUTES.LISTADEINTERACAODOMEDICAMENTO(), { state: { items: items, nome: nome } });
-    
-    
-    
-    const handleLinkClick = (items: { name: string, status: string }[], nome: string) => {
-        navigate(ROUTES.LISTA_INTERACAO_MEDICAMENTO(), { state: { items: items, nome: nome } });
     };
     return (
         <div>
