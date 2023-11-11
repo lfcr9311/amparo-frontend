@@ -27,7 +27,8 @@ const pacientSchema = z
       .string()
       .refine((value) => isCPF(value), { message: 'Insira um CPF válido' }),
     ddd: z.string().regex(/^\d{1,2}$/, { message: "DDD inválido" }),
-    phone: z.string().regex(/^\d{8,9}$/, { message: "Telefone inválido" })
+    phone: z.string().regex(/^\d{8,9}$/, { message: "Telefone inválido" }),
+    nSus: z.string().regex(/^\d{15}$/, { message: "Número SUS inválido" }).nullable()
   })
 
 const VisualizacaoPerfilPaciente = () => {
@@ -38,7 +39,6 @@ const VisualizacaoPerfilPaciente = () => {
   const [cpf, setCpf] = useState('');
   const [email, setEmail] = useState('');
   const [dataNascimento, setDataNascimento] = useState('');
-  // const [submitFailed, setSubmitFailed] = useState<boolean>(false);
   const [nSus, setNSus] = useState('');
   const [errors, setErrors] = useState({
     name: '',
@@ -46,7 +46,8 @@ const VisualizacaoPerfilPaciente = () => {
     date: '',
     cpf: '',
     ddd: '',
-    phone: ''
+    phone: '',
+    nSus: ''
   });
   const [ddd, setDdd] = useState('');
   const [cellphone, setCellphone] = useState('');
@@ -59,12 +60,13 @@ const VisualizacaoPerfilPaciente = () => {
         date: '',
         cpf: '',
         ddd: '',
-        phone: ''
+        phone: '',
+        nSus: ''
       });
       // setSubmitFailed(false);
-      const formData = { name, email, date: dataNascimento, cpf, ddd, phone: cellphone };
+      const formData = { name, email, date: dataNascimento, cpf, ddd, phone: cellphone, nSus };
       pacientSchema.parse(formData);
-      await editUser(name, ddd + cellphone, cpf, "null", email, dataNascimento, nSus);
+      await editUser(name, ddd + cellphone, cpf.replace(/\D/g, ""), "null", email, dataNascimento, nSus);
       setIsModalOpen(!isModalOpen);
     }
     catch (e) {
@@ -156,6 +158,8 @@ const VisualizacaoPerfilPaciente = () => {
               />
               <TextfieldModal
                 label="Nº do SUS"
+                error={Boolean(errors.nSus)}
+                helperText={Boolean(errors.nSus) ? errors.nSus : ''}
                 value={nSus}
                 type="text"
                 onChange={(value) => setNSus(value)}

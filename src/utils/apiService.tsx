@@ -130,7 +130,7 @@ export const registerDoctor = async (email: String, name: String, password: Stri
   }
 }
 
-export const registerUser = async (email: String, name: String, password: String, cellphone: String, userType: String, cpf: String, numSus: String, birthDate: String) => {
+export const registerUser = async (email: String, name: String, password: String, cellphone: String | null, userType: String, cpf: String, numSus: String | null, birthDate: String) => {
   const registerBody = {
     email: email,
     name: name,
