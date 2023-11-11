@@ -2,150 +2,145 @@ import { useState } from 'react';
 import Textfield from '../../components/Textfield/Textfield';
 import Button from '../../components/Button/Button';
 import Logo from '../../assets/Amparo.svg';
-import cpf from 'cpf';
+import cpf from 'cpf'
 import './CadastroPaciente.css';
 import { ROUTES } from '../../routes/constans';
 import { useNavigate } from 'react-router-dom';
+import { z } from 'zod';
 import { registerUser } from '../../utils/apiService';
 
+const isCPF = (value: string): boolean => cpf.isValid(value);
+
+const pacientSchema = z
+  .object({
+    name: z
+      .string()
+      .min(3, { message: 'Nome deve ter pelo menos 3 caracteres' }),
+    email: z.string().email({ message: 'Email Inválido' }),
+    date: z.coerce.date().refine((value) => value < new Date(), { message: 'Data inválida' }),
+    cpf: z
+      .string()
+      .refine((value) => isCPF(value), { message: 'Insira um CPF válido' }),
+    password: z.string().min(2, { message: 'Senha obrigatória' }),
+    confirmPassword: z.string().min(1, { message: 'Senha obrigatória' }),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: 'Senhas não correspondem',
+    path: ['confirmPassword'],
+  });
+
+interface FormData {
+  name: string;
+  email: string;
+  date: string;
+  cpf: string;
+  password: string;
+  confirmPassword: string;
+}
+
 export const CadastroPaciente = () => {
-  const [name, setName] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
-  const [date, setDate] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [confirmPassword, setConfirmPassword] = useState<string>('');
-  const [validPassword, setValidPassaword] = useState<boolean>(true);
-  const [cpfValue, setCpfValue] = useState<string>('');
-  const [isValidCpf, setIsValidCpf] = useState<boolean>(true);
-  const [isValidEmail, setIsValidEmail] = useState<boolean>(true);
-  const [isValidName, setIsValidName] = useState<boolean>(true);
-  const [isValidDate, setIsValidDate] = useState<boolean>(true);
-  const [isValidPsw, setIsValidPsw] = useState<boolean>(true);
-  // @ts-ignore
-  const [data, setData] = useState<String>();
-  // @ts-ignore
-  const [dataStatus, setDataStatus] = useState<Number>();
-  // @ts-ignore
-  const [erro, setErro] = useState<string>('');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [date, setDate] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [cpf, setCpf] = useState('');
+  const [submitFailed, setSubmitFailed] = useState(false);
+  const [erros, setErros] = useState({
+    name: '',
+    email: '',
+    date: '',
+    password: '',
+    confirmPassword: '',
+    cpf: '',
+  });
 
-  const [formattedDate, setFormattedDate] = useState<string>('');
-  const navigate = useNavigate();
-
-  const buttonCLick = () => {
-
-    if (password === confirmPassword) {
-      setValidPassaword(true);
-    } else {
-      setValidPassaword(false);
-    }
-    if (cpf.isValid(cpfValue)) {
-      setIsValidCpf(true);
-    } else {
-      setIsValidCpf(false);
-    }
-    if (name == '') {
-      setIsValidName(false);
-    } else {
-      setIsValidName(true);
-    }
-    if (email == '') {
-      setIsValidEmail(false);
-    } else {
-      setIsValidEmail(true);
-    }
-    if (date == '') {
-      setIsValidDate(false);
-    } else {
-      setIsValidDate(true);
-    }
-    if (password == '') {
-      setIsValidPsw(false);
-    } else {
-      setIsValidPsw(true);
-    }
-
-    console.log(email, name, password, cpfValue, formattedDate);
-
-    if (isValidName && isValidEmail && validPassword && cpf.isValid(cpfValue)) {
-      fetchData(email, name, password, "111111111", cpfValue, "123456789123456", formattedDate);
-      return;
-    }
-  };
-
-  const validateEmail = (input: string) => {
-    const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
-    setIsValidEmail(emailRegex.test(input));
-  };
-
-  async function fetchData(email: String, name: String, password: String, cellPhone: String, cpf: String, numSus: String, birthDate: String) {
-
-    await registerUser(email, name, password, cellPhone, "PATIENT", cpf, numSus, birthDate).then((result) => {
-      setData(result.data);
-      setDataStatus(result.status);
-      console.log(result.data);
-      console.log("Status " + result.status);
-
-      if (result.status == 201 || result.status == 200) {
-        console.log('cadastro realizado com sucesso');
-        navigate(ROUTES.LOGIN());
-      }
-
-    }).catch((erro) => {
-
-      if (erro.response && erro.response.status === 400) {
-        setErro(erro);
-        //componente de erro abaixo:
-        console.error('Erro 400: O servidor encontrou um erro interno.');
-        console.error(erro);
-      }
-      else {
-        console.error('Erro inesperado:', erro);
-      }
-    })
+  const formatDate = (value: string): string => {
+    const formatDate = value.split('-');
+    return formatDate[2] + '/' + formatDate[1] + '/' + formatDate[0];
   }
 
-  const validateDate = (input: string) => {
-
-    const parts = input.split('-');
-
-    if (parts.length === 3) {
-      const year = parts[0];
-      const month = parts[1];
-      const day = parts[2];
-      setFormattedDate(`${day}/${month}/${year}`);
-
-      const dateRegex = /^(\d{2})\/(\d{2})\/(\d{4})$/;
-      const match = formattedDate.match(dateRegex);
-
-      if (match) {
-        setIsValidDate(true);
-      } else {
-        setIsValidDate(false);
+  const handleSubmit = async () => {
+    try {
+      setErros({
+        name: '',
+        email: '',
+        date: '',
+        password: '',
+        confirmPassword: '',
+        cpf: '',
+      });
+      setSubmitFailed(false);
+      let dateString = String(date);
+      dateString = formatDate(dateString);
+      const formData: FormData = {
+        name,
+        email,
+        date,
+        password,
+        confirmPassword,
+        cpf,
+      };
+      pacientSchema.parse(formData);
+      await fetchData(name, email, dateString, password, cpf.replace(/\D/g, ''));
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        error.errors.forEach((err) => {
+          setErros((prev) => ({ ...prev, [err.path[0]]: err.message }));
+        });
       }
-    } else {
-      setIsValidDate(false);
     }
-
   };
+
+  async function fetchData(
+    name: String,
+    email: String,
+    date: String,
+    passoword: String,
+    cpf: String
+  ) {
+    await registerUser(email, name, passoword, null, 'PATIENT', cpf, null, date)
+      .then((result) => {
+        if (result.status === 201 || result.status === 200) {
+          navigate(ROUTES.LOGIN());
+        }
+      })
+      .catch((erro) => {
+        if (erro instanceof z.ZodError) {
+          erro.errors.forEach((err) => {
+            setErros((prev) => ({ ...prev, [err.path[0]]: err.message }));
+          });
+        } else {
+          if (erro.response && erro.response.status === 500) {
+            console.error('Erro 500: O servidor encontrou um erro interno.');
+          } else if (erro.response && erro.response.status === 400) {
+            console.error(
+              'Erro 400: O servidor não pode processar a solicitação.'
+            );
+          } else {
+            console.error('Erro inesperado:', erro);
+          }
+        }
+        setSubmitFailed(true);
+      });
+  }
+
+  const navigate = useNavigate();
 
   const handleName = (newName: string) => {
     setName(newName);
   };
 
   const handleEmail = (newEmail: string) => {
-    const inputValue = newEmail;
-    setEmail(inputValue);
-    validateEmail(inputValue);
+    setEmail(newEmail);
   };
 
   const handleDate = (newDate: string) => {
-    const inputValue = newDate;
-    validateDate(inputValue);
-    setDate(inputValue);
+    setDate(newDate);
   };
 
   const handleCpf = (newCpf: string) => {
-    setCpfValue(newCpf);
+    setCpf(newCpf);
   };
 
   const handlePassword = (newPassoword: string) => {
@@ -170,55 +165,62 @@ export const CadastroPaciente = () => {
             label="Nome Completo"
             value={name}
             type="name"
-            error={!isValidName}
             onChange={handleName}
-            helperText={!isValidName ? 'Insira um nome' : ''}
+            error={Boolean(erros.name)}
+            helperText={Boolean(erros.name) ? erros.name : ''}
           />
           <Textfield
             label="Email"
             type="email"
             onChange={handleEmail}
             value={email}
-            error={!isValidEmail}
-            helperText={!isValidEmail ? 'Email inválido' : ''}
+            error={Boolean(erros.email)}
+            helperText={Boolean(erros.email) ? erros.email : ''}
           />
           <Textfield
             label="CPF"
             type="text"
             onChange={handleCpf}
-            value={cpfValue}
-            error={!isValidCpf}
-            helperText={!isValidCpf ? 'CPF inválido' : ''}
+            value={cpf}
+            error={Boolean(erros.cpf)}
+            helperText={Boolean(erros.cpf) ? erros.cpf : ''}
           />
           <Textfield
             label="Data de Nascimento"
             type="date"
             onChange={handleDate}
             value={date}
-            error={!isValidDate}
-            helperText={!isValidDate ? 'Data inválida' : ''}
+            error={Boolean(erros.date)}
+            helperText={Boolean(erros.date) ? erros.date : ''}
           />
           <Textfield
             label="Senha"
             type="password"
             onChange={handlePassword}
-            error={!isValidPsw}
             value={password}
-            helperText={!isValidPsw ? 'Insira uma senha' : ''}
+            error={Boolean(erros.password)}
+            helperText={Boolean(erros.password) ? erros.password : ''}
           />
           <Textfield
             label="Confirmar Senha"
             type="password"
             onChange={handleConfirmPassword}
-            error={!validPassword || !isValidPsw}
-            helperText={!isValidPsw ? 'Insira uma senha' : !validPassword ? 'Senha não correspondentes' : ''}
             value={confirmPassword}
+            error={Boolean(erros.confirmPassword)}
+            helperText={
+              Boolean(erros.confirmPassword) ? erros.confirmPassword : ''
+            }
           />
+          {submitFailed ? (
+            <div className="error-message">Cadastro Falhou</div>
+          ) : (
+            ''
+          )}
           <Button
             margin-botton="20px"
             variant="contained"
             label="Cadastrar"
-            onClick={() => buttonCLick()}
+            onClick={() => handleSubmit()}
           />
         </div>
         <span className="classe-frase-abaixo-cadastrar">
@@ -235,4 +237,3 @@ export const CadastroPaciente = () => {
     </div>
   );
 };
-
