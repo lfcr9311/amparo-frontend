@@ -8,6 +8,7 @@ import { useState } from 'react';
 import EditIcon from '../../assets/EditIcon.svg';
 import './TelaMedicamento.css';
 import { ModalEdicaoDosagem } from '../../components/ModalEdicaoDosagem/ModalEdicaoDosagem';
+import DeleteMedicamento from '../../components/Modal/Components/DeleteMedicamento/DeleteMedicamento';
 interface MedicamentoProps {
     id: number;
     name: string;
@@ -20,7 +21,11 @@ interface MedicamentoProps {
 
 export const TelaMedicamento: React.FC<MedicamentoProps> = ({ id, name, dosagem, frequencia, dataFinal }) => {
 
-    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [modalIsOpenEdit, setModalIsOpenEdit] = useState(false);
+    const [modalIsOpenBula, setModalIsOpenBula] = useState(false);
+
+    const [modalIsOpenExcluir, setModalIsOpenExcluir] = useState(false);
+
 
     const [listaIncompatibilidade, setListaIncompatibilidade] = useState<any[]>([]);
     useState(() => {
@@ -73,13 +78,13 @@ export const TelaMedicamento: React.FC<MedicamentoProps> = ({ id, name, dosagem,
             <div className='body-container-remedio'>
                 <div className='div-edit-medicamento'>
                     <div> <ButtonMUI
-                        onClick={() => setModalIsOpen(!modalIsOpen)}
+                        onClick={() => setModalIsOpenEdit(!modalIsOpenEdit)}
                         className="edition-icon-medicamento"
                     >
 
                         <img src={EditIcon} />
                     </ButtonMUI>
-                        {modalIsOpen && <ModalEdicaoDosagem isOpen={modalIsOpen} onClose={() => setModalIsOpen(false)} />}                    </div>
+                        {modalIsOpenEdit && <ModalEdicaoDosagem isOpen={modalIsOpenEdit} onClose={() => setModalIsOpenEdit(false)} />}                    </div>
                 </div>
                 <div className='nome-remedio'> {name}</div>
 
@@ -117,7 +122,7 @@ export const TelaMedicamento: React.FC<MedicamentoProps> = ({ id, name, dosagem,
 
                 <div className='bula-medicamento'>
 
-                    <ColorButtonBula onClick={() => setModalIsOpen(!modalIsOpen)}>BULA</ColorButtonBula>
+                    <ColorButtonBula onClick={() => setModalIsOpenBula(!modalIsOpenBula)}>BULA</ColorButtonBula>
 
                 </div>
 
@@ -136,11 +141,16 @@ export const TelaMedicamento: React.FC<MedicamentoProps> = ({ id, name, dosagem,
                         background: "none",
                         outline: "none",
                     }}
-                    onClick={() => setModalIsOpen(!modalIsOpen)}
+                    onClick={() => setModalIsOpenExcluir(!modalIsOpenExcluir)}
                 >
 
-                    Deletar conta
-                </ButtonMUI>           </div>
+                    Deletar Medicamento
+                </ButtonMUI>
+
+
+                {modalIsOpenExcluir && <DeleteMedicamento isModalOpen={modalIsOpenEdit} setIsModalOpen={() => setModalIsOpenExcluir(false)} />}
+            </div>
+
             <Footer user="patient" />
         </>
     );
