@@ -51,7 +51,7 @@ export default function BuscaMedicamentos() {
                         exam={medicamento.label}
                         onChange={() => console.log(medicamento.label)}
                     />
-                ))}
+                )).filter((medicamento) => medicamento.props.exam.includes(findMedicine))}
             </div>
             <Footer user="patient" />
         </>
