@@ -1,0 +1,46 @@
+.medicine-list-container {
+    position: fixed;
+    max-height: 460px;
+    overflow-y: auto;
+    gap: 10px;
+    flex-direction: column;
+    display: flex;
+    top: 210px;
+    position: fixed;
+  }
+
+  .search-div-medicamentos {
+    position: fixed;
+    top: 24%;
+  }
+
+  .busca-medicamento-title {
+    color: #4D4C4C;
+    font-family: Poppins;
+    font-size: 23px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-right: 53%;
+    margin-bottom: 2%;
+    position: fixed;
+    top: 15%;
+  }
+
+  .remedios-div {
+    max-height: 350px;
+    overflow-y: auto;
+    width: 85%;
+    gap: 10px;
+    flex-direction: column;
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 45px;
+    position: fixed;
+    top: 38%;
+  }
+
+  .filter-div-medicamentos {
+    position: fixed;
+    top: 31%;
+  }
