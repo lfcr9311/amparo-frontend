@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Logo from '../../assets/Amparo.svg';
 import './Login.css';
-import { Link, Routes } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ROUTES } from '../../routes/constans';
 import { useNavigate } from 'react-router-dom';
 import Textfield from '../../components/Textfield/Textfield';
