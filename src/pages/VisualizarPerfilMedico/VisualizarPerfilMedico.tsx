@@ -23,7 +23,7 @@ const VisualizacaoPerfilMedico = () => {
   const navigate = useNavigate()
   const handleDeletar = () => {
     console.log("im here");
-    
+
     localStorage.removeItem('authToken')
     localStorage.removeItem('userId')
     navigate(ROUTES.LOGIN())
@@ -101,21 +101,21 @@ const VisualizacaoPerfilMedico = () => {
           </form>
         </Modal>
         <div >
-        <Button  
-        sx={{ 
-            color: '#e10e17',
-            textAlign: 'center',
-            fontFamily: 'Poppins',
-            fontSize: '15px',
-            fontStyle: 'normal',
-            fontWeight: 400,
-            lineHeight: 'normal',
-            textDecoration: 'none',
-            textTransform: 'none',
-          }} 
-          onClick={handleDeletar}
-        >
-              Sair da Conta
+          <Button
+            sx={{
+              color: '#e10e17',
+              textAlign: 'center',
+              fontFamily: 'Poppins',
+              fontSize: '15px',
+              fontStyle: 'normal',
+              fontWeight: 400,
+              lineHeight: 'normal',
+              textDecoration: 'none',
+              textTransform: 'none',
+            }}
+            onClick={handleDeletar}
+          >
+            Sair da Conta
           </Button>
         </div>
       </div>
