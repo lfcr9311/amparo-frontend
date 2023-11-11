@@ -1,0 +1,35 @@
+.refresh-page-paciente {
+    display: flex;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    align-items: center;
+    position: fixed;
+    top: 15%;
+}
+
+.refresh-text-paciente {
+    color: #696969;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 17px;
+    font-style: italic;
+    font-weight: 500;
+    line-height: normal;
+    margin-left: 12px;
+
+}
+
+.search-info-paciente {
+    position: fixed;
+    top: 23%;
+}
+
+.container-info-paciente {
+    max-height: 425px;
+    overflow-y: auto;
+    position: fixed;
+    top: 31%;
+    flex-direction: column;
+    display: flex;
+}

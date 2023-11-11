@@ -19,6 +19,9 @@ import ListaDeInteracaoDoMedicamento from './pages/ListaDeInteracaoDoMedicamento
 import MeusMedicos from './pages/MeusMedicos/MeusMedicos';
 import PageMedico from './components/FiltroBuscaMedico/PageMedico';
 import BuscaMedicamentos from './pages/BuscaMedicamentos/BuscaMedicamentos';
+import InformacoesMedico from './pages/InformacoesMedico/InformacoesMedico';
+import InformacoesPaciente from './pages/InformacoesPaciente/InformacoesPaciente';
+import Textfield from './components/Textfield/Textfield';
 
 export default function AppRoutes() {
   const fetchData = async () => {
@@ -139,7 +142,13 @@ export default function AppRoutes() {
           <Route path={ROUTES.TELA_BUSCA_MEDICAMENTO()} element={
             <BuscaMedicamentos />
           } />
-        </Routes>
+          <Route path={ROUTES.INFORMACOES_MEDICO()} element={
+            <InformacoesMedico />
+          } />
+          <Route path={ROUTES.INFORMACOES_PACIENTE()} element={
+            <InformacoesPaciente />
+          } />
+          </Routes>
       </div>
     </Router>
   );

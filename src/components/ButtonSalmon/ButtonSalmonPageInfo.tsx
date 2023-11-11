@@ -2,13 +2,13 @@ import React from 'react';
 import { Button, Box, createTheme, ThemeProvider } from '@mui/material';
 import { ArrowForwardIos } from '@mui/icons-material';
 
-
 interface ButtonSalmonPageInfoProps {
-    infoTitle: string,
-    dateAndDoctorInfo: string
+    infoTitle: string;
+    dateAndDoctorInfo: string;
+    onClick: () => void;
 }
 
-export const ButtonSalmonPageInfo: React.FC<ButtonSalmonPageInfoProps> = ({infoTitle, dateAndDoctorInfo}) => {
+export const ButtonSalmonPageInfo: React.FC<ButtonSalmonPageInfoProps> = ({infoTitle, dateAndDoctorInfo, onClick}) => {
     const buttonStyle: React.CSSProperties = {
         backgroundColor: "#E76553",
         display: 'flex',
@@ -31,7 +31,7 @@ export const ButtonSalmonPageInfo: React.FC<ButtonSalmonPageInfoProps> = ({infoT
         <ThemeProvider theme={theme}>
             <Button
                 style={buttonStyle}
-                onClick={() => { }}
+                onClick={() => {onClick}}
                 variant='contained'
                 endIcon={<Box><ArrowForwardIos sx={{ fontSize: 30 }} /> </Box>}
             >
