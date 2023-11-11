@@ -111,6 +111,8 @@ export const ModalEdicaoDosagem: React.FC<ModalEdicaoDosagemProps> = ({
                         onChange={() => setUsoContinuo(!usoContinuo)}
                         inputProps={{ 'aria-label': 'Uso contínuo' }}
                     />
+                    <label htmlFor="uso-continuo">Uso contínuo</label>
+
                 </div>
                 <div className="button-save">
                     <CustomButton label="Salvar" variant="contained" onClick={handleAddMedicamento} />
