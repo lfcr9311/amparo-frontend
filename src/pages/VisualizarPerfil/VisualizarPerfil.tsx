@@ -9,18 +9,29 @@ import CustomButton from '../../components/Button/Button';
 import { editUser } from '../../utils/apiService';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../routes/constans';
+import cpf from 'cpf';
 import { Button } from '@mui/material';
 import { getPatient } from '../../utils/apiService';
 import { z } from 'zod';
 
 
-const VisualizacaoPerfilPaciente = () => {
-  const patientSchema = z.object({
-    cpf: z.string().min(11, { message: "CPF deve ter 11 caracteres" }).max(11, { message: "CPF deve ter 11 caracteres"}),
-    email: z.string().email({ message: "E-mail Inválido" }),
-    name: z.string().min(3, { message: "Nome deve ter pelo menos 3 caracteres" }),
-    phone: z.string().regex(/^\d{10,11}$/, { message: "Telefone inválido" }), 
+const isCPF = (value: string): boolean => cpf.isValid(value);
+const pacientSchema = z
+  .object({
+    name: z
+      .string()
+      .min(3, { message: 'Nome deve ter pelo menos 3 caracteres' }),
+    email: z.string().email({ message: 'Email Inválido' }),
+    date: z.coerce.date().refine((value) => value < new Date(), { message: 'Data inválida' }),
+    cpf: z
+      .string()
+      .refine((value) => isCPF(value), { message: 'Insira um CPF válido' }),
+    ddd: z.string().regex(/^\d{1,2}$/, { message: "DDD inválido" }),
+    phone: z.string().regex(/^\d{8,9}$/, { message: "Telefone inválido" })
   })
+
+const VisualizacaoPerfilPaciente = () => {
+
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [name, setName] = useState('');
@@ -30,37 +41,43 @@ const VisualizacaoPerfilPaciente = () => {
   // const [submitFailed, setSubmitFailed] = useState<boolean>(false);
   const [nSus, setNSus] = useState('');
   const [errors, setErrors] = useState({
-    cpf: '',
+    name: '',
     email: '',
-    name: ''
+    date: '',
+    cpf: '',
+    ddd: '',
+    phone: ''
   });
-  const [ddd, setDdd] = useState('51');
+  const [ddd, setDdd] = useState('');
   const [cellphone, setCellphone] = useState('');
 
-async function update() {
-  try {
-    setErrors({
-      cpf: '',
-      email: '',
-      name: ''
-    });
-    // setSubmitFailed(false);
-    const formData = { cpf, email, name };
-    patientSchema.parse(formData);
-    await editUser(name, cellphone, cpf, "null", email, dataNascimento, nSus);
-    setIsModalOpen(!isModalOpen);
-  }
-  catch(e) {
-    if (e instanceof z.ZodError) {
-      e.errors.forEach((err) => {
-        setErrors(prev => ({ ...prev, [err.path[0]]: err.message }));
+  async function update() {
+    try {
+      setErrors({
+        name: '',
+        email: '',
+        date: '',
+        cpf: '',
+        ddd: '',
+        phone: ''
       });
+      // setSubmitFailed(false);
+      const formData = { name, email, date: dataNascimento, cpf, ddd, phone: cellphone };
+      pacientSchema.parse(formData);
+      await editUser(name, ddd + cellphone, cpf, "null", email, dataNascimento, nSus);
+      setIsModalOpen(!isModalOpen);
     }
-    else {
-      console.log(e);
+    catch (e) {
+      if (e instanceof z.ZodError) {
+        e.errors.forEach((err) => {
+          setErrors(prev => ({ ...prev, [err.path[0]]: err.message }));
+        });
+      }
+      else {
+        console.log(e);
+      }
     }
   }
-}
 
   const navigate = useNavigate()
   const handleDeletar = () => {
@@ -76,7 +93,8 @@ async function update() {
       setEmail(att.email)
       setDataNascimento(att.birthDate)
       setNSus(att.numSus)
-      setCellphone(att.cellphone)
+      setDdd(att.cellphone.substring(0, 2))
+      setCellphone(att.cellphone.substring(2, att.cellphone.length))
       setCpf(att.cpf)
     })
   }, [isModalOpen])
@@ -94,7 +112,7 @@ async function update() {
             dataNascimento={dataNascimento}
             onClickChangePassword={() => console.log('Change Password')}
             onClickEditProfile={() => setIsModalOpen(!isModalOpen)}
-            numSus={ nSus }
+            numSus={nSus}
           />
         </div>
         <Modal
@@ -126,11 +144,13 @@ async function update() {
                 error={Boolean(errors.email)}
                 helperText={Boolean(errors.email) ? errors.email : ''}
                 type="text"
-                onChange={(value) => setEmail(value)} 
+                onChange={(value) => setEmail(value)}
               />
               <TextfieldModal
                 label="Data de Nascimento"
                 value={dataNascimento}
+                error={Boolean(errors.date)}
+                helperText={Boolean(errors.date) ? errors.date : ''}
                 type="text"
                 onChange={(value) => setDataNascimento(value)}
               />
@@ -144,6 +164,8 @@ async function update() {
                 <TextfieldModal
                   label="DDD"
                   value={ddd}
+                  error={Boolean(errors.ddd)}
+                  helperText={Boolean(errors.ddd) ? errors.ddd : ''}
                   type="text"
                   width="65.5px"
                   onChange={(value) => setDdd(value)}
@@ -151,6 +173,8 @@ async function update() {
                 <TextfieldModal
                   label="Telefone"
                   value={cellphone}
+                  error={Boolean(errors.phone)}
+                  helperText={Boolean(errors.phone) ? errors.phone : ''}
                   type="text"
                   width="195.5px"
                   onChange={(value) => setCellphone(value)}
@@ -161,7 +185,7 @@ async function update() {
                 label="Salvar"
                 onClick={() => {
                   async function callUpdate() {
-                    await(update());
+                    await (update());
                   }
                   callUpdate();
                 }}
