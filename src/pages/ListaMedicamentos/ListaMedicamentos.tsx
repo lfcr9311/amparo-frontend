@@ -5,11 +5,13 @@ import CardRemedio from '../../components/CardRemedio/CardRemedio';
 import CustomButton from '../../components/Button/Button';
 import Modal from '../../components/Modal/Modal';
 import { useState, useEffect } from 'react';
-import TextfieldModal from '../../components/Modal/Components/TextfieldModal';
 import SelectFrequencia from '../../components/Modal/Components/SelectFrequencia/SelectFrequencia';
 import DateModal from '../../components/Modal/Components/DateModal/DateModal';
 import { motion } from "framer-motion";
 import MedicinenameModal from '../../components/Modal/Components/medicinenameModal/medicinenameModal';
+import Checkbox from '@mui/material/Checkbox';
+import DosagemModal from '../../components/Modal/Components/DosagemModal/dosagemModal';
+
 
 
 interface Medicamento {
@@ -59,6 +61,9 @@ export default function ListaMedicamentos() {
   const [erroData, setErroData] = useState(false);
   const [mensagemErroData, setMensagemErroData] = useState('');
 
+
+  const [unidadeMedida, setUnidadeMedida] = useState('mg');
+
   const [medicamentos, setMedicamentos] = useState<Medicamento[]>([
     { label: "Remedio 1" },
     { label: "Remedio 2" },
@@ -75,6 +80,7 @@ export default function ListaMedicamentos() {
     setMensagemErroMedicamentoNome('');
     setErroData(false);
     setMensagemErroData('');
+    setUnidadeMedida('mg');
   };
 
 
@@ -121,14 +127,15 @@ export default function ListaMedicamentos() {
 
     const novoMedicamento = {
       label: medicamentoNome.label,
-      dosagem: dosagem,
+      dosagem: dosagem && unidadeMedida ? `${dosagem}${unidadeMedida}` : '',
       frequencia: frequencia,
-      dataFinal: usoContinuo ? "Uso contínuo" : dataFinal
+      dataFinal: usoContinuo ? "Uso contínuo" : dataFinal,
     };
 
     setMedicamentos(prevMedicamentos => [...prevMedicamentos, novoMedicamento]);
 
     setIsModalOpen(false);
+    resetModal();
 
     setMedicamentoNome(null);
     setDosagem('');
@@ -201,13 +208,13 @@ export default function ListaMedicamentos() {
               error={erroMedicamentoNome}
               helperText={mensagemErroMedicamentoNome}
             />
-
-            <TextfieldModal
-              label="Dosagem"
-              value={dosagem}
-              type="text"
-              onChange={(value) => setDosagem(value)}
+            <DosagemModal
+              dosagem={dosagem}
+              unidadeMedida={unidadeMedida}
+              onDosagemChange={(novaDosagem: string) => setDosagem(novaDosagem)}
+              onUnidadeMedidaChange={(novaUnidade: string) => setUnidadeMedida(novaUnidade)}
             />
+
           </div>
           <div className='frequencia-data'>
             <SelectFrequencia
@@ -223,12 +230,12 @@ export default function ListaMedicamentos() {
             />
           </div>
           <div className="checkbox-container">
-            <input
-              type="checkbox"
+            <Checkbox
               id="uso-continuo"
               className={erroData ? 'checkbox-error' : ''}
               checked={usoContinuo}
               onChange={() => setUsoContinuo(!usoContinuo)}
+              inputProps={{ 'aria-label': 'Uso contínuo' }}
             />
             <label htmlFor="uso-continuo">Uso contínuo</label>
           </div>
@@ -240,7 +247,7 @@ export default function ListaMedicamentos() {
             />
           </div>
         </form>
-      </Modal>
+      </Modal >
       <Footer user="patient" />
     </>
   );
