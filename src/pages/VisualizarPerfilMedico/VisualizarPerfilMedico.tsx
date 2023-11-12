@@ -51,7 +51,7 @@ const VisualizacaoPerfilMedico = () => {
           <ProfileDoctorCard
             name={name}
             specialty="Infectologista"
-            agreements="Unimed SulAmerica"
+            agreements="Unimed Sul"
             crm={crm + " - " + uf}
             email={email}
             phone={phone}
