@@ -12,6 +12,10 @@ export default function MenuMedicamentos() {
     navigate(ROUTES.LISTA_MEDICAMENTOS());
   };
 
+  const handleClickAgendaMedicamentos = () => {
+    navigate(ROUTES.AGENDA_REMEDIOS());
+  };
+
   return (
     <>
       <HeaderHome title="Medicamentos" type="headerPage" />
@@ -19,9 +23,7 @@ export default function MenuMedicamentos() {
         <CardMedicamentos iconType="icon1" onClick={handleClickMyList} />
         <CardMedicamentos
           iconType="icon2"
-          onClick={() => {
-            console.log('agenda remedios');
-          }}
+          onClick={handleClickAgendaMedicamentos}
         />
       </div>
       <Footer user="patient" />
