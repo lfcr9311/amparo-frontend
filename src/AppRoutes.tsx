@@ -21,7 +21,6 @@ import PageMedico from './components/FiltroBuscaMedico/PageMedico';
 import BuscaMedicamentos from './pages/BuscaMedicamentos/BuscaMedicamentos';
 import InformacoesMedico from './pages/InformacoesMedico/InformacoesMedico';
 import InformacoesPaciente from './pages/InformacoesPaciente/InformacoesPaciente';
-import Textfield from './components/Textfield/Textfield';
 import MeusPacientes from './pages/MeusPacientes/MeusPacientes';
 
 export default function AppRoutes() {
