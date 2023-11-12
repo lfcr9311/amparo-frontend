@@ -1,6 +1,10 @@
 import React, { useRef, useEffect } from 'react';
 import Lottie, { AnimationItem } from 'lottie-web';
-import LoadingAnim from '../../assets/Loading.json';
+import LoadingAnim from '../../assets/LoadingRound.json';
+//import LoadingAnim from '../../assets/LoadingNoBackg.json';
+
+// O LoadingRound é a animação com um fundo #fbf8f8 para dar o contraste certo (SUGERIDO).
+// O Loading é a animação com fundo transparente, o que deixa estranho a dinâmia das cores.
 
 const Loading: React.FC = () => {
     const animationContainer = useRef<HTMLDivElement | null>(null);

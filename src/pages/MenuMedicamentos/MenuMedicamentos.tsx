@@ -31,8 +31,13 @@ export default function MenuMedicamentos() {
 
 
 
-
 /*
+
+> Aqui é um MenuMedicamento refatorado para testar o componente de Loading.
+
+> Se quiser ver como está, para testar, use como está abaixo.
+  Também serve como exemplo para como inserir nas outras telas,
+  mas aqui é usado um ATRASO FAKE para poder testar o componente!
 
 import { useState, useEffect } from 'react';
 import { CardMedicamentos } from '../../components/CardMedicamentos/cardMedicamentos';
