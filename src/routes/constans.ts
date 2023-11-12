@@ -1,5 +1,6 @@
 export const ROUTES = {
   HOME_PACIENTE: () => '/home/paciente',
+  MEUS_PACIENTES: () => '/meus-pacientes',
   HOME_MEDICO: () => '/home/medico',
   CADASTRO_PACIENTE: () => '/cadastro/paciente',
   CADASTRO_MEDICO: () => '/cadastro/medico',
@@ -18,4 +19,5 @@ export const ROUTES = {
   FILTROBUSCAMEDICO: () => '/lista/medico',
   MENU_MEDICAMENTOS_MEDICO: () => '/menu/medicamentos/medico',
   LISTA_MEDICAMENTOS_MEDICO: () => '/lista/medicamentos/medico',
+  TELA_BUSCA_MEDICAMENTO: () => '/busca/medicamento',
 };
