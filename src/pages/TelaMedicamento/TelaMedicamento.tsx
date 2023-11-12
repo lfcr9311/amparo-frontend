@@ -13,18 +13,48 @@ interface MedicamentoProps {
     id: number;
     name: string;
 
-    dosagem?: String; //tem que pegar do back
-    frequencia?: String;//tem que pegar do back
-    dataFinal?: String;//tem que pegar do back
+    dosagem: string; //tem que pegar do back
+    frequencia: string;//tem que pegar do back
+    dataFinal: string;//tem que pegar do back
+    unidadeMedica: string;//tem que pegar do back
 }
 
 
-export const TelaMedicamento: React.FC<MedicamentoProps> = ({ id, name, dosagem, frequencia, dataFinal }) => {
+export const TelaMedicamento: React.FC<MedicamentoProps> = ({ id, name, dosagem, frequencia, dataFinal, unidadeMedica }) => {
 
     const [modalIsOpenEdit, setModalIsOpenEdit] = useState(false);
     const [modalIsOpenBula, setModalIsOpenBula] = useState(false);
-
     const [modalIsOpenExcluir, setModalIsOpenExcluir] = useState(false);
+
+    const [dosagemEditado, setDosagemEditado] = useState('');//isso eu tenho que mandar para o back
+    const [frequenciaEditado, setFrequenciaEditado] = useState('');//isso eu tenho que mandar para o back
+    const [dataFinalEditado, setDataFinalEditado] = useState('');//isso eu tenho que mandar para o back
+    const [unidadeMedidaEditado, setUnidadeMedidaEditado] = useState('');//isso eu tenho que mandar para o back
+
+    const handleSalvarEdicao = (dadosEditados: any) => {
+        const objetosAlterados = [];
+
+        if (dadosEditados.dosagem !== undefined) {
+            setDosagemEditado(dadosEditados.dosagem);
+            objetosAlterados.push({ campo: 'dosagem', valor: dosagemEditado });
+        }
+        if (dadosEditados.frequencia !== undefined) {
+            setFrequenciaEditado(dadosEditados.frequencia);
+            objetosAlterados.push({ campo: 'frequencia', valor: frequenciaEditado });
+        }
+        if (dadosEditados.dataFinal !== undefined) {
+            setDataFinalEditado(dadosEditados.dataFinal);
+            objetosAlterados.push({ campo: 'dataFinal', valor: dataFinalEditado });
+        }
+        if (dadosEditados.unidadeMedida !== undefined) {
+            setUnidadeMedidaEditado(dadosEditados.unidadeMedida);
+            objetosAlterados.push({ campo: 'unidadeMedida', valor: unidadeMedidaEditado });
+        }
+
+
+        //aqui eu envio os dados editados para back
+        
+    };
 
 
     const [listaIncompatibilidade, setListaIncompatibilidade] = useState<any[]>([]);
@@ -77,21 +107,27 @@ export const TelaMedicamento: React.FC<MedicamentoProps> = ({ id, name, dosagem,
 
             <div className='body-container-remedio'>
                 <div className='div-edit-medicamento'>
-                    <div> <ButtonMUI
-                        onClick={() => setModalIsOpenEdit(!modalIsOpenEdit)}
-                        className="edition-icon-medicamento"
-                    >
+                    <div>
+                        <ButtonMUI
+                            onClick={() => setModalIsOpenEdit(!modalIsOpenEdit)}
+                            className="edition-icon-medicamento"
+                        >
 
-                        <img src={EditIcon} style={{width:'32px',height:  '32px'}} />
-                    </ButtonMUI>
-                        {modalIsOpenEdit && <ModalEdicaoDosagem isOpen={modalIsOpenEdit} onClose={() => setModalIsOpenEdit(false)} />}
+                            <img src={EditIcon} style={{ width: '32px', height: '32px' }} />
+                        </ButtonMUI>
+                        {modalIsOpenEdit &&
+                            <ModalEdicaoDosagem isOpen={modalIsOpenEdit} onClose={() => setModalIsOpenEdit(false)}
+                                dosagemRecebida={dosagem} unidadeMedica={unidadeMedica} frequenciaRecebida={frequencia}
+                                dataFinalRecebida={dataFinal !== null ? dataFinal : undefined}
+                                onSalvar={handleSalvarEdicao}
+                            />}
                     </div>
                 </div>
                 <div className='nome-remedio'> {name}</div>
 
                 <div className='infos-remedio'>
                     <br />
-                    <div>Dosagem: <span className='informacao-de-uso-remedio'>{dosagem}</span></div>
+                    <div>Dosagem: <span className='informacao-de-uso-remedio'>{dosagem} {unidadeMedica}</span> </div>
                     <br />
 
                     <div >Frequencia: <span className='informacao-de-uso-remedio'>{frequencia}</span></div>

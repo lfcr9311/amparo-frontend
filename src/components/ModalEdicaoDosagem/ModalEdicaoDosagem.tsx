@@ -7,15 +7,18 @@ import SelectFrequencia from '../../components/Modal/Components/SelectFrequencia
 import DateModal from '../../components/Modal/Components/DateModal/DateModal';
 import Checkbox from '@mui/material/Checkbox';
 import DosagemModal from '../../components/Modal/Components/DosagemModal/dosagemModal';
+import { da } from 'date-fns/locale';
 
 
 
 interface ModalEdicaoDosagemProps {
     isOpen: boolean;
     onClose: () => void;
-    dosagemRecebida?: string;
-    frequenciaRecebida?: string;
-    dataFinalRecebida?: string | "Uso contínuo";
+    dosagemRecebida: string;
+    frequenciaRecebida: string;
+    dataFinalRecebida?: string;
+    unidadeMedica: string;
+    onSalvar: (dadosEditados: any) => void;
 }
 
 export const ModalEdicaoDosagem: React.FC<ModalEdicaoDosagemProps> = ({
@@ -24,14 +27,21 @@ export const ModalEdicaoDosagem: React.FC<ModalEdicaoDosagemProps> = ({
     dosagemRecebida,
     frequenciaRecebida,
     dataFinalRecebida,
+    unidadeMedica,
+    onSalvar
 }) => {
-    const [usoContinuo, setUsoContinuo] = useState(false);
+    const [dataFinal, setDataFinal] = useState(dataFinalRecebida || '');
     const [dosagem, setDosagem] = useState(dosagemRecebida || '');
     const [frequencia, setFrequencia] = useState(frequenciaRecebida || '');
-    const [dataFinal, setDataFinal] = useState(dataFinalRecebida || '');
-    const [erroData, setErroData] = useState(false);
+    const [unidadeMedida, setUnidadeMedida] = useState(unidadeMedica || '');
+    const [usoContinuo, setUsoContinuo] = useState(dataFinalRecebida === undefined);
+
     const [mensagemErroData, setMensagemErroData] = useState('');
-    const [unidadeMedida, setUnidadeMedida] = useState('mg');
+    const [erroData, setErroData] = useState(false);
+
+
+
+
 
     const resetModal = () => {
         setDosagem('');
@@ -65,6 +75,22 @@ export const ModalEdicaoDosagem: React.FC<ModalEdicaoDosagemProps> = ({
         } else {
             setErroData(false);
             setMensagemErroData("");
+            //aqui tenho que retornar os dados editados para a tela de medicamento
+            const dadosEditados: any = {};
+            if (dosagem !== dosagemRecebida) {
+                dadosEditados.dosagem = dosagem;
+            }
+            if (unidadeMedida !== unidadeMedica) {
+                dadosEditados.unidadeMedida = unidadeMedida;
+            }
+            if (frequencia !== frequenciaRecebida) {
+                dadosEditados.frequencia = frequencia;
+            }
+            if (dataFinal !== dataFinalRecebida) {
+                dadosEditados.dataFinal = dataFinal;
+            }
+    
+            onSalvar(dadosEditados);
         }
 
         onClose();
