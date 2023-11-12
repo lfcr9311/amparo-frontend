@@ -40,6 +40,20 @@ export const isLogged = async () => {
     throw error;
   }
 };
+
+export const editUser = async (name: String, cellphone: String, cpf: String, profilePicture: String, email: String, birthDate: String, nroSus: String) => {
+  try {
+    const response = await axios.put('/patient', { name, cellphone, cpf, profilePicture, email, birthDate, numSus: nroSus }, {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem("authToken")
+      }
+    });
+    return response.data
+  }
+  catch (error) {
+    console.log(error)
+  }
+}
 export const getExamesPendente = async () => {
   try {
     const response = await axios.get(`/patient/exam/pending`, {
@@ -116,7 +130,7 @@ export const registerDoctor = async (email: String, name: String, password: Stri
   }
 }
 
-export const registerUser = async (email: String, name: String, password: String, cellphone: String, userType: String, cpf: String, numSus: String, birthDate: String) => {
+export const registerUser = async (email: String, name: String, password: String, cellphone: String | null, userType: String, cpf: String, numSus: String | null, birthDate: String) => {
   const registerBody = {
     email: email,
     name: name,
