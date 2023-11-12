@@ -10,7 +10,7 @@ interface ProfileDoctorCardProps {
   name: string;
   specialty: string;
   agreements: string;
-  crm: number;
+  crm: string;
   profilePicture?: string;
   email: string;
   phone: string;

@@ -2,7 +2,7 @@ import './VisualizarPerfilMedico.css';
 import HeaderHome from '../../components/HeaderHome/HeaderHome';
 import Footer from '../../components/Footer/Footer';
 import Modal from '../../components/Modal/Modal';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ProfileDoctorCard from '../../components/ProfileDoctorCard/ProfileDoctorCard';
 import TextfieldModal from '../../components/Modal/Components/TextfieldModal';
 import SelectConvenios from '../../components/Modal/Components/SelectConvenios/SelectConvenios';
@@ -11,16 +11,28 @@ import CustomButton from '../../components/Button/Button';
 import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../routes/constans';
+import { getDoctor } from '../../utils/apiService';
 
 const VisualizacaoPerfilMedico = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
   const [uf, setUf] = useState('');
   const [crm, setCrm] = useState('');
   const [ddd, setDdd] = useState('');
   const [phone, setPhone] = useState('');
   const [convenios, setConvenios] = useState('');
   const navigate = useNavigate()
+  useEffect(() => {
+    getDoctor().then((response) => {
+      const att = response.data
+      setName(att.name)
+      setUf(att.uf)
+      setCrm(att.crm)
+      setEmail(att.email)
+      setPhone(att.cellphone)
+    })
+  }, [])
   const handleDeletar = () => {
     console.log("im here");
 
@@ -37,12 +49,12 @@ const VisualizacaoPerfilMedico = () => {
       <div className="container">
         <div className="profile-card-container">
           <ProfileDoctorCard
-            name="Dr João Silva"
+            name={name}
             specialty="Infectologista"
             agreements="Unimed SulAmerica"
-            crm={123456}
-            email="joaosilva1@hotmail.com"
-            phone="(33) 33333-3333"
+            crm={crm + " - " + uf}
+            email={email}
+            phone={phone}
             edit={() => setIsModalOpen(!isModalOpen)}
             alterarSenha={() => console.log('Alterar Senha')}
           />
