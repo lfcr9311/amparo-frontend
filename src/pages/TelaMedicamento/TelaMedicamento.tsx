@@ -68,28 +68,23 @@ export const TelaMedicamento: React.FC<MedicamentoProps> = ({ idDosagem }) => {
         getDosage(idDosagem).then((dosage) => {
             setDosagem(dosage.quantity);
             setFrequencia(dosage.frequency);
-
             const datef = format(new Date(dosage.finalDate), 'dd/MM/yyyy');
             setDataFinal(datef);
             setUnidadeMedida(dosage.unit);
-            console.log(idMedicine, Number(idMedicine));
             setName(dosage.medicineName);
             setIdMedicine(dosage.idMedicine);
-
+            getIncompatibily(dosage.idMedicine);
         }).catch((error) => { console.error(error) }).finally(() => {
         });
-
-
     }, []);
 
     const [listaIncompatibilidade, setListaIncompatibilidade] = useState<any[]>([]);
 
-    useState(() => {
-        console.log(idMedicine, Number(idMedicine));
+    const getIncompatibily = async (idMedicine: string) => {
         getIncompatibilyList(Number(idMedicine)).then((listIncompatibility) => {
             setListaIncompatibilidade(listIncompatibility)
         });
-    });
+    }
 
     const ColorButtonBula = styled(ButtonMUI)<ButtonProps>(() => ({
         width: '162px',
