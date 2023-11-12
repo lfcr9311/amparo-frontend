@@ -13,9 +13,9 @@ interface CustomListaInteracoesProps {
 }
 
 const classificandoIcones: Record<string, React.ReactNode> = {
-  1: <img src={IconeMedicamentoBom} alt="Bom" />,
-  2: <img src={IconeMedicamentoMedio} alt="Médio" />,
-  3: <img src={IconeMedicamentoRuim} alt="Ruim" style={{ marginRight: '-3.5px' }} />,
+  1: <img src={IconeMedicamentoBom} alt="Bom"  style={ { height: '26px'}}/>,
+  2: <img src={IconeMedicamentoMedio} alt="Médio" style={ { height: '26px'}}/>,
+  3: <img src={IconeMedicamentoRuim} alt="Ruim" style={{ marginRight: '-3.5px', height: '33px' }} />,
 };
 
 export const ListaInteracoes: React.FC<CustomListaInteracoesProps> = ({ items }) => {

@@ -4,14 +4,13 @@
     flex-direction: column;
     min-height: 50%;
     margin-top: 3%;
-    min-width: 75%;
-    align-items: left;
+    min-width: 15%;
     padding: 20px;
     padding-bottom: 50px;
     border-radius: 12px;
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
     overflow-y: scroll;
-    background-color:#FBF8F8 ;
+    background-color: #FBF8F8;
 
 
 
@@ -42,7 +41,9 @@
     display: fixed;
     border: none;
     background-color: #fbf8f8;
-    right: 15%;
+    
+    left: 12%;
+   
 }
 
 .infos-remedio {

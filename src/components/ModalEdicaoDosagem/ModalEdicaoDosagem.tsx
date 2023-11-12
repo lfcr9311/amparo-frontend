@@ -67,9 +67,8 @@ export const ModalEdicaoDosagem: React.FC<ModalEdicaoDosagemProps> = ({
             setMensagemErroData("");
         }
 
-        onClose(); // Fechar o modal ao salvar
+        onClose();
         resetModal();
-        // Adicione aqui a lógica para salvar o medicamento ou fazer outras ações necessárias
     };
 
     return (
@@ -77,31 +76,33 @@ export const ModalEdicaoDosagem: React.FC<ModalEdicaoDosagemProps> = ({
             isOpen={isOpen}
             title=" Medicamento"
             isClose={() => {
-                onClose(); // Fechar o modal ao clicar no botão de fechar
+                onClose();
                 resetModal();
             }}
         >
             <form>
-                <div className="content-texto-modal">
-                    <DosagemModal
-                        dosagem={dosagem}
-                        unidadeMedida={unidadeMedida}
-                        onDosagemChange={(novaDosagem: string) => setDosagem(novaDosagem)}
-                        onUnidadeMedidaChange={(novaUnidade: string) => setUnidadeMedida(novaUnidade)}
-                    />
-                </div>
-                <div className="frequencia-data">
-                    <SelectFrequencia
-                        value={frequencia}
-                        onChange={(selectedValue) => setFrequencia(selectedValue)}
-                    />
-                    <DateModal
-                        value={dataFinal}
-                        onChange={(selectedDate) => setDataFinal(selectedDate)}
-                        disabled={usoContinuo}
-                        error={erroData}
-                        helperText={mensagemErroData}
-                    />
+                <div className='dosagem-medicamentos-box'>
+                    <div className="content-texto-modal">
+                        <DosagemModal
+                            dosagem={dosagem}
+                            unidadeMedida={unidadeMedida}
+                            onDosagemChange={(novaDosagem: string) => setDosagem(novaDosagem)}
+                            onUnidadeMedidaChange={(novaUnidade: string) => setUnidadeMedida(novaUnidade)}
+                        />
+                    </div>
+                    <div className="frequencia-data">
+                        <SelectFrequencia
+                            value={frequencia}
+                            onChange={(selectedValue) => setFrequencia(selectedValue)}
+                        />
+                        <DateModal
+                            value={dataFinal}
+                            onChange={(selectedDate) => setDataFinal(selectedDate)}
+                            disabled={usoContinuo}
+                            error={erroData}
+                            helperText={mensagemErroData}
+                        />
+                    </div>
                 </div>
                 <div className="checkbox-container">
                     <Checkbox

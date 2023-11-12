@@ -82,9 +82,10 @@ export const TelaMedicamento: React.FC<MedicamentoProps> = ({ id, name, dosagem,
                         className="edition-icon-medicamento"
                     >
 
-                        <img src={EditIcon} />
+                        <img src={EditIcon} style={{width:'32px',height:  '32px'}} />
                     </ButtonMUI>
-                        {modalIsOpenEdit && <ModalEdicaoDosagem isOpen={modalIsOpenEdit} onClose={() => setModalIsOpenEdit(false)} />}                    </div>
+                        {modalIsOpenEdit && <ModalEdicaoDosagem isOpen={modalIsOpenEdit} onClose={() => setModalIsOpenEdit(false)} />}
+                    </div>
                 </div>
                 <div className='nome-remedio'> {name}</div>
 
