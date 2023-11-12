@@ -131,18 +131,19 @@ export default function AppRoutes() {
               </PrivateRoute>
             }
           />
-          <Route path={ROUTES.EXAMES()} element={
-            <PrivateRoute>
-              <Exames />
-            </PrivateRoute>
-          } />
+          <Route
+            path={ROUTES.EXAMES()} element={
+              <PrivateRoute>
+                <Exames />
+              </PrivateRoute>
+            } />
+          <Route
+            path={ROUTES.AGENDA_REMEDIOS()} element={
+              <PrivateRoute>
+                <MedicamentoAgenda />
+              </PrivateRoute>
+            } />
         </Routes>
-
-        <Route path={ROUTES.AGENDA_REMEDIOS()} element={
-          <PrivateRoute>
-            <MedicamentoAgenda />
-          </PrivateRoute>
-        } />
       </div>
     </Router >
   );
