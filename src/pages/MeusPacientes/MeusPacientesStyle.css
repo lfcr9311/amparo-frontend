@@ -13,6 +13,10 @@
   width: 85%;
 }
 
+.warning {
+  text-align: center;
+}
+
 .modal-content-container {
   display: flex;
   flex-direction: column;

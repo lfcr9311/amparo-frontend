@@ -19,6 +19,7 @@ import ListaDeInteracaoDoMedicamento from './pages/ListaDeInteracaoDoMedicamento
 import MeusMedicos from './pages/MeusMedicos/MeusMedicos';
 import PageMedico from './components/FiltroBuscaMedico/PageMedico';
 import BuscaMedicamentos from './pages/BuscaMedicamentos/BuscaMedicamentos';
+import MeusPacientes from './pages/MeusPacientes/MeusPacientes';
 
 export default function AppRoutes() {
   const fetchData = async () => {
@@ -53,6 +54,12 @@ export default function AppRoutes() {
           <Route path={ROUTES.HOME_PACIENTE()}
             element={<PrivateRoute>
               <HomePaciente />
+            </PrivateRoute>
+            } />
+
+          <Route path={ROUTES.MEUS_PACIENTES()}
+            element={<PrivateRoute>
+              <MeusPacientes />
             </PrivateRoute>
             } />
 
