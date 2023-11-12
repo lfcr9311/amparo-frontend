@@ -18,6 +18,7 @@ import EdicaoExameRealizado from './pages/EdicaoExameRealizado/EdicaoExameRealiz
 import ListaDeInteracaoDoMedicamento from './pages/ListaDeInteracaoDoMedicamento/ListaDeInteracaoDomedicamento';
 import MeusMedicos from './pages/MeusMedicos/MeusMedicos';
 import PageMedico from './components/FiltroBuscaMedico/PageMedico';
+import MedicamentoAgenda from './components/MedicamentoAgenda/MedicamentoAgenda';
 
 export default function AppRoutes() {
   const fetchData = async () => {
@@ -136,7 +137,13 @@ export default function AppRoutes() {
             </PrivateRoute>
           } />
         </Routes>
+
+        <Route path={ROUTES.AGENDA_REMEDIOS()} element={
+          <PrivateRoute>
+            <MedicamentoAgenda />
+          </PrivateRoute>
+        } />
       </div>
-    </Router>
+    </Router >
   );
 }

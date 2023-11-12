@@ -3,13 +3,14 @@ import './MedicamentoAgenda.css';
 import { ArrowBackIosNewRounded } from '@mui/icons-material';
 
 interface MedicamentoAgendaProps {
-    title: React.ReactNode;
-    content: React.ReactNode;
-    onInfoClick: () => void;
-    onDeleteClick: () => void;
+    title?: React.ReactNode;
+    content?: React.ReactNode;
+    onInfoClick?: () => void;
+    onDeleteClick?: () => void;
 }
 
-const MedicamentoAgenda: React.FC<MedicamentoAgendaProps> = ({ title, content, onInfoClick, onDeleteClick }) => {
+const MedicamentoAgenda: React.FC<MedicamentoAgendaProps> = ({ title,
+    content, onInfoClick, onDeleteClick }) => {
     const [active, setActive] = useState(false);
     const [height, setHeight] = useState('0px');
     const [rotate, setRotate] = useState('rotate(-90deg)');
