@@ -22,6 +22,7 @@ import BuscaMedicamentos from './pages/BuscaMedicamentos/BuscaMedicamentos';
 import InformacoesMedico from './pages/InformacoesMedico/InformacoesMedico';
 import InformacoesPaciente from './pages/InformacoesPaciente/InformacoesPaciente';
 import Textfield from './components/Textfield/Textfield';
+import MeusPacientes from './pages/MeusPacientes/MeusPacientes';
 
 export default function AppRoutes() {
   const fetchData = async () => {
@@ -56,6 +57,12 @@ export default function AppRoutes() {
           <Route path={ROUTES.HOME_PACIENTE()}
             element={<PrivateRoute>
               <HomePaciente />
+            </PrivateRoute>
+            } />
+
+          <Route path={ROUTES.MEUS_PACIENTES()}
+            element={<PrivateRoute>
+              <MeusPacientes />
             </PrivateRoute>
             } />
 

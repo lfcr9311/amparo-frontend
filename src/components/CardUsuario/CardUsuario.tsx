@@ -22,7 +22,7 @@ export default function CardUsuario({
           src={profilePicture || DefaultProfilePicture}
           className="avatarStyle"
         />
-        <span className="cardValueTextStyle">Dr. {name}</span>
+        <span className="cardValueTextStyle">{name}</span>
 
         <img src={RightArrow} alt="Right Arrow" className="rightArrowStyle" />
       </button>
