@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
 import HeaderHome from '../../components/HeaderHome/HeaderHome';
-import './MeusMedicosStyle.css'; // Importe o arquivo CSS
+import './MeusPacientesStyle.css';
 import Footer from '../../components/Footer/Footer';
 import Modal from '../../components/Modal/Modal';
-import ModalDetalhesMedico from '../../components/ModalDetalhesMedico/ModalDetalhesMedico';
-import Solicitacao from '../../components/Modal/Components/Solicitacao/SolicitacaoModal';
 import CardUsuario from '../../components/CardUsuario/CardUsuario';
-import { Alert, CircularProgress, Snackbar } from '@mui/material';
-import { addDoctor, fetchMeusMedicos, searchDoctor } from '../../utils/apiService.tsx';
+import ModalDetalhesPaciente from '../../components/ModalDetalhesPaciente/ModalDetalhesPaciente.tsx';
+import { fetchMeusPacientes } from '../../utils/apiService.tsx';
+import { CircularProgress, Icon } from '@mui/material';
 
 interface Paciente {
   id: number;
@@ -21,9 +20,8 @@ interface Paciente {
   numSus: string;
 }
 
-const MeusMedicos: React.FC = () => {
+const MeusPacientes: React.FC = () => {
   const [isModalDetalhesOpen, setisModalDetalhesOpen] = useState(false);
-  const [isModalSolicitacaoOpen, setisModalSolicitacaoOpen] = useState(false);
   const [pacientes, setPacientes] = useState<Paciente[]>([]);
   const [originalPaciente, setOriginalPaciente] = useState<Paciente[]>([]);
   const [paciente, setPaciente] = useState<Paciente>();
@@ -38,7 +36,7 @@ const MeusMedicos: React.FC = () => {
 
   const fetchData = async () => {
     try {
-      const pacientes = await fetchMeusMedicos();
+      const pacientes = await fetchMeusPacientes();
       setOriginalPaciente(pacientes);
       setPacientes(pacientes);
     } catch (err) {
@@ -66,10 +64,6 @@ const MeusMedicos: React.FC = () => {
     setPaciente(selectedPaciente);
   };
 
-  const handleAddButtonClick = () => {
-    setisModalSolicitacaoOpen(!isModalSolicitacaoOpen);
-  };
-
   useEffect(() => {
     if (setSuccessSnackbar) {
       setTimeout(() => {
@@ -88,7 +82,7 @@ const MeusMedicos: React.FC = () => {
 
   return (
     <>
-      <HeaderHome title='Meus Médicos' type='headerPage' />
+      <HeaderHome title='Meus Pacientes' type='headerPage' />
       {isLoading && <CircularProgress color='error' />}
       {!isLoading && (
         <>
@@ -100,19 +94,12 @@ const MeusMedicos: React.FC = () => {
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
             />
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              width='36'
-              height='36'
-              viewBox='0 0 36 36'
-              fill='none'
-              onClick={handleAddButtonClick}
-            >
-              <path
-                d='M18 0C8.064 0 0 8.064 0 18C0 27.936 8.064 36 18 36C27.936 36 36 27.936 36 18C36 8.064 27.936 0 18 0ZM27 19.8H19.8V27H16.2V19.8H9V16.2H16.2V9H19.8V16.2H27V19.8Z'
-                fill='#E10E17'
+            <Icon>
+              <img
+                src='https://img.icons8.com/material-outlined/24/000000/search--v1.png'
+                alt='Ícone de pesquisa'
               />
-            </svg>
+            </Icon>
           </div>
           <div className='my-doctors-container'>
             {pacientes.length > 0 ? (
@@ -126,7 +113,7 @@ const MeusMedicos: React.FC = () => {
               ))
             ) : (
               <div className='no-doctors'>
-                <h3>Não foram encontrados pacientes.</h3>
+                <h3 className='warning'>Não foram encontrados pacientes.</h3>
               </div>
             )}
           </div>
@@ -138,41 +125,16 @@ const MeusMedicos: React.FC = () => {
         title=''
         isClose={() => setisModalDetalhesOpen(!isModalDetalhesOpen)}
       >
-        <ModalDetalhesMedico
-          medico={medico}
+        <ModalDetalhesPaciente
+          paciente={paciente}
           isModalOpen={isModalDetalhesOpen}
           setIsModalOpen={setisModalDetalhesOpen}
-          setMedico={setMedico}
+          setpaciente={setPaciente}
         />
       </Modal>
-      <Solicitacao
-        isModalOpen={isModalSolicitacaoOpen}
-        setIsModalOpen={setisModalSolicitacaoOpen}
-        onClickButton={onClickButton}
-        setCrm={setCrm}
-        crm={crm}
-        setUf={setUf}
-        uf={uf}
-      />
-
-      <Snackbar open={successSnackbar} autoHideDuration={6000}>
-        <Alert onClose={() => {
-          setSuccessSnackbar(false);
-        }} severity="success" sx={{ width: '100%' }}>
-          Solicitação enviada com sucesso!
-        </Alert>
-      </Snackbar>
-
-      <Snackbar open={errorSnackbar} autoHideDuration={6000}>
-        <Alert onClose={() => {
-          setErrorSnackbar(false);
-        }} severity="error" sx={{ width: '100%' }}>
-          Erro ao enviar solicitação!
-        </Alert>
-      </Snackbar>
-      <Footer user='patient' />
+      <Footer user='doctor' />
     </>
   );
 };
 
-export default MeusMedicos;
+export default MeusPacientes;

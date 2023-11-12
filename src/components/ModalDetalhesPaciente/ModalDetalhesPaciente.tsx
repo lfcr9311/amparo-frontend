@@ -1,6 +1,8 @@
 import DefaultProfilePicture from '../../assets/DefaultProfilePicture.svg';
 import { Dispatch, SetStateAction } from 'react';
-
+import './ModalDetalhesPaciente.css';
+import ExameIcon from '../../assets/ExameIcon.svg';
+import MedicamentosIcon from '../../assets/MedicationIcon.svg';
 interface Paciente {
   id: number;
   email: string;
@@ -19,6 +21,14 @@ interface ModalDetalhesPacienteProps {
   setIsModalOpen: (value: boolean) => void;
   setpaciente: Dispatch<SetStateAction<any>>;
 }
+
+const handleClickMedicamentos = () => {
+  console.log('Medicamentos');
+};
+
+const handleClickExames = () => {
+  console.log('Exames');
+};
 
 const ModalDetalhesPaciente = ({
   paciente,
@@ -42,7 +52,7 @@ const ModalDetalhesPaciente = ({
             fontWeight: 'bold',
           }}
         >
-          Cpf:
+          CPF:
         </span>{' '}
         {`${paciente?.cpf}`}
       </p>
@@ -64,11 +74,22 @@ const ModalDetalhesPaciente = ({
         >
           NºSUS:
         </span>{' '}
-        {`${paciente?.numSus}`}
+        {`${paciente?.numSus == null ? 'Não informado' : paciente?.numSus}`}  
       </p>
-
-     
-
+      <div className='buttons-box'>
+          <div className='button-card'>
+            <button className='button' onClick={handleClickExames}>
+              <img className='icon' src={ExameIcon} alt="" />
+            </button>
+            <h4 className='text-button'>Exames</h4>
+          </div>
+          <div className='button-card'>
+            <button className='button' onClick={handleClickMedicamentos}>
+              <img className='icon' src={MedicamentosIcon} alt="" />
+            </button>
+            <h4 className='text-button'>Medicamentos</h4>
+          </div>
+      </div>
       <button
         className="close-button"
         onClick={() => {

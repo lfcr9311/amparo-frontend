@@ -86,7 +86,7 @@ const MeusMedicos: React.FC = () => {
       }, 2000);
     }
   }, [errorSnackbar]);
-  
+
   const onClickButton = () => {
     searchDoctor(crm, uf).then((response) => {
       addDoctor(response.data.id).then((response) => {
@@ -144,7 +144,7 @@ const MeusMedicos: React.FC = () => {
               medicos.map((medico) => (
                 <CardUsuario
                   key={medico.id}
-                  name={medico.name}
+                  name={'Dr. ' + medico.name}
                   profilePicture={medico.profilePicture}
                   onClick={() => handleCardClick(medico)}
                 />
