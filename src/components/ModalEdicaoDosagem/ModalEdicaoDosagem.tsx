@@ -7,7 +7,6 @@ import SelectFrequencia from '../../components/Modal/Components/SelectFrequencia
 import DateModal from '../../components/Modal/Components/DateModal/DateModal';
 import Checkbox from '@mui/material/Checkbox';
 import DosagemModal from '../../components/Modal/Components/DosagemModal/dosagemModal';
-import { da } from 'date-fns/locale';
 
 
 
@@ -75,7 +74,6 @@ export const ModalEdicaoDosagem: React.FC<ModalEdicaoDosagemProps> = ({
         } else {
             setErroData(false);
             setMensagemErroData("");
-            //aqui tenho que retornar os dados editados para a tela de medicamento
             const dadosEditados: any = {};
             if (dosagem !== dosagemRecebida) {
                 dadosEditados.dosagem = dosagem;

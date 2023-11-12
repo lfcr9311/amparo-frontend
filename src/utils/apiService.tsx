@@ -14,6 +14,21 @@ export const login_post = async (email: String, psw: String) => {
   }
 };
 
+
+export const getDosage = async (dosageId: string) => {
+  try {
+    const response = await axios.get(`/dosage/${dosageId}`, {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem("authToken")
+      }
+    })
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}
+
+
 export const getIncompatibilyList = async (medicineId: number) => {
   try {
     const response = await axios.get(`/medicine/incompatibility/${medicineId}`, {

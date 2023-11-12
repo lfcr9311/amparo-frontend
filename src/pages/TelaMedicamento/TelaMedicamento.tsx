@@ -1,65 +1,92 @@
 import { ListaInteracoesRebaixada } from '../../components/ListaDeMedicamentosRebaixada/ListaDeMedicamentosRebaixada';
 import HeaderHome from '../../components/HeaderHome/HeaderHome';
 import Footer from '../../components/Footer/Footer';
-import { getIncompatibilyList } from '../../utils/apiService';
+import { getDosage, getIncompatibilyList } from '../../utils/apiService';
 import ButtonMUI, { ButtonProps } from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import EditIcon from '../../assets/EditIcon.svg';
 import './TelaMedicamento.css';
 import { ModalEdicaoDosagem } from '../../components/ModalEdicaoDosagem/ModalEdicaoDosagem';
 import DeleteMedicamento from '../../components/Modal/Components/DeleteMedicamento/DeleteMedicamento';
-interface MedicamentoProps {
-    id: number;
-    name: string;
+import { format } from 'date-fns';
+import { id } from 'date-fns/locale';
 
-    dosagem: string; //tem que pegar do back
-    frequencia: string;//tem que pegar do back
-    dataFinal: string;//tem que pegar do back
-    unidadeMedica: string;//tem que pegar do back
+
+interface MedicamentoProps {
+    idDosagem: string;
+
+
 }
 
 
-export const TelaMedicamento: React.FC<MedicamentoProps> = ({ id, name, dosagem, frequencia, dataFinal, unidadeMedica }) => {
+export const TelaMedicamento: React.FC<MedicamentoProps> = ({ idDosagem }) => {
 
     const [modalIsOpenEdit, setModalIsOpenEdit] = useState(false);
     const [modalIsOpenBula, setModalIsOpenBula] = useState(false);
     const [modalIsOpenExcluir, setModalIsOpenExcluir] = useState(false);
 
-    const [dosagemEditado, setDosagemEditado] = useState('');//isso eu tenho que mandar para o back
-    const [frequenciaEditado, setFrequenciaEditado] = useState('');//isso eu tenho que mandar para o back
-    const [dataFinalEditado, setDataFinalEditado] = useState('');//isso eu tenho que mandar para o back
-    const [unidadeMedidaEditado, setUnidadeMedidaEditado] = useState('');//isso eu tenho que mandar para o back
+    const [dosagemC, setDosagem] = useState('');
+    const [frequenciaC, setFrequencia] = useState('');
+    const [dataFinalC, setDataFinal] = useState('');
+    const [unidadeMedidaC, setUnidadeMedida] = useState('');
+    const [name, setName] = useState('');
+    const [idMedicine, setIdMedicine] = useState('');
+
 
     const handleSalvarEdicao = (dadosEditados: any) => {
         const objetosAlterados = [];
 
         if (dadosEditados.dosagem !== undefined) {
-            setDosagemEditado(dadosEditados.dosagem);
-            objetosAlterados.push({ campo: 'dosagem', valor: dosagemEditado });
+            setDosagem(dadosEditados.dosagem);
+            objetosAlterados.push({ campo: 'dosagem', valor: dosagemC });
         }
         if (dadosEditados.frequencia !== undefined) {
-            setFrequenciaEditado(dadosEditados.frequencia);
-            objetosAlterados.push({ campo: 'frequencia', valor: frequenciaEditado });
+            setFrequencia(dadosEditados.frequencia);
+            objetosAlterados.push({ campo: 'frequencia', valor: frequenciaC });
         }
         if (dadosEditados.dataFinal !== undefined) {
-            setDataFinalEditado(dadosEditados.dataFinal);
-            objetosAlterados.push({ campo: 'dataFinal', valor: dataFinalEditado });
+            setDataFinal(dadosEditados.dataFinal);
+            objetosAlterados.push({ campo: 'dataFinal', valor: dataFinalC });
         }
         if (dadosEditados.unidadeMedida !== undefined) {
-            setUnidadeMedidaEditado(dadosEditados.unidadeMedida);
-            objetosAlterados.push({ campo: 'unidadeMedida', valor: unidadeMedidaEditado });
+            setUnidadeMedida(dadosEditados.unidadeMedida);
+            objetosAlterados.push({ campo: 'unidadeMedida', valor: unidadeMedidaC });
         }
+
+
 
 
         //aqui eu envio os dados editados para back
-        
+
     };
 
 
+
+    useEffect(() => {
+
+        getDosage(idDosagem).then((dosage) => {
+            setDosagem(dosage.quantity);
+            setFrequencia(dosage.frequency);
+
+            const datef = format(new Date(dosage.finalDate), 'dd/MM/yyyy');
+            setDataFinal(datef);
+            setUnidadeMedida(dosage.unit);
+            console.log(idMedicine, Number(idMedicine));
+            setName(dosage.medicineName);
+            setIdMedicine(dosage.idMedicine);
+
+        }).catch((error) => { console.error(error) }).finally(() => {
+        });
+
+
+    }, []);
+
     const [listaIncompatibilidade, setListaIncompatibilidade] = useState<any[]>([]);
+
     useState(() => {
-        getIncompatibilyList(id).then((listIncompatibility) => {
+        console.log(idMedicine, Number(idMedicine));
+        getIncompatibilyList(Number(idMedicine)).then((listIncompatibility) => {
             setListaIncompatibilidade(listIncompatibility)
         });
     });
@@ -117,8 +144,8 @@ export const TelaMedicamento: React.FC<MedicamentoProps> = ({ id, name, dosagem,
                         </ButtonMUI>
                         {modalIsOpenEdit &&
                             <ModalEdicaoDosagem isOpen={modalIsOpenEdit} onClose={() => setModalIsOpenEdit(false)}
-                                dosagemRecebida={dosagem} unidadeMedica={unidadeMedica} frequenciaRecebida={frequencia}
-                                dataFinalRecebida={dataFinal !== null ? dataFinal : undefined}
+                                dosagemRecebida={dosagemC} unidadeMedica={unidadeMedidaC} frequenciaRecebida={frequenciaC}
+                                dataFinalRecebida={dataFinalC !== null ? dataFinalC : undefined}
                                 onSalvar={handleSalvarEdicao}
                             />}
                     </div>
@@ -127,13 +154,13 @@ export const TelaMedicamento: React.FC<MedicamentoProps> = ({ id, name, dosagem,
 
                 <div className='infos-remedio'>
                     <br />
-                    <div>Dosagem: <span className='informacao-de-uso-remedio'>{dosagem} {unidadeMedica}</span> </div>
+                    <div>Dosagem: <span className='informacao-de-uso-remedio'>{dosagemC} {unidadeMedidaC}</span> </div>
                     <br />
 
-                    <div >Frequencia: <span className='informacao-de-uso-remedio'>{frequencia}</span></div>
+                    <div >Frequencia: <span className='informacao-de-uso-remedio'>{frequenciaC}</span></div>
                     <br />
 
-                    <div>Data Final: <span className='informacao-de-uso-remedio'>{dataFinal}</span></div>
+                    <div>Data Final: <span className='informacao-de-uso-remedio'>{dataFinalC}</span></div>
                     <br />
 
                     <div>Medicamentos de uso conjunto:</div>
@@ -145,13 +172,11 @@ export const TelaMedicamento: React.FC<MedicamentoProps> = ({ id, name, dosagem,
                     {listaIncompatibilidade.length === 0
                         ? <div className='texto-sem-interacoes-remedio' title={'Sem interações'}>
                             <div className='div-lista-interacoes-remedio'>
-                                <ListaInteracoesRebaixada items={listaFixa} name={name} />
-                                {//colocar sem interacao  
-                                }
+                                colocar interacao
                             </div>
                         </div>
                         : <div className='div-lista-interacoes-remedio'>
-                            <ListaInteracoesRebaixada items={listaFixa} name={name} />
+                            <ListaInteracoesRebaixada items={listaIncompatibilidade} name={name} />
                         </div>
                     }
                 </div>
@@ -185,7 +210,7 @@ export const TelaMedicamento: React.FC<MedicamentoProps> = ({ id, name, dosagem,
                 </ButtonMUI>
 
 
-                {modalIsOpenExcluir && <DeleteMedicamento isModalOpen={modalIsOpenEdit} setIsModalOpen={() => setModalIsOpenExcluir(false)} />}
+                {modalIsOpenExcluir && <DeleteMedicamento isModalOpen={modalIsOpenExcluir} setIsModalOpen={() => setModalIsOpenExcluir(false)} />}
             </div>
 
             <Footer user="patient" />
