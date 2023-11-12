@@ -9,7 +9,15 @@ import IconeMedicamentoMedio from '../../assets/IconeMedicamentoMedio.svg';
 import IconeMedicamentoRuim from '../../assets/IconeMedicamentoRuim.svg';
 
 interface CustomListaInteracoesProps {
-  items: { name: string; status: number }[];
+
+  name: string;
+  items: itemsProps[];
+
+}
+interface itemsProps {
+  id: number;
+  name: string;
+  status: number;
 }
 
 const classificandoIcones: Record<string, React.ReactNode> = {

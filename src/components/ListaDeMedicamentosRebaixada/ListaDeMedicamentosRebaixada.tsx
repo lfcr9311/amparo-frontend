@@ -11,14 +11,22 @@ import IconeMedicamentoRuim from '../../assets/IconeMedicamentoRuim.svg';
 import { ROUTES } from '../../routes/constans';
 
 interface CustomListaInteracoesProps {
+
     name: string;
-    items: { name: string; status: number }[];
+    items: itemsProps[];
 
 }
+interface itemsProps {
+    id: number;
+    name: string;
+    status: number;
+}
+
+
 
 const classificandoIcones: Record<string, React.ReactNode> = {
-    1: <img src={IconeMedicamentoBom} alt="Bom"  style={ { height: '26px'}}/>,
-    2: <img src={IconeMedicamentoMedio} alt="Médio" style={ { height: '26px'}}/>,
+    1: <img src={IconeMedicamentoBom} alt="Bom" style={{ height: '26px' }} />,
+    2: <img src={IconeMedicamentoMedio} alt="Médio" style={{ height: '26px' }} />,
     3: <img src={IconeMedicamentoRuim} alt="Ruim" style={{ marginRight: '-3.5px', height: '33px' }} />,
 };
 
@@ -42,7 +50,7 @@ export const ListaInteracoesRebaixada: React.FC<CustomListaInteracoesProps> = ({
 
 
 
-    const handleLinkClick = (items: { name: string, status: number }[], nome: string) => {
+    const handleLinkClick = (items: {id:string, name: string, status: number }[], nome: string) => {
         navigate(ROUTES.LISTADEINTERACAODOMEDICAMENTO(), { state: { items: items, nome: nome } });
     };
     return (

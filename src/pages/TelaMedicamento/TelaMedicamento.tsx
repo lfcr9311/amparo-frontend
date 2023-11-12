@@ -18,6 +18,10 @@ interface MedicamentoProps {
 
 
 }
+interface IncompatybilityProps {
+    name: string;
+    status: number;
+}
 
 
 export const TelaMedicamento: React.FC<MedicamentoProps> = ({ idDosagem }) => {
@@ -82,9 +86,10 @@ export const TelaMedicamento: React.FC<MedicamentoProps> = ({ idDosagem }) => {
 
     const getIncompatibily = async (idMedicine: string) => {
         getIncompatibilyList(Number(idMedicine)).then((listIncompatibility) => {
-            setListaIncompatibilidade(listIncompatibility)
+            setListaIncompatibilidade(listIncompatibility);
         });
     }
+
 
     const ColorButtonBula = styled(ButtonMUI)<ButtonProps>(() => ({
         width: '162px',
@@ -107,20 +112,6 @@ export const TelaMedicamento: React.FC<MedicamentoProps> = ({ idDosagem }) => {
     }));
 
 
-    const listaFixa: { name: string; status: number }[] = [
-        { name: "Remédio G", status: 1 },
-        { name: "Remédio F", status: 1 },
-        { name: "Remédio A", status: 1 },
-        { name: "Remédio B", status: 1 },
-        { name: "Remédio C", status: 1 },
-        { name: "Remédio D", status: 1 },
-        { name: "Remédio A", status: 2 },
-        { name: "Remédio B", status: 2 },
-        { name: "Remédio C", status: 2 },
-        { name: "Remédio A", status: 3 },
-        { name: "Remédio B", status: 3 },
-        { name: "Remédio C", status: 3 },
-    ];
 
 
     return (
@@ -158,7 +149,7 @@ export const TelaMedicamento: React.FC<MedicamentoProps> = ({ idDosagem }) => {
                     <div>Data Final: <span className='informacao-de-uso-remedio'>{dataFinalC}</span></div>
                     <br />
 
-                    <div>Medicamentos de uso conjunto:</div>
+                    <div>Interações Medicamentosas:</div>
                     <br />
 
                 </div>
