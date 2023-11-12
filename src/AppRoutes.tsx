@@ -18,6 +18,7 @@ import EdicaoExameRealizado from './pages/EdicaoExameRealizado/EdicaoExameRealiz
 import ListaDeInteracaoDoMedicamento from './pages/ListaDeInteracaoDoMedicamento/ListaDeInteracaoDomedicamento';
 import MeusMedicos from './pages/MeusMedicos/MeusMedicos';
 import PageMedico from './components/FiltroBuscaMedico/PageMedico';
+import { TelaMedicamento } from './pages/TelaMedicamento/TelaMedicamento';
 
 export default function AppRoutes() {
   const fetchData = async () => {
@@ -26,6 +27,7 @@ export default function AppRoutes() {
   function PrivateRoute({ children }: { children: React.ReactNode }) {
     isLoggedIn().then((isAuthenticated) => {
       if (!isAuthenticated) {
+
         return window.location.href = ROUTES.LOGIN();
       }
       else if (localStorage.getItem('userId') == null) {
@@ -48,6 +50,15 @@ export default function AppRoutes() {
             </PrivateRoute>
             }
           />
+
+
+          <Route path={ROUTES.MEDICAMENTOS()}
+            element={<PrivateRoute>
+              <TelaMedicamento  idDosagem='579a9681-e166-4169-9282-bfa0326a5497
+
+' />
+            </PrivateRoute>
+            } />
 
           <Route path={ROUTES.HOME_PACIENTE()}
             element={<PrivateRoute>
