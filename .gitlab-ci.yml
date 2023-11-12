@@ -1,0 +1,21 @@
+stages:
+  - test
+  - deploy
+
+build:
+  image: node:18-alpine
+  stage: test
+  script:
+    - npm ci
+    - npm test
+    - npm run build
+
+Docker Run:
+  image: sleavely/node-awscli:18.x
+  stage: deploy
+  script:
+    - npm ci
+    - AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY npm run prod
+  only:
+    - main
+    - dev

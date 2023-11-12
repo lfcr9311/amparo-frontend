@@ -1,0 +1,19 @@
+.list-item {
+  background-color: #fff;
+  margin-top: 6px;
+  border-radius: 10px;
+  display: flex;
+  width: 312px;
+  height: 56px;
+  padding: 8px 8px 8px 10px;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.frame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}

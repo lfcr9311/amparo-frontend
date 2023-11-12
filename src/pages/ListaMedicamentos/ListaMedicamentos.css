@@ -1,0 +1,105 @@
+.title-page {
+  color: #4d4c4c;
+  font-family: Poppins;
+  font-size: 23px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-align: flex-start;
+  margin-left: -100px;
+}
+
+.meus-remedios-container {
+  max-height: 388px;
+  overflow-y: auto;
+  gap: 10px;
+  flex-direction: column;
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 45px;
+}
+
+.content-texto-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  margin-bottom: 10px;
+  max-width: 300px;
+  margin-left: 20px;
+}
+
+.frequencia-data {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.frequencia-data>.box-container-frequencia {
+  flex-grow: 1;
+}
+
+.button-save {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px;
+  color: #696969;
+  font-family: Poppins;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-bottom: -20px;
+}
+
+.success-message {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  position: fixed;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  border-radius: 5px;
+}
+
+.title-with-message {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.checkbox-error+label {
+  color: red;
+  font-weight: bold;
+}
+
+.date-modal-container {
+  position: relative;
+  width: 120px;
+  max-width: 145px;
+}
+
+.error-text {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  color: red;
+  margin-top: 5px;
+  font-size: 12px;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

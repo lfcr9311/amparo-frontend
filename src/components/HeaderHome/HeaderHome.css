@@ -1,0 +1,45 @@
+/* Header.css */
+.header {
+  background-color: #BD1E08;
+  color: white;
+  height: 10%; 
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  width: 100%;
+  border-radius: 0 0 10px 10px;
+}
+
+.header-content {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  height: 60%;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 60px;
+  font-size: larger;
+  cursor: pointer;
+  padding-left: 5%;
+}
+.leave {
+  font-family: 'Poppins';
+  margin-left: 6px;
+}
+.title {
+  font-size: 24px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-family: 'Poppins';
+  padding-right: 10px;
+}
+
+.question-mark-icon {
+  font-size: 24px;
+  padding-right:8%;
+}

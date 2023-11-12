@@ -1,0 +1,133 @@
+.card-container {
+  display: flex;
+  width: 339px;
+  height: 501px;
+  padding-top: 25px;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 12px;
+  background: #fbf8f8;
+  box-shadow: 5px 5px 8px 0px rgba(0, 0, 0, 0.25);
+  position: relative;
+}
+
+.edit-button {
+  border: none;
+  background-color: #fbf8f8;
+  position: absolute;
+  top: 25px;
+  right: 25px;
+}
+
+.profile-icon {
+  margin-top: 10%;
+}
+
+.name {
+  color: #343131;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin-top: 5px;
+  margin-bottom: 0px;
+}
+
+.specialty {
+  color: #343131;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 13px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: normal;
+  margin-top: 5px;
+  margin-bottom: 0px;
+}
+
+.text-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 25px;
+}
+
+.text-box > div {
+  margin-bottom: -20px;
+}
+
+.label {
+  display: inline-block;
+  color: #343131;
+  font-family: Poppins;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-right: 5px;
+}
+
+.agreements {
+  display: inline-block;
+  color: #343131;
+  font-family: Poppins;
+  font-size: 15px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.notifications-container {
+  display: flex;
+  text-align: center;
+}
+
+.notifications {
+  color: #343131;
+  font-family: Poppins;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.aux-box {
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  border-radius: 3px;
+  background: #dcdcdc;
+  margin-top: 30px;
+}
+
+.itens {
+  color: #343131;
+  font-family: Poppins;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.email-icon,
+.phone-icon {
+  vertical-align: middle;
+  margin-right: 12px;
+}
+
+.alterar-senha-button {
+  border: none;
+  background-color: #fbf8f8;
+  color: #656363;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-top: 7px;
+}

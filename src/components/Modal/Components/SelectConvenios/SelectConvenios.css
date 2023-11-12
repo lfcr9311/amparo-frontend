@@ -1,0 +1,43 @@
+.box-container-convenios {
+  display: flex;
+  align-items: center;
+  border-radius: 3px;
+  background: #eaeaea;
+  width: 270px;
+}
+
+.select-component-convenios {
+  color: #696969;
+  width: 270px;
+  font-family: Poppins;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  border: none;
+  outline: none;
+  background-color: #eaeaea;
+  margin: 10px;
+}
+
+.select-component-convenios .option-convenios {
+  color: #696969;
+  font-family: Poppins;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  width: 270px;
+  line-height: normal;
+  margin: 10px;
+}
+
+.select-component-convenios .option-convenios:checked {
+  color: #696969;
+  font-family: Poppins;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  width: 270px;
+  line-height: normal;
+  margin: 10px;
+}

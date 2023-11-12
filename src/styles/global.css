@@ -1,0 +1,29 @@
+#root {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+:root {
+  --cor-de-tipografia-2: #696969;
+  --cor-primaria: #e10e17;
+  --cor-secundaria: #c00d16;
+  --cor-de-fundo: #fbf8f8;
+  --white: #ffffff;
+  --cor-de-tipografia-1: #4d4c4c;
+  --cor-tipografia-geral: #191919;
+
+  --fonte-primaria: 'Poppins', sans-serif;
+  --fonte-peso-normal: 400;
+  --fonte-peso-medio: 500;
+  --fonte-peso-negrito: 600;
+}

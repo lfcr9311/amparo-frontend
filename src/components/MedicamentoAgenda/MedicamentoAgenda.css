@@ -1,0 +1,94 @@
+.componente-medicamento {
+  font-family: Poppins;
+  display: flex;
+  flex-direction: column;
+  width: 314px;
+  height: 100px;
+  position: relative;
+}
+
+.botao {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background-color: #ffebeb;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  text-color: #000;
+  border-radius: 10px;
+  z-index: 2;
+}
+
+.botao:hover {
+  background-color: #ffebeb;
+}
+
+.botao p {
+  margin: 0;
+  font-weight: 400;
+  color: #000;
+}
+
+.seta-baixo {
+  transform: rotate(0deg);
+  transition: transform 0.7s ease;
+  font-size: 20px;
+  color: #b8b8b8;
+}
+
+.conteudo-expansivel {
+  position: absolute;
+  top: 30%;
+  left: 0;
+  width: 100%;
+  padding-top: 17px;
+  overflow: hidden;
+  transition: max-height 0.7s ease-in-out;
+  background-color: #cecccc;
+  color: #3d3d3d;
+  font-size: 14px;
+  z-index: 1;
+  border-radius: 0px 0px 10px 10px;
+}
+
+.conteudo-medicamento {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
+}
+
+.conteudo-horario {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.conteudo-botoes {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 9px;
+  flex-direction: row;
+  align-items: center;
+}
+
+.info-button {
+  width: 213px;
+  height: 43px;
+  font-size: 13px;
+  font-family: Poppins;
+  border: none;
+  border-radius: 5px;
+  background-color: #fbf8f8;
+  color: #4d4c4c;
+  cursor: pointer;
+}
+
+.lixeira-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
