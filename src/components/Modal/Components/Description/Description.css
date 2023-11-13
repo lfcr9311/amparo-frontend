@@ -12,6 +12,7 @@
   width: 265px;
   border-radius: 3px;
   outline: 0;
+  resize: none;
 }
 
 .description-container::placeholder {

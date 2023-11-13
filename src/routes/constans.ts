@@ -20,4 +20,5 @@ export const ROUTES = {
   TELA_BUSCA_MEDICAMENTO: () => '/busca/medicamento',
   INFORMACOES_MEDICO:() => '/informacao/medica',
   INFORMACOES_PACIENTE:() => '/informacao/paciente',
+  ADICIONAR_INFORMACAO_MEDICA:() => '/adicionar/informacao/medica',
 };

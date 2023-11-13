@@ -22,6 +22,7 @@ import BuscaMedicamentos from './pages/BuscaMedicamentos/BuscaMedicamentos';
 import InformacoesMedico from './pages/InformacoesMedico/InformacoesMedico';
 import InformacoesPaciente from './pages/InformacoesPaciente/InformacoesPaciente';
 import MeusPacientes from './pages/MeusPacientes/MeusPacientes';
+import { AdicionarInformacao } from './pages/InformacoesMedico/AdicionarInformaca';
 
 export default function AppRoutes() {
   const fetchData = async () => {
@@ -154,7 +155,10 @@ export default function AppRoutes() {
           <Route path={ROUTES.INFORMACOES_PACIENTE()} element={
             <InformacoesPaciente />
           } />
-          </Routes>
+          <Route path={ROUTES.ADICIONAR_INFORMACAO_MEDICA()} element={
+            <AdicionarInformacao />
+          } />
+        </Routes>
       </div>
     </Router>
   );
