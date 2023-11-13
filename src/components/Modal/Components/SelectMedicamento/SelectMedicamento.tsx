@@ -13,29 +13,21 @@ export default function SelectMedicamento({
   value,
   medicationList,
 }: SelectMedicamentoProps) {
+  const exemploList = ['Remédio 1', 'Remédio 2', 'Remédio 3']
+
+  const list = medicationList ?? exemploList
+
   const [selectedOption, setSelectedOption] = useState(value);
 
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const nomeDoRemedio = e.target.value;
-    setSelectedOption(nomeDoRemedio);
-    onChange(nomeDoRemedio);
-  };
-
-  const exemploList = ['Remédio 1', 'Remédio 2', 'Remédio 3'];
-
-  const list =
-    medicationList == null || medicationList == undefined
-      ? exemploList
-      : medicationList;
 
   return (
     <div className="select-container">
       <select
         className="caixa-de-selecao"
-        onChange={handleChange}
-        value={selectedOption}
+        onChange={(e) => onChange(e.target.value)}
+        value={value}
       >
-        <option value="" disabled selected>
+        <option value="" disabled>
           Selecione o medicamento...
         </option>
         {list.map((remedios) => (
