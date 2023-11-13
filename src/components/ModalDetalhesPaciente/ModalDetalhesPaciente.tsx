@@ -3,6 +3,9 @@ import { Dispatch, SetStateAction } from 'react';
 import './ModalDetalhesPaciente.css';
 import ExameIcon from '../../assets/ExameIcon.svg';
 import MedicamentosIcon from '../../assets/MedicationIcon.svg';
+import { useNavigate } from 'react-router-dom';
+import { ROUTES } from '../../routes/constans';
+
 interface Paciente {
   id: number;
   email: string;
@@ -22,9 +25,6 @@ interface ModalDetalhesPacienteProps {
   setpaciente: Dispatch<SetStateAction<any>>;
 }
 
-const handleClickMedicamentos = () => {
-  console.log('Medicamentos');
-};
 
 const handleClickExames = () => {
   console.log('Exames');
@@ -36,12 +36,16 @@ const ModalDetalhesPaciente = ({
   setIsModalOpen,
   setpaciente,
 }: ModalDetalhesPacienteProps) => {
+  const navigate = useNavigate();
+  const handleClickMedicamentos = () => {
+    navigate(ROUTES.LISTA_MEDICAMENTOS_MEDICO(), { state: { paciente } });
+  };
+
   return (
     <div className="modal-content-container">
       <div className="avatar-container">
         <img
           src={paciente?.profilePicture || DefaultProfilePicture}
-          alt="Patient Avatar"
           className="avatar-image"
         />
       </div>
@@ -79,13 +83,13 @@ const ModalDetalhesPaciente = ({
       <div className='buttons-box'>
           <div className='button-card'>
             <button className='button' onClick={handleClickExames}>
-              <img className='icon' src={ExameIcon} alt="" />
+              <img className='icon' src={ExameIcon}/>
             </button>
             <h4 className='text-button'>Exames</h4>
           </div>
           <div className='button-card'>
             <button className='button' onClick={handleClickMedicamentos}>
-              <img className='icon' src={MedicamentosIcon} alt="" />
+              <img className='icon' src={MedicamentosIcon}/>
             </button>
             <h4 className='text-button'>Medicamentos</h4>
           </div>

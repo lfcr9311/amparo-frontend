@@ -2,6 +2,9 @@ import './ListaMedicamentosMedico.css';
 import Footer from '../../components/Footer/Footer';
 import HeaderHome from '../../components/HeaderHome/HeaderHome';
 import CardRemedio from '../../components/CardRemedio/CardRemedio';
+import { useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { getMedicamentosPaciente } from '../../utils/apiService';
 
 interface Medicamento {
     label: string;
@@ -11,15 +14,15 @@ interface Medicamento {
 }
 export default function ListaMedicamentosMedico() {
     const title = 'Medicamentos de fulano';
-
-    const medicamentos: Medicamento[] = [
-        { label: "Remedio 1" },
-        { label: "Remedio 2" },
-        { label: "Remedio 3" },
-        { label: "Remedio 4" },
-        { label: "Remedio 5" },
-        { label: "Remedio 6" }
-    ];
+    const [medicamentos, setMedicamentos] = useState<Medicamento[]>([]);
+    const location = useLocation();
+    const { paciente } = location.state as any;
+    useEffect(() => {
+        getMedicamentosPaciente().then((response) => {
+            setMedicamentos(response.data);
+        }
+    )}, [medicamentos]);
+        
     return (
         <>
             <HeaderHome type='headerPage' title='Medicamentos' />
