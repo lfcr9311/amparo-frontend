@@ -8,9 +8,7 @@ import { useState } from 'react';
 
 interface ProfileDoctorCardProps {
   name: string;
-  specialty: string;
-  agreements: string;
-  crm: number;
+  crm: string;
   profilePicture?: string;
   email: string;
   phone: string;
@@ -20,8 +18,6 @@ interface ProfileDoctorCardProps {
 
 export default function ProfileDoctorCard({
   name,
-  specialty,
-  agreements,
   crm,
   email,
   phone,
@@ -38,20 +34,12 @@ export default function ProfileDoctorCard({
 
   return (
     <div className="card-container">
-      <button onClick={edit} className="edit-button">
-        <img src={EditIcon} />
-      </button>
       <img
         src={profilePicture === '' ? IconProfile : profilePicture}
         className="profile-icon"
       />
       <p className="name">{name}</p>
-      <p className="specialty">{specialty}</p>
       <div className="text-box">
-        <div>
-          <label className="label">Convênios:</label>
-          <p className="agreements">{agreements}</p>
-        </div>
         <div>
           <label className="label">CRM / UF:</label>
           <p className="agreements">{crm}</p>
