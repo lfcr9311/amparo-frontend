@@ -14,16 +14,24 @@ export default function AgendaMedicamento() {
   const [usoContinuo, setUsoContinuo] = useState(false)
   const [horario, setHorario] = useState('00:00');
 
+  const resetModal = () => {
+    setMedicamentoSelecionado('');
+    setHorario('00:00');
+    setUsoContinuo(false);
+  };
+
   const handleValues = () => {
-    console.log(medicamentoSelecionado);
-    console.log(usoContinuo);
+    console.log('Medicamento Selecionado:', medicamentoSelecionado);
+    console.log('Uso Contínuo:', usoContinuo);
     console.log('Horário:', horario);
 
     setModalIsOpen(false);
+    resetModal();
   };
 
   const handleCloseModal = () => {
     setModalIsOpen(false);
+    resetModal();
   };
 
   const handleUsoContinuoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
