@@ -6,19 +6,28 @@ import SelectTime from '../../components/Modal/Components/SelectTime/SelectTime'
 import Modal from '../../components/Modal/Modal';
 import './AgendaMedicamento.css';
 import { useState } from 'react';
+import Checkbox from '@mui/material/Checkbox';
 
 export default function AgendaMedicamento() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [medicamentoSelecionado, setMedicamentoSelecionado] = useState('');
+  const [usoContinuo, setUsoContinuo] = useState(false)
+  const [horario, setHorario] = useState('00:00');
 
   const handleValues = () => {
     console.log(medicamentoSelecionado);
+    console.log(usoContinuo);
+    console.log('Horário:', horario);
 
     setModalIsOpen(false);
   };
 
   const handleCloseModal = () => {
     setModalIsOpen(false);
+  };
+
+  const handleUsoContinuoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setUsoContinuo(event.target.checked);
   };
 
   return (
@@ -42,11 +51,14 @@ export default function AgendaMedicamento() {
             onChange={setMedicamentoSelecionado} />
         </div>
         <div className="continuo">
-          <input type="checkbox" />
+          <Checkbox
+            checked={usoContinuo}
+            onChange={handleUsoContinuoChange}
+          />
           <label>Uso contínuo</label>
         </div>
         <div className="administration">
-          <SelectTime />
+          <SelectTime value={horario} onChange={setHorario} />
         </div>
         <div className="botao">
           <CustomButton
