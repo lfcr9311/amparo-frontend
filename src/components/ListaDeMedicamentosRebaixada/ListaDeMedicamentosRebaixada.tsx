@@ -10,19 +10,16 @@ import IconeMedicamentoMedio from '../../assets/IconeMedicamentoMedio.svg';
 import IconeMedicamentoRuim from '../../assets/IconeMedicamentoRuim.svg';
 import { ROUTES } from '../../routes/constans';
 
-interface CustomListaInteracoesProps {
-
+interface ListaInteracoesProps {
     name: string;
-    items: itemsProps[];
-
+    items: Items[];
 }
-interface itemsProps {
+
+interface Items {
     id: number;
     name: string;
     status: number;
 }
-
-
 
 const classificandoIcones: Record<string, React.ReactNode> = {
     1: <img src={IconeMedicamentoBom} alt="Bom" style={{ height: '26px' }} />,
@@ -30,7 +27,7 @@ const classificandoIcones: Record<string, React.ReactNode> = {
     3: <img src={IconeMedicamentoRuim} alt="Ruim" style={{ marginRight: '-3.5px', height: '33px' }} />,
 };
 
-export const ListaInteracoesRebaixada: React.FC<CustomListaInteracoesProps> = ({ items, name }) => {
+export const ListaInteracoesRebaixada: React.FC<ListaInteracoesProps> = ({ items, name }) => {
 
     const tiposDeClassificacao = [1, 2, 3];
 
@@ -48,10 +45,8 @@ export const ListaInteracoesRebaixada: React.FC<CustomListaInteracoesProps> = ({
 
     const navigate = useNavigate();
 
-
-
-    const handleLinkClick = (items: {id:string, name: string, status: number }[], nome: string) => {
-        navigate(ROUTES.LISTADEINTERACAODOMEDICAMENTO(), { state: { items: items, nome: nome } });
+    const handleLinkClick = (items: Items[], nome: string) => {
+        navigate(ROUTES.LISTA_INTERACAO_MEDICAMENTO(), { state: { items: items, nome: nome } });
     };
     return (
         <div>
