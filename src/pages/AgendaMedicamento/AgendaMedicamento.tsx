@@ -9,10 +9,11 @@ import { useState } from 'react';
 
 export default function AgendaMedicamento() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [tempTime, setTempTime] = useState();
+  const [medicamentoSelecionado, setMedicamentoSelecionado] = useState('');
 
   const handleValues = () => {
-    setTempTime(tempTime);
+    console.log(medicamentoSelecionado);
+
     setModalIsOpen(false);
   };
 
@@ -29,7 +30,7 @@ export default function AgendaMedicamento() {
       <CustomButton
         label="Adicionar"
         variant="contained"
-        onClick={() => setModalIsOpen(true)} // Abre o modal quando clicado
+        onClick={() => setModalIsOpen(true)}
       />
       <Modal
         isOpen={modalIsOpen}
@@ -37,7 +38,8 @@ export default function AgendaMedicamento() {
         title="Medicamento"
       >
         <div className="medication-info">
-          <SelectMedicamento value="" onChange={() => { }} />
+          <SelectMedicamento value={medicamentoSelecionado}
+            onChange={setMedicamentoSelecionado} />
         </div>
         <div className="continuo">
           <input type="checkbox" />

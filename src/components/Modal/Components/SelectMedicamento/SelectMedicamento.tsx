@@ -17,7 +17,6 @@ export default function SelectMedicamento({
 
   const list = medicationList ?? exemploList
 
-  const [selectedOption, setSelectedOption] = useState(value);
 
 
   return (
