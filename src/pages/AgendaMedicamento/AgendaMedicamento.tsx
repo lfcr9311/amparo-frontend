@@ -4,15 +4,24 @@ import HeaderHome from '../../components/HeaderHome/HeaderHome';
 import SelectMedicamento from '../../components/Modal/Components/SelectMedicamento/SelectMedicamento';
 import SelectTime from '../../components/Modal/Components/SelectTime/SelectTime';
 import Modal from '../../components/Modal/Modal';
+import MedicamentoAgenda from '../../components/MedicamentoAgenda/MedicamentoAgenda';
 import './AgendaMedicamento.css';
 import { useState } from 'react';
 import Checkbox from '@mui/material/Checkbox';
+
+interface Medicamento {
+  id: string;
+  nome: string;
+  horario: string;
+  usoContinuo: boolean;
+}
 
 export default function AgendaMedicamento() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [medicamentoSelecionado, setMedicamentoSelecionado] = useState('');
   const [usoContinuo, setUsoContinuo] = useState(false)
   const [horario, setHorario] = useState('00:00');
+  const [medicamentosAgenda, setMedicamentosAgenda] = useState<Medicamento[]>([]);
 
   const resetModal = () => {
     setMedicamentoSelecionado('');
@@ -21,10 +30,13 @@ export default function AgendaMedicamento() {
   };
 
   const handleValues = () => {
-    console.log('Medicamento Selecionado:', medicamentoSelecionado);
-    console.log('Uso Contínuo:', usoContinuo);
-    console.log('Horário:', horario);
+    const novoMedicamento = {
+      nome: medicamentoSelecionado,
+      usoContinuo,
+      horario,
+    };
 
+    setMedicamentosAgenda([...medicamentosAgenda, novoMedicamento]);
     setModalIsOpen(false);
     resetModal();
   };
@@ -38,9 +50,29 @@ export default function AgendaMedicamento() {
     setUsoContinuo(event.target.checked);
   };
 
+  const handleInfoClick = (medicamentoId: string) => {
+    console.log("Informações do medicamento com ID:", medicamentoId);
+  };
+
+  const handleDeleteClick = (medicamentoId: string) => {
+    setMedicamentosAgenda(medicamentosAgenda.filter(medicamento => medicamento.id !== medicamentoId));
+  };
+
+
   return (
     <>
+
       <HeaderHome title="Agenda" type="headerPage" />
+
+      {medicamentosAgenda.map((medicamento, index) => (
+        <MedicamentoAgenda
+          key={index}
+          title={medicamento.nome}
+          content={`${medicamento.horario}`}
+          onInfoClick={() => handleInfoClick(medicamento.id)}
+          onDeleteClick={() => handleDeleteClick(medicamento.id)}
+        />
+      ))}
 
       // Criar página aqui
 

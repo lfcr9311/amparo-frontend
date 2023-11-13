@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import './MedicamentoAgenda.css';
 import { ArrowBackIosNewRounded } from '@mui/icons-material';
 
+
 interface MedicamentoAgendaProps {
     title: React.ReactNode;
     content: React.ReactNode;
@@ -15,7 +16,6 @@ const MedicamentoAgenda: React.FC<MedicamentoAgendaProps> = ({
     const [active, setActive] = useState(false);
     const [height, setHeight] = useState('0px');
     const [rotate, setRotate] = useState('rotate(-90deg)');
-
     const contentSpace = useRef(null);
 
     function toggleMedicamentoAgenda() {
