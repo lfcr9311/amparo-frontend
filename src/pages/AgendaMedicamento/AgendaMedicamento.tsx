@@ -31,6 +31,7 @@ export default function AgendaMedicamento() {
 
   const handleValues = () => {
     const novoMedicamento = {
+      id: 'colocar id do medicamento correto',
       nome: medicamentoSelecionado,
       usoContinuo,
       horario,
