@@ -46,7 +46,7 @@ import HeaderHome from '../../components/HeaderHome/HeaderHome';
 import './MenuMedicamentos.css';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../routes/constans';
-import LoadingOverlay from '../../components/Loading/Overlay';
+import Loading from '../../components/Loading/Loading';
 
 export default function MenuMedicamentos() {
   const navigate = useNavigate();
@@ -66,7 +66,7 @@ export default function MenuMedicamentos() {
     <>
       <HeaderHome title="Medicamentos" type="headerPage" />
       {isLoading ? (
-        <LoadingOverlay />
+        <Loading />
       ) : (
         <div className="menu-medicamentos-container">
           <CardMedicamentos iconType="icon1" onClick={handleClickMyList} />

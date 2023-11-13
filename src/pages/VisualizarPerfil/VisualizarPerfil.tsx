@@ -26,8 +26,6 @@ const pacientSchema = z
     cpf: z
       .string()
       .refine((value) => isCPF(value), { message: 'Insira um CPF válido' }),
-    ddd: z.string().regex(/^\d{1,2}$/, { message: "DDD inválido" }),
-    phone: z.string().regex(/^\d{8,9}$/, { message: "Telefone inválido" }),
     nSus: z.string().regex(/^\d{15}$/, { message: "Número SUS inválido" }).nullable()
   })
 
@@ -45,12 +43,8 @@ const VisualizacaoPerfilPaciente = () => {
     email: '',
     date: '',
     cpf: '',
-    ddd: '',
-    phone: '',
     nSus: ''
   });
-  const [ddd, setDdd] = useState('');
-  const [cellphone, setCellphone] = useState('');
 
   async function update() {
     try {
@@ -59,14 +53,11 @@ const VisualizacaoPerfilPaciente = () => {
         email: '',
         date: '',
         cpf: '',
-        ddd: '',
-        phone: '',
         nSus: ''
       });
-      // setSubmitFailed(false);
-      const formData = { name, email, date: dataNascimento, cpf, ddd, phone: cellphone, nSus };
+      const formData = { name, email, date: dataNascimento, cpf, nSus };
       pacientSchema.parse(formData);
-      await editUser(name, ddd + cellphone, cpf.replace(/\D/g, ""), "null", email, dataNascimento, nSus);
+      await editUser(name, '12345678910', cpf.replace(/\D/g, ""), "null", email, dataNascimento, nSus);
       setIsModalOpen(!isModalOpen);
     }
     catch (e) {
@@ -83,23 +74,22 @@ const VisualizacaoPerfilPaciente = () => {
 
   const navigate = useNavigate()
   const handleDeletar = () => {
-
     localStorage.removeItem('authToken')
     localStorage.removeItem('userId')
     navigate(ROUTES.LOGIN())
   }
+
   useEffect(() => {
     getPatient().then((response) => {
       const att = response.data
       setName(att.name)
       setEmail(att.email)
+      setCpf(att.cpf)
       setDataNascimento(att.birthDate)
       setNSus(att.numSus)
-      setDdd(att.cellphone.substring(0, 2))
-      setCellphone(att.cellphone.substring(2, att.cellphone.length))
-      setCpf(att.cpf)
     })
   }, [isModalOpen])
+
   return (
     <>
       <div className="header-container">
@@ -164,26 +154,6 @@ const VisualizacaoPerfilPaciente = () => {
                 type="text"
                 onChange={(value) => setNSus(value)}
               />
-              <div className="cellphone-container">
-                <TextfieldModal
-                  label="DDD"
-                  value={ddd}
-                  error={Boolean(errors.ddd)}
-                  helperText={Boolean(errors.ddd) ? errors.ddd : ''}
-                  type="text"
-                  width="65.5px"
-                  onChange={(value) => setDdd(value)}
-                />
-                <TextfieldModal
-                  label="Telefone"
-                  value={cellphone}
-                  error={Boolean(errors.phone)}
-                  helperText={Boolean(errors.phone) ? errors.phone : ''}
-                  type="text"
-                  width="195.5px"
-                  onChange={(value) => setCellphone(value)}
-                />
-              </div>
               <CustomButton
                 variant="contained"
                 label="Salvar"
