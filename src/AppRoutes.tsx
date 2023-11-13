@@ -142,7 +142,6 @@ export default function AppRoutes() {
               </PrivateRoute>
             }
           />
-<<<<<<< HEAD
           <Route
             path={ROUTES.EXAMES()} element={
               <PrivateRoute>
@@ -155,7 +154,6 @@ export default function AppRoutes() {
                 <MedicamentoAgenda />
               </PrivateRoute>
             } />
-=======
           <Route path={ROUTES.EXAMES()} element={
             <PrivateRoute>
               <Exames />
@@ -164,7 +162,6 @@ export default function AppRoutes() {
           <Route path={ROUTES.TELA_BUSCA_MEDICAMENTO()} element={
             <BuscaMedicamentos />
           } />
->>>>>>> 0682790239f47c5e0bf8a2c48641f121016b3c80
         </Routes >
       </div >
     </Router >
