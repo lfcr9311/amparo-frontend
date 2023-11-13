@@ -1,5 +1,6 @@
 export const ROUTES = {
   HOME_PACIENTE: () => '/home/paciente',
+  MEUS_PACIENTES: () => '/meus-pacientes',
   HOME_MEDICO: () => '/home/medico',
   CADASTRO_PACIENTE: () => '/cadastro/paciente',
   CADASTRO_MEDICO: () => '/cadastro/medico',
@@ -16,5 +17,6 @@ export const ROUTES = {
   EDICAO_EXAMES_REALIZADOS: () => '/exames/edicao/realizados',
   LISTADEINTERACAODOMEDICAMENTO: () => '/medicamentos/interacao',
   FILTROBUSCAMEDICO: () => '/lista/medico',
-  AGENDA_REMEDIOS: () => "/agenda/remedios"
+  AGENDA_REMEDIOS: () => "/agenda/remedios",
+  TELA_BUSCA_MEDICAMENTO: () => '/busca/medicamento'
 };

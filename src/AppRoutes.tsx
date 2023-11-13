@@ -18,7 +18,12 @@ import EdicaoExameRealizado from './pages/EdicaoExameRealizado/EdicaoExameRealiz
 import ListaDeInteracaoDoMedicamento from './pages/ListaDeInteracaoDoMedicamento/ListaDeInteracaoDomedicamento';
 import MeusMedicos from './pages/MeusMedicos/MeusMedicos';
 import PageMedico from './components/FiltroBuscaMedico/PageMedico';
+
 import MedicamentoAgenda from './pages/AgendaMedicamento/AgendaMedicamento';
+
+import BuscaMedicamentos from './pages/BuscaMedicamentos/BuscaMedicamentos';
+import MeusPacientes from './pages/MeusPacientes/MeusPacientes';
+
 
 export default function AppRoutes() {
   const fetchData = async () => {
@@ -53,6 +58,12 @@ export default function AppRoutes() {
           <Route path={ROUTES.HOME_PACIENTE()}
             element={<PrivateRoute>
               <HomePaciente />
+            </PrivateRoute>
+            } />
+
+          <Route path={ROUTES.MEUS_PACIENTES()}
+            element={<PrivateRoute>
+              <MeusPacientes />
             </PrivateRoute>
             } />
 
@@ -131,6 +142,7 @@ export default function AppRoutes() {
               </PrivateRoute>
             }
           />
+<<<<<<< HEAD
           <Route
             path={ROUTES.EXAMES()} element={
               <PrivateRoute>
@@ -143,8 +155,18 @@ export default function AppRoutes() {
                 <MedicamentoAgenda />
               </PrivateRoute>
             } />
-        </Routes>
-      </div>
+=======
+          <Route path={ROUTES.EXAMES()} element={
+            <PrivateRoute>
+              <Exames />
+            </PrivateRoute>
+          } />
+          <Route path={ROUTES.TELA_BUSCA_MEDICAMENTO()} element={
+            <BuscaMedicamentos />
+          } />
+>>>>>>> 0682790239f47c5e0bf8a2c48641f121016b3c80
+        </Routes >
+      </div >
     </Router >
   );
 }
