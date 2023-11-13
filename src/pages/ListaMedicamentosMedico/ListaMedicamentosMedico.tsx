@@ -19,10 +19,8 @@ export default function ListaMedicamentosMedico() {
     const { paciente } = location.state as any;
     useEffect(() => {
         getMedicamentosPaciente().then((response) => {
-            setMedicamentos(response.data);
-        }
+            setMedicamentos(response.data);}
     )}, [medicamentos]);
-        
     return (
         <>
             <HeaderHome type='headerPage' title='Medicamentos' />
