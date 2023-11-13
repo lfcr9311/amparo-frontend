@@ -13,6 +13,11 @@ export default function AgendaMedicamento() {
 
   const handleValues = () => {
     setTempTime(tempTime);
+    setModalIsOpen(false);
+  };
+
+  const handleCloseModal = () => {
+    setModalIsOpen(false);
   };
 
   return (
@@ -21,9 +26,14 @@ export default function AgendaMedicamento() {
 
       // Criar página aqui
 
+      <CustomButton
+        label="Adicionar"
+        variant="contained"
+        onClick={() => setModalIsOpen(true)} // Abre o modal quando clicado
+      />
       <Modal
-        isOpen={true}
-        isClose={() => setModalIsOpen(!modalIsOpen)}
+        isOpen={modalIsOpen}
+        isClose={handleCloseModal}
         title="Medicamento"
       >
         <div className="medication-info">
