@@ -29,12 +29,11 @@ const MedicamentoAgenda: React.FC<MedicamentoAgendaProps> = ({
         <>
 
             <div className="componente-medicamento">
-                <button
-                    className="botao"
-                    onClick={toggleMedicamentoAgenda}
-                >
-                    <p>{title}</p>
-                    <ArrowBackIosNewRounded style={{ transform: rotate }} className="seta-baixo" />
+                <button className="botao" onClick={toggleMedicamentoAgenda}>
+                    <div className="conteudo-botao">
+                        <p>{title}</p>
+                        <ArrowBackIosNewRounded style={{ transform: rotate }} className="seta-baixo" />
+                    </div>
                 </button>
                 <div
                     ref={contentSpace}
@@ -65,7 +64,7 @@ const MedicamentoAgenda: React.FC<MedicamentoAgendaProps> = ({
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
         </>
     );
 };
