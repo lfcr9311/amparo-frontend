@@ -294,6 +294,20 @@ export const searchDoctor = async (crm: string, uf: string) => {
   }
 }
 
+export const fetchInformacao = async () => {
+  try{
+    const response = await axios.get(`/information`, {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem("authToken")
+      }
+    }
+    );
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}
+
 export const addDoctor = async (doctorId: string) => {
   try {
     const response = await axios.post(`/link/to/doctor/${doctorId}`, {}, {

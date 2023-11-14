@@ -8,7 +8,7 @@ interface ButtonSalmonPageInfoProps {
     onClick: () => void;
 }
 
-export const ButtonSalmonPageInfo: React.FC<ButtonSalmonPageInfoProps> = ({infoTitle, dateAndDoctorInfo, onClick}) => {
+export const ButtonSalmonPageInfo: React.FC<ButtonSalmonPageInfoProps> = ({ infoTitle, dateAndDoctorInfo, onClick }) => {
     const buttonStyle: React.CSSProperties = {
         backgroundColor: "#E76553",
         display: 'flex',
@@ -20,18 +20,18 @@ export const ButtonSalmonPageInfo: React.FC<ButtonSalmonPageInfoProps> = ({infoT
         textAlign: 'start',
         width: "327px",
     };
-    const theme = createTheme({      
+    const theme = createTheme({
         typography: {
-          button: {
-            textTransform: 'none'
-          }
+            button: {
+                textTransform: 'none'
+            }
         }
-      });
+    });
     return (
         <ThemeProvider theme={theme}>
             <Button
                 style={buttonStyle}
-                onClick={() => {onClick}}
+                onClick={onClick}
                 variant='contained'
                 endIcon={<Box><ArrowForwardIos sx={{ fontSize: 30 }} /> </Box>}
             >
