@@ -158,6 +158,9 @@ export default function AppRoutes() {
           <Route path={ROUTES.ADICIONAR_INFORMACAO_MEDICA()} element={
             <AdicionarInformacao />
           } />
+          <Route path='teste' element={
+            <InformacoesPaciente />
+          } />
         </Routes>
       </div>
     </Router>
