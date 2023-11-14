@@ -31,17 +31,17 @@ export default function AgendaMedicamento() {
 
   const handleMedicineChange = (medicine: string) => {
     setSelectedMedicine(medicine);
-    // Se um medicamento for selecionado, o erro deve ser removido
     setIsMedicineError(!medicine);
   };
 
   const handleValues = () => {
 
     if (!selectedMedicine) {
-      setIsMedicineError(true); // Mostra o erro se nenhum medicamento for selecionado
+      setIsMedicineError(true);
       return;
     }
     const novoMedicamento = {
+      id: Date.now().toString(), // Isso irá gerar um ID baseado no timestamp atual
       nome: selectedMedicine,
       horario,
       usoContinuo: false,
@@ -75,7 +75,7 @@ export default function AgendaMedicamento() {
       <div className="meus-remedios-container">
         {medicamentosAgenda.map((medicamento, index) => (
           <MedicamentoAgenda
-            key={index}
+            key={medicamento.id}
             title={medicamento.nome}
             content={`${medicamento.horario}`}
             onInfoClick={() => handleInfoClick(medicamento.id)}

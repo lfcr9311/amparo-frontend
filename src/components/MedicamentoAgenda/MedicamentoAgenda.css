@@ -5,6 +5,8 @@
   width: 314px;
   height: 100px;
   position: relative;
+  min-height: 100px;
+  max-height: none;
 }
 
 .botao {
