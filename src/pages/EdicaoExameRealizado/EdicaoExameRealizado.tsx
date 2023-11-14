@@ -18,6 +18,8 @@ export default function EdicaoExameRealizado() {
   const dateTitle = location.state.date;
   const descriptionValue = location.state.description;
   const dateValue = dateTitle.split('/').reverse().join('-');
+  const fileImageUrl = location.state.fileImage
+  const filePdfUrl = location.state.filePdf
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [date, setDate] = useState(dateValue);
   const [tempDate, setTempDate] = useState(dateValue);
@@ -32,6 +34,22 @@ export default function EdicaoExameRealizado() {
   };
   const handleFileImage = (file: File | null) => {
     setFileImage(file);
+  };
+  const handleArquivosClick = () => {
+    console.log(filePdfUrl);
+    if (filePdfUrl) {
+      window.location.href = filePdfUrl;
+    } else {
+      console.warn('PDF não está disponível');
+    }
+  };
+
+  const handleImagensClick = () => {
+    if (fileImageUrl) {
+      window.location.href = fileImageUrl;
+    } else {
+      console.warn('Imagem não está disponível');
+    }
   };
 
   useEffect(() => {
@@ -90,12 +108,12 @@ export default function EdicaoExameRealizado() {
         <ButtonSalmon
           label="Arquivos"
           icon={false}
-          onClick={() => console.log('Arquivo')}
+          onClick={handleArquivosClick}
         />
         <ButtonSalmon
           label="Imagens"
           icon={false}
-          onClick={() => console.log('Imagem')}
+          onClick={handleImagensClick}
         />
       </div>
       <Modal isOpen={modalIsOpen} isClose={() => setModalIsOpen(!modalIsOpen)}>
