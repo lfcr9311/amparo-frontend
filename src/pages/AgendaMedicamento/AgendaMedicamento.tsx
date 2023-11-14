@@ -18,7 +18,6 @@ interface Medicamento {
 
 export default function AgendaMedicamento() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [medicamentoSelecionado, setMedicamentoSelecionado] = useState('');
   const [horario, setHorario] = useState('00:00');
   const [medicamentosAgenda, setMedicamentosAgenda] = useState<Medicamento[]>([]);
   const [selectedMedicine, setSelectedMedicine] = useState('');
@@ -73,18 +72,18 @@ export default function AgendaMedicamento() {
 
       <HeaderHome title="Agenda" type="headerPage" />
 
-      {medicamentosAgenda.map((medicamento, index) => (
-        <MedicamentoAgenda
-          key={index}
-          title={medicamento.nome}
-          content={`${medicamento.horario}`}
-          onInfoClick={() => handleInfoClick(medicamento.id)}
-          onDeleteClick={() => handleDeleteClick(medicamento.id)}
-        //Uso Contínuo: ${medicamento.usoContinuo ? 'Sim' : 'Não'}
-        />
-      ))}
-
-      // Criar página aqui
+      <div className="meus-remedios-container">
+        {medicamentosAgenda.map((medicamento, index) => (
+          <MedicamentoAgenda
+            key={index}
+            title={medicamento.nome}
+            content={`${medicamento.horario}`}
+            onInfoClick={() => handleInfoClick(medicamento.id)}
+            onDeleteClick={() => handleDeleteClick(medicamento.id)}
+          //Uso Contínuo: ${medicamento.usoContinuo ? 'Sim' : 'Não'}
+          />
+        ))}
+      </div>
 
       <CustomButton
         label="Adicionar"

@@ -31,9 +31,13 @@
 }
 
 .botao p {
-  margin: 0;
-  font-weight: 400;
   color: #000;
+  font-family: Poppins;
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-right: auto;
 }
 
 .seta-baixo {
@@ -58,6 +62,12 @@
   font-size: 14px;
   z-index: 1;
   border-radius: 0px 0px 10px 10px;
+}
+
+.componente-medicamento .conteudo-expansivel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.7s ease-in-out;
 }
 
 .conteudo-medicamento {
