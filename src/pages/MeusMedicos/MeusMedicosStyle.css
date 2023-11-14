@@ -101,9 +101,29 @@ h2 {
   margin-top: 1rem;
 }
 
-.search-container input {
+.search-container .search-input-doctor {
   height: 0.15rem;
+  width: 220px;
   border: none;
+  outline: none;
   background-color: #dcdcdc;
   border-radius: 50px;
+  margin-top: -18%;
+  position: fixed;
+  top: 28%;
+  left: 8%;
+}
+
+.add-button-my-doctors {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  position: fixed;
+  top: 20%;
+  right: 8%;
+}
+
+.add-circle-icon-my-doctors {
+  height: 36px;
+  width: 36px;
 }

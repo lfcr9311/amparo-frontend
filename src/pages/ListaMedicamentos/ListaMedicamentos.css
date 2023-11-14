@@ -1,4 +1,4 @@
-.title-page {
+.title-list-medicine {
   color: #4d4c4c;
   font-family: Poppins;
   font-size: 23px;
@@ -7,16 +7,23 @@
   line-height: normal;
   text-align: flex-start;
   margin-left: -100px;
+  position: fixed;
+  top: 15%;
 }
 
-.meus-remedios-container {
-  max-height: 388px;
+.meus-remedios-box {
+  max-height: 365px;
   overflow-y: auto;
   gap: 10px;
   flex-direction: column;
   display: flex;
-  margin-top: 10px;
-  margin-bottom: 45px;
+  position: fixed;
+  top: 25%;
+}
+
+.button-add-list-medicament {
+  position: fixed;
+  bottom: 19%;
 }
 
 .content-texto-modal {
@@ -32,10 +39,10 @@
 .frequencia-data {
   display: flex;
   align-items: center;
-  gap: 10px;
   justify-content: space-between;
-  margin-left: 20px;
-  margin-right: 20px;
+  gap: 10px;
+  margin-left: 10px;
+  margin-right: 28px;
 }
 
 .frequencia-data>.box-container-frequencia {
@@ -51,13 +58,12 @@
 .checkbox-container {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 10px;
   color: #696969;
   font-family: Poppins;
   font-size: 13px;
   font-style: normal;
   font-weight: 500;
+  margin-left: 26px;
   line-height: normal;
   margin-bottom: -20px;
 }

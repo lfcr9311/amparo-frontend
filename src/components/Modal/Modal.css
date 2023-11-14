@@ -37,7 +37,8 @@
 
 .button-close {
   border: none;
-  background-color: #fff;
+  background-color: transparent;
+  margin-right: 10px;
 }
 
 .title-modal {
@@ -47,4 +48,5 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  margin-left: -10px;
 }

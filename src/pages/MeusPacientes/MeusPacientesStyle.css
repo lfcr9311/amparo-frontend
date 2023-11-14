@@ -102,12 +102,15 @@ h2 {
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
-  margin-top: 1rem;
+  position: fixed;
+  top: 9rem;
 }
 
-.search-container input {
+.search-container .search-input {
   height: 0.15rem;
+  width: 280px;
   border: none;
+  outline: none;
   background-color: #dcdcdc;
   border-radius: 50px;
 }
