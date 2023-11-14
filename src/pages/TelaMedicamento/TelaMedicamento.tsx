@@ -1,7 +1,7 @@
 import { ListaInteracoesRebaixada } from '../../components/ListaDeMedicamentosRebaixada/ListaDeMedicamentosRebaixada';
 import HeaderHome from '../../components/HeaderHome/HeaderHome';
 import Footer from '../../components/Footer/Footer';
-import { getDosage, getIncompatibilyList } from '../../utils/apiService';
+import { getDosage, getIncompatibilyList, putEditDosage } from '../../utils/apiService';
 import { useEffect, useState } from 'react';
 import EditIcon from '../../assets/EditIcon.svg';
 import './TelaMedicamento.css';
@@ -10,7 +10,7 @@ import DeleteMedicamento from '../../components/Modal/Components/DeleteMedicamen
 import { format } from 'date-fns';
 
 interface MedicamentoProps {
-    id_medicine: string;
+    id_dosage: string;
 }
 
 interface Items {
@@ -19,7 +19,7 @@ interface Items {
     status: number;
 }
 
-export const TelaMedicamento: React.FC<MedicamentoProps> = ({ id_medicine }) => {
+export const TelaMedicamento: React.FC<MedicamentoProps> = ({ id_dosage }) => {
     const [modalIsOpenEdit, setModalIsOpenEdit] = useState(false);
     const [modalIsOpenBula, setModalIsOpenBula] = useState(false);
     const [modalIsOpenExcluir, setModalIsOpenExcluir] = useState(false);
@@ -28,33 +28,30 @@ export const TelaMedicamento: React.FC<MedicamentoProps> = ({ id_medicine }) => 
     const [dataFinal, setDataFinal] = useState('');
     const [unidadeMedida, setUnidadeMedida] = useState('');
     const [name, setName] = useState('');
+    const [lastDosage, setLastDosage] = useState('');
     // @ts-ignore
     const [idMedicine, setIdMedicine] = useState('');
 
     const handleSalvarEdicao = (dadosEditados: any) => {
-        const objetosAlterados = [];
-
-        if (dadosEditados.dosagem !== undefined) {
-            setDosagem(dadosEditados.dosagem);
-            objetosAlterados.push({ campo: 'dosagem', valor: dosagem });
-        }
-        if (dadosEditados.frequencia !== undefined) {
-            setFrequencia(dadosEditados.frequencia);
-            objetosAlterados.push({ campo: 'frequencia', valor: frequencia });
-        }
-        if (dadosEditados.dataFinal !== undefined) {
-            setDataFinal(dadosEditados.dataFinal);
-            objetosAlterados.push({ campo: 'dataFinal', valor: dataFinal });
-        }
-        if (dadosEditados.unidadeMedida !== undefined) {
-            setUnidadeMedida(dadosEditados.unidadeMedida);
-            objetosAlterados.push({ campo: 'unidadeMedida', valor: unidadeMedida });
-        }
+        putEditDosage(id_dosage,Number(idMedicine),dadosEditados.dosagem,
+        dadosEditados.frequencia,dadosEditados.dataFinal).then((response) => { 
+            setLastDosage(response);
+    //    if (dadosEditados.dosagem !== undefined) {
+    //        setDosagem(dadosEditados.dosagem);
+    //    }
+    //    if (dadosEditados.frequencia !== undefined) {
+    //        setFrequencia(dadosEditados.frequencia);        }
+    //    if (dadosEditados.dataFinal !== undefined) {
+    //        setDataFinal(dadosEditados.dataFinal);
+    //    }
+    //    if (dadosEditados.unidadeMedida !== undefined) {
+    //        setUnidadeMedida(dadosEditados.unidadeMedida);
+    //    }
         //aqui eu envio os dados editados para back
-    };
+    })};
 
     useEffect(() => {
-        getDosage(id_medicine)
+        getDosage(id_dosage)
             .then((medicine) => {
                 const dateFormated = format(new Date(medicine.finalDate), 'dd/MM/yyyy');
                 setDosagem(medicine.quantity);
@@ -68,7 +65,7 @@ export const TelaMedicamento: React.FC<MedicamentoProps> = ({ id_medicine }) => 
             .catch((error) => {
                 console.error(error);
             });
-    }, []);
+    }, [lastDosage]);
 
     const [listaIncompatibilidade, setListaIncompatibilidade] = useState<Items[]>([]);
 
@@ -104,12 +101,12 @@ export const TelaMedicamento: React.FC<MedicamentoProps> = ({ id_medicine }) => 
                     <div>
                         Dosagem: {''}
                         <span className="informacao-de-uso-remedio">
-                            {dosagem} cps de {unidadeMedida} mg
+                            {dosagem} cps de {unidadeMedida} 
                         </span>{' '}
                     </div>
                     <div>
                         Frequencia:{' '}
-                        <span className="informacao-de-uso-remedio">{frequencia}h</span>
+                        <span className="informacao-de-uso-remedio">{frequencia}</span>
                     </div>
                     <div>
                         Data Final:{' '}

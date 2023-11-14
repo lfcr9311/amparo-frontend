@@ -27,6 +27,24 @@ export const getDosage = async (dosageId: string) => {
     throw error;
   }
 }
+export const putEditDosage = async (dosageId: string,medicineId:number,quantity:string,frequency:number,finalDate:string) => {
+  const dosageEditBody = {
+    medicineId:medicineId,
+    quantity: quantity,
+    frequency: frequency,
+    finalDate: finalDate+"T22:53:23.034Z",
+  };
+  try {
+    const response = await axios.put(`/dosage/${dosageId}`,dosageEditBody, {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem("authToken")
+      }
+    })
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}
 
 
 export const getIncompatibilyList = async (medicineId: number) => {
