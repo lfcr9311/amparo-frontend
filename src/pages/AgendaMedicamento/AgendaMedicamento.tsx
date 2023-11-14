@@ -7,7 +7,7 @@ import Modal from '../../components/Modal/Modal';
 import MedicamentoAgenda from '../../components/MedicamentoAgenda/MedicamentoAgenda';
 import './AgendaMedicamento.css';
 import { useState } from 'react';
-import Checkbox from '@mui/material/Checkbox';
+
 
 interface Medicamento {
   id: string;
@@ -19,25 +19,37 @@ interface Medicamento {
 export default function AgendaMedicamento() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [medicamentoSelecionado, setMedicamentoSelecionado] = useState('');
-  const [usoContinuo, setUsoContinuo] = useState(false)
   const [horario, setHorario] = useState('00:00');
   const [medicamentosAgenda, setMedicamentosAgenda] = useState<Medicamento[]>([]);
+  const [selectedMedicine, setSelectedMedicine] = useState('');
+  const [isMedicineError, setIsMedicineError] = useState(false);
 
   const resetModal = () => {
-    setMedicamentoSelecionado('');
+    setSelectedMedicine('');
     setHorario('00:00');
-    setUsoContinuo(false);
+    setIsMedicineError(false);
+  };
+
+  const handleMedicineChange = (medicine: string) => {
+    setSelectedMedicine(medicine);
+    // Se um medicamento for selecionado, o erro deve ser removido
+    setIsMedicineError(!medicine);
   };
 
   const handleValues = () => {
+
+    if (!selectedMedicine) {
+      setIsMedicineError(true); // Mostra o erro se nenhum medicamento for selecionado
+      return;
+    }
     const novoMedicamento = {
-      id: 'colocar id do medicamento correto',
-      nome: medicamentoSelecionado,
-      usoContinuo,
+      nome: selectedMedicine,
       horario,
+      usoContinuo: false,
     };
 
     setMedicamentosAgenda([...medicamentosAgenda, novoMedicamento]);
+
     setModalIsOpen(false);
     resetModal();
   };
@@ -45,10 +57,6 @@ export default function AgendaMedicamento() {
   const handleCloseModal = () => {
     setModalIsOpen(false);
     resetModal();
-  };
-
-  const handleUsoContinuoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setUsoContinuo(event.target.checked);
   };
 
   const handleInfoClick = (medicamentoId: string) => {
@@ -72,6 +80,7 @@ export default function AgendaMedicamento() {
           content={`${medicamento.horario}`}
           onInfoClick={() => handleInfoClick(medicamento.id)}
           onDeleteClick={() => handleDeleteClick(medicamento.id)}
+        //Uso Contínuo: ${medicamento.usoContinuo ? 'Sim' : 'Não'}
         />
       ))}
 
@@ -88,15 +97,12 @@ export default function AgendaMedicamento() {
         title="Medicamento"
       >
         <div className="medication-info">
-          <SelectMedicamento value={medicamentoSelecionado}
-            onChange={setMedicamentoSelecionado} />
-        </div>
-        <div className="continuo">
-          <Checkbox
-            checked={usoContinuo}
-            onChange={handleUsoContinuoChange}
+          <SelectMedicamento
+            value={selectedMedicine}
+            onChange={handleMedicineChange}
+            showError={isMedicineError}
+            errorMessage="Por favor, selecione um medicamento"
           />
-          <label>Uso contínuo</label>
         </div>
         <div className="administration">
           <SelectTime value={horario} onChange={setHorario} />

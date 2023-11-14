@@ -9,6 +9,7 @@
 
 .botao {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   padding: 12px;
   border: none;
@@ -16,6 +17,11 @@
   font-size: 14px;
   border-radius: 10px;
   z-index: 2;
+  background-color: #FFE3E3;
+  height: 87px;
+  width: 295px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .conteudo-botao {
@@ -32,13 +38,18 @@
 
 .seta-baixo {
   color: #b8b8b8;
+  transition: transform 0.3s;
+  position: absolute;
+  right: 16px;
+  top: 30%;
+  transform: translateY(-50%) rotate(0deg);
 }
 
 .conteudo-expansivel {
   position: absolute;
-  top: 30%;
-  left: 0;
-  width: 100%;
+  top: 70%;
+  left: 3.3%;
+  width: 295px;
   padding-top: 17px;
   overflow: hidden;
   transition: max-height 0.7s ease-in-out;
