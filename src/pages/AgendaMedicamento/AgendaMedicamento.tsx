@@ -7,6 +7,8 @@ import Modal from '../../components/Modal/Modal';
 import MedicamentoAgenda from '../../components/MedicamentoAgenda/MedicamentoAgenda';
 import './AgendaMedicamento.css';
 import { useState } from 'react';
+import { Fab } from '@mui/material';
+import { Stack } from '@mui/system';
 
 
 interface Medicamento {
@@ -22,6 +24,9 @@ export default function AgendaMedicamento() {
   const [medicamentosAgenda, setMedicamentosAgenda] = useState<Medicamento[]>([]);
   const [selectedMedicine, setSelectedMedicine] = useState('');
   const [isMedicineError, setIsMedicineError] = useState(false);
+
+  const botaoAddPosition = Math.max(45 - (medicamentosAgenda.length * 8), 15);
+
 
   const resetModal = () => {
     setSelectedMedicine('');
@@ -73,23 +78,31 @@ export default function AgendaMedicamento() {
       <HeaderHome title="Agenda" type="headerPage" />
 
       <div className="meus-remedios-container">
-        {medicamentosAgenda.map((medicamento, index) => (
-          <MedicamentoAgenda
-            key={medicamento.id}
-            title={medicamento.nome}
-            content={`${medicamento.horario}`}
-            onInfoClick={() => handleInfoClick(medicamento.id)}
-            onDeleteClick={() => handleDeleteClick(medicamento.id)}
-          //Uso Contínuo: ${medicamento.usoContinuo ? 'Sim' : 'Não'}
-          />
-        ))}
+        <Stack spacing={2}>
+          {medicamentosAgenda.map((medicamento) => (
+            <MedicamentoAgenda
+              key={medicamento.id}
+              title={medicamento.nome}
+              content={`${medicamento.horario}`}
+              onInfoClick={() => handleInfoClick(medicamento.id)}
+              onDeleteClick={() => handleDeleteClick(medicamento.id)}
+            //Uso Contínuo: ${medicamento.usoContinuo ? 'Sim' : 'Não'}
+            />
+          ))}
+        </Stack>
       </div>
 
-      <CustomButton
-        label="Adicionar"
-        variant="contained"
-        onClick={() => setModalIsOpen(true)}
-      />
+
+      {/* <Fab variant="extended" onClick={() => setModalIsOpen(true)}>
+        Navigate
+      </Fab> */}
+      <div className='botao-add' style={{ bottom: `${botaoAddPosition}%` }}>
+        <CustomButton
+          label="Adicionar"
+          variant="contained"
+          onClick={() => setModalIsOpen(true)}
+        />
+      </div>
       <Modal
         isOpen={modalIsOpen}
         isClose={handleCloseModal}
