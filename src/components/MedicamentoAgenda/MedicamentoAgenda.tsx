@@ -11,7 +11,7 @@ interface MedicamentoAgendaProps {
 }
 
 const MedicamentoAgenda: React.FC<MedicamentoAgendaProps> = ({
-    title, content, onInfoClick, onDeleteClick
+    title, content, onDeleteClick
 }) => {
     return (
         <Accordion
@@ -60,7 +60,7 @@ const MedicamentoAgenda: React.FC<MedicamentoAgendaProps> = ({
             <AccordionDetails
                 sx={{
                     flexDirection: 'column',
-                    padding: '0 19px 8px',
+                    padding: '16px 19px 8px',
                     backgroundColor: '#cecccc',
                     '&:not(:last-child)': { borderBottom: '1px solid rgba(0, 0, 0, .125)' },
                 }}
