@@ -14,6 +14,39 @@ export const login_post = async (email: String, psw: String) => {
   }
 };
 
+export const saveDosage = async ({ medicineId, quantity, frequency, finalDate }: any) => {
+  const dosage = {
+    quantity,
+    frequency,
+    finalDate,
+    initialHour: new Date().toISOString()
+  }
+  const response = await axios.post(`/dosage/${medicineId}`, dosage, {
+    headers: {
+      'Authorization': 'Bearer ' + localStorage.getItem("authToken")
+    }
+  })
+  return response.data
+}
+
+export const getAllDosages = async () => {
+  const response = await axios.get("/dosage", {
+    headers: {
+      'Authorization': 'Bearer ' + localStorage.getItem("authToken")
+    }
+  })
+  return response.data
+}
+
+export const getAllMedicines = async () => {
+  const response = await axios.get("/medicine", {
+    headers: {
+      'Authorization': 'Bearer ' + localStorage.getItem("authToken")
+    }
+  })
+  return response.data
+}
+
 export const getIncompatibilyList = async (medicineId: number) => {
   try {
     const response = await axios.get(`/medicine/incompatibility/${medicineId}`, {

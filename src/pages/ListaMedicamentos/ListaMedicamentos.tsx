@@ -1,6 +1,7 @@
 import Footer from '../../components/Footer/Footer';
 import HeaderHome from '../../components/HeaderHome/HeaderHome';
 import './ListaMedicamentos.css';
+import ThinkEmoji from '../../assets/ThinkingEmoji.svg'
 import CardRemedio from '../../components/CardRemedio/CardRemedio';
 import CustomButton from '../../components/Button/Button';
 import Modal from '../../components/Modal/Modal';
@@ -11,14 +12,18 @@ import { motion } from "framer-motion";
 import MedicinenameModal from '../../components/Modal/Components/medicinenameModal/medicinenameModal';
 import Checkbox from '@mui/material/Checkbox';
 import DosagemModal from '../../components/Modal/Components/DosagemModal/dosagemModal';
+import { Box } from '@mui/system';
+import { getAllDosages, getAllMedicines, saveDosage } from '../../utils/apiService';
+import { useNavigate } from 'react-router-dom';
 
 
 
 interface Medicamento {
+  id: string,
   label: string;
   dosagem?: string;
   frequencia?: string;
-  dataFinal?: string | "Uso contínuo";
+  dataFinal?: string;
 }
 
 const fadeInOut = {
@@ -26,29 +31,9 @@ const fadeInOut = {
   visible: { opacity: 1, y: 0 },
 };
 
-//dados mocados
-const mockedMedicationsList = [
-  { label: 'Tenofovir' },
-  { label: 'Emtricitabina' },
-  { label: 'Efavirenz' },
-  { label: 'Lamivudina' },
-  { label: 'Zidovudina' },
-  { label: 'Abacavir' },
-  { label: 'Darunavir' },
-  { label: 'Ritonavir' },
-  { label: 'Dolutegravir' },
-  { label: 'Raltegravir' },
-  { label: 'Paracetamol' },
-  { label: 'Ibuprofeno' },
-  { label: 'Amoxicilina' },
-  { label: 'Aspirina' },
-  { label: 'Atorvastatina' },
-  { label: 'Metformina' },
-  // ...outros medicamentos
-];
-
 
 export default function ListaMedicamentos() {
+  const navigate = useNavigate()
   const [usoContinuo, setUsoContinuo] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [medicamentoNome, setMedicamentoNome] = useState<{ label: string } | null>(null);
@@ -60,15 +45,11 @@ export default function ListaMedicamentos() {
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [erroData, setErroData] = useState(false);
   const [mensagemErroData, setMensagemErroData] = useState('');
-
+  const [medicamentosLista, setMedicamentosLista] = useState<{ name: string, id: number }[]>([]);
 
   const [unidadeMedida, setUnidadeMedida] = useState('mg');
 
-  const [medicamentos, setMedicamentos] = useState<Medicamento[]>([
-    { label: "Remedio 1" },
-    { label: "Remedio 2" },
-    { label: "Remedio 3" }
-  ]);
+  const [dosages, setDosages] = useState<Medicamento[]>([]);
 
   const resetModal = () => {
     setMedicamentoNome(null);
@@ -82,6 +63,14 @@ export default function ListaMedicamentos() {
     setMensagemErroData('');
     setUnidadeMedida('mg');
   };
+
+  useEffect(() => {
+    getAllMedicines()
+      .then((data) => {
+        setMedicamentosLista(data)
+      })
+    loadDosages()
+  }, [])
 
 
   useEffect(() => {
@@ -105,6 +94,18 @@ export default function ListaMedicamentos() {
     }
   }, [dataFinal]);
 
+  const loadDosages = async () => {
+    const data = await getAllDosages();
+    const formattedMedicamentos = data.map((dosage: any) => ({
+      id: dosage.id,
+      label: dosage.medicineName,
+      dosagem: dosage.quantity,
+      frequencia: dosage.frequency,
+      dataFinal: dosage.finalDate
+    }));
+    setDosages(formattedMedicamentos);
+    return true;
+  }
 
   const handleAddMedicamento = () => {
 
@@ -116,6 +117,12 @@ export default function ListaMedicamentos() {
       setErroMedicamentoNome(false);
       setMensagemErroMedicamentoNome("");
     }
+    const medicamento = medicamentosLista.find(it => it.name == medicamentoNome.label)
+    if (!medicamento) {
+      setErroMedicamentoNome(true);
+      setMensagemErroMedicamentoNome("Medicamento não encontrado, selecione de acordo com a lista");
+      return
+    }
 
     if (!dataFinal && !usoContinuo) {
       setErroData(true);
@@ -126,39 +133,27 @@ export default function ListaMedicamentos() {
       setMensagemErroData("");
     }
 
-    const novoMedicamento = {
-      label: medicamentoNome.label,
-      dosagem: dosagem && unidadeMedida ? `${dosagem}${unidadeMedida}` : '',
-      frequencia: frequencia,
-      dataFinal: usoContinuo ? "Uso contínuo" : dataFinal,
+    const novaDosagem = {
+      medicineId: medicamento.id,
+      quantity: dosagem && unidadeMedida ? `${dosagem}${unidadeMedida}` : '',
+      frequency: frequencia,
+      finalDate: usoContinuo ? undefined : dataFinal,
     };
 
-    setMedicamentos(prevMedicamentos => [...prevMedicamentos, novoMedicamento]);
+    saveDosage(novaDosagem)
+      .then(loadDosages)
+      .then(() => {
+        setIsModalOpen(false);
+        resetModal();
 
-    setIsModalOpen(false);
-    resetModal();
+        setMedicamentoNome(null);
+        setDosagem('');
+        setFrequencia('');
+        setDataFinal('');
+        setUsoContinuo(false);
 
-    setMedicamentoNome(null);
-    setDosagem('');
-    setFrequencia('');
-    setDataFinal('');
-    setUsoContinuo(false);
-
-    //imprime a lista completa de medicamentos e suas informaçoes
-    setTimeout(() => {
-      console.log("Lista de Medicamentos:");
-      [...medicamentos, novoMedicamento].forEach(medicamento => {
-        console.log(`
-                Nome do medicamento: ${medicamento.label}
-                Dosagem: ${medicamento.dosagem}
-                Frequência: ${medicamento.frequencia}
-                Data Final: ${medicamento.dataFinal}
-            `);
-      });
-    }, 0);
-
-    setShowSuccessMessage(true);
-    setTimeout(() => setShowSuccessMessage(false), 3000);
+        setShowSuccessMessage(true);
+      })
   };
 
 
@@ -181,13 +176,23 @@ export default function ListaMedicamentos() {
       )}
 
       <div className="meus-remedios-container">
-        {medicamentos.map((medicamento, index) => (
-          <CardRemedio
-            key={index}
-            label={medicamento.label}
-            onClick={() => console.log(medicamento.label)}
-          />
-        ))}
+        {dosages.length == 0
+          ?
+          <Box style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-around', minHeight: '350px' }}>
+            <p style={{ fontFamily: 'Poppins', color: '#a8a8a8', fontSize: '25px' }}>Nenhum remédio adicionado</p>
+            <img style={{ transform: 'scale(2)' }} src={ThinkEmoji} />
+          </Box>
+          :
+          <Box style={{ minHeight: '350px' }}>
+            {dosages.map((dosage, index) => (
+              <CardRemedio
+                key={index}
+                label={dosage.label.length >= 18 ? dosage.label.substring(0, 15) + "..." : dosage.label}
+                onClick={() => navigate(`/lista/medicamentos/${dosage.id}`)}
+              />
+            ))}
+          </Box>
+        }
       </div>
       <CustomButton
         label="Adicionar"
@@ -203,7 +208,7 @@ export default function ListaMedicamentos() {
           <div className='content-texto-modal'>
             <MedicinenameModal
               label="Nome do Medicamento"
-              options={mockedMedicationsList.map(medicamento => medicamento.label)}
+              options={medicamentosLista.length == 0 ? [] : medicamentosLista.map(medicamento => medicamento.name)}
               value={medicamentoNome?.label || null}
               onChange={(newValue: string | null) => setMedicamentoNome(newValue ? { label: newValue } : null)}
               error={erroMedicamentoNome}
