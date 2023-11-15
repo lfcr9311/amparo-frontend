@@ -27,7 +27,7 @@ export const getDosage = async (dosageId: string) => {
     throw error;
   }
 }
-export const putEditDosage = async (dosageId: string,medicineId:number,quantity:string,frequency:number,finalDate:string) => {
+export const putEditDosage = async (dosageId: string,medicineId:number,quantity:string,frequency:string,finalDate:string) => {
   const dosageEditBody = {
     medicineId:medicineId,
     quantity: quantity,
