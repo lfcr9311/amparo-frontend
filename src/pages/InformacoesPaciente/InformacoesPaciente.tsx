@@ -5,6 +5,8 @@ import RefreshIcon from '../../assets/RefreshIcon.svg'
 import FiltroBusca from '../../components/FiltroBusca/FiltroBusca'
 import { useState } from 'react'
 import { ButtonSalmonPageInfo } from '../../components/ButtonSalmon/ButtonSalmonPageInfo'
+import { useNavigate } from 'react-router-dom'
+import { ROUTES } from '../../routes/constans'
 
 interface Informacao {
     titulo: string;
@@ -16,7 +18,7 @@ interface Informacao {
 }
 
 export default function InformacoesPaciente() {
-
+    const navigate = useNavigate();
     const [informacaoMedica, setInformacaoMedica] = useState('');
     const handleInformacaoMedica = (newValue: string) => {
         setInformacaoMedica(newValue);
@@ -24,6 +26,9 @@ export default function InformacoesPaciente() {
 
     const handleRefresh = () => {
         window.location.reload();
+    }
+    const handleClick = () => {
+        navigate(ROUTES.INFORMACAO_MEDICA_ESPECIFICA())
     }
 
     const informacao: Informacao[] = [
@@ -94,7 +99,7 @@ export default function InformacoesPaciente() {
                         key={index}
                         infoTitle={info.titulo}
                         dateAndDoctorInfo={`${calcularDiferencaDias(info.timestamp)} - ${info.id_doctor}`}
-                        onClick={() => {}}
+                        onClick={handleClick}
                     />
                 ))}
             </div>

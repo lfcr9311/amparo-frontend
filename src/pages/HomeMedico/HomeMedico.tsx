@@ -28,7 +28,7 @@ const HomeMedico = () => {
   };
 
   const handleClickInfo = () => {
-    
+    navigate(ROUTES.INFORMACOES_MEDICO());
   };
 
   const handleClickConsutas = () => {

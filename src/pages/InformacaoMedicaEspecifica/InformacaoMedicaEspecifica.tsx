@@ -6,8 +6,6 @@ export default function InformacaoMedicaEspecifica() {
     return (
         <>
         <HeaderHome title="Informações" type="headerPage" />
-        
-            
             <div className="container-especific-info">
                 <div className="container-especific-info-title">
                    
