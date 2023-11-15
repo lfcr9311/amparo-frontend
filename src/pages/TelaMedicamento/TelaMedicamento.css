@@ -9,13 +9,15 @@
     border-radius: 12px;
     background-color: #FBF8F8;
     box-shadow: 5px 5px 7px 0px rgba(0, 0, 0, 0.25);
+
 }
 
 .nome-remedio {
     font-family: Poppins;
-    font-size: 25px;
+    align-self: start;
+    font-size: 20px;
     font-weight: 600;
-    max-width: 70%;
+    max-width: 80%;
     line-height: 38px;
     letter-spacing: 0em;
     margin-top: -10%;
@@ -39,9 +41,10 @@
     font-weight: 700;
     line-height: 23px;
     color: #343131;
-    margin-left: 10%;
+    margin-left: -7%;
     display: flex;
     flex-direction: column;
+
     gap: 6px;
 }
 
@@ -80,6 +83,7 @@
     line-height: normal;
     position: fixed;
     bottom: 20%;
+
 }
 
 .edition-icon-medicament-image {
@@ -102,6 +106,12 @@
 }
 
 .box-lista-interacoes-remedio {
-    position: fixed;
-    top: 40%;
+    display: flex;
+    margin-top: 210px;
+
+
+}
+
+.name-interacao-medicamento {
+    margin-bottom: 1%;
 }

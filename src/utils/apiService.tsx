@@ -32,8 +32,10 @@ export const putEditDosage = async (dosageId: string,medicineId:number,quantity:
     medicineId:medicineId,
     quantity: quantity,
     frequency: frequency,
-    finalDate: finalDate+"T22:53:23.034Z",
+    finalDate: finalDate+"T01:38:39.327Z",
   };
+  
+
   try {
     const response = await axios.put(`/dosage/${dosageId}`,dosageEditBody, {
       headers: {
@@ -46,6 +48,18 @@ export const putEditDosage = async (dosageId: string,medicineId:number,quantity:
   }
 }
 
+export const deleteDosage = async (dosageId: string) => {
+  try {
+    const response = await axios.delete(`/dosage/${dosageId}`, {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem("authToken")
+      }
+    })
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}
 
 export const getIncompatibilyList = async (medicineId: number) => {
   try {

@@ -95,8 +95,7 @@ const DosagemModal = ({
           },
         }}
       >
-        <MenuItem value="mg">mg</MenuItem>
-        <MenuItem value="g">g</MenuItem>
+        <MenuItem value="ml">ml</MenuItem>
       </TextField>
     </div>
   );
