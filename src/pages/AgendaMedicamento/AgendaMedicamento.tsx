@@ -7,7 +7,7 @@ import Modal from '../../components/Modal/Modal';
 import MedicamentoAgenda from '../../components/MedicamentoAgenda/MedicamentoAgenda';
 import './AgendaMedicamento.css';
 import { useState } from 'react';
-import { Stack } from '@mui/system';
+
 
 
 interface Medicamento {
@@ -88,10 +88,6 @@ export default function AgendaMedicamento() {
         ))}
       </div>
 
-
-      {/* <Fab variant="extended" onClick={() => setModalIsOpen(true)}>
-        Navigate
-      </Fab> */}
       <div className='botao-add' style={{ bottom: `${botaoAddPosition}%` }}>
         <CustomButton
           label="Adicionar"
