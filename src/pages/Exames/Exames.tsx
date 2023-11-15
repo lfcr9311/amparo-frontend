@@ -9,7 +9,7 @@ import Description from '../../components/Modal/Components/Description/Descripti
 import CustomButton from '../../components/Button/Button';
 import ExamFilter from '../../components/ExamFilter/examFilter';
 import InputFile from '../../components/InputFile/InputFile';
-import { format } from 'date-fns';
+import { format, parse } from 'date-fns';
 import './Exames.css';
 import { addExamePendente, addExameRealizado, addFileOrImage, getExamesPendente, getExamesRealizados } from '../../utils/apiService';
 import ExamesVazio from '../../components/ExamesVazio/ExamesVazio';
@@ -32,6 +32,7 @@ export default function Exames() {
   const [dateRealizados, setDateRealizados] = useState('');
   const [descriptionRealizados, setDescriptionRealizados] = useState('');
   const [addExam, setAddExam] = useState('');
+  const [tabNumber, setTabNumber] = useState(0);
   const [filePdf, setFilePdf] = useState<File | null>(null);
   const [fileImage, setFileImage] = useState<File | null>(null);
   const [examesPendentes, setExamesPendentes] = useState<Exames[]>([]);
@@ -223,6 +224,8 @@ export default function Exames() {
                   { content: '', label: '6 meses' },
                   { content: '', label: 'Todos' },
                 ]}
+                value={tabNumber}
+                setValue={setTabNumber}
               />
               <div className="cards-exames-realizados">
                 {examesRealizados.map((exam, index) => (
@@ -234,7 +237,20 @@ export default function Exames() {
                     type={'realizado'}
                     id={exam.id}
                   />
-                ))}
+                )).filter((exame) => {
+                  const examDate = parse(exame.props.date, 'dd/MM/yyyy', new Date());
+                  const currentDate = new Date();
+                  const thirtyDaysAgo = new Date();
+                  const sixtieDaysAgo = new Date();
+                  thirtyDaysAgo.setDate(currentDate.getDate() - 30);
+                  sixtieDaysAgo.setDate(currentDate.getDate() - 180);
+
+                  if (tabNumber == 0)
+                    return examDate >= thirtyDaysAgo;
+                  else if (tabNumber == 1)
+                    return examDate >= sixtieDaysAgo;
+                  else return true
+                })}
               </div>
               <Modal
                 isOpen={isModalRealizadosOpen}
