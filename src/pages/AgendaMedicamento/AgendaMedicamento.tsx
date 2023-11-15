@@ -111,7 +111,7 @@ export default function AgendaMedicamento() {
         <div className="administration">
           <SelectTime value={horario} onChange={setHorario} />
         </div>
-        <div className="botao">
+        <div className="botao-salvar">
           <CustomButton
             variant="contained"
             label="Salvar"
