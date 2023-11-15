@@ -77,18 +77,15 @@ export default function AgendaMedicamento() {
       <HeaderHome title="Agenda" type="headerPage" />
 
       <div className="meus-remedios-container">
-        <Stack spacing={2}>
-          {medicamentosAgenda.map((medicamento) => (
-            <MedicamentoAgenda
-              key={medicamento.id}
-              title={medicamento.nome}
-              content={`${medicamento.horario}`}
-              onInfoClick={() => handleInfoClick(medicamento.id)}
-              onDeleteClick={() => handleDeleteClick(medicamento.id)}
-            //Uso Contínuo: ${medicamento.usoContinuo ? 'Sim' : 'Não'}
-            />
-          ))}
-        </Stack>
+        {medicamentosAgenda.map((medicamento) => (
+          <MedicamentoAgenda
+            key={medicamento.id}
+            title={medicamento.nome}
+            content={`${medicamento.horario}`}
+            onInfoClick={() => handleInfoClick(medicamento.id)}
+            onDeleteClick={() => handleDeleteClick(medicamento.id)}
+          />
+        ))}
       </div>
 
 
