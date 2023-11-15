@@ -5,8 +5,9 @@ import ExamFilter from '../../components/ExamFilter/examFilter';
 import { format } from 'date-fns';
 import './AcessarExamePaciente.css';
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
-// @ts-ignore
+
 interface Exames {
     id: string;
     description: string;
@@ -19,10 +20,12 @@ interface Exames {
 
 export default function AcessarExamePaciente() {
     const [value, setValue] = useState(0);
-
+    const [filterValue, setFilterValue] = useState(0);
+    const location = useLocation();
+    const paciente = location.state.paciente
     const examesPendentes: Exames[] = [];
     const examesRealizados: Exames[] = [];
-    const title = "Exames de Fulano";
+    const title = `Exames de ${paciente.name}`;
 
     return (
         <>
@@ -38,6 +41,8 @@ export default function AcessarExamePaciente() {
                                 date={format(new Date(exam.examDate), 'dd/MM/yyyy')}
                                 exam={exam.description}
                                 description={exam.description}
+                                fileImage={exam.image}
+                                filePdf={exam.file}
                                 type={'pendente'}
                                 id={exam.id}
                             />
@@ -54,6 +59,8 @@ export default function AcessarExamePaciente() {
                                 { content: '', label: '6 meses' },
                                 { content: '', label: 'Todos' },
                             ]}
+                            value={filterValue}
+                            setValue={setFilterValue}
                         />
                     </div>
                     <div className="cards-exames-realizados-medico">
@@ -64,6 +71,8 @@ export default function AcessarExamePaciente() {
                                 date={format(new Date(exam.examDate), 'dd/MM/yyyy')}
                                 exam={exam.description}
                                 description={exam.description}
+                                fileImage={exam.image}
+                                filePdf={exam.file}
                                 type={'realizado'}
                                 id={exam.id}
                             />
