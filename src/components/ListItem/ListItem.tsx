@@ -11,7 +11,10 @@ interface ExamListProps {
   exam: string;
   description: string;
   type: 'pendente' | 'realizado';
-  id: string
+  fileImage: string | null;
+  filePdf: string | null;
+  id: string;
+  onClickPermisson: boolean;
 }
 
 export default function ExamListItem({
@@ -19,7 +22,10 @@ export default function ExamListItem({
   exam,
   description,
   type,
-  id
+  fileImage,
+  filePdf,
+  id,
+  onClickPermisson
 }: ExamListProps) {
   const navigate = useNavigate();
   const handleClick = () => {
@@ -27,12 +33,14 @@ export default function ExamListItem({
       type === 'pendente'
         ? ROUTES.EDICAO_EXAMES_PENDENTES()
         : ROUTES.EDICAO_EXAMES_REALIZADOS(),
-      { state: { date: date, description: description, id: id } }
+      { state: { date: date, description: description, id: id, fileImage: fileImage, filePdf: filePdf } }
     );
   };
 
+  const handleClickNull = () => {};
+
   return (
-    <div className="frame" onClick={handleClick}>
+    <div className="frame" onClick={onClickPermisson ? handleClick : handleClickNull}>
       <ListItem
         key={'key'}
         className="list-item"

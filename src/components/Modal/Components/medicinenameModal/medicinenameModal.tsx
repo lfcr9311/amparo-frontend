@@ -20,7 +20,7 @@ const MedicinenameModal: FC<MedicinameModalProps> = ({
     error = false,
     helperText,
     classname,
-    width = 270,
+    width = 300,
 }) => {
     const [internalValue, setInternalValue] = useState(value);
 
