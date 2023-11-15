@@ -21,6 +21,10 @@
 
 .profile-icon {
   margin-top: 10%;
+  width: 8rem;
+  height: auto;
+  border-radius: 50%;
+  margin-bottom: 20px;
 }
 
 .name {
@@ -121,13 +125,10 @@
 
 .alterar-senha-button {
   border: none;
-  background-color: #fbf8f8;
+  background-color: transparent;
   color: #656363;
   text-align: center;
   font-family: Poppins;
-  font-size: 13px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  margin-top: 7px;
+  font-size: 0.85rem;
+  margin-top: 2rem;
 }
