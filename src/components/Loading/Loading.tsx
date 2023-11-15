@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import Lottie, { AnimationItem } from 'lottie-web';
+import './Loading.css';
 import LoadingAnim from '../../assets/LoadingRound.json';
 //import LoadingAnim from '../../assets/LoadingNoBackg.json';
 
@@ -33,8 +34,8 @@ const Loading: React.FC = () => {
     }, []);
 
     return (
-        <div style={{ marginTop: '10rem' }}>
-            <div ref={animationContainer} style={{ width: 120, height: 120 }} />
+        <div className='loading-overlay'>
+            <div className='loading-container' ref={animationContainer} style={{ width: 120, height: 120 }} />
         </div>
     );
 };
