@@ -1,0 +1,55 @@
+    .title-exames-pendentes-medico {
+        font-family: Poppins;
+        font-size: 23px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        color: #4d4c4c;
+        position: fixed;
+        top: 15%;
+    }
+
+    .cards-exames-pendentes-medico {
+        max-height: 490px;
+        overflow-y: auto;
+        width: 82.5%;
+        gap: 8px;
+        flex-direction: column;
+        display: flex;
+        position: fixed;
+        top: 24%;
+    }
+
+    .title-exames-realizados-medico {
+        font-family: Poppins;
+        font-size: 23px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        color: #4d4c4c;
+        position: fixed;
+        top: 15%;
+    }
+
+    .cards-exames-realizados-medico {
+        margin-top: 6%;
+        max-height: 420px;
+        width: 82.5%;
+        overflow-y: auto;
+        gap: 8px;
+        flex-direction: column;
+        display: flex;
+        position: fixed;
+        top: 26.5%;
+    }
+
+    .body-exames-medico {
+        height: 65%;
+        width: 80%;
+    }
+
+    .filter-div{
+        position: fixed;
+        top: 23.5%;
+        left: 8.5%;
+    }
