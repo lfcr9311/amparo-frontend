@@ -1,0 +1,57 @@
+.container-especific-info {
+    flex-grow: 1;
+    padding: 35px;
+    overflow-y: auto;
+    box-sizing: border-box;
+    position: relative;
+    margin-top: 30%;
+    margin-bottom: 30%;
+}
+
+.container-especific-info-title {
+    width: 100%;
+    color: #696969;
+    font-family: Poppins;
+    font-size: 25px;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.date-doctor-name-crm {
+    margin-top: 10px;
+    margin-bottom: 15px;
+    color: #A3A3A3;
+    font-family: Poppins;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.container-especific-info-text {
+    width: 100%;
+    max-width: 800px;
+    overflow-y: auto; /* Adiciona rolagem vertical quando necessário */
+}
+
+.container-especific-info-link {
+    margin-top: 20px;
+    
+    position: relative;
+    overflow-y: auto; 
+    color: #696969;
+    font-family: Poppins;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.container-especific-info-link-text {
+    color: #888;
+    font-family: Poppins;
+    font-size: 13px;
+    font-style: italic;
+    font-weight: 500;
+    line-height: normal;
+
+}

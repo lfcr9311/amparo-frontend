@@ -23,6 +23,8 @@ import InformacoesMedico from './pages/InformacoesMedico/InformacoesMedico';
 import InformacoesPaciente from './pages/InformacoesPaciente/InformacoesPaciente';
 import MeusPacientes from './pages/MeusPacientes/MeusPacientes';
 import { AdicionarInformacao } from './pages/InformacoesMedico/AdicionarInformaca';
+import InformacaoMedicaEspecifica from './pages/InformacaoMedicaEspecifica/InformacaoMedicaEspecifica';
+import EditarInformacaoMedicaEspecifica from './pages/InformacaoMedicaEspecifica/InformacaoMedicaEspecificaEdicao';
 
 export default function AppRoutes() {
   const fetchData = async () => {
@@ -158,8 +160,11 @@ export default function AppRoutes() {
           <Route path={ROUTES.ADICIONAR_INFORMACAO_MEDICA()} element={
             <AdicionarInformacao />
           } />
-          <Route path='teste' element={
-            <InformacoesPaciente />
+          <Route path={ROUTES.INFORMACAO_MEDICA_ESPECIFICA()} element={
+            <InformacaoMedicaEspecifica />
+          } />
+          <Route path={ROUTES.EDITAR_INFORMACAO_MEDICA()} element={
+            <EditarInformacaoMedicaEspecifica />
           } />
         </Routes>
       </div>

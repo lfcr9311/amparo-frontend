@@ -21,4 +21,6 @@ export const ROUTES = {
   INFORMACOES_MEDICO:() => '/informacao/medica',
   INFORMACOES_PACIENTE:() => '/informacao/paciente',
   ADICIONAR_INFORMACAO_MEDICA:() => '/adicionar/informacao/medica',
+  INFORMACAO_MEDICA_ESPECIFICA:() => '/informacao/medica/especifica',
+  EDITAR_INFORMACAO_MEDICA:() => '/editar/informacao/medica',
 };
