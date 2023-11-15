@@ -25,20 +25,22 @@ interface ModalDetalhesPacienteProps {
   setpaciente: Dispatch<SetStateAction<any>>;
 }
 
-
-const handleClickExames = () => {
-  console.log('Exames');
-};
-
 const ModalDetalhesPaciente = ({
   paciente,
   isModalOpen,
   setIsModalOpen,
   setpaciente,
+
 }: ModalDetalhesPacienteProps) => {
+  
   const navigate = useNavigate();
+
   const handleClickMedicamentos = () => {
-    navigate(ROUTES.LISTA_MEDICAMENTOS_MEDICO(), { state: { paciente } });
+    navigate(ROUTES.LISTA_MEDICAMENTOS_MEDICO(), { state: { paciente: paciente }})
+  };
+  
+  const handleClickExames = () => {
+    navigate(ROUTES.ACESSAR_EXAMES_PACIENTE(), { state: { paciente: paciente }})
   };
 
   return (
@@ -83,13 +85,13 @@ const ModalDetalhesPaciente = ({
       <div className='buttons-box'>
           <div className='button-card'>
             <button className='button' onClick={handleClickExames}>
-              <img className='icon' src={ExameIcon}/>
+              <img className='icon' src={ExameIcon} />
             </button>
             <h4 className='text-button'>Exames</h4>
           </div>
           <div className='button-card'>
             <button className='button' onClick={handleClickMedicamentos}>
-              <img className='icon' src={MedicamentosIcon}/>
+              <img className='icon' src={MedicamentosIcon} />
             </button>
             <h4 className='text-button'>Medicamentos</h4>
           </div>

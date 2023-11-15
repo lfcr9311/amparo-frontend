@@ -13,26 +13,29 @@ interface Medicamento {
     dataFinal?: string | "Uso contínuo";
 }
 export default function ListaMedicamentosMedico() {
-    const title = 'Medicamentos de fulano';
     const [medicamentos, setMedicamentos] = useState<Medicamento[]>([]);
     const location = useLocation();
-    const { paciente } = location.state as any;
+    const paciente = location.state.paciente;
+    const title = `Medicamentos de ${paciente.name}`;
     useEffect(() => {
         getMedicamentosPaciente().then((response) => {
-            setMedicamentos(response.data);}
-    )}, [medicamentos]);
+            setMedicamentos(response.data);
+        }
+        )
+    }, [medicamentos]);
     return (
         <>
             <HeaderHome type='headerPage' title='Medicamentos' />
-            <p className='medicine-doctor-title'>{title}</p>
+            <p className='medicine-paciente-name'>{title}</p>
             <div className="medicine-list-container">
-                {medicamentos.map((medicamento, index) => (
-                    <CardRemedio
-                        key={index}
-                        label={medicamento.label}
-                        onClick={() => console.log(medicamento.label)}
-                    />
-                ))}
+                {medicamentos?.length === 0 ? <p className="no-medicines">Nenhum medicamento cadastrado</p> :
+                    medicamentos?.map((medicamento, index) => (
+                        <CardRemedio
+                            key={index}
+                            label={medicamento.label}
+                            onClick={() => console.log(medicamento.label)}
+                        />
+                    ))}
             </div>
             <Footer user='doctor' />
         </>
