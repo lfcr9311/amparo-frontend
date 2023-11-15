@@ -32,7 +32,7 @@ const HomePaciente = () => {
   };
 
   const handleClickInfo = () => {
-    console.log('Cheguei aqui!!!');
+    navigate(ROUTES.INFORMACOES_PACIENTE());
   };
 
   const handleClickConsutas = () => {

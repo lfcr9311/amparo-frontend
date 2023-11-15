@@ -88,7 +88,7 @@ const MeusPacientes: React.FC = () => {
         <>
           <div className='search-container'>
             <input
-              className='search-input' // Adicione a classe CSS para o input
+              className='search-input' 
               type='text'
               placeholder='Buscar...'
               value={searchText}
@@ -97,7 +97,6 @@ const MeusPacientes: React.FC = () => {
             <Icon>
               <img
                 src='https://img.icons8.com/material-outlined/24/000000/search--v1.png'
-                alt='Ícone de pesquisa'
               />
             </Icon>
           </div>
