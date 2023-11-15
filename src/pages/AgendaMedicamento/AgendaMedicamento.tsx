@@ -7,7 +7,6 @@ import Modal from '../../components/Modal/Modal';
 import MedicamentoAgenda from '../../components/MedicamentoAgenda/MedicamentoAgenda';
 import './AgendaMedicamento.css';
 import { useState } from 'react';
-import { Fab } from '@mui/material';
 import { Stack } from '@mui/system';
 
 
