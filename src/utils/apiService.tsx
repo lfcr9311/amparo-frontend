@@ -54,7 +54,7 @@ export const getIncompatibilyList = async (medicineId: number) => {
         'Authorization': 'Bearer ' + localStorage.getItem("authToken")
       }
     })
-    return response.data.map((incompability: any) => ({ name: incompability.name, status: incompability.severity }))
+    return response.data.map((incompability: any) => ({ name: incompability.name, status: incompability.incompatibility }))
   } catch (error) {
     throw error;
   }
