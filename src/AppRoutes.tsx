@@ -51,10 +51,11 @@ export default function AppRoutes() {
             }
           />
 
-
-          <Route path={ROUTES.MEDICAMENTOS()}
+          {//id_dosage='579a9681-e166-4169-9282-bfa0326a5497'
+          }      
+              <Route path={ROUTES.MEDICAMENTOS()}
             element={<PrivateRoute>
-              <TelaMedicamento id_medicine='a094ab3b-03c2-49f5-aae4-6e5a02584a6c' />
+              <TelaMedicamento />
             </PrivateRoute>
             } />
 
