@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import './SelectMedicamento.css';
 import ArrowForwardIosRoundedIcon from '@mui/icons-material/ArrowForwardIosRounded';
 
