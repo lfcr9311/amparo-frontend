@@ -151,7 +151,10 @@ export default function Exames() {
                   exam={exam.description}
                   description={exam.description}
                   type={'pendente'}
+                  fileImage=''
+                  filePdf=''
                   id={exam.id}
+
                 />
               ))}
             </div>
@@ -235,6 +238,8 @@ export default function Exames() {
                     exam={exam.description}
                     description={exam.description}
                     type={'realizado'}
+                    fileImage={exam.image}
+                    filePdf={exam.file}
                     id={exam.id}
                   />
                 )).filter((exame) => {
