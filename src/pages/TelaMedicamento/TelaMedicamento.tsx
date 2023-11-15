@@ -8,10 +8,8 @@ import './TelaMedicamento.css';
 import { ModalEdicaoDosagem } from '../../components/ModalEdicaoDosagem/ModalEdicaoDosagem';
 import DeleteMedicamento from '../../components/Modal/Components/DeleteMedicamento/DeleteMedicamento';
 import { format } from 'date-fns';
+import { useParams } from 'react-router-dom';
 
-interface MedicamentoProps {
-    id_dosage: string;
-}
 
 interface Items {
     id: number;
@@ -19,13 +17,16 @@ interface Items {
     status: number;
 }
 
-export const TelaMedicamento: React.FC<MedicamentoProps> = ({ id_dosage }) => {
+export const TelaMedicamento = () => {
+    const {dosageId} = useParams<{dosageId:string}>() 
+
     const [modalIsOpenEdit, setModalIsOpenEdit] = useState(false);
     const [modalIsOpenBula, setModalIsOpenBula] = useState(false);
     const [modalIsOpenExcluir, setModalIsOpenExcluir] = useState(false);
     const [dosagem, setDosagem] = useState('');
     const [frequencia, setFrequencia] = useState('');
     const [dataFinal, setDataFinal] = useState('');
+    const [dataFinalParaEnviarEditar, setDataFinalParaEnviarEditar] = useState('');
     const [unidadeMedida, setUnidadeMedida] = useState('');
     const [name, setName] = useState('');
     const [lastDosage, setLastDosage] = useState('');
@@ -33,30 +34,33 @@ export const TelaMedicamento: React.FC<MedicamentoProps> = ({ id_dosage }) => {
     const [idMedicine, setIdMedicine] = useState('');
 
     const handleSalvarEdicao = (dadosEditados: any) => {
-        putEditDosage(id_dosage,Number(idMedicine),dadosEditados.dosagem,
-        dadosEditados.frequencia,dadosEditados.dataFinal).then((response) => { 
-            setLastDosage(response);
-    //    if (dadosEditados.dosagem !== undefined) {
-    //        setDosagem(dadosEditados.dosagem);
-    //    }
-    //    if (dadosEditados.frequencia !== undefined) {
-    //        setFrequencia(dadosEditados.frequencia);        }
-    //    if (dadosEditados.dataFinal !== undefined) {
-    //        setDataFinal(dadosEditados.dataFinal);
-    //    }
-    //    if (dadosEditados.unidadeMedida !== undefined) {
-    //        setUnidadeMedida(dadosEditados.unidadeMedida);
-    //    }
-        //aqui eu envio os dados editados para back
-    })};
+        putEditDosage(dosageId!!, Number(idMedicine), dadosEditados.dosagem,
+            dadosEditados.frequencia, dadosEditados.dataFinal).then((response) => {
+                setLastDosage(response);
+
+                //    if (dadosEditados.dosagem !== undefined) {
+                //        setDosagem(dadosEditados.dosagem);
+                //    }
+                //    if (dadosEditados.frequencia !== undefined) {
+                //        setFrequencia(dadosEditados.frequencia);        }
+                //    if (dadosEditados.dataFinal !== undefined) {
+                //        setDataFinal(dadosEditados.dataFinal);
+                //    }
+                //    if (dadosEditados.unidadeMedida !== undefined) {
+                //        setUnidadeMedida(dadosEditados.unidadeMedida);
+                //    }
+                //aqui eu envio os dados editados para back
+            })
+    };
 
     useEffect(() => {
-        getDosage(id_dosage)
+        getDosage(dosageId!!)
             .then((medicine) => {
                 const dateFormated = format(new Date(medicine.finalDate), 'dd/MM/yyyy');
                 setDosagem(medicine.quantity);
                 setFrequencia(medicine.frequency);
                 setDataFinal(dateFormated);
+                setDataFinalParaEnviarEditar(medicine.finalDate);
                 setUnidadeMedida(medicine.unit);
                 setName(medicine.medicineName);
                 setIdMedicine(medicine.idMedicine);
@@ -92,7 +96,9 @@ export const TelaMedicamento: React.FC<MedicamentoProps> = ({ id_dosage }) => {
                         dosagemRecebida={dosagem}
                         unidadeMedica={unidadeMedida}
                         frequenciaRecebida={frequencia}
-                        dataFinalRecebida={dataFinal !== null ? dataFinal : undefined}
+
+
+                        dataFinalRecebida={dataFinalParaEnviarEditar !== null ? dataFinalParaEnviarEditar : undefined}
                         onSalvar={handleSalvarEdicao}
                     />
                 )}
@@ -101,7 +107,7 @@ export const TelaMedicamento: React.FC<MedicamentoProps> = ({ id_dosage }) => {
                     <div>
                         Dosagem: {''}
                         <span className="informacao-de-uso-remedio">
-                            {dosagem} cps de {unidadeMedida} 
+                            {dosagem} cps de {unidadeMedida}
                         </span>{' '}
                     </div>
                     <div>

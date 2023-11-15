@@ -22,7 +22,7 @@ export default function Modal({
           <div className="header-modal-container">
             <p className="title-modal">{title}</p>
             <button className="button-close" onClick={isClose}>
-              <img src={Close} />
+              <img src={Close} className='button-close-icon'/>
             </button>
           </div>
           <div className="body-modal-container">{children}</div>

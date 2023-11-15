@@ -37,7 +37,12 @@
 
 .button-close {
   border: none;
-  background-color: #fff;
+  background-color: #FBF8F8;
+  
+}
+.button-close-icon {
+  width: auto;
+  height: 35px;
 }
 
 .title-modal {
