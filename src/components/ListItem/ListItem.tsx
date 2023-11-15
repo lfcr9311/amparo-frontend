@@ -11,6 +11,8 @@ interface ExamListProps {
   exam: string;
   description: string;
   type: 'pendente' | 'realizado';
+  fileImage: string | null;
+  filePdf: string | null;
   id: string;
   onClickPermisson: boolean;
 }
@@ -20,6 +22,8 @@ export default function ExamListItem({
   exam,
   description,
   type,
+  fileImage,
+  filePdf,
   id,
   onClickPermisson
 }: ExamListProps) {
@@ -29,7 +33,7 @@ export default function ExamListItem({
       type === 'pendente'
         ? ROUTES.EDICAO_EXAMES_PENDENTES()
         : ROUTES.EDICAO_EXAMES_REALIZADOS(),
-      { state: { date: date, description: description, id: id } }
+      { state: { date: date, description: description, id: id, fileImage: fileImage, filePdf: filePdf } }
     );
   };
 

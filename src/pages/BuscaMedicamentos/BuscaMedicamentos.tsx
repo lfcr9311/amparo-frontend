@@ -16,6 +16,7 @@ interface Medicamento {
 
 export default function BuscaMedicamentos() {
     const [findMedicine, setMedicine] = useState("");
+    const [tabNumber, setTabNumber] = useState(0);
 
     const handleMed = (newValue: string) => {
         setMedicine(newValue);
@@ -42,6 +43,8 @@ export default function BuscaMedicamentos() {
                         { content: '', label: 'Outros' },
                         { content: '', label: 'Todos' },
                     ]}
+                    value={tabNumber}
+                    setValue={setTabNumber}
                 />
             </div>
             <div className="remedios-div">

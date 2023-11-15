@@ -1,4 +1,4 @@
-.overlay {
+.loading-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -12,5 +12,5 @@
 }
 
 .loading-container {
-  margin-top: 25vh;
+  margin-top: 95%;
 }
