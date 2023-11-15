@@ -5,13 +5,13 @@ import Modal from '../../components/Modal/Modal';
 import {useEffect, useState} from 'react';
 import ProfileDoctorCard from '../../components/ProfileDoctorCard/ProfileDoctorCard';
 import TextfieldModal from '../../components/Modal/Components/TextfieldModal';
-import SelectConvenios from '../../components/Modal/Components/SelectConvenios/SelectConvenios';
 import SelectModal from '../../components/Modal/Components/SelectModal/SelectModal';
 import CustomButton from '../../components/Button/Button';
-import {Button, CircularProgress} from '@mui/material';
+import {Alert, Button, CircularProgress, Snackbar} from '@mui/material';
 import {useNavigate} from 'react-router-dom';
 import {ROUTES} from '../../routes/constans';
 import {getDoctor} from "../../utils/apiService.tsx";
+import api from "../../api.tsx";
 
 interface Doctor {
     cellphone?: string;
@@ -32,9 +32,11 @@ const VisualizacaoPerfilMedico = () => {
     const [crm, setCrm] = useState('');
     const [ddd, setDdd] = useState('');
     const [phone, setPhone] = useState('');
-    const [convenios, setConvenios] = useState('');
     const [isLoading, setIsLoading] = useState(true);
+    const [successSnackbar, setSuccessSnackbar] = useState(false);
+    const [errorSnackbar, setErrorSnackbar] = useState(false);
     const navigate = useNavigate()
+    
     const handleDeletar = () => {
         console.log("im here");
 
@@ -56,6 +58,22 @@ const VisualizacaoPerfilMedico = () => {
         })
     }, []);
 
+    useEffect(() => {
+        if (setSuccessSnackbar) {
+            setTimeout(() => {
+                setSuccessSnackbar(false);
+            }, 2000);
+        }
+    }, [successSnackbar]);
+
+    useEffect(() => {
+        if (errorSnackbar) {
+            setTimeout(() => {
+                setErrorSnackbar(false);
+            }, 2000);
+        }
+    }, [errorSnackbar]);
+
     // @ts-ignore
     return (<>
         <div className="header-container">
@@ -64,84 +82,121 @@ const VisualizacaoPerfilMedico = () => {
         {isLoading && <CircularProgress color='error'/>}
         {!isLoading && (<>
 
-                <div className="container">
-                    <div className="profile-card-container">
-                        <ProfileDoctorCard
-                            name={`Dr. ${doctor?.name}`}
-                            uf={doctor?.uf}
-                            crm={doctor?.crm}
-                            email={doctor?.email}
-                            phone={doctor?.cellphone?.replace(/^(\d{2})(\d+)$/, '($1) $2')}
-                            edit={() => setIsModalOpen(!isModalOpen)}
-                            alterarSenha={() => console.log('Alterar Senha')}
-                        />
-                    </div>
-                    <Modal
-                        isOpen={isModalOpen}
-                        title="Pefil"
-                        isClose={() => setIsModalOpen(!isModalOpen)}
-                    >
-                        <form>
-                            <div className="content-modal">
+            <div className="container">
+                <div className="profile-card-container">
+                    <ProfileDoctorCard
+                        name={`Dr. ${doctor?.name}`}
+                        uf={doctor?.uf}
+                        crm={doctor?.crm}
+                        email={doctor?.email}
+                        phone={doctor?.cellphone?.replace(/^(\d{2})(\d+)$/, '($1) $2')}
+                        edit={() => setIsModalOpen(!isModalOpen)}
+                        alterarSenha={() => console.log('Alterar Senha')}
+                    />
+                </div>
+                <Modal
+                    isOpen={isModalOpen}
+                    title="Pefil"
+                    isClose={() => setIsModalOpen(!isModalOpen)}
+                >
+                    <form>
+                        <div className="content-modal">
+                            <TextfieldModal
+                                label="Seu nome"
+                                value={name}
+                                type="text"
+                                onChange={(value) => setName(value)}
+                            />
+                            <div className="container-aux">
+                                <SelectModal onChange={(value) => setUf(value)} value={uf}/>
                                 <TextfieldModal
-                                    label="Seu nome"
-                                    value={name}
+                                    label="CRM"
+                                    value={crm}
                                     type="text"
-                                    onChange={(value) => setName(value)}
-                                />
-                                <div className="container-aux">
-                                    <SelectModal onChange={(value) => setUf(value)} value={uf}/>
-                                    <TextfieldModal
-                                        label="CRM"
-                                        value={crm}
-                                        type="text"
-                                        onChange={(value) => setCrm(value)}
-                                        width="195.5px"
-                                    />
-                                </div>
-                                <div className="container-aux">
-                                    <TextfieldModal
-                                        label="DDD"
-                                        value={ddd}
-                                        type="text"
-                                        onChange={(value) => setDdd(value)}
-                                        width="65.5px"
-                                    />
-                                    <TextfieldModal
-                                        label="Telefone"
-                                        value={phone}
-                                        type="text"
-                                        onChange={(value) => setPhone(value)}
-                                        width="195.5px"
-                                    />
-                                </div>
-                                <SelectConvenios
-                                    onChange={(value) => setConvenios(value)}
-                                    value={convenios}
-                                />
-                                <CustomButton
-                                    variant="contained"
-                                    label="Salvar"
-                                    onClick={() => console.log(name, uf, crm, ddd, phone, convenios)}
+                                    onChange={(value) => setCrm(value)}
+                                    width="195.5px"
                                 />
                             </div>
-                        </form>
-                    </Modal>
-                    <div>
-                        <Button
-                            sx={{
-                                color: '#e10e17', textAlign: 'center', fontFamily: 'Poppins', fontSize: '15px', fontStyle: 'normal', fontWeight: 400, lineHeight: 'normal', textDecoration: 'none', textTransform: 'none',
-                            }}
-                            onClick={handleDeletar}
-                        >
-                            Sair da Conta
-                        </Button>
-                    </div>
+                            <div className="container-aux">
+                                <TextfieldModal
+                                    label="DDD"
+                                    value={ddd}
+                                    type="text"
+                                    onChange={(value) => setDdd(value)}
+                                    width="65.5px"
+                                />
+                                <TextfieldModal
+                                    label="Telefone"
+                                    value={phone}
+                                    type="text"
+                                    onChange={(value) => setPhone(value)}
+                                    width="195.5px"
+                                />
+                            </div>
+                            {/*<SelectConvenios*/}
+                            {/*    onChange={(value) => setConvenios(value)}*/}
+                            {/*    value={convenios}*/}
+                            {/*/>*/}
+                            <CustomButton
+                                variant="contained"
+                                label="Salvar"
+                                onClick={() => {
+                                    const newPhone = ddd + phone;
+                                    api.put('/doctor', {
+                                        // send only the fields that were changed
+                                        name: name !== '' ? name : undefined, uf: uf !== '' ? uf : undefined, crm: crm !== '' ? crm : undefined, cellphone: newPhone !== '' ? newPhone : undefined,
+                                    }, {
+                                        headers: {
+                                            'Authorization': 'Bearer ' + localStorage.getItem("authToken")
+                                        }
+                                    }).then((response) => {
+                                        console.log(response)
+                                        setName('')
+                                        setUf('')
+                                        setCrm('')
+                                        setDdd('')
+                                        setPhone('')
+                                        setIsModalOpen(!isModalOpen)
+                                        setSuccessSnackbar(true)
+                                    }).catch((error) => {
+                                        setErrorSnackbar(true)
+                                        console.log(error)
+                                    })
+                                }}
+                            />
+                        </div>
+                    </form>
+                </Modal>
+                <div>
+                    <Button
+                        sx={{
+                            color: '#e10e17', textAlign: 'center', fontFamily: 'Poppins', fontSize: '15px', fontStyle: 'normal', fontWeight: 400, lineHeight: 'normal', textDecoration: 'none', textTransform: 'none',
+                        }}
+                        onClick={handleDeletar}
+                    >
+                        Sair da Conta
+                    </Button>
                 </div>
-                <div className="footer-container">
-                    <Footer user="doctor"/>
-                </div>
-            </>)}
+            </div>
+            <Snackbar open={successSnackbar} autoHideDuration={6000}>
+                <Alert onClose={() => {
+                    setSuccessSnackbar(false);
+                }} severity="success" sx={{ width: '100%' }}>
+                    Informações editadas com sucesso!
+                </Alert>
+            </Snackbar>
+
+            <Snackbar open={errorSnackbar} autoHideDuration={6000}>
+                <Alert onClose={() => {
+                    setErrorSnackbar(false);
+                }} severity="error" sx={{ width: '100%' }}>
+                    Erro ao editar informações!
+                </Alert>
+            </Snackbar>
+            <div className="footer-container">
+                <Footer user="doctor"/>
+            </div>
+        </>)}
     </>);
 };
 
