@@ -22,6 +22,7 @@ import BuscaMedicamentos from './pages/BuscaMedicamentos/BuscaMedicamentos';
 import InformacoesMedico from './pages/InformacoesMedico/InformacoesMedico';
 import InformacoesPaciente from './pages/InformacoesPaciente/InformacoesPaciente';
 import MeusPacientes from './pages/MeusPacientes/MeusPacientes';
+import AcessarExamePaciente from './pages/AcessarExamePaciente/AcessarExamePaciente';
 import { AdicionarInformacao } from './pages/InformacoesMedico/AdicionarInformaca';
 import InformacaoMedicaEspecifica from './pages/InformacaoMedicaEspecifica/InformacaoMedicaEspecifica';
 import EditarInformacaoMedicaEspecifica from './pages/InformacaoMedicaEspecifica/InformacaoMedicaEspecificaEdicao';
@@ -150,6 +151,9 @@ export default function AppRoutes() {
           } />
           <Route path={ROUTES.TELA_BUSCA_MEDICAMENTO()} element={
             <BuscaMedicamentos />
+          } />
+          <Route path={ROUTES.ACESSAR_EXAMES_PACIENTE()} element={
+              <AcessarExamePaciente />
           } />
           <Route path={ROUTES.INFORMACOES_MEDICO()} element={
             <InformacoesMedico />

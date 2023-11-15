@@ -17,10 +17,12 @@ export const ROUTES = {
   EDICAO_EXAMES_REALIZADOS: () => '/exames/edicao/realizados',
   LISTADEINTERACAODOMEDICAMENTO: () => '/medicamentos/interacao',
   FILTROBUSCAMEDICO: () => '/lista/medico',
+  LISTA_EXAMES_MEDICO: () => '/lista/exames/medico',
   TELA_BUSCA_MEDICAMENTO: () => '/busca/medicamento',
   INFORMACOES_MEDICO:() => '/informacao/medica',
   INFORMACOES_PACIENTE:() => '/informacao/paciente',
   ADICIONAR_INFORMACAO_MEDICA:() => '/adicionar/informacao/medica',
   INFORMACAO_MEDICA_ESPECIFICA:() => '/informacao/medica/especifica',
   EDITAR_INFORMACAO_MEDICA:() => '/editar/informacao/medica',
+  ACESSAR_EXAMES_PACIENTE: () => '/acessar/exames/paciente',
 };
