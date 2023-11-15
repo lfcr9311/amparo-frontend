@@ -13,7 +13,8 @@ interface ExamListProps {
   type: 'pendente' | 'realizado';
   fileImage: string | null;
   filePdf: string | null;
-  id: string
+  id: string;
+  onClickPermisson: boolean;
 }
 
 export default function ExamListItem({
@@ -23,7 +24,8 @@ export default function ExamListItem({
   type,
   fileImage,
   filePdf,
-  id
+  id,
+  onClickPermisson
 }: ExamListProps) {
   const navigate = useNavigate();
   const handleClick = () => {
@@ -35,8 +37,10 @@ export default function ExamListItem({
     );
   };
 
+  const handleClickNull = () => {};
+
   return (
-    <div className="frame" onClick={handleClick}>
+    <div className="frame" onClick={onClickPermisson ? handleClick : handleClickNull}>
       <ListItem
         key={'key'}
         className="list-item"
