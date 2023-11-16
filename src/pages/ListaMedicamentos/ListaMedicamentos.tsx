@@ -105,7 +105,6 @@ export default function ListaMedicamentos() {
     }
   }, [dataFinal]);
 
-
   const handleAddMedicamento = () => {
 
     if (!medicamentoNome || !medicamentoNome.label.trim()) {
