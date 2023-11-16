@@ -88,6 +88,7 @@ export const TelaMedicamento = () => {
   const [listaIncompatibilidade, setListaIncompatibilidade] = useState<Items[]>(
     []
   );
+    // @ts-ignore
   const navigate = useNavigate();
 
   const handleDelete = () => {
