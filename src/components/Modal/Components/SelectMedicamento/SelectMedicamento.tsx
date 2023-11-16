@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import './SelectMedicamento.css';
 import ArrowForwardIosRoundedIcon from '@mui/icons-material/ArrowForwardIosRounded';
 
@@ -6,36 +5,34 @@ interface SelectMedicamentoProps {
   onChange: (nomeDoRemedio: string) => void;
   value: string;
   medicationList?: string[];
+  showError: boolean;
+  errorMessage: string;
 }
 
 export default function SelectMedicamento({
   onChange,
   value,
   medicationList,
+  showError,
+  errorMessage
 }: SelectMedicamentoProps) {
-  const [selectedOption, setSelectedOption] = useState(value);
+  const exemploList = ['Remédio 1', 'Remédio 2', 'Remédio 3']
+
+  const list = medicationList ?? exemploList
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const nomeDoRemedio = e.target.value;
-    setSelectedOption(nomeDoRemedio);
     onChange(nomeDoRemedio);
   };
-
-  const exemploList = ['Remédio 1', 'Remédio 2', 'Remédio 3'];
-
-  const list =
-    medicationList == null || medicationList == undefined
-      ? exemploList
-      : medicationList;
 
   return (
     <div className="select-container">
       <select
-        className="caixa-de-selecao"
+        className={`caixa-de-selecao ${showError ? 'error' : ''}`}
         onChange={handleChange}
-        value={selectedOption}
+        value={value}
       >
-        <option value="" disabled selected>
+        <option value="" disabled>
           Selecione o medicamento...
         </option>
         {list.map((remedios) => (
@@ -44,6 +41,7 @@ export default function SelectMedicamento({
           </option>
         ))}
       </select>
+      {showError && <div className="error-message">{errorMessage}</div>}
       <ArrowForwardIosRoundedIcon className="arrow-icon" />
     </div>
   );
