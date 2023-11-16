@@ -16,8 +16,6 @@ import { Box } from '@mui/system';
 import { getAllDosages, getAllMedicines, saveDosage } from '../../utils/apiService';
 import { useNavigate } from 'react-router-dom';
 
-
-
 interface Medicamento {
   id: string,
   label: string;
@@ -156,13 +154,10 @@ export default function ListaMedicamentos() {
       })
   };
 
-
-
   return (
     <>
       <HeaderHome title="Medicamentos" type="headerPage" />
-      <p className="title-page">Meus Remedios</p>
-
+      <p className="title-list-medicine">Meus Remedios</p>
       {showSuccessMessage && (
         <motion.div
           className="success-message"
@@ -194,14 +189,16 @@ export default function ListaMedicamentos() {
           </Box>
         }
       </div>
-      <CustomButton
-        label="Adicionar"
-        variant="contained"
-        onClick={() => setIsModalOpen(true)}
-      />
+      <div className='button-add-list-medicament'>
+        <CustomButton
+          label="Adicionar"
+          variant="contained"
+          onClick={() => setIsModalOpen(true)}
+        />
+      </div>
       <Modal
         isOpen={isModalOpen}
-        title=" Medicamento"
+        title="Medicamento"
         isClose={() => { setIsModalOpen(false); resetModal(); }}
       >
         <form>
@@ -213,6 +210,7 @@ export default function ListaMedicamentos() {
               onChange={(newValue: string | null) => setMedicamentoNome(newValue ? { label: newValue } : null)}
               error={erroMedicamentoNome}
               helperText={mensagemErroMedicamentoNome}
+              width='270px'
             />
             <DosagemModal
               dosagem={dosagem}
@@ -220,7 +218,6 @@ export default function ListaMedicamentos() {
               onDosagemChange={(novaDosagem: string) => setDosagem(novaDosagem)}
               onUnidadeMedidaChange={(novaUnidade: string) => setUnidadeMedida(novaUnidade)}
             />
-
           </div>
           <div className='frequencia-data'>
             <SelectFrequencia
