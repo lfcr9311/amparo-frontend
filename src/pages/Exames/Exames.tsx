@@ -74,6 +74,14 @@ export default function Exames() {
     })
   }
 
+  const handleDeleteExam = (id: string) => {
+    // Aqui você faria a chamada à API para excluir o exame
+    // Após excluir com sucesso na API, remova o exame do estado local
+    const newExames = examesPendentes.filter(exame => exame.id !== id);
+    setExamesPendentes(newExames);
+    // Faça o mesmo para `examesRealizados` se necessário
+  };
+
   const handleSalvarRealizado = async () => {
     try {
       let fileImageURL = "";
@@ -155,7 +163,7 @@ export default function Exames() {
                   fileImage=''
                   filePdf=''
                   id={exam.id}
-
+                  onDelete={handleDeleteExam}
                 />
               ))}
             </div>
@@ -239,10 +247,11 @@ export default function Exames() {
                     date={format(new Date(exam.examDate), 'dd/MM/yyyy')}
                     exam={exam.description}
                     description={exam.description}
-                    type={'realizado'}
-                    fileImage={exam.image}
-                    filePdf={exam.file}
+                    type={'pendente'}
+                    fileImage=''
+                    filePdf=''
                     id={exam.id}
+                    onDelete={handleDeleteExam} // Passar a função handleDeleteExam como prop
                   />
                 )).filter((exame) => {
                   const examDate = parse(exame.props.date, 'dd/MM/yyyy', new Date());
