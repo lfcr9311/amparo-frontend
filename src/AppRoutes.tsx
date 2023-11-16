@@ -18,9 +18,14 @@ import EdicaoExameRealizado from './pages/EdicaoExameRealizado/EdicaoExameRealiz
 import ListaDeInteracaoDoMedicamento from './pages/ListaDeInteracaoDoMedicamento/ListaDeInteracaoDomedicamento';
 import MeusMedicos from './pages/MeusMedicos/MeusMedicos';
 import PageMedico from './components/FiltroBuscaMedico/PageMedico';
+
+import MedicamentoAgenda from './pages/AgendaMedicamento/AgendaMedicamento';
+
 import BuscaMedicamentos from './pages/BuscaMedicamentos/BuscaMedicamentos';
 import MeusPacientes from './pages/MeusPacientes/MeusPacientes';
 import AcessarExamePaciente from './pages/AcessarExamePaciente/AcessarExamePaciente';
+import ListaMedicamentosMedico from './pages/ListaMedicamentosMedico/ListaMedicamentosMedico';
+
 
 export default function AppRoutes() {
   const fetchData = async () => {
@@ -106,7 +111,6 @@ export default function AppRoutes() {
               </PrivateRoute>
             }
           />
-
           <Route
             path={ROUTES.MENU_MEDICAMENTOS()}
             element={
@@ -139,6 +143,18 @@ export default function AppRoutes() {
               </PrivateRoute>
             }
           />
+          <Route
+            path={ROUTES.EXAMES()} element={
+              <PrivateRoute>
+                <Exames />
+              </PrivateRoute>
+            } />
+          <Route
+            path={ROUTES.AGENDA_REMEDIOS()} element={
+              <PrivateRoute>
+                <MedicamentoAgenda />
+              </PrivateRoute>
+            } />
           <Route path={ROUTES.EXAMES()} element={
             <PrivateRoute>
               <ExamesPaciente />
@@ -148,7 +164,10 @@ export default function AppRoutes() {
             <BuscaMedicamentos />
           } />
           <Route path={ROUTES.ACESSAR_EXAMES_PACIENTE()} element={
-              <AcessarExamePaciente />
+            <AcessarExamePaciente />
+          } />
+          <Route path={ROUTES.LISTA_MEDICAMENTOS_MEDICO()} element={
+            <ListaMedicamentosMedico />
           } />
         </Routes>
       </div>

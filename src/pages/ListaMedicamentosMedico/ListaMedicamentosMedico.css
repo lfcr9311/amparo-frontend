@@ -1,0 +1,23 @@
+.medicine-paciente-name {
+    color: #4d4c4c;
+    font-family: Poppins;
+    font-size: 23px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-align: flex-start;
+    top: 130px;
+    margin-bottom: 5%;
+    position: fixed;
+    padding: 10px;
+    margin-left: 5%;;
+  }
+  .medicine-list-container {
+    position: fixed;
+    max-height: 460px;
+    overflow-y: auto;
+    gap: 10px;
+    flex-direction: column;
+    display: flex;
+    top: 210px;
+  }

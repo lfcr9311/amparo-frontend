@@ -1,5 +1,17 @@
 // src/api-service.ts
 import axios from '../api';
+import api from "../api";
+
+interface Doctor {
+  cellphone: string;
+  crm?: string;
+  email?: string;
+  id?: string;
+  isAnonymous?: boolean;
+  name?: string;
+  profilePicture?: string;
+  uf?: string;
+}
 
 export const login_post = async (email: String, psw: String) => {
   const loginBody = {
@@ -169,6 +181,19 @@ export const addExamePendente = async (description: String, examDate: string) =>
   }
 };
 
+export const getMedicamentosPaciente = () => {
+  return axios.get('/medicine', {
+    headers: {
+      'Authorization': 'Bearer ' + localStorage.getItem("authToken")
+    },
+  }).then((response) => {
+    return response.data;
+  }).catch((error) => {
+    console.error(error);
+    throw error;
+  })
+}
+
 export const fetchMeusPacientes = () => {
   return axios.get('/link/pacient', {
     headers: {
@@ -307,3 +332,21 @@ export const addDoctor = async (doctorId: string) => {
     throw error;
   }
 }
+
+export const updateDoctor = async (name: string, uf: string, crm: string, newPhone?: string, doctor?: Doctor) => {
+  try {
+    await api.put('/doctor', {
+      name: name !== '' ? name : doctor?.name,
+      uf: uf !== '' ? uf : doctor?.uf,
+      crm: crm !== '' ? crm : doctor?.crm,
+      cellphone: newPhone !== '' ? newPhone : doctor?.cellphone,
+      email: doctor?.email,
+    }, {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem("authToken")
+      }
+    })
+  } catch (error) {
+    throw error;
+  }
+} 
