@@ -23,4 +23,5 @@ export const ROUTES = {
   LISTA_MEDICAMENTOS_MEDICO: () => '/lista/medicamentos/medico',
   TELA_BUSCA_MEDICAMENTO: () => '/busca/medicamento',
   ACESSAR_EXAMES_PACIENTE: () => '/acessar/exames/paciente',
+  AGENDA_REMEDIOS: () => '/agenda/remedios',
 };

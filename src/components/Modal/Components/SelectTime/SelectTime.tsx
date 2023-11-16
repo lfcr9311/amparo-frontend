@@ -1,11 +1,15 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent } from 'react';
 import './SelectTime.css';
 
-export default function SelectTime() {
-  const [selectedTime, setSelectedTime] = useState('00:00');
+interface SelectTimeProps {
+  value: string;
+  onChange: (value: string) => void;
+}
+
+export default function SelectTime({ value, onChange }: SelectTimeProps) {
 
   const handleTimeChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setSelectedTime(event.target.value);
+    onChange(event.target.value);
   };
 
   return (
@@ -15,7 +19,7 @@ export default function SelectTime() {
         <input
           className="hora-minuto"
           type="time"
-          value={selectedTime}
+          value={value}
           onChange={handleTimeChange}
         />
       </label>

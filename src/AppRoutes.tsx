@@ -18,11 +18,14 @@ import EdicaoExameRealizado from './pages/EdicaoExameRealizado/EdicaoExameRealiz
 import ListaDeInteracaoDoMedicamento from './pages/ListaDeInteracaoDoMedicamento/ListaDeInteracaoDomedicamento';
 import MeusMedicos from './pages/MeusMedicos/MeusMedicos';
 import PageMedico from './components/FiltroBuscaMedico/PageMedico';
-import { TelaMedicamento } from './pages/TelaMedicamento/TelaMedicamento';
 import BuscaMedicamentos from './pages/BuscaMedicamentos/BuscaMedicamentos';
+
 import MeusPacientes from './pages/MeusPacientes/MeusPacientes';
 import AcessarExamePaciente from './pages/AcessarExamePaciente/AcessarExamePaciente';
 import ListaMedicamentosMedico from './pages/ListaMedicamentosMedico/ListaMedicamentosMedico';
+import { TelaMedicamento } from './pages/TelaMedicamento/TelaMedicamento';
+import MedicamentoAgenda from './components/MedicamentoAgenda/MedicamentoAgenda';
+
 
 export default function AppRoutes() {
   const fetchData = async () => {
@@ -157,6 +160,32 @@ export default function AppRoutes() {
               </PrivateRoute>
             }
           />
+          <Route
+            path={ROUTES.EXAMES()} element={
+              <PrivateRoute>
+                <Exames />
+              </PrivateRoute>
+            } />
+          <Route
+            path={ROUTES.AGENDA_REMEDIOS()} element={
+              <PrivateRoute>
+                <MedicamentoAgenda />
+              </PrivateRoute>
+            } />
+          <Route path={ROUTES.EXAMES()} element={
+            <PrivateRoute>
+              <Exames />
+            </PrivateRoute>
+          } />
+          <Route path={ROUTES.TELA_BUSCA_MEDICAMENTO()} element={
+            <BuscaMedicamentos />
+          } />
+          <Route path={ROUTES.ACESSAR_EXAMES_PACIENTE()} element={
+            <AcessarExamePaciente />
+          } />
+          <Route path={ROUTES.LISTA_MEDICAMENTOS_MEDICO()} element={
+            <ListaMedicamentosMedico />
+          } />
           <Route
             path={ROUTES.EXAMES()}
             element={
