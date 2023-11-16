@@ -20,6 +20,7 @@ import MeusMedicos from './pages/MeusMedicos/MeusMedicos';
 import PageMedico from './components/FiltroBuscaMedico/PageMedico';
 import BuscaMedicamentos from './pages/BuscaMedicamentos/BuscaMedicamentos';
 import MeusPacientes from './pages/MeusPacientes/MeusPacientes';
+import AcessarExamePaciente from './pages/AcessarExamePaciente/AcessarExamePaciente';
 
 export default function AppRoutes() {
   const fetchData = async () => {
@@ -145,6 +146,9 @@ export default function AppRoutes() {
           } />
           <Route path={ROUTES.TELA_BUSCA_MEDICAMENTO()} element={
             <BuscaMedicamentos />
+          } />
+          <Route path={ROUTES.ACESSAR_EXAMES_PACIENTE()} element={
+              <AcessarExamePaciente />
           } />
         </Routes>
       </div>
