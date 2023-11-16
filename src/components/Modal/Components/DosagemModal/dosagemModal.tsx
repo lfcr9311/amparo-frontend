@@ -76,7 +76,7 @@ const DosagemModal = ({
                 variant="filled"
                 sx={{
                     ...sx,
-                    width: 'calc(100% - 75px)',
+                    width: '175px',
 
                 }}
             />

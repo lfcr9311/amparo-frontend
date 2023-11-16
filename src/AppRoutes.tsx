@@ -23,6 +23,8 @@ import MedicamentoAgenda from './pages/AgendaMedicamento/AgendaMedicamento';
 
 import BuscaMedicamentos from './pages/BuscaMedicamentos/BuscaMedicamentos';
 import MeusPacientes from './pages/MeusPacientes/MeusPacientes';
+import AcessarExamePaciente from './pages/AcessarExamePaciente/AcessarExamePaciente';
+import ListaMedicamentosMedico from './pages/ListaMedicamentosMedico/ListaMedicamentosMedico';
 
 
 export default function AppRoutes() {
@@ -109,7 +111,6 @@ export default function AppRoutes() {
               </PrivateRoute>
             }
           />
-
           <Route
             path={ROUTES.MENU_MEDICAMENTOS()}
             element={
@@ -162,8 +163,14 @@ export default function AppRoutes() {
           <Route path={ROUTES.TELA_BUSCA_MEDICAMENTO()} element={
             <BuscaMedicamentos />
           } />
-        </Routes >
-      </div >
-    </Router >
+          <Route path={ROUTES.ACESSAR_EXAMES_PACIENTE()} element={
+            <AcessarExamePaciente />
+          } />
+          <Route path={ROUTES.LISTA_MEDICAMENTOS_MEDICO()} element={
+            <ListaMedicamentosMedico />
+          } />
+        </Routes>
+      </div>
+    </Router>
   );
 }

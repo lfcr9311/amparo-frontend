@@ -10,6 +10,8 @@ interface TabItem {
 interface ExamFilterProps {
   tabs: TabItem[];
   initialTab?: number;
+  value: number;
+  setValue: (value: number) => void;
 }
 
 // @ts-ignore
@@ -33,8 +35,7 @@ const ExamFilterTab = styled(Tab)(({ theme }) => ({
   },
 }));
 
-const ExamFilter: React.FC<ExamFilterProps> = ({ tabs, initialTab = 0 }) => {
-  const [value, setValue] = React.useState(initialTab);
+const ExamFilter: React.FC<ExamFilterProps> = ({ tabs, value, setValue }) => {
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     event.preventDefault();

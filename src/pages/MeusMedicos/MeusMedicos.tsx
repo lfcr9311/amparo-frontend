@@ -8,6 +8,7 @@ import Solicitacao from '../../components/Modal/Components/Solicitacao/Solicitac
 import CardUsuario from '../../components/CardUsuario/CardUsuario';
 import { Alert, CircularProgress, Snackbar } from '@mui/material';
 import { addDoctor, fetchMeusMedicos, searchDoctor } from '../../utils/apiService.tsx';
+import AddCircleIcon from "../../assets/AddCircle.svg"
 
 interface Medico {
   id: number;
@@ -119,25 +120,15 @@ const MeusMedicos: React.FC = () => {
         <>
           <div className='search-container'>
             <input
-              className='search-input' // Adicione a classe CSS para o input
+              className='search-input-doctor' // Adicione a classe CSS para o input
               type='text'
               placeholder='Buscar...'
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
             />
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              width='36'
-              height='36'
-              viewBox='0 0 36 36'
-              fill='none'
-              onClick={handleAddButtonClick}
-            >
-              <path
-                d='M18 0C8.064 0 0 8.064 0 18C0 27.936 8.064 36 18 36C27.936 36 36 27.936 36 18C36 8.064 27.936 0 18 0ZM27 19.8H19.8V27H16.2V19.8H9V16.2H16.2V9H19.8V16.2H27V19.8Z'
-                fill='#E10E17'
-              />
-            </svg>
+            <button onClick={handleAddButtonClick} className='add-button-my-doctors'>
+              <img className='add-circle-icon-my-doctors' src={AddCircleIcon} />
+            </button>
           </div>
           <div className='my-doctors-container'>
             {medicos.length > 0 ? (
