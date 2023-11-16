@@ -24,7 +24,6 @@ import MeusPacientes from './pages/MeusPacientes/MeusPacientes';
 import AcessarExamePaciente from './pages/AcessarExamePaciente/AcessarExamePaciente';
 import ListaMedicamentosMedico from './pages/ListaMedicamentosMedico/ListaMedicamentosMedico';
 import { TelaMedicamento } from './pages/TelaMedicamento/TelaMedicamento';
-import MedicamentoAgenda from './components/MedicamentoAgenda/MedicamentoAgenda';
 
 
 export default function AppRoutes() {
@@ -166,12 +165,7 @@ export default function AppRoutes() {
                 <Exames />
               </PrivateRoute>
             } />
-          <Route
-            path={ROUTES.AGENDA_REMEDIOS()} element={
-              <PrivateRoute>
-                <MedicamentoAgenda />
-              </PrivateRoute>
-            } />
+         
           <Route path={ROUTES.EXAMES()} element={
             <PrivateRoute>
               <Exames />
