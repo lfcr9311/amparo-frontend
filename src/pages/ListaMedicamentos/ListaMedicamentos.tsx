@@ -12,8 +12,6 @@ import MedicinenameModal from '../../components/Modal/Components/medicinenameMod
 import Checkbox from '@mui/material/Checkbox';
 import DosagemModal from '../../components/Modal/Components/DosagemModal/dosagemModal';
 
-
-
 interface Medicamento {
   label: string;
   dosagem?: string;
@@ -26,7 +24,6 @@ const fadeInOut = {
   visible: { opacity: 1, y: 0 },
 };
 
-//dados mocados
 const mockedMedicationsList = [
   { label: 'Tenofovir' },
   { label: 'Emtricitabina' },
@@ -44,9 +41,7 @@ const mockedMedicationsList = [
   { label: 'Aspirina' },
   { label: 'Atorvastatina' },
   { label: 'Metformina' },
-  // ...outros medicamentos
 ];
-
 
 export default function ListaMedicamentos() {
   const [usoContinuo, setUsoContinuo] = useState(false);
@@ -60,14 +55,14 @@ export default function ListaMedicamentos() {
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [erroData, setErroData] = useState(false);
   const [mensagemErroData, setMensagemErroData] = useState('');
-
-
   const [unidadeMedida, setUnidadeMedida] = useState('mg');
 
   const [medicamentos, setMedicamentos] = useState<Medicamento[]>([
     { label: "Remedio 1" },
     { label: "Remedio 2" },
-    { label: "Remedio 3" }
+    { label: "Remedio 2" },
+    { label: "Remedio 3" },
+    { label: "Remedio 2" },
   ]);
 
   const resetModal = () => {
@@ -82,7 +77,6 @@ export default function ListaMedicamentos() {
     setMensagemErroData('');
     setUnidadeMedida('mg');
   };
-
 
   useEffect(() => {
     if (medicamentoNome && medicamentoNome.label.trim()) {
@@ -104,7 +98,6 @@ export default function ListaMedicamentos() {
       setMensagemErroData('');
     }
   }, [dataFinal]);
-
 
   const handleAddMedicamento = () => {
 
@@ -137,14 +130,12 @@ export default function ListaMedicamentos() {
 
     setIsModalOpen(false);
     resetModal();
-
     setMedicamentoNome(null);
     setDosagem('');
     setFrequencia('');
     setDataFinal('');
     setUsoContinuo(false);
 
-    //imprime a lista completa de medicamentos e suas informaçoes
     setTimeout(() => {
       console.log("Lista de Medicamentos:");
       [...medicamentos, novoMedicamento].forEach(medicamento => {
@@ -161,13 +152,10 @@ export default function ListaMedicamentos() {
     setTimeout(() => setShowSuccessMessage(false), 3000);
   };
 
-
-
   return (
     <>
       <HeaderHome title="Medicamentos" type="headerPage" />
-      <p className="title-page">Meus Remedios</p>
-
+      <p className="title-list-medicine">Meus Remedios</p>
       {showSuccessMessage && (
         <motion.div
           className="success-message"
@@ -179,8 +167,7 @@ export default function ListaMedicamentos() {
           Medicamento adicionado com sucesso!
         </motion.div>
       )}
-
-      <div className="meus-remedios-container">
+      <div className="meus-remedios-box">
         {medicamentos.map((medicamento, index) => (
           <CardRemedio
             key={index}
@@ -189,14 +176,16 @@ export default function ListaMedicamentos() {
           />
         ))}
       </div>
-      <CustomButton
-        label="Adicionar"
-        variant="contained"
-        onClick={() => setIsModalOpen(true)}
-      />
+      <div className='button-add-list-medicament'>
+        <CustomButton
+          label="Adicionar"
+          variant="contained"
+          onClick={() => setIsModalOpen(true)}
+        />
+      </div>
       <Modal
         isOpen={isModalOpen}
-        title=" Medicamento"
+        title="Medicamento"
         isClose={() => { setIsModalOpen(false); resetModal(); }}
       >
         <form>
@@ -208,6 +197,7 @@ export default function ListaMedicamentos() {
               onChange={(newValue: string | null) => setMedicamentoNome(newValue ? { label: newValue } : null)}
               error={erroMedicamentoNome}
               helperText={mensagemErroMedicamentoNome}
+              width='270px'
             />
             <DosagemModal
               dosagem={dosagem}
@@ -215,7 +205,6 @@ export default function ListaMedicamentos() {
               onDosagemChange={(novaDosagem: string) => setDosagem(novaDosagem)}
               onUnidadeMedidaChange={(novaUnidade: string) => setUnidadeMedida(novaUnidade)}
             />
-
           </div>
           <div className='frequencia-data'>
             <SelectFrequencia

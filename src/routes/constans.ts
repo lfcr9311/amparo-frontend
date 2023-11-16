@@ -19,6 +19,8 @@ export const ROUTES = {
   FILTRO_BUSCA_MEDICO: () => '/lista/medico',
   MEDICAMENTO: () => '/lista/medicamentos/:dosageId',
   LISTA_EXAMES_MEDICO: () => '/lista/exames/medico',
+  MENU_MEDICAMENTOS_MEDICO: () => '/menu/medicamentos/medico',
+  LISTA_MEDICAMENTOS_MEDICO: () => '/lista/medicamentos/medico',
   TELA_BUSCA_MEDICAMENTO: () => '/busca/medicamento',
   ACESSAR_EXAMES_PACIENTE: () => '/acessar/exames/paciente',
 };

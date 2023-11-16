@@ -5,6 +5,7 @@ import ExameIcon from '../../assets/ExameIcon.svg';
 import MedicamentosIcon from '../../assets/MedicationIcon.svg';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../routes/constans';
+
 interface Paciente {
   id: number;
   email: string;
@@ -35,6 +36,7 @@ const ModalDetalhesPaciente = ({
   const navigate = useNavigate();
 
   const handleClickMedicamentos = () => {
+    navigate(ROUTES.LISTA_MEDICAMENTOS_MEDICO(), { state: { paciente: paciente }})
   };
   
   const handleClickExames = () => {
@@ -46,7 +48,6 @@ const ModalDetalhesPaciente = ({
       <div className="avatar-container">
         <img
           src={paciente?.profilePicture || DefaultProfilePicture}
-          alt="Patient Avatar"
           className="avatar-image"
         />
       </div>
