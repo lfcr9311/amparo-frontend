@@ -6,26 +6,42 @@ import MedicamentosIcon from '../../assets/MedicationIcon.svg';
 import InfoIcon from '../../assets/InfoIcon.svg';
 import PacientIcon from '../../assets/PacientIcon.svg';
 import ConsultIcon from '../../assets/ConsultIcon.svg';
+import { useEffect, useState } from 'react';
 import Footer from '../../components/Footer/Footer';
 import logoLogin from '../../assets/Amparo.svg';
+import { useNavigate } from 'react-router-dom';
+import { getDoctor } from '../../utils/apiService';
+import { ROUTES } from '../../routes/constans';
 
 const HomeMedico = () => {
+  const navigate = useNavigate();
   const userIsPatient = false;
+  const [name, setName] = useState('');
+  useEffect(() => {
+    getDoctor().then((response) => {
+      const att = response.data
+      setName(att.name)
+    })
+  }, [])
   const handleClickMedicamentos = () => {
-    console.log('Cheguei aqui!!!');
+   navigate(ROUTES.TELA_BUSCA_MEDICAMENTO());
   };
 
   const handleClickInfo = () => {
-    console.log('Cheguei aqui!!!');
+    
   };
 
   const handleClickConsutas = () => {
-    console.log('Cheguei aqui!!!');
+    
   };
+
+  const handleClickPaciente = () => {
+    navigate(ROUTES.MEUS_PACIENTES())
+  }
 
   return (
     <>
-      <HeaderHome type="headerHome" title="Olá, Dr. Fulano!"></HeaderHome>
+      <HeaderHome type="headerHome" title={"Olá, Dr(a). " + name.split(' ')[0]}></HeaderHome>
       <div className="home-medico-container">
         <div className="sub-header-home-medico">
           <img
@@ -40,7 +56,7 @@ const HomeMedico = () => {
             <MenuButton
               title={userIsPatient ? 'Exames' : 'Pacientes'}
               image={userIsPatient ? ExameIcon : PacientIcon}
-              onClick={() => { }}
+              onClick={handleClickPaciente}
             />
           </div>
           <MenuButton

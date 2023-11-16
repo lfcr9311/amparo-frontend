@@ -10,6 +10,8 @@ interface TabItem {
 interface ExamFilterProps {
   tabs: TabItem[];
   initialTab?: number;
+  value: number;
+  setValue: (value: number) => void;
 }
 
 // @ts-ignore
@@ -28,14 +30,12 @@ const ExamFilterTab = styled(Tab)(({ theme }) => ({
   fontStyle: 'normal',
   fontWeight: 500,
   lineHeight: 'normal',
-  padding: '13px 0 0 0',
   '&.Mui-selected': {
     color: '#FBF8F8',
   },
 }));
 
-const ExamFilter: React.FC<ExamFilterProps> = ({ tabs, initialTab = 0 }) => {
-  const [value, setValue] = React.useState(initialTab);
+const ExamFilter: React.FC<ExamFilterProps> = ({ tabs, value, setValue }) => {
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     event.preventDefault();
@@ -56,6 +56,7 @@ const ExamFilter: React.FC<ExamFilterProps> = ({ tabs, initialTab = 0 }) => {
         padding: '0px 6px', // ajustar espacamento
         gap: '3px',
         flexShrink: 0,
+        marginTop: '7px'
       }}
     >
       <AppBar position="static" color="transparent" elevation={0}>
@@ -68,7 +69,7 @@ const ExamFilter: React.FC<ExamFilterProps> = ({ tabs, initialTab = 0 }) => {
               backgroundColor: '#E76553',
               height: '28px',
               borderRadius: '100px',
-              bottom: '5px', // mover a parte vermelha
+              bottom: '13px', // mover a parte vermelha
             },
             className: 'tab-indicator',
           }}
