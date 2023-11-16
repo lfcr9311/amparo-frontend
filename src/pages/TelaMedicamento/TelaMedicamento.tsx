@@ -13,7 +13,7 @@ import './TelaMedicamento.css';
 import { ModalEdicaoDosagem } from '../../components/ModalEdicaoDosagem/ModalEdicaoDosagem';
 import DeleteMedicamento from '../../components/Modal/Components/DeleteMedicamento/DeleteMedicamento';
 import { format, addDays } from 'date-fns';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import {  useNavigate, useParams } from 'react-router-dom';
 import { ROUTES } from '../../routes/constans';
 
 interface Items {
