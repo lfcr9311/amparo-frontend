@@ -25,4 +25,5 @@ export const ROUTES = {
   TELA_BUSCA_MEDICAMENTO: () => '/busca/medicamento',
   ACESSAR_EXAMES_PACIENTE: () => '/acessar/exames/paciente',
   AGENDA_REMEDIOS: () => '/agenda/remedios',
+  EXAME_PACIENTE: () => '/exame/paciente',
 };
