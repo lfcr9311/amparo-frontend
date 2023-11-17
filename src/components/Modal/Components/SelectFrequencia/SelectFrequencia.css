@@ -1,4 +1,4 @@
-.box-container-frequencia {
+.box-container-frequencia-div {
   display: flex;
   border-radius: 3px;
   background: #eaeaea;
@@ -7,7 +7,7 @@
   margin-left: 25px;
 }
 
-.select-component-frequencia {
+.select-component-frequencia-select {
   color: #696969;
   font-family: Poppins;
   font-size: 12px;
@@ -18,4 +18,5 @@
   outline: none;
   background-color: #eaeaea;
   margin-left: 10px;
+  margin-right: 10px;
 }

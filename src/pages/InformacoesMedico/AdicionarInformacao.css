@@ -1,0 +1,63 @@
+.text-field-info-title {
+    background-color: transparent;
+    font-family: Poppins;
+    font-size: 12px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0.12px;
+    border-radius: 8px;
+    border-color: #E76553;
+    width: 310px;
+    height: 60px;
+    top: 17%;
+    position: fixed;
+    outline: none;
+    resize: none;
+    padding: 10px;
+    
+}
+
+.text-field-info-text {
+    width: 310px;
+    height: 291px;
+    justify-content: center;
+    background-color: transparent;
+    font-family: Poppins;
+    font-size: 12px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0.12px;
+    border-radius: 8px;
+    border-color: #E76553;
+    position: fixed;
+    top: 28%;
+    resize: none;
+    outline: none;
+    padding: 10px;
+}
+
+.text-field-info-link {
+    background-color: transparent;
+    font-family: Poppins;
+    font-size: 12px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0.12px;
+    border-radius: 8px;
+    border-color: #E76553;
+    position: fixed;
+    top: 66%;
+    width: 310px;
+    height: 60px;
+    resize: none;
+    outline: none;
+    padding: 10px;
+}
+
+.button-add-info{
+    position: fixed;
+    top: 78%;
+}

@@ -12,7 +12,6 @@ interface MultilineTextFieldsProps {
 
 export const MultilineTextFields: React.FC<MultilineTextFieldsProps> = ({ quantidadeLinhas, tituloDoTextField, mensagemQuadroEmBranco  }) => {
 
-
     return (
         <Box
             component="form"
@@ -23,8 +22,6 @@ export const MultilineTextFields: React.FC<MultilineTextFieldsProps> = ({ quanti
             autoComplete="off"
         >
             <div className='div-forum-style'>
-
-
                 <TextField
                     id="outlined-multiline-static"
                     label={<span className='textfield-forum-title-style'>{tituloDoTextField}
@@ -35,17 +32,10 @@ export const MultilineTextFields: React.FC<MultilineTextFieldsProps> = ({ quanti
                     rows={quantidadeLinhas}
                     className='textfield-forum-style'
                     color="error" focused
-                    
-
                 />
-            
-
-
-            </div>
+                </div>
         </Box>
     );
-
-
 };
 
 

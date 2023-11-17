@@ -19,15 +19,18 @@ import ListaDeInteracaoDoMedicamento from './pages/ListaDeInteracaoDoMedicamento
 import MeusMedicos from './pages/MeusMedicos/MeusMedicos';
 import PageMedico from './components/FiltroBuscaMedico/PageMedico';
 import BuscaMedicamentos from './pages/BuscaMedicamentos/BuscaMedicamentos';
-
+import InformacoesMedico from './pages/InformacoesMedico/InformacoesMedico';
+import InformacoesPaciente from './pages/InformacoesPaciente/InformacoesPaciente';
 import MeusPacientes from './pages/MeusPacientes/MeusPacientes';
 import AcessarExamePaciente from './pages/AcessarExamePaciente/AcessarExamePaciente';
+import { AdicionarInformacao } from './pages/InformacoesMedico/AdicionarInformaca';
+import InformacaoMedicaEspecifica from './pages/InformacaoMedicaEspecifica/InformacaoMedicaEspecifica';
+import EditarInformacaoMedicaEspecifica from './pages/InformacaoMedicaEspecifica/InformacaoMedicaEspecificaEdicao';
 import ListaMedicamentosMedico from './pages/ListaMedicamentosMedico/ListaMedicamentosMedico';
 import VisualizarExameMedico from './pages/ExamesMedico/VisualizarExameMedico';
 import { TelaMedicamento } from './pages/TelaMedicamento/TelaMedicamento';
 import ExamesPendentesMedico from './pages/ExamesPendentesMedico/ExamesPendentesMedico';
 import AgendaMedicamento from './pages/AgendaMedicamento/AgendaMedicamento';
-
 
 export default function AppRoutes() {
   const fetchData = async () => {
@@ -171,29 +174,58 @@ export default function AppRoutes() {
             }
           />
           <Route
-            path={ROUTES.EXAMES()} element={
+            path={ROUTES.EXAMES()}
+            element={
               <PrivateRoute>
                 <Exames />
               </PrivateRoute>
-            } />
-         
-          <Route path={ROUTES.EXAMES()} element={
-            <PrivateRoute>
-              <Exames />
-            </PrivateRoute>
-          } />
-          <Route path={ROUTES.TELA_BUSCA_MEDICAMENTO()} element={
-            <BuscaMedicamentos />
-          } />
-          <Route path={ROUTES.ACESSAR_EXAMES_PACIENTE()} element={
-            <AcessarExamePaciente />
-          } />
-          <Route path={ROUTES.VISUALIZA_EXAMES_MEDICO()} element={
-            <VisualizarExameMedico />
-          } />
-          <Route path={ROUTES.LISTA_MEDICAMENTOS_MEDICO()} element={
-            <ListaMedicamentosMedico />
-          } />
+            }
+          />
+
+          <Route
+            path={ROUTES.EXAMES()}
+            element={
+              <PrivateRoute>
+                <Exames />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path={ROUTES.TELA_BUSCA_MEDICAMENTO()}
+            element={<BuscaMedicamentos />}
+          />
+          <Route
+            path={ROUTES.ACESSAR_EXAMES_PACIENTE()}
+            element={<AcessarExamePaciente />}
+          />
+          <Route
+            path={ROUTES.INFORMACOES_MEDICO()}
+            element={<InformacoesMedico />}
+          />
+          <Route
+            path={ROUTES.INFORMACOES_PACIENTE()}
+            element={<InformacoesPaciente />}
+          />
+          <Route
+            path={ROUTES.ADICIONAR_INFORMACAO_MEDICA()}
+            element={<AdicionarInformacao />}
+          />
+          <Route
+            path={ROUTES.INFORMACAO_MEDICA_ESPECIFICA()}
+            element={<InformacaoMedicaEspecifica />}
+          />
+          <Route
+            path={ROUTES.EDITAR_INFORMACAO_MEDICA()}
+            element={<EditarInformacaoMedicaEspecifica />}
+          />
+          <Route
+            path={ROUTES.VISUALIZA_EXAMES_MEDICO()}
+            element={<VisualizarExameMedico />}
+          />
+          <Route
+            path={ROUTES.LISTA_MEDICAMENTOS_MEDICO()}
+            element={<ListaMedicamentosMedico />}
+          />
           <Route
             path={ROUTES.EXAMES()}
             element={

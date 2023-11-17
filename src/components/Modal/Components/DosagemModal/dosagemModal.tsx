@@ -88,11 +88,7 @@ const DosagemModal = ({
         variant="filled"
         sx={{
           ...sx,
-          width: '85px',
-
-          '& .MuiSelect-icon': {
-            right: '-6px',
-          },
+          width: '110px',
         }}
       >
         <MenuItem value="ml">ml</MenuItem>

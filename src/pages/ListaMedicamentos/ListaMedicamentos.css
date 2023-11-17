@@ -26,7 +26,7 @@
   bottom: 19%;
 }
 
-.content-texto-modal {
+.content-texto-modal-div {
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -36,7 +36,7 @@
   margin-left: 20px;
 }
 
-.frequencia-data {
+.frequencia-data-div {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -45,17 +45,13 @@
   margin-right: 28px;
 }
 
-.frequencia-data>.box-container-frequencia {
-  flex-grow: 1;
-}
-
 .button-save {
   display: flex;
   justify-content: center;
   margin-top: 20px;
 }
 
-.checkbox-container {
+.checkbox-container-box {
   display: flex;
   align-items: center;
   color: #696969;
@@ -69,7 +65,7 @@
 }
 
 .success-message {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   padding: 10px;
   position: fixed;
@@ -86,7 +82,7 @@
   gap: 20px;
 }
 
-.checkbox-error+label {
+.checkbox-error + label {
   color: red;
   font-weight: bold;
 }

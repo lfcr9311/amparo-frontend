@@ -202,7 +202,7 @@ const MedicamentoAgenda: React.FC<MedicamentoAgendaProps> = ({
                     </Box>
                 </Box>
                 <CustomButton
-                    label="Adiministrar"
+                    label="Administrar"
                     variant="contained"
                     onClick={() => {
                         setUpdating(true)
