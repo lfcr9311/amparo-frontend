@@ -171,6 +171,20 @@ export const getExamesPendente = async () => {
   }
 };
 
+export const getPacienteExames = async (patientId: string) => {
+  try {
+    const response = await axios.get(`/doctor/exams/${patientId}`, {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem("authToken")
+      }
+    },
+    );
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const getExamesRealizados = async () => {
   try {
     const response = await axios.get(`/patient/exam/done`, {
@@ -336,6 +350,7 @@ export const addFileOrImage = async (file: File | null) => {
   const body = {
     file: file || null
   };
+  //console.log("adding file...", file);
   try {
     const response = await axios.post(`file/upload`, body, {
       headers: {

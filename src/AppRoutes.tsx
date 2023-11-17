@@ -23,6 +23,7 @@ import BuscaMedicamentos from './pages/BuscaMedicamentos/BuscaMedicamentos';
 import MeusPacientes from './pages/MeusPacientes/MeusPacientes';
 import AcessarExamePaciente from './pages/AcessarExamePaciente/AcessarExamePaciente';
 import ListaMedicamentosMedico from './pages/ListaMedicamentosMedico/ListaMedicamentosMedico';
+import VisualizarExameMedico from './pages/ExamesMedico/VisualizarExameMedico';
 import { TelaMedicamento } from './pages/TelaMedicamento/TelaMedicamento';
 
 
@@ -176,6 +177,9 @@ export default function AppRoutes() {
           } />
           <Route path={ROUTES.ACESSAR_EXAMES_PACIENTE()} element={
             <AcessarExamePaciente />
+          } />
+          <Route path={ROUTES.VISUALIZA_EXAMES_MEDICO()} element={
+            <VisualizarExameMedico />
           } />
           <Route path={ROUTES.LISTA_MEDICAMENTOS_MEDICO()} element={
             <ListaMedicamentosMedico />
