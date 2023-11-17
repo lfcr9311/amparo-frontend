@@ -2,15 +2,15 @@ import './VisualizarPerfilMedico.css';
 import HeaderHome from '../../components/HeaderHome/HeaderHome';
 import Footer from '../../components/Footer/Footer';
 import Modal from '../../components/Modal/Modal';
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import ProfileDoctorCard from '../../components/ProfileDoctorCard/ProfileDoctorCard';
 import TextfieldModal from '../../components/Modal/Components/TextfieldModal';
 import SelectModal from '../../components/Modal/Components/SelectModal/SelectModal';
 import CustomButton from '../../components/Button/Button';
-import {Alert, Button, CircularProgress, Snackbar} from '@mui/material';
-import {useNavigate} from 'react-router-dom';
-import {ROUTES} from '../../routes/constans';
-import {getDoctor, updateDoctor} from "../../utils/apiService.tsx";
+import { Alert, Button, CircularProgress, Snackbar } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { ROUTES } from '../../routes/constans';
+import { getDoctor, updateDoctor } from "../../utils/apiService.tsx";
 
 interface Doctor {
   cellphone: string;
@@ -84,9 +84,9 @@ const VisualizacaoPerfilMedico = () => {
   // @ts-ignore
   return (<>
     <div className="header-container">
-      <HeaderHome title="Perfil" type="headerPage"/>
+      <HeaderHome title="Perfil" type="headerPage" />
     </div>
-    {isLoading && <CircularProgress color='error'/>}
+    {isLoading && <CircularProgress color='error' />}
     {!isLoading && (<>
 
       <div className="container">
@@ -122,7 +122,7 @@ const VisualizacaoPerfilMedico = () => {
                 onChange={(value) => setName(value)}
               />
               <div className="container-aux">
-                <SelectModal onChange={(value) => setUf(value)} value={uf}/>
+                <SelectModal onChange={(value) => setUf(value)} value={uf} />
                 <TextfieldModal
                   label="CRM"
                   value={crm}
@@ -206,7 +206,7 @@ const VisualizacaoPerfilMedico = () => {
       <Snackbar open={successSnackbar} autoHideDuration={6000}>
         <Alert onClose={() => {
           setSuccessSnackbar(false);
-        }} severity="success" sx={{width: '100%'}}>
+        }} severity="success" sx={{ width: '100%' }}>
           Informações editadas com sucesso!
         </Alert>
       </Snackbar>
@@ -214,14 +214,14 @@ const VisualizacaoPerfilMedico = () => {
       <Snackbar open={errorSnackbar} autoHideDuration={6000}>
         <Alert onClose={() => {
           setErrorSnackbar(false);
-        }} severity="error" sx={{width: '100%'}}>
+        }} severity="error" sx={{ width: '100%' }}>
           Erro ao editar informações!
         </Alert>
       </Snackbar>
-      <div className="footer-container">
-        <Footer user="doctor"/>
-      </div>
     </>)}
+    <div className="footer-container">
+      <Footer user="doctor" />
+    </div>
   </>);
 };
 
