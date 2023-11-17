@@ -25,6 +25,7 @@ import AcessarExamePaciente from './pages/AcessarExamePaciente/AcessarExamePacie
 import ListaMedicamentosMedico from './pages/ListaMedicamentosMedico/ListaMedicamentosMedico';
 import VisualizarExameMedico from './pages/ExamesMedico/VisualizarExameMedico';
 import { TelaMedicamento } from './pages/TelaMedicamento/TelaMedicamento';
+import ExamesPendentesMedico from './pages/ExamesPendentesMedico/ExamesPendentesMedico';
 
 
 export default function AppRoutes() {
@@ -204,6 +205,11 @@ export default function AppRoutes() {
             path={ROUTES.LISTA_MEDICAMENTOS_MEDICO()}
             element={<ListaMedicamentosMedico />}
           />
+          <Route path={ROUTES.ACESSAR_EXAMES_PENDENTES()} element={
+            <PrivateRoute>
+              <ExamesPendentesMedico />
+            </PrivateRoute>
+          } />
         </Routes>
       </div>
     </Router>
