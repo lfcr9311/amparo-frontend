@@ -26,6 +26,52 @@ export const login_post = async (email: String, psw: String) => {
   }
 };
 
+export const getDosage = async (dosageId: string) => {
+  try {
+    const response = await axios.get(`/dosage/${dosageId}`, {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem("authToken")
+      }
+    })
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}
+export const putEditDosage = async (dosageId: string,medicineId:number,quantity:string,frequency:string,finalDate:string) => {
+  const dosageEditBody = {
+    medicineId:medicineId,
+    quantity: quantity,
+    frequency: frequency,
+    finalDate: new Date(finalDate).toISOString(),
+  };
+  
+
+  try {
+    const response = await axios.put(`/dosage/${dosageId}`,dosageEditBody, {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem("authToken")
+      }
+    })
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export const deleteDosage = async (dosageId: string) => {
+  try {
+    const response = await axios.delete(`/dosage/${dosageId}`, {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem("authToken")
+      }
+    })
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}
+
 export const saveDosage = async ({ medicineId, quantity, frequency, finalDate }: any) => {
   const dosage = {
     quantity,
@@ -66,7 +112,7 @@ export const getIncompatibilyList = async (medicineId: number) => {
         'Authorization': 'Bearer ' + localStorage.getItem("authToken")
       }
     })
-    return response.data.map((incompability: any) => ({ name: incompability.name, status: incompability.severity }))
+    return response.data.map((incompability: any) => ({ name: incompability.name, status: incompability.incompatibility }))
   } catch (error) {
     throw error;
   }

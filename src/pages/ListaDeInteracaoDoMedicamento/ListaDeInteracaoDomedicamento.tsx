@@ -11,13 +11,9 @@ import { useLocation } from 'react-router-dom';
 const ListaDeInteracaoMedicamentos = () => {
   const [filtroStatus, setFiltroStatus] = useState(0);
   const location = useLocation();
-
   const listaDeMedicamentosCompleta = location.state.items;
   const nomeDoMedicamentoQuePossuiInteracao = location.state.nome;
-
-
   const [filtroText, setFiltroText] = useState('');
-
 
   const handleFiltroStatusChange = (selectedStatus: number) => {
     setFiltroStatus(selectedStatus);
@@ -26,7 +22,6 @@ const ListaDeInteracaoMedicamentos = () => {
   const handleFiltroTextChange = (text: string) => {
     setFiltroText(text);
   };
-
 
   return (
     <>
@@ -40,7 +35,8 @@ const ListaDeInteracaoMedicamentos = () => {
         </div>
         <div className='body-lista'>
           <ListaInteracoes items={listaDeMedicamentosCompleta.filter((item: { status: number; name: string; }) => (item.status === filtroStatus || filtroStatus === 0) &&
-            item.name.toLowerCase().includes(filtroText.toLowerCase()))} />
+            item.name.toLowerCase().includes(filtroText.toLowerCase()))}
+            name='' />
         </div>
 
       </div>
