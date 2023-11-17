@@ -295,7 +295,7 @@ export const searchDoctor = async (crm: string, uf: string) => {
 }
 
 export const fetchInformacao = async () => {
-  try{
+  try {
     const response = await axios.get(`/information`, {
       headers: {
         'Authorization': 'Bearer ' + localStorage.getItem("authToken")
@@ -320,4 +320,94 @@ export const addDoctor = async (doctorId: string) => {
   } catch (error) {
     throw error;
   }
+}
+
+export const addInformation = async (idUser: string | null, title: string, description: string, link: string) => {
+  try {
+    const body = {
+      title: title || null,
+      description: description || null,
+      link: link || null
+    }
+
+    const response = await axios.post(`/information/${idUser}`, body, {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem("authToken")
+      }
+    },
+    );
+    return response;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export const showAllInformation = async () => {
+  try {
+    const response = await axios.get(`/information`, {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem("authToken")
+      }
+    },
+    );
+    return response;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export const findByTitle = async (title: string) => {
+  try {
+    const response = await axios.get(`/information/title/${title}`, {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem("authToken")
+      }
+    },
+    );
+    return response
+  } catch (error) {
+    throw error;
+  }
+}
+
+export const findInformationById = async (informationId: string) => {
+  try {
+    const response = await axios.get(`/information/${informationId}`, {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem("authToken")
+      }
+    },
+    );
+    return response;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export const updateInformation = async (informationId: string, title: string, description: string, link: string, image: string) => {
+  try {
+    const response = await axios.put(`/information/${informationId}`, { title, description, link, image}, {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem("authToken")
+      }
+    },
+    );
+    return response;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export const findAllDoctor = async () => {
+   try {
+    const response = await axios.get(`/doctor`, {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem("authToken")
+      }
+    },
+    );
+    return response;
+   } catch (error) {
+    throw error;
+   }
 }

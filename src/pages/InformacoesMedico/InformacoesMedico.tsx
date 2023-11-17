@@ -41,7 +41,9 @@ export default function InformacoesMedico() {
         fetchData();
     }
 
-    const handleClick = () => { }
+    const handleClick = () => { 
+        navigate(ROUTES.ADICIONAR_INFORMACAO_MEDICA())
+    }
 
     const [informacao, setInformacao] = useState<Informacao[]>([]);
 
