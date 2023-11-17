@@ -38,10 +38,6 @@ export const ModalEdicaoDosagem: React.FC<ModalEdicaoDosagemProps> = ({
     const [mensagemErroData, setMensagemErroData] = useState('');
     const [erroData, setErroData] = useState(false);
 
-
-
-
-
     const resetModal = () => {
         setDosagem('');
         setFrequencia('');
@@ -75,16 +71,14 @@ export const ModalEdicaoDosagem: React.FC<ModalEdicaoDosagemProps> = ({
             setErroData(false);
             setMensagemErroData("");
             const dadosEditados: any = {};
-            if (dosagem !== dosagemRecebida) {
-                dadosEditados.dosagem = dosagem;
+            
+            if (dosagem) {
+                dadosEditados.dosagem = dosagem + (unidadeMedida ? ` ${unidadeMedida}` : '');
             }
-            if (unidadeMedida !== unidadeMedica) {
-                dadosEditados.unidadeMedida = unidadeMedida;
-            }
-            if (frequencia !== frequenciaRecebida) {
+            if (frequencia) {
                 dadosEditados.frequencia = frequencia;
             }
-            if (dataFinal !== dataFinalRecebida) {
+            if (dataFinal) {
                 dadosEditados.dataFinal = dataFinal;
             }
     
