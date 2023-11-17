@@ -91,7 +91,10 @@ const DosagemModal = ({
           width: '110px',
         }}
       >
-        <MenuItem value="ml">ml</MenuItem>
+        <MenuItem value="g">g</MenuItem>
+        <MenuItem value="mg">mg</MenuItem>
+        <MenuItem value="cp">cp</MenuItem>
+
       </TextField>
     </div>
   );
