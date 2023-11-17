@@ -2,12 +2,14 @@ import Footer from '../../components/Footer/Footer';
 import HeaderHome from '../../components/HeaderHome/HeaderHome';
 import './BuscaMedicamentos.css';
 import ExamFilter from '../../components/ExamFilter/examFilter';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CardMedicine from '../../components/CardMedicine/CardMedicine';
 import FiltroBusca from '../../components/FiltroBusca/FiltroBusca';
+import { getAllMedicines } from '../../utils/apiService';
 
 
 interface Medicamento {
+    id: number;
     label: string;
     dosagem?: string;
     frequencia?: string;
@@ -15,6 +17,8 @@ interface Medicamento {
 }
 
 export default function BuscaMedicamentos() {
+    const [medicamentos, setMedicamentos] = useState<any[]>([])
+    const [medicinesApi, setMedicinesApi] = useState<any[]>([])
     const [findMedicine, setMedicine] = useState("");
     const [tabNumber, setTabNumber] = useState(0);
 
@@ -23,9 +27,26 @@ export default function BuscaMedicamentos() {
         console.log(newValue);
     }
 
-    const medicamentos: Medicamento[] = [
-        { label: "Remedio 1" }
-    ];
+    const handleChangeTab = (tab:number) => {
+        setTabNumber(tab)
+        if (tab == 0) {
+            setMedicamentos(medicinesApi.slice(0,42))
+        } else if (tab == 2) {
+            setMedicamentos(medicinesApi.slice(42))
+        } else {
+            setMedicamentos(medicinesApi.map((it:any) => ({id:it.id, label: it.name})))
+        }
+    }
+
+    useEffect(() => {
+        getAllMedicines().then((data) => {
+            const allMedicines = data.map((it:any) => ({id:it.id, label: it.name}))
+            setMedicinesApi(allMedicines)
+            setMedicamentos(medicinesApi)
+            handleChangeTab(tabNumber)
+        })
+    }, [])
+
     return (
         <>
             <HeaderHome title="Medicamentos" type="headerPage" />

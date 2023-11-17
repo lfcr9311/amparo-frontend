@@ -240,7 +240,7 @@ export const registerDoctor = async (email: String, name: String, password: Stri
     uf: uf
   }
   try {
-    const response = await axios.post('/auth/register', JSON.stringify(registerBody));
+    const response = await axios.post('/auth/register', registerBody);
     return response;
   } catch (error) {
     throw error;

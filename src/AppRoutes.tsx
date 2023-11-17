@@ -182,9 +182,6 @@ export default function AppRoutes() {
               <Exames />
             </PrivateRoute>
           } />
-          <Route path={ROUTES.TELA_BUSCA_MEDICAMENTO()} element={
-            <BuscaMedicamentos />
-          } />
           <Route path={ROUTES.ACESSAR_EXAMES_PACIENTE()} element={
             <AcessarExamePaciente />
           } />
