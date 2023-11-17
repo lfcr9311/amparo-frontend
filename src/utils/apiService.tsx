@@ -76,10 +76,22 @@ export const saveDosage = async ({ medicineId, quantity, frequency, finalDate }:
   const dosage = {
     quantity,
     frequency,
-    finalDate,
+    finalDate: new Date(finalDate).toISOString(),
     initialHour: new Date().toISOString()
   }
   const response = await axios.post(`/dosage/${medicineId}`, dosage, {
+    headers: {
+      'Authorization': 'Bearer ' + localStorage.getItem("authToken")
+    }
+  })
+  return response.data
+}
+
+export const editDosage = async ({ dosageId, medicineId, quantity, frequency, finalDate, lastConsumedDate }: any) => {
+  const dosageToUpdate = {
+    medicineId, quantity, frequency, finalDate, lastConsumedDate
+  }
+  const response = await axios.put(`/dosage/${dosageId}`, dosageToUpdate, {
     headers: {
       'Authorization': 'Bearer ' + localStorage.getItem("authToken")
     }

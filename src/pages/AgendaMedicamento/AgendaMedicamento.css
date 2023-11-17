@@ -53,8 +53,6 @@ body,
   max-height: 80vh;
   overflow-y: auto;
   padding-bottom: 100px;
-  margin-bottom: 50%;
-  margin-top: 35%;
   overflow-y: auto;
   gap: 0px;
 }
@@ -62,5 +60,6 @@ body,
 @media (max-width: 768px) {
   .meus-remedios-container {
     max-height: 60vh;
+    margin-top: 5vh;
   }
 }

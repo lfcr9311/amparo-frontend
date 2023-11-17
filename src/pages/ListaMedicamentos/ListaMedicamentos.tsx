@@ -151,6 +151,7 @@ export default function ListaMedicamentos() {
         setUsoContinuo(false);
 
         setShowSuccessMessage(true);
+        setTimeout(() => setShowSuccessMessage(false), 1000)
       })
   };
 
@@ -178,7 +179,7 @@ export default function ListaMedicamentos() {
             <img style={{ transform: 'scale(2)' }} src={ThinkEmoji} />
           </Box>
           :
-          <Box style={{ minHeight: '350px' }}>
+          <Box style={{ minHeight: '350px', maxHeight: '350px' }}>
             {dosages.map((dosage, index) => (
               <CardRemedio
                 key={index}
