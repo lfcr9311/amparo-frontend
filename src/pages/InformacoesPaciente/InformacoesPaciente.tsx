@@ -3,18 +3,18 @@ import HeaderHome from '../../components/HeaderHome/HeaderHome'
 import './InformacoesPaciente.css'
 import RefreshIcon from '../../assets/RefreshIcon.svg'
 import FiltroBusca from '../../components/FiltroBusca/FiltroBusca'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ButtonSalmonPageInfo } from '../../components/ButtonSalmon/ButtonSalmonPageInfo'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { ROUTES } from '../../routes/constans'
 
 interface Informacao {
-    titulo: string;
-    link?: string | null;
-    image?: string | null;
-    description?: string | null;
-    timestamp: string;
-    id_doctor: string;
+    title?: string;
+    link?: string;
+    image?: string;
+    description?: string;
+    createdAt?: string;
+    name: string;
 }
 
 export default function InformacoesPaciente() {
@@ -27,37 +27,8 @@ export default function InformacoesPaciente() {
     const handleRefresh = () => {
         window.location.reload();
     }
-    const handleClick = () => {
-        navigate(ROUTES.INFORMACAO_MEDICA_ESPECIFICA())
-    }
-
     const informacao: Informacao[] = [
-        {
-            titulo: "Posso tomar banho de chuva ?",
-            timestamp: "2021-10-10T00:00:00.000Z",
-            id_doctor: ""
-        },
-        {
-            titulo: "Posso tomar banho de chuva ?",
-            timestamp: "2021-10-10T00:00:00.000Z",
-            id_doctor: ""
-        },
-        {
-            titulo: "Posso tomar banho de chuva ?",
-            timestamp: "2021-10-10T00:00:00.000Z",
-            id_doctor: ""
-        },
-        {
-            titulo: "Posso tomar banho de chuva ?",
-            timestamp: "2021-10-10T00:00:00.000Z",
-            id_doctor: ""
-        },
-        {
-            titulo: "Posso tomar banho de chuva ?",
-            timestamp: "2021-10-10T00:00:00.000Z",
-            id_doctor: ""
-        }
-
+        
     ]
 
 
@@ -94,14 +65,25 @@ export default function InformacoesPaciente() {
                 <FiltroBusca value={informacaoMedica} onChange={handleInformacaoMedica} />
             </div>
             <div className='container-info-paciente'>
-                {informacao.map((info, index) => (
-                    <ButtonSalmonPageInfo
-                        key={index}
-                        infoTitle={info.titulo}
-                        dateAndDoctorInfo={`${calcularDiferencaDias(info.timestamp)} - ${info.id_doctor}`}
-                        onClick={handleClick}
-                    />
-                ))}
+            {informacao.map((info, index) => (
+                            <ButtonSalmonPageInfo
+                                key={index}
+                                infoTitle={info.title === undefined ? 'Sem título' : info.title}
+                                dateAndDoctorInfo={`${calcularDiferencaDias(info.createdAt)} - ${info.name}`}
+                                onClick={() => {
+                                    console.log('Editando')
+                                    navigate(ROUTES.ADICIONAR_INFORMACAO_MEDICA(), {
+                                        state: {
+                                            title: info.title,
+                                            description: info.description,
+                                            link: info.link,
+                                            update: false
+                                        }
+                                    })
+                                }
+                                }
+                            />
+                        ))}
             </div>
             <Footer user='doctor' />
         </>
