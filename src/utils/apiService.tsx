@@ -26,7 +26,6 @@ export const login_post = async (email: String, psw: String) => {
   }
 };
 
-
 export const getDosage = async (dosageId: string) => {
   try {
     const response = await axios.get(`/dosage/${dosageId}`, {
@@ -44,7 +43,7 @@ export const putEditDosage = async (dosageId: string,medicineId:number,quantity:
     medicineId:medicineId,
     quantity: quantity,
     frequency: frequency,
-    finalDate: finalDate+"T01:38:39.327Z",
+    finalDate: new Date(finalDate).toISOString(),
   };
   
 
@@ -71,6 +70,39 @@ export const deleteDosage = async (dosageId: string) => {
   } catch (error) {
     throw error;
   }
+}
+
+export const saveDosage = async ({ medicineId, quantity, frequency, finalDate }: any) => {
+  const dosage = {
+    quantity,
+    frequency,
+    finalDate,
+    initialHour: new Date().toISOString()
+  }
+  const response = await axios.post(`/dosage/${medicineId}`, dosage, {
+    headers: {
+      'Authorization': 'Bearer ' + localStorage.getItem("authToken")
+    }
+  })
+  return response.data
+}
+
+export const getAllDosages = async () => {
+  const response = await axios.get("/dosage", {
+    headers: {
+      'Authorization': 'Bearer ' + localStorage.getItem("authToken")
+    }
+  })
+  return response.data
+}
+
+export const getAllMedicines = async () => {
+  const response = await axios.get("/medicine", {
+    headers: {
+      'Authorization': 'Bearer ' + localStorage.getItem("authToken")
+    }
+  })
+  return response.data
 }
 
 export const getIncompatibilyList = async (medicineId: number) => {
