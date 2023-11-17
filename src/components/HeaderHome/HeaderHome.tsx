@@ -4,6 +4,7 @@ import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutl
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import { useNavigate } from 'react-router-dom';
 import CustomTabs from '../CustomTabs/CustomTabs';
+import { ROUTES } from '../../routes/constans';
 interface HeaderProps {
   title?: string;
   type: 'headerHome' | 'headerChat' | 'headerPage' | 'headerTab';
@@ -24,7 +25,7 @@ const HeaderHome: React.FC<HeaderProps> = ({
   const handleExit = () => {
     console.log('saiu');
     localStorage.removeItem('authToken');
-    navigate('/');
+    navigate(ROUTES.LOGIN());
   };
 
   return (

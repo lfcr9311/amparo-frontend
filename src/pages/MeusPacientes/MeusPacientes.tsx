@@ -6,7 +6,7 @@ import Modal from '../../components/Modal/Modal';
 import CardUsuario from '../../components/CardUsuario/CardUsuario';
 import ModalDetalhesPaciente from '../../components/ModalDetalhesPaciente/ModalDetalhesPaciente.tsx';
 import { fetchMeusPacientes } from '../../utils/apiService.tsx';
-import { CircularProgress, Icon } from '@mui/material';
+import { CircularProgress } from '@mui/material';
 
 interface Paciente {
   id: number;
@@ -88,17 +88,12 @@ const MeusPacientes: React.FC = () => {
         <>
           <div className='search-container'>
             <input
-              className='search-input' 
+              className='search-input'
               type='text'
               placeholder='Buscar...'
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
             />
-            <Icon>
-              <img
-                src='https://img.icons8.com/material-outlined/24/000000/search--v1.png'
-              />
-            </Icon>
           </div>
           <div className='my-doctors-container'>
             {pacientes.length > 0 ? (

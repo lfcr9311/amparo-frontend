@@ -67,7 +67,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 170px;
-  margin-top: -14%;
+  margin-top: -10%;
 }
 
 .cards-exames-realizados {
@@ -91,6 +91,7 @@
   line-height: normal;
   max-width: 260px;
 }
+
 .body-exames {
   height: 65%;
 }

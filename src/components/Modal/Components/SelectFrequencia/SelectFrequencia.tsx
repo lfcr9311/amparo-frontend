@@ -7,7 +7,6 @@ interface StateSelectProps {
 }
 
 const SelectFrequencia: React.FC<StateSelectProps> = ({ onChange, value }) => {
-
   const frequencias = ['3 horas', '6 horas', '12 horas'];
 
   frequencias.push('Diariamente');
@@ -21,9 +20,9 @@ const SelectFrequencia: React.FC<StateSelectProps> = ({ onChange, value }) => {
   };
 
   return (
-    <div className="box-container-frequencia">
+    <div className="box-container-frequencia-div">
       <select
-        className="select-component-frequencia"
+        className="select-component-frequencia-select"
         onChange={handleChange}
         value={value}
       >

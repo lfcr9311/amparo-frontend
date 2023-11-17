@@ -1,18 +1,13 @@
-.box-container-frequencia {
+.box-container-frequencia-div {
   display: flex;
-  align-items: center;
   border-radius: 3px;
   background: #eaeaea;
-  width: 140px;
-  max-width: 145px;
-  gap: 10px;
   height: 42px;
   border: none;
+  margin-left: 25px;
 }
 
-
-
-.select-component-frequencia {
+.select-component-frequencia-select {
   color: #696969;
   font-family: Poppins;
   font-size: 12px;
@@ -22,16 +17,6 @@
   border: none;
   outline: none;
   background-color: #eaeaea;
-  margin: 10px;
-  width: 120px;
-}
-
-.select-component-frequencia .option {
-  color: #696969;
-  font-family: Poppins;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  margin: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
 }

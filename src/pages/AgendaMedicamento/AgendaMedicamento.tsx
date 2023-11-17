@@ -1,49 +1,75 @@
-import CustomButton from '../../components/Button/Button';
 import Footer from '../../components/Footer/Footer';
 import HeaderHome from '../../components/HeaderHome/HeaderHome';
-import SelectMedicamento from '../../components/Modal/Components/SelectMedicamento/SelectMedicamento';
-import SelectTime from '../../components/Modal/Components/SelectTime/SelectTime';
-import Modal from '../../components/Modal/Modal';
+import MedicamentoAgenda, { MedicamentoAgendaType } from '../../components/MedicamentoAgenda/MedicamentoAgenda';
 import './AgendaMedicamento.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { editDosage, getAllDosages } from '../../utils/apiService';
+import { Box } from '@mui/system';
 
 export default function AgendaMedicamento() {
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [tempTime, setTempTime] = useState();
+  const [medicamentosAgenda, setMedicamentosAgenda] = useState<MedicamentoAgendaType[]>([]);
 
-  const handleValues = () => {
-    setTempTime(tempTime);
+  const formatTimestamp = (timestamp: string) => {
+    return timestamp ? new Date(timestamp).toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' }).substring(0, 17).replace(',', '') : undefined
+  }
+
+  const fetchAllDosages = async () => {
+    return getAllDosages()
+      .then((dosages: any) => {
+        const medicines = dosages.map((dosage: any) => ({
+          id: dosage.id,
+          medicineId: dosage.idMedicine,
+          frequency: dosage.frequency,
+          quantity: dosage.quantity,
+          nome: dosage.medicineName,
+          usoContinuo: dosage.finalDate === null,
+          dataFinal: dosage.finalDate,
+          ultimaDataConsumida: formatTimestamp(dosage.lastConsumedDate)
+        }))
+        medicines.sort((a: MedicamentoAgendaType, b: MedicamentoAgendaType) => a.nome.localeCompare(b.nome))
+        setMedicamentosAgenda(medicines)
+        return true
+      })
+  }
+
+  useEffect(() => {
+    fetchAllDosages()
+  }, [])
+
+  const handleInfoClick = (medicamentoId: string) => {
+    console.log("Informações do medicamento com ID:", medicamentoId);
   };
+
+  const handleAdministrate = (medicamento: MedicamentoAgendaType) => {
+    const dosageToUpdate = {
+      dosageId: medicamento.id,
+      medicineId: medicamento.medicineId,
+      quantity: medicamento.quantity,
+      frequency: medicamento.frequency,
+      finalDate: medicamento.dataFinal,
+      lastConsumedDate: new Date().toISOString()
+    }
+    return editDosage(dosageToUpdate)
+      .then(fetchAllDosages)
+  }
+
 
   return (
     <>
       <HeaderHome title="Agenda" type="headerPage" />
-
-      // Criar página aqui
-
-      <Modal
-        isOpen={true}
-        isClose={() => setModalIsOpen(!modalIsOpen)}
-        title="Medicamento"
-      >
-        <div className="medication-info">
-          <SelectMedicamento value="" onChange={() => { }} />
-        </div>
-        <div className="continuo">
-          <input type="checkbox" />
-          <label>Uso contínuo</label>
-        </div>
-        <div className="administration">
-          <SelectTime />
-        </div>
-        <div className="botao">
-          <CustomButton
-            variant="contained"
-            label="Salvar"
-            onClick={handleValues}
-          />
-        </div>
-      </Modal>
+      <div className="meus-remedios-container">
+        <Box style={{ minHeight: '450px', maxHeight: '450px' }}>
+          {medicamentosAgenda.map((medicamento) => (
+            <MedicamentoAgenda
+              key={medicamento.id}
+              title={medicamento.nome.length > 18 ? medicamento.nome.substring(0, 15) + "..." : medicamento.nome}
+              content={medicamento}
+              onInfoClick={() => handleInfoClick(medicamento.id)}
+              onAdministrate={(medicamento) => handleAdministrate(medicamento)}
+            />
+          ))}
+        </Box>
+      </div>
       <Footer user="patient" />
     </>
   );

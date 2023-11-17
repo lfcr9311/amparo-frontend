@@ -1,3 +1,8 @@
+body,
+.pagina-container {
+  padding-bottom: 70px;
+}
+
 .medication-info {
   display: flex;
   flex-direction: column;
@@ -29,10 +34,32 @@
   font-size: 13px;
 }
 
-.botao {
+.botao-salvar {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   margin-bottom: 8px;
   align-items: center;
+}
+
+.botao-add {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.meus-remedios-container {
+  max-height: 80vh;
+  overflow-y: auto;
+  padding-bottom: 100px;
+  overflow-y: auto;
+  gap: 0px;
+}
+
+@media (max-width: 768px) {
+  .meus-remedios-container {
+    max-height: 60vh;
+    margin-top: 5vh;
+  }
 }
