@@ -48,6 +48,10 @@
         width: 80%;
     }
 
+    .no-exams-alert {
+        text-align: center;
+    }
+
     .filter-div{
         position: fixed;
         top: 23.5%;

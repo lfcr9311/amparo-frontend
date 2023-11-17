@@ -15,6 +15,7 @@ interface ExamListProps {
   filePdf: string | null;
   id: string;
   onClickPermisson: boolean;
+  onClick?: () => any;
 }
 
 export default function ExamListItem({
@@ -25,10 +26,14 @@ export default function ExamListItem({
   fileImage,
   filePdf,
   id,
-  onClickPermisson
+  onClickPermisson,
+  onClick
 }: ExamListProps) {
   const navigate = useNavigate();
   const handleClick = () => {
+    if (onClick){
+      onClick();
+    } else
     navigate(
       type === 'pendente'
         ? ROUTES.EDICAO_EXAMES_PENDENTES()
