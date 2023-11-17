@@ -1,6 +1,6 @@
 import Footer from '../../components/Footer/Footer';
 import HeaderHome from '../../components/HeaderHome/HeaderHome';
-import './InformacaoMedicaEspecificaedicao.css';
+import './InformacaoMedicaEspecificaEdicao.css';
 
 export default function EditarInformacaoMedicaEspecifica() {
     return (
