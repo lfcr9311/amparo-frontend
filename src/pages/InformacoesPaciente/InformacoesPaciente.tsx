@@ -5,21 +5,22 @@ import RefreshIcon from '../../assets/RefreshIcon.svg'
 import FiltroBusca from '../../components/FiltroBusca/FiltroBusca'
 import { useEffect, useState } from 'react'
 import { ButtonSalmonPageInfo } from '../../components/ButtonSalmon/ButtonSalmonPageInfo'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { ROUTES } from '../../routes/constans'
+import { getALlInformations } from '../../utils/apiService'
 
 interface Informacao {
     title?: string;
     link?: string;
     image?: string;
     description?: string;
-    createdAt?: string;
-    name: string;
+    createdAt: string;
 }
 
 export default function InformacoesPaciente() {
     const navigate = useNavigate();
     const [informacaoMedica, setInformacaoMedica] = useState('');
+    const [posts, setPosts] = useState<Informacao[]>([]);
     const handleInformacaoMedica = (newValue: string) => {
         setInformacaoMedica(newValue);
     }
@@ -27,9 +28,13 @@ export default function InformacoesPaciente() {
     const handleRefresh = () => {
         window.location.reload();
     }
-    const informacao: Informacao[] = [
-        
-    ]
+
+    useEffect(() => {
+        getALlInformations()
+        .then(data => {
+            setPosts(data)
+        })
+    })
 
 
     function calcularDiferencaDias(timestamp: string): string {
@@ -65,14 +70,14 @@ export default function InformacoesPaciente() {
                 <FiltroBusca value={informacaoMedica} onChange={handleInformacaoMedica} />
             </div>
             <div className='container-info-paciente'>
-            {informacao.map((info, index) => (
+            {posts.map((info, index) => (
                             <ButtonSalmonPageInfo
                                 key={index}
                                 infoTitle={info.title === undefined ? 'Sem título' : info.title}
-                                dateAndDoctorInfo={`${calcularDiferencaDias(info.createdAt)} - ${info.name}`}
+                                dateAndDoctorInfo={`${calcularDiferencaDias(info.createdAt)} - ${info.title}`}
                                 onClick={() => {
                                     console.log('Editando')
-                                    navigate(ROUTES.ADICIONAR_INFORMACAO_MEDICA(), {
+                                    navigate(ROUTES.INFORMACAO_MEDICA_ESPECIFICA(), {
                                         state: {
                                             title: info.title,
                                             description: info.description,

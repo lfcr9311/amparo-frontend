@@ -97,6 +97,15 @@ export const saveDosage = async ({
   return response.data;
 };
 
+export const getALlInformations = async () => {
+  const response = await axios.get('/information', {
+    headers: {
+      Authorization: 'Bearer ' + localStorage.getItem('authToken'),
+    }
+  })
+  return response.data
+}
+
 export const editDosage = async ({
   dosageId,
   medicineId,
