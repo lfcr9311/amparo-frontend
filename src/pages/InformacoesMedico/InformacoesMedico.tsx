@@ -8,7 +8,7 @@ import { ButtonSalmonPageInfo } from '../../components/ButtonSalmon/ButtonSalmon
 import AddIcon from '../../assets/AddIcon.svg'
 import { fetchInformacao } from '../../utils/apiService'
 import { CircularProgress } from '@mui/material'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { ROUTES } from '../../routes/constans'
 
 interface Informacao {
@@ -20,17 +20,8 @@ interface Informacao {
     name: string;
 }
 
-interface InformationUpdate {
-    title?: string;
-    link?: string;
-    description?: string;
-    update?: boolean;
-}
-
 export default function InformacoesMedico() {
-    const location = useLocation();
     const navigate = useNavigate();
-    const information = location.state as InformationUpdate;
     const [informacaoMedica, setInformacaoMedica] = useState('');
     const [isLoading, setIsLoading] = useState(true);
     const handleInformacaoMedica = (newValue: string) => {
@@ -48,17 +39,8 @@ export default function InformacoesMedico() {
     const [informacao, setInformacao] = useState<Informacao[]>([]);
 
     useEffect(() => {
-        if (!information.update) {
-            fetchData();
-        } else {
-            updateData();
-            fetchData();
-        }
+        fetchData();
     }, [])
-
-    const updateData = async () => {
-        console.log('Updating data')
-    }
 
     const fetchData = async () => {
         try {
@@ -126,8 +108,7 @@ export default function InformacoesMedico() {
                                         state: {
                                             title: info.title,
                                             description: info.description,
-                                            link: info.link,
-                                            update: false
+                                            link: info.link
                                         }
                                     })
                                 }

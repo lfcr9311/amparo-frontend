@@ -552,7 +552,6 @@ export const addDoctor = async (doctorId: string) => {
 };
 
 export const addInformation = async (
-  idUser: string | null,
   title: string,
   description: string,
   link: string
@@ -564,7 +563,7 @@ export const addInformation = async (
       link: link || null,
     };
 
-    const response = await axios.post(`/information/${idUser}`, body, {
+    const response = await axios.post(`/information`, body, {
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('authToken'),
       },

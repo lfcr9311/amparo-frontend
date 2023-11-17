@@ -13,8 +13,6 @@ export function AdicionarInformacao() {
     const [title, setTitle] = useState('');
     const [text, setText] = useState('');
     const [link, setLink] = useState('');
-    const doctorId = localStorage.getItem('idUser');
-
     const navigate = useNavigate();
 
     const handleTitle = (newValue: string) => {
@@ -43,7 +41,7 @@ export function AdicionarInformacao() {
 
             <div className="button-add-info">
                 <Button variant="contained" label="Salvar" onClick={() => {
-                    addInformation(doctorId,title, text, link);
+                    addInformation(title, text, link);
                     navigate(ROUTES.INFORMACOES_MEDICO());
                 }} />
             </div>
