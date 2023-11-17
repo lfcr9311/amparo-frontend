@@ -86,7 +86,7 @@ export const saveDosage = async ({
   const dosage = {
     quantity,
     frequency,
-    finalDate: new Date(finalDate).toISOString(),
+    finalDate: finalDate ? new Date(finalDate).toISOString() : undefined,
     initialHour: new Date().toISOString(),
   };
   const response = await axios.post(`/dosage/${medicineId}`, dosage, {

@@ -142,7 +142,7 @@ export default function ListaMedicamentos() {
 
     const novaDosagem = {
       medicineId: medicamento.id,
-      quantity: dosagem && unidadeMedida ? `${dosagem}${unidadeMedida}` : '',
+      quantity: dosagem && unidadeMedida ? `${dosagem} ${unidadeMedida}` : '',
       frequency: frequencia,
       finalDate: usoContinuo ? undefined : dataFinal,
     };

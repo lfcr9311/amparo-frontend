@@ -33,7 +33,7 @@ export const TelaMedicamento = () => {
   const [dataFinalMostraNaTela, setDataFinalMostraNaTela] = useState('');
   const [dataFinalParaEnviarEditar, setDataFinalParaEnviarEditar] =
     useState('');
-  const [unidadeMedida, setUnidadeMedida] = useState('mg');
+  const [unidadeMedida, setUnidadeMedida] = useState('cps');
   const [name, setName] = useState('');
   const [lastDosage, setLastDosage] = useState('');
   // @ts-ignore
@@ -141,7 +141,7 @@ export const TelaMedicamento = () => {
           <div>
             Dosagem: {''}
             <span className="informacao-de-uso-remedio">
-              {dosagem} {unidadeMedida} ml
+              {dosagem} {unidadeMedida}
             </span>{' '}
           </div>
           <div>
