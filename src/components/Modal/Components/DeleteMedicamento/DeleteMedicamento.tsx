@@ -3,17 +3,22 @@ import './DeleteMedicamento.css';
 interface DeleteMedicamentoProps {
   isModalOpen: boolean;
   setIsModalOpen: (value: boolean) => void;
+  handleDelete: () => void;
 }
 
 export default function DeleteMedicamento({
   isModalOpen,
-  setIsModalOpen
+  setIsModalOpen,
+  handleDelete,
 }: DeleteMedicamentoProps) {
   return (
     <div className="background-container">
       <div className="modal-container">
         <div className="body-modal-container">
-          <p className="text-modal" style={{ marginBottom: '15px', fontFamily: 'Poppins' }}>
+          <p
+            className="text-modal"
+            style={{ marginBottom: '15px', fontFamily: 'Poppins' }}
+          >
             Deletar este medicamento?
           </p>
           <div style={{ textAlign: 'center' }}>
@@ -23,14 +28,18 @@ export default function DeleteMedicamento({
               onClick={() => {
                 setIsModalOpen(!isModalOpen);
               }}
-            > Voltar </button>
+            >
+              {' '}
+              Voltar{' '}
+            </button>
             <button
               className="delete-button"
               style={{ fontWeight: '500', fontFamily: 'Poppins' }}
-              onClick={() => {
-                console.log("deletado !")
-              }}
-            > Deletar </button>
+              onClick={handleDelete}
+            >
+              {' '}
+              Deletar{' '}
+            </button>
           </div>
         </div>
       </div>

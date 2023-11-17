@@ -75,7 +75,7 @@ const FiltroBuscaMedicamentos: React.FC<CustomFiltroBuscaMedicamentosProps> = ({
             <img src={IconeMedicamentoMedio} alt="medio" style={{ marginRight: '-20px', marginLeft: '20px' }} />
           </MenuItem>
           <MenuItem value={3}>
-            <img src={IconeMedicamentoRuim} alt="ruim" style={{ marginRight: '-20px', marginLeft: '11px' }} />
+            <img src={IconeMedicamentoRuim} alt="ruim" style={{ marginRight: '-20px', marginLeft: '15px' }} />
           </MenuItem>
         </Select>
       </FormControl>

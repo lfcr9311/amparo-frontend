@@ -1,146 +1,192 @@
 import { ListaInteracoesRebaixada } from '../../components/ListaDeMedicamentosRebaixada/ListaDeMedicamentosRebaixada';
 import HeaderHome from '../../components/HeaderHome/HeaderHome';
 import Footer from '../../components/Footer/Footer';
-import { getIncompatibilyList } from '../../utils/apiService';
-import ButtonMUI, { ButtonProps } from '@mui/material/Button';
-import { styled } from '@mui/material/styles';
-import { useState } from 'react';
+import {
+  deleteDosage,
+  getDosage,
+  getIncompatibilyList,
+  putEditDosage,
+} from '../../utils/apiService';
+import { useEffect, useState } from 'react';
 import EditIcon from '../../assets/EditIcon.svg';
 import './TelaMedicamento.css';
+import { ModalEdicaoDosagem } from '../../components/ModalEdicaoDosagem/ModalEdicaoDosagem';
+import DeleteMedicamento from '../../components/Modal/Components/DeleteMedicamento/DeleteMedicamento';
+import { format, addDays } from 'date-fns';
+import {  useNavigate, useParams } from 'react-router-dom';
+import { ROUTES } from '../../routes/constans';
 
-interface MedicamentoProps {
-    id: number;
-    name: string;
-
-    dosagem?: String;
-    frequencia?: String;
-    dataFinal?: String;
+interface Items {
+  id: number;
+  name: string;
+  status: number;
 }
 
+export const TelaMedicamento = () => {
+  const { dosageId } = useParams<{ dosageId: string }>();
 
-export const TelaMedicamento: React.FC<MedicamentoProps> = ({ id, name, dosagem, frequencia, dataFinal }) => {
+  const [modalIsOpenEdit, setModalIsOpenEdit] = useState(false);
+  const [modalIsOpenBula, setModalIsOpenBula] = useState(false);
+  const [modalIsOpenExcluir, setModalIsOpenExcluir] = useState(false);
+  const [dosagem, setDosagem] = useState('');
+  const [frequencia, setFrequencia] = useState('');
+  const [dataFinalMostraNaTela, setDataFinalMostraNaTela] = useState('');
+  const [dataFinalParaEnviarEditar, setDataFinalParaEnviarEditar] =
+    useState('');
+  const [unidadeMedida, setUnidadeMedida] = useState('mg');
+  const [name, setName] = useState('');
+  const [lastDosage, setLastDosage] = useState('');
+  // @ts-ignore
+  const [idMedicine, setIdMedicine] = useState('');
 
-    const [modalIsOpen, setModalIsOpen] = useState(false);
-    const [listaIncompatibilidade, setListaIncompatibilidade] = useState<any[]>([]);
-    useState(() => {
-        getIncompatibilyList(id).then((listIncompatibility) => {
-            setListaIncompatibilidade(listIncompatibility)
-        });
+  const handleSalvarEdicao = (dadosEditados: any) => {
+    if (dadosEditados.dataFinal === undefined) {
+      dadosEditados.dataFinal = format(
+        addDays(new Date(dataFinalParaEnviarEditar), 1),
+        'yyyy-MM-dd'
+      );
+    }
+    if (dadosEditados.frequencia === undefined) {
+      dadosEditados.frequencia = frequencia;
+    }
+    if (dadosEditados.dosagem === undefined) {
+      dadosEditados.dosagem = dosagem;
+    }
+    putEditDosage(
+      dosageId!!,
+      Number(idMedicine),
+      dadosEditados.dosagem,
+      dadosEditados.frequencia,
+      dadosEditados.dataFinal
+    ).then((response) => {
+      setLastDosage(response);
     });
+  };
 
-    const ColorButtonBula = styled(ButtonMUI)<ButtonProps>(() => ({
-        width: '162px',
-        height: '45px',
-        padding: '6px 8px',
-        borderRadius: '12px',
-        gap: '10px',
-        fontFamily: 'Poppins',
-        fontSize: '19px',
-        fontStyle: 'italic',
-        fontWeight: 500,
-        lineHeight: '29px',
-        letterSpacing: '0',
-        textAlign: 'center',
-        color: '#4D4C4C',
-        backgroundColor: '#DCDCDC',
-        '&:hover': {
-            backgroundColor: '#DCDCDC',
-        },
-    }));
+  useEffect(() => {
+    getDosage(dosageId!!)
+      .then((medicine) => {
+        const dateFormated = format(new Date(medicine.finalDate), 'dd/MM/yyyy');
+        const dateFormatedEdited = format(
+          new Date(medicine.finalDate),
+          'yyyy-MM-dd'
+        );
+        setDosagem(medicine.quantity);
+        setFrequencia(medicine.frequency);
+        setDataFinalMostraNaTela(dateFormated);
+        setDataFinalParaEnviarEditar(dateFormatedEdited);
+        setUnidadeMedida(medicine.unit);
+        setName(medicine.medicineName);
+        setIdMedicine(medicine.idMedicine);
+        getIncompatibily(medicine.idMedicine);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [lastDosage]);
 
+  const [listaIncompatibilidade, setListaIncompatibilidade] = useState<Items[]>(
+    []
+  );
+    // @ts-ignore
+  const navigate = useNavigate();
 
-    const listaFixa: { name: string; status: number }[] = [
-        { name: "Remédio G", status: 1 },
-        { name: "Remédio F", status: 1 },
-        { name: "Remédio A", status: 1 },
-        { name: "Remédio B", status: 1 },
-        { name: "Remédio C", status: 1 },
-        { name: "Remédio D", status: 1 },
-        { name: "Remédio A", status: 2 },
-        { name: "Remédio B", status: 2 },
-        { name: "Remédio C", status: 2 },
-        { name: "Remédio A", status: 3 },
-        { name: "Remédio B", status: 3 },
-        { name: "Remédio C", status: 3 },
-    ];
+  const handleDelete = () => {
+    console.log('deletar');
+    deleteDosage(dosageId!!)
+      .then((response) => {
+        console.log(response);
+        navigate(ROUTES.LISTA_MEDICAMENTOS());
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
-
-    return (
-        <>
-            <HeaderHome title="Medicamentos" type="headerPage" />
-
-            <div className='body-container-remedio'>
-                <div className='div-edit-medicamento'>
-                    <button
-                        onClick={() => setModalIsOpen(!modalIsOpen)}
-                        className="edition-icon-medicamento"
-                    >
-
-                        <img src={EditIcon} />
-                    </button>
-                </div>
-                <div className='nome-remedio'> {name}</div>
-
-                <div className='infos-remedio'>
-                    <br />
-                    <div>Dosagem: <span className='informacao-de-uso-remedio'>{dosagem}</span></div>
-                    <br />
-
-                    <div >Frequencia: <span className='informacao-de-uso-remedio'>{frequencia}</span></div>
-                    <br />
-
-                    <div>Data Final: <span className='informacao-de-uso-remedio'>{dataFinal}</span></div>
-                    <br />
-
-                    <div>Medicamentos de uso conjunto:</div>
-                    <br />
-
-                </div>
-
-                <div className='box-lita-interacoes-remedio'>
-                    {listaIncompatibilidade.length === 0
-                        ? <div className='texto-sem-interacoes-remedio' title={'Sem interações'}>
-                            <div className='div-lista-interacoes-remedio'>
-                                <ListaInteracoesRebaixada items={listaFixa} name={name} />
-                                 {//colocar sem interacao  
-                                }
-                            </div>
-                        </div>
-                        : <div className='div-lista-interacoes-remedio'>
-                            <ListaInteracoesRebaixada items={listaFixa} name={name} />
-                        </div>
-                    }
-                </div>
-                <br />
-
-                <div className='bula-medicamento'>
-
-                    <ColorButtonBula onClick={() => setModalIsOpen(!modalIsOpen)}>BULA</ColorButtonBula>
-
-                </div>
-
-            </div>
-            <div className='deletar-remedio'>
-
-                <ButtonMUI
-                    sx={{
-                        display: "flex",
-                        fontSize: "12px",
-                        marginBottom: "20px",
-                        fontFamily: "Poppins",
-                        cursor: "pointer",
-                        color: "#E10E17",
-                        border: "none",
-                        background: "none",
-                        outline: "none",
-                    }}
-                    onClick={() => setModalIsOpen(!modalIsOpen)}
-                >
-
-                    Deletar conta
-                </ButtonMUI>           </div>
-            <Footer user="patient" />
-        </>
+  const getIncompatibily = async (idMedicine: string) => {
+    getIncompatibilyList(Number(idMedicine)).then(
+      (listIncompatibility: Items[]) => {
+        setListaIncompatibilidade(listIncompatibility);
+      }
     );
-};
+  };
 
+  return (
+    <>
+      <HeaderHome title="Medicamentos" type="headerPage" />
+      <div className="body-container-remedio">
+        <button
+          onClick={() => setModalIsOpenEdit(!modalIsOpenEdit)}
+          className="button-med-edit"
+        >
+          <img src={EditIcon} className="edition-icon-medicament-image" />
+        </button>
+        {modalIsOpenEdit && (
+          <ModalEdicaoDosagem
+            isOpen={modalIsOpenEdit}
+            onClose={() => setModalIsOpenEdit(false)}
+            dosagemRecebida={dosagem}
+            unidadeMedica={unidadeMedida}
+            frequenciaRecebida={frequencia}
+            dataFinalRecebida={
+              dataFinalParaEnviarEditar !== null
+                ? dataFinalParaEnviarEditar
+                : undefined
+            }
+            onSalvar={handleSalvarEdicao}
+          />
+        )}
+        <div className="infos-remedio">
+          <div className="nome-remedio">{name}</div>
+          <div>
+            Dosagem: {''}
+            <span className="informacao-de-uso-remedio">
+              {dosagem} {unidadeMedida} ml
+            </span>{' '}
+          </div>
+          <div>
+            Frequencia:{' '}
+            <span className="informacao-de-uso-remedio">{frequencia}</span>
+          </div>
+          <div>
+            Data Final:{' '}
+            <span className="informacao-de-uso-remedio">
+              {dataFinalMostraNaTela}
+            </span>
+          </div>
+          <div className='name-interacao-medicamento'>Interações Medicamentosas:</div>
+        </div>
+
+        <div className="box-lista-interacoes-remedio">
+          <ListaInteracoesRebaixada
+            items={listaIncompatibilidade}
+            name={name}
+          />
+        </div>
+        <div className="bula-medicamento">
+          <button
+            className="bula-medicamento-button"
+            onClick={() => setModalIsOpenBula(!modalIsOpenBula)}
+          >
+            BULA
+          </button>
+        </div>
+      </div>
+      <button
+        className="delete-medicament-button"
+        onClick={() => setModalIsOpenExcluir(!modalIsOpenExcluir)}
+      >
+        Deletar Medicamento
+      </button>
+
+      {modalIsOpenExcluir && (
+        <DeleteMedicamento
+          isModalOpen={modalIsOpenExcluir}
+          setIsModalOpen={() => setModalIsOpenExcluir(false)}
+          handleDelete={handleDelete}
+        />
+      )}
+      <Footer user="patient" />
+    </>
+  );
+};

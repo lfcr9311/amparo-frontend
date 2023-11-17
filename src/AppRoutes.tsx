@@ -9,7 +9,7 @@ import { CadastroMedico } from './pages/CadastroMedico/CadastroMedico';
 import { Identificacao } from './pages/Identificacao/Identificacao';
 import HomeMedico from './pages/HomeMedico/HomeMedico';
 import VisualizacaoPerfilMedico from './pages/VisualizarPerfilMedico/VisualizarPerfilMedico';
-import { isLoggedIn, setUserId } from './utils/authService'
+import { isLoggedIn, setUserId } from './utils/authService';
 import MenuMedicamentos from './pages/MenuMedicamentos/MenuMedicamentos';
 import ListaMedicamentos from './pages/ListaMedicamentos/ListaMedicamentos';
 import Exames from './pages/Exames/Exames';
@@ -18,69 +18,85 @@ import EdicaoExameRealizado from './pages/EdicaoExameRealizado/EdicaoExameRealiz
 import ListaDeInteracaoDoMedicamento from './pages/ListaDeInteracaoDoMedicamento/ListaDeInteracaoDomedicamento';
 import MeusMedicos from './pages/MeusMedicos/MeusMedicos';
 import PageMedico from './components/FiltroBuscaMedico/PageMedico';
-
-import MedicamentoAgenda from './pages/AgendaMedicamento/AgendaMedicamento';
-
 import BuscaMedicamentos from './pages/BuscaMedicamentos/BuscaMedicamentos';
+
 import MeusPacientes from './pages/MeusPacientes/MeusPacientes';
 import AcessarExamePaciente from './pages/AcessarExamePaciente/AcessarExamePaciente';
 import ListaMedicamentosMedico from './pages/ListaMedicamentosMedico/ListaMedicamentosMedico';
 import VisualizarExameMedico from './pages/ExamesMedico/VisualizarExameMedico';
+import { TelaMedicamento } from './pages/TelaMedicamento/TelaMedicamento';
 
 
 export default function AppRoutes() {
   const fetchData = async () => {
-    await setUserId()
-  }
+    await setUserId();
+  };
   function PrivateRoute({ children }: { children: React.ReactNode }) {
     isLoggedIn().then((isAuthenticated) => {
       if (!isAuthenticated) {
-        return window.location.href = ROUTES.LOGIN();
-      }
-      else if (localStorage.getItem('userId') == null) {
-
-        fetchData()
+        return (window.location.href = ROUTES.LOGIN());
+      } else if (localStorage.getItem('userId') == null) {
+        fetchData();
       }
     });
 
     return children;
   }
 
-
   return (
     <Router>
       <div className="App">
         <Routes>
-          <Route path={ROUTES.HOME_MEDICO()}
-            element={<PrivateRoute>
-              <HomeMedico />
-            </PrivateRoute>
+          <Route
+            path={ROUTES.HOME_MEDICO()}
+            element={
+              <PrivateRoute>
+                <HomeMedico />
+              </PrivateRoute>
             }
           />
 
-          <Route path={ROUTES.HOME_PACIENTE()}
-            element={<PrivateRoute>
-              <HomePaciente />
-            </PrivateRoute>
-            } />
+          <Route
+            path={ROUTES.MEDICAMENTO()}
+            element={
+              <PrivateRoute>
+                <TelaMedicamento />
+              </PrivateRoute>
+            }
+          />
 
-          <Route path={ROUTES.MEUS_PACIENTES()}
-            element={<PrivateRoute>
-              <MeusPacientes />
-            </PrivateRoute>
-            } />
-
-          <Route path={ROUTES.LISTADEINTERACAODOMEDICAMENTO()}
+          <Route
+            path={ROUTES.HOME_PACIENTE()}
+            element={
+              <PrivateRoute>
+                <HomePaciente />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path={ROUTES.MEUS_PACIENTES()}
+            element={
+              <PrivateRoute>
+                <MeusPacientes />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path={ROUTES.LISTA_INTERACAO_MEDICAMENTO()}
             element={
               <PrivateRoute>
                 <ListaDeInteracaoDoMedicamento />
               </PrivateRoute>
-            } />
-          <Route path={ROUTES.FILTROBUSCAMEDICO()} element={
-            <PrivateRoute>
-              <PageMedico />
-            </PrivateRoute>
-          } />
+            }
+          />
+          <Route
+            path={ROUTES.FILTRO_BUSCA_MEDICO()}
+            element={
+              <PrivateRoute>
+                <PageMedico />
+              </PrivateRoute>
+            }
+          />
           <Route
             path={ROUTES.CADASTRO_PACIENTE()}
             element={<CadastroPaciente />}
@@ -150,12 +166,7 @@ export default function AppRoutes() {
                 <Exames />
               </PrivateRoute>
             } />
-          <Route
-            path={ROUTES.AGENDA_REMEDIOS()} element={
-              <PrivateRoute>
-                <MedicamentoAgenda />
-              </PrivateRoute>
-            } />
+         
           <Route path={ROUTES.EXAMES()} element={
             <PrivateRoute>
               <Exames />
@@ -173,6 +184,26 @@ export default function AppRoutes() {
           <Route path={ROUTES.LISTA_MEDICAMENTOS_MEDICO()} element={
             <ListaMedicamentosMedico />
           } />
+          <Route
+            path={ROUTES.EXAMES()}
+            element={
+              <PrivateRoute>
+                <Exames />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path={ROUTES.TELA_BUSCA_MEDICAMENTO()}
+            element={<BuscaMedicamentos />}
+          />
+          <Route
+            path={ROUTES.ACESSAR_EXAMES_PACIENTE()}
+            element={<AcessarExamePaciente />}
+          />
+          <Route
+            path={ROUTES.LISTA_MEDICAMENTOS_MEDICO()}
+            element={<ListaMedicamentosMedico />}
+          />
         </Routes>
       </div>
     </Router>
