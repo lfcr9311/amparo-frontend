@@ -1,0 +1,38 @@
+.date-pendentes-title-medico-pendentes {
+    color: #4d4c4c;
+    font-family: Poppins;
+    font-size: 23px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-top: -42%;
+    margin-right: 59%;
+}
+
+.description-title-medico-pendentes {
+    color: #4d4c4c;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-align: left;
+    margin-right: 64%;
+    margin-top: 7px;
+}
+
+.description-value-container-pendentes{
+  color: #4d4c4c;
+  background-color: transparent;
+  border-radius: 10px;
+  text-align: justify;
+  font-family: Poppins;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding: 10px;
+  height: 250px;
+  width: 315px;
+  margin-top: -1%;
+}
