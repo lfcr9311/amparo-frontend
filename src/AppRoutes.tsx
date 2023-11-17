@@ -26,6 +26,7 @@ import ListaMedicamentosMedico from './pages/ListaMedicamentosMedico/ListaMedica
 import VisualizarExameMedico from './pages/ExamesMedico/VisualizarExameMedico';
 import { TelaMedicamento } from './pages/TelaMedicamento/TelaMedicamento';
 import ExamesPendentesMedico from './pages/ExamesPendentesMedico/ExamesPendentesMedico';
+import AgendaMedicamento from './pages/AgendaMedicamento/AgendaMedicamento';
 
 
 export default function AppRoutes() {
@@ -142,6 +143,14 @@ export default function AppRoutes() {
             element={
               <PrivateRoute>
                 <ListaMedicamentos />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path={ROUTES.AGENDA_REMEDIOS()}
+            element={
+              <PrivateRoute>
+                <AgendaMedicamento />
               </PrivateRoute>
             }
           />
