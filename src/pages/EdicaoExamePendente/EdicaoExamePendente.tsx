@@ -50,7 +50,7 @@ export default function EdicaoExamePendente() {
       </div>
       <div className="desc-container">
         <p className="descricao-title">Descrição</p>
-        <Descricao value={description} />
+        <p className='descricao-texto'>{description}</p>
       </div>
       <div className="button-salmon-page-container">
         <ButtonSalmon

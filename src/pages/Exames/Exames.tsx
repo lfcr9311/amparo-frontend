@@ -13,6 +13,7 @@ import { format, parse } from 'date-fns';
 import './Exames.css';
 import { addExamePendente, addExameRealizado, addFileOrImage, getExamesPendente, getExamesRealizados } from '../../utils/apiService';
 import ExamesVazio from '../../components/ExamesVazio/ExamesVazio';
+import { CircularProgress } from '@mui/material';
 
 interface Exames {
   id: string;
@@ -34,6 +35,7 @@ export default function Exames() {
   const [addExam, setAddExam] = useState('');
   const [tabNumber, setTabNumber] = useState(0);
   const [filePdf, setFilePdf] = useState<File | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
   const [fileImage, setFileImage] = useState<File | null>(null);
   const [examesPendentes, setExamesPendentes] = useState<Exames[]>([]);
   const [examesRealizados, setExamesRealizados] = useState<Exames[]>([]);
@@ -56,6 +58,7 @@ export default function Exames() {
       setExamesRealizados(response.data)
 
     }).finally(() => {
+      setIsLoading(false)
       console.log("realizados -> ", examesRealizados);
     })
   }, [addExam])
@@ -70,7 +73,6 @@ export default function Exames() {
       setAddExam(response.data)
     }).catch((error) => {
       console.error(error);
-
     })
   }
 
@@ -108,7 +110,8 @@ export default function Exames() {
   return (
     <>
       <HeaderHome type="headerTab" value={value} setValue={setValue} />
-      {value === 0 ? (
+      {isLoading && <CircularProgress color='error' />}
+      {!isLoading && value === 0 ? (
         examesPendentes.length === 0 ? (
           <ExamesVazio
             value={value}
@@ -131,7 +134,7 @@ export default function Exames() {
             setFilePdf={setFilePdf}
 
           />
-        ) : (
+        ) : !isLoading && (
 
           <div className='body-exames'>
             <div className="content-header-pendentes">
@@ -184,7 +187,7 @@ export default function Exames() {
           </div>
 
         )
-      ) : (
+      ) : !isLoading && (
         examesRealizados.length === 0 ?
           (
             <ExamesVazio
@@ -209,7 +212,7 @@ export default function Exames() {
               setFilePdf={setFilePdf}
             />
           )
-          : (
+          : !isLoading && (
 
 
             <div className='body-exames'>

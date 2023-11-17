@@ -57,7 +57,7 @@ const VisualizacaoPerfilPaciente = () => {
       });
       const formData = { name, email, date: dataNascimento, cpf, nSus };
       pacientSchema.parse(formData);
-      await editUser(name, '12345678910', cpf.replace(/\D/g, ""), "null", email, dataNascimento, nSus);
+      await editUser(name, '12345678910', cpf.replace(/\D/g, ""), null, email, dataNascimento, nSus);
       setIsModalOpen(!isModalOpen);
     }
     catch (e) {
