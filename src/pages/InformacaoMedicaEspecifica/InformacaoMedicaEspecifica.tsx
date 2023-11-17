@@ -9,6 +9,7 @@ export default function InformacaoMedicaEspecifica() {
     return (
         <>
         <HeaderHome title="Informações" type="headerPage" />
+        <Box>
             <div className="container-especific-info">
                 <div className="container-especific-info-title">
                    {title}
@@ -28,6 +29,7 @@ export default function InformacaoMedicaEspecifica() {
                     </div>
                 </div>
             </div>
+            </Box>
          <Footer user="patient" />
          </>
     );
