@@ -7,12 +7,14 @@ import { useEffect, useState } from 'react'
 import { ButtonSalmonPageInfo } from '../../components/ButtonSalmon/ButtonSalmonPageInfo'
 import { useNavigate } from 'react-router-dom'
 import { ROUTES } from '../../routes/constans'
-import { getALlInformations } from '../../utils/apiService'
+import { getAllInformations } from '../../utils/apiService'
 
 interface Informacao {
+    id?: string
     title?: string;
     link?: string;
     image?: string;
+    doctorId: string;
     description?: string;
     createdAt: string;
 }
@@ -30,35 +32,16 @@ export default function InformacoesPaciente() {
     }
 
     useEffect(() => {
-        getALlInformations()
+        getAllInformations()
         .then(data => {
             setPosts(data)
         })
     })
 
-
     function calcularDiferencaDias(timestamp: string): string {
-        const agora = new Date();
-        const dataPostagem = new Date(timestamp);
-        const diferencaEmMilissegundos = agora.getTime() - dataPostagem.getTime();
-
-        const diferencaEmDias = Math.floor(diferencaEmMilissegundos / (1000 * 60 * 60 * 24));
-
-        if (diferencaEmDias > 0) {
-            if (diferencaEmDias <= 7) {
-                return `${diferencaEmDias} dia${diferencaEmDias > 1 ? 's' : ''} atrás`;
-            } else {
-                const dia = dataPostagem.getDate();
-                const mes = dataPostagem.getMonth() + 1;
-                const ano = dataPostagem.getFullYear();
-                const dataFormatada = `${dia}/${mes}/${ano}`;
-                return dataFormatada;
-            }
-        } else {
-            const diferencaEmHoras = Math.floor(diferencaEmMilissegundos / (1000 * 60 * 60));
-            return `${diferencaEmHoras} hora${diferencaEmHoras > 1 ? 's' : ''} atrás`;
-        }
+        return `Publicado em: ${new Date(timestamp).toLocaleDateString('pt-BR')}`
     }
+
     return (
         <>
             <HeaderHome title="Informações" type="headerPage" />
@@ -76,7 +59,6 @@ export default function InformacoesPaciente() {
                                 infoTitle={info.title === undefined ? 'Sem título' : info.title}
                                 dateAndDoctorInfo={`${calcularDiferencaDias(info.createdAt)} - ${info.title}`}
                                 onClick={() => {
-                                    console.log('Editando')
                                     navigate(ROUTES.INFORMACAO_MEDICA_ESPECIFICA(), {
                                         state: {
                                             title: info.title,

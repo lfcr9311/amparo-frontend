@@ -2,6 +2,7 @@ import { useLocation } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
 import HeaderHome from '../../components/HeaderHome/HeaderHome';
 import './InformacaoMedicaEspecifica.css';
+import Box from '@mui/material/Box';
 
 export default function InformacaoMedicaEspecifica() {
     const location = useLocation()
@@ -9,7 +10,7 @@ export default function InformacaoMedicaEspecifica() {
     return (
         <>
         <HeaderHome title="Informações" type="headerPage" />
-            <div className="container-especific-info">
+            <Box className="container-especific-info">
                 <div className="container-especific-info-title">
                    {title}
 
@@ -27,7 +28,7 @@ export default function InformacaoMedicaEspecifica() {
 
                     </div>
                 </div>
-            </div>
+            </Box>
          <Footer user="patient" />
          </>
     );

@@ -26,6 +26,13 @@ export const login_post = async (email: String, psw: String) => {
   }
 };
 
+export const getCurrentUserId = () => {
+  const currentToken = localStorage.getItem('authToken')
+  const bodyPart:string = currentToken?.split('.')[1]!!
+  const body = JSON.parse(atob(bodyPart))
+  return body.sub
+}
+
 export const getDosage = async (dosageId: string) => {
   try {
     const response = await axios.get(`/dosage/${dosageId}`, {
@@ -97,7 +104,7 @@ export const saveDosage = async ({
   return response.data;
 };
 
-export const getALlInformations = async () => {
+export const getAllInformations = async () => {
   const response = await axios.get('/information', {
     headers: {
       Authorization: 'Bearer ' + localStorage.getItem('authToken'),
@@ -617,13 +624,12 @@ export const updateInformation = async (
   informationId: string,
   title: string,
   description: string,
-  link: string,
-  image: string
+  link: string
 ) => {
   try {
     const response = await axios.put(
       `/information/${informationId}`,
-      { title, description, link, image },
+      { title, description, link },
       {
         headers: {
           Authorization: 'Bearer ' + localStorage.getItem('authToken'),

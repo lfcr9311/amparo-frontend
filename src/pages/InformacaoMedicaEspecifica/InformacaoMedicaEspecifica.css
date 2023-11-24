@@ -1,11 +1,8 @@
 .container-especific-info {
-    flex-grow: 1;
     padding: 35px;
     overflow-y: auto;
     box-sizing: border-box;
-    position: relative;
-    margin-top: 30%;
-    margin-bottom: 30%;
+    max-height: 60vh;
 }
 
 .container-especific-info-title {

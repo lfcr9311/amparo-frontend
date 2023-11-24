@@ -1,4 +1,4 @@
-import { addInformation } from '../../utils/apiService';
+import { addInformation, updateInformation } from '../../utils/apiService';
 import { useEffect, useState } from "react";
 import Button from "../../components/Button/Button";
 import Footer from "../../components/Footer/Footer";
@@ -12,6 +12,7 @@ export function AdicionarInformacao() {
     const location = useLocation()
     const [title, setTitle] = useState('');
     const [text, setText] = useState('');
+    const [id, setId] = useState('');
     const [link, setLink] = useState('');
     const navigate = useNavigate();
 
@@ -24,9 +25,13 @@ export function AdicionarInformacao() {
     const handleLink = (newValue: string) => {
         setLink(newValue);
     }
+    const handleId = (id: string) => {
+        setId(id)
+    }
 
     useEffect(() => {
-        const {title, description, link} = location.state || {title: '', description: '', link: ''}
+        const { id, title, description, link } = location.state || { id: '', title: '', description: '', link: '' }
+        handleId(id)
         handleTitle(title)
         handleText(description)
         handleLink(link)
@@ -41,7 +46,11 @@ export function AdicionarInformacao() {
 
             <div className="button-add-info">
                 <Button variant="contained" label="Salvar" onClick={() => {
-                    addInformation(title, text, link);
+                    if (id != '') {
+                        updateInformation(id, title, text, link)
+                    } else {
+                        addInformation(title, text, link);
+                    }
                     navigate(ROUTES.INFORMACOES_MEDICO());
                 }} />
             </div>

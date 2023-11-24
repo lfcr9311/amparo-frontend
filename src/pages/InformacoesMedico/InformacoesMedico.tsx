@@ -6,17 +6,19 @@ import FiltroBusca from '../../components/FiltroBusca/FiltroBusca'
 import { useEffect, useState } from 'react'
 import { ButtonSalmonPageInfo } from '../../components/ButtonSalmon/ButtonSalmonPageInfo'
 import AddIcon from '../../assets/AddIcon.svg'
-import { fetchInformacao } from '../../utils/apiService'
+import { fetchInformacao, getCurrentUserId } from '../../utils/apiService'
 import { CircularProgress } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import { ROUTES } from '../../routes/constans'
 
 interface Informacao {
+    id: string;
     title?: string;
     link?: string;
     image?: string;
     description?: string;
-    createdAt?: string;
+    createdAt: string;
+    doctorId: string;
     name: string;
 }
 
@@ -37,15 +39,16 @@ export default function InformacoesMedico() {
     }
 
     const [informacao, setInformacao] = useState<Informacao[]>([]);
+    const [currentUserId, setCurrentUserId] = useState<string>('');
 
     useEffect(() => {
+        setCurrentUserId(getCurrentUserId())
         fetchData();
     }, [])
 
     const fetchData = async () => {
         try {
             setIsLoading(true);
-            console.log('Fetching data')
             const info = await fetchInformacao();
             setInformacao(info);
             console.log(info)
@@ -56,29 +59,10 @@ export default function InformacoesMedico() {
         }
     }
 
-    function calcularDiferencaDias(timestamp: string | undefined): string {
-        if (timestamp === undefined) return ('Sem data');
-        const agora = new Date();
-        const dataPostagem = new Date(timestamp);
-        const diferencaEmMilissegundos = agora.getTime() - dataPostagem.getTime();
-
-        const diferencaEmDias = Math.floor(diferencaEmMilissegundos / (1000 * 60 * 60 * 24));
-
-        if (diferencaEmDias > 0) {
-            if (diferencaEmDias <= 7) {
-                return `${diferencaEmDias} dia${diferencaEmDias > 1 ? 's' : ''} atrás`;
-            } else {
-                const dia = dataPostagem.getDate();
-                const mes = dataPostagem.getMonth() + 1;
-                const ano = dataPostagem.getFullYear();
-                const dataFormatada = `${dia}/${mes}/${ano}`;
-                return dataFormatada;
-            }
-        } else {
-            const diferencaEmHoras = Math.floor(diferencaEmMilissegundos / (1000 * 60 * 60));
-            return `${diferencaEmHoras} hora${diferencaEmHoras > 1 ? 's' : ''} atrás`;
-        }
+    function calcularDiferencaDias(timestamp: string): string {
+        return `Publicado em: ${new Date(timestamp).toLocaleDateString('pt-BR')}`
     }
+
     return (
         <>
             <HeaderHome title="Informações" type="headerPage" />
@@ -104,13 +88,25 @@ export default function InformacoesMedico() {
                                 dateAndDoctorInfo={`${calcularDiferencaDias(info.createdAt)} - ${info.name}`}
                                 onClick={() => {
                                     console.log('Editando')
-                                    navigate(ROUTES.ADICIONAR_INFORMACAO_MEDICA(), {
-                                        state: {
-                                            title: info.title,
-                                            description: info.description,
-                                            link: info.link
-                                        }
-                                    })
+                                    if(currentUserId == info.doctorId) {
+                                        navigate(ROUTES.ADICIONAR_INFORMACAO_MEDICA(), {
+                                            state: {
+                                                id: info.id,
+                                                title: info.title,
+                                                description: info.description,
+                                                link: info.link
+                                            }
+                                        })   
+                                    } else {
+                                        navigate(ROUTES.INFORMACAO_MEDICA_ESPECIFICA(), {
+                                            state: {
+                                                title: info.title,
+                                                description: info.description,
+                                                link: info.link,
+                                                update: false
+                                            }
+                                        })
+                                    }
                                 }
                                 }
                             />
