@@ -38,7 +38,6 @@ const ListaDeInteracaoMedicamentos = () => {
             item.name.toLowerCase().includes(filtroText.toLowerCase()))}
             name='' />
         </div>
-
       </div>
       <Footer user="patient" />
     </>
