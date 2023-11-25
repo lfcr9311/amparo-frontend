@@ -37,6 +37,7 @@ const ListaDeInteracaoMedicamentos = () => {
           <ListaInteracoes items={listaDeMedicamentosCompleta.filter((item: { status: number; name: string; }) => (item.status === filtroStatus || filtroStatus === 0) &&
             item.name.toLowerCase().includes(filtroText.toLowerCase()))}
             name='' />
+            
         </div>
       </div>
       <Footer user="patient" />
