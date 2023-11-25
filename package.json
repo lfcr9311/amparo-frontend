@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "test": "echo \"TA TESTADO\"",
+    "test": "echo \"test ok\"",
     "start": "vite --host",
     "build": "tsc && vite build",
     "preview": "vite preview --host",
